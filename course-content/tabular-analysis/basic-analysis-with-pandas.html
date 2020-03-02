@@ -1,0 +1,5403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basic Data Analysis with Pandas &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Crosstab and Pivot Tables" href="pivot-tables.html" />
+    <link rel="prev" title="Tabular Data Analysis" href="_index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Tabular Data Analysis</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Basic Data Analysis with Pandas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Row-and-Column-Labels">Row and Column Labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Reading-from-a-File">Reading from a File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Data-Cleaning">Data Cleaning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Expanding">Expanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Slicing">Slicing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Slicing-by-Position">Slicing by Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Slicing-by-Label">Slicing by Label</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Sorting">Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Merging">Merging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Multi-level-Column-and-Index-Values">Multi-level Column and Index Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Stacking-and-Unstacking">Stacking and Unstacking</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Grouping">Grouping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Aggregation">Aggregation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Transformation">Transformation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pivot-tables.html">Crosstab and Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linear-regression.html">Linear Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="_index.html">Tabular Data Analysis</a> &raquo;</li>
+        
+      <li>Basic Data Analysis with Pandas</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/tabular-analysis/basic-analysis-with-pandas.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Basic-Data-Analysis-with-Pandas">
+<h1>Basic Data Analysis with Pandas<a class="headerlink" href="#Basic-Data-Analysis-with-Pandas" title="Permalink to this headline">¶</a></h1>
+<p>Pandas is the <em>de facto</em> standard for statistical analysis of tabular data using Python.</p>
+<p>The basic data structure in pandas is a DataFrame. A DataFrame is a two dimensional table of data, with optional row and column labels.</p>
+<p>You can construct a DataFrame from raw data in a few different ways. One simple way is to pass a dictionary, as here:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">raw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.1</span><span class="p">,</span><span class="mf">5.2</span><span class="p">,</span><span class="mf">6.3</span><span class="p">]}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7</td>
+      <td>1</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>2</td>
+      <td>5.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>3</td>
+      <td>6.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="Row-and-Column-Labels">
+<h2>Row and Column Labels<a class="headerlink" href="#Row-and-Column-Labels" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the data in the table, DataFrames are defined with row and column labels, identified as <code class="docutils literal notranslate"><span class="pre">index</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code>, respectively. You might notice that in the first DataFrame we created, the keys of the raw dictionary were adopted automatically as the column labels. The row labels are not drawn from the raw dictionary as there’s nothing in it to use for that purpose. But every DataFrame must have some kind of row labels, so some are created automatically. If we provide more info to
+the DataFrame constructor so that it can see what the row labels should be, then it will use those:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">raw_los</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Speed&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Car&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;Bus&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;Walk&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">},</span>
+    <span class="s1">&#39;Cost&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Car&#39;</span><span class="p">:</span> <span class="mf">3.25</span><span class="p">,</span> <span class="s1">&#39;Bus&#39;</span><span class="p">:</span> <span class="mf">1.75</span><span class="p">,</span> <span class="s1">&#39;Walk&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="n">los</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">raw_los</span><span class="p">)</span>
+<span class="n">los</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Speed</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Car</th>
+      <td>60</td>
+      <td>3.25</td>
+    </tr>
+    <tr>
+      <th>Bus</th>
+      <td>20</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <th>Walk</th>
+      <td>3</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Index([&#39;Car&#39;, &#39;Bus&#39;, &#39;Walk&#39;], dtype=&#39;object&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">los</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Index([&#39;Speed&#39;, &#39;Cost&#39;], dtype=&#39;object&#39;)
+</pre></div></div>
+</div>
+<p>The values for either <code class="docutils literal notranslate"><span class="pre">index</span></code> or <code class="docutils literal notranslate"><span class="pre">columns</span></code> can be changed, simply by overwriting the appropriate attribute of the DataFrame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">los</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Speed</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>60</td>
+      <td>3.25</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>You can also choose an existing column of the DataFrame to be the index, using the <code class="docutils literal notranslate"><span class="pre">set_index</span></code> method.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">los</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Speed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Cost</th>
+    </tr>
+    <tr>
+      <th>Speed</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>60</th>
+      <td>3.25</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>This probably isn’t a good thing to do with measured attributes like <em>‘Speed’</em>, but it can come in handy to set the index as an identifier code (e.g. a TAZ code), especially after reading data from a file.</p>
+<p>As you might notice, the <code class="docutils literal notranslate"><span class="pre">index</span></code> or <code class="docutils literal notranslate"><span class="pre">columns</span></code> can be made up of text, or numbers – or, in fact, any Python object.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span><span class="s1">&#39;value&#39;</span><span class="p">},</span><span class="nb">set</span><span class="p">([</span><span class="kc">None</span><span class="p">]),</span><span class="nb">bytes</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">los</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Speed</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>{'key': 'value'}</th>
+      <td>60</td>
+      <td>3.25</td>
+    </tr>
+    <tr>
+      <th>{None}</th>
+      <td>20</td>
+      <td>1.75</td>
+    </tr>
+    <tr>
+      <th>b'\x00\x00'</th>
+      <td>3</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>But you’ll find things much simpler if you stick to strings or integers for these labels, unless there is some very compelling reason to deviate from that plan.</p>
+<p>Every DataFrame has both <code class="docutils literal notranslate"><span class="pre">index</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code>, even if one or both of these sets of labels are not defined when creating the DataFrame. For example, the example <code class="docutils literal notranslate"><span class="pre">df</span></code> created from <code class="docutils literal notranslate"><span class="pre">raw</span></code> above only has column names, but the <code class="docutils literal notranslate"><span class="pre">index</span></code> with row names was created by default.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+RangeIndex(start=0, stop=3, step=1)
+</pre></div></div>
+</div>
+<p>This default index is a <code class="docutils literal notranslate"><span class="pre">RangeIndex</span></code>, which is a memory-saving feature (at least when the DataFrame is large), as the actual index values are not stored, just the start, stop, and step values (i.e., start at 0, stop before you get to 3, counting by 1’s).</p>
+</div>
+<div class="section" id="Data-Types">
+<h2>Data Types<a class="headerlink" href="#Data-Types" title="Permalink to this headline">¶</a></h2>
+<p>Within the DataFrame, each <em>column</em> of data has a uniform data type, but the data types are permitted to vary across the columns. In the example DataFrame we created here, the data type was inferred as <code class="docutils literal notranslate"><span class="pre">int64</span></code> for columns ‘A’ and ‘B’, and <code class="docutils literal notranslate"><span class="pre">float64</span></code> for ‘C’ (because the values in that column’s data are integers). Note that all the values displayed in column ‘C’ have decimal values. We can also check explicitly on the data types for each column:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7</td>
+      <td>1</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>2</td>
+      <td>5.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>3</td>
+      <td>6.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+A      int64
+B      int64
+C    float64
+dtype: object
+</pre></div></div>
+</div>
+<p>If we try to force data into a DataFrame that doesn’t follow this pattern of maintaining one common data type in each column, the underlying data will be up-casted to preserve this data type by columns rule. For example, if we take the transpose of the example DataFrame (swapping the rows and columns), the integer data gets up-casted to floats:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>7.0</td>
+      <td>8.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>4.1</td>
+      <td>5.2</td>
+      <td>6.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The numerical values of each data cell are preserved, but now all three columns are represeted as floating point numbers.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0    float64
+1    float64
+2    float64
+dtype: object
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Reading-from-a-File">
+<h2>Reading from a File<a class="headerlink" href="#Reading-from-a-File" title="Permalink to this headline">¶</a></h2>
+<p>For virtually all transportation data analysis, the data used will be loaded from a file, instead of being entered directly in Python commands. Fortunately, Pandas comes with a host of data reading methods that can be used to read data in a variety of formats:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_clipboard.html">read_clipboard</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">read_csv</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_excel.html">read_excel</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_feather.html">read_feather</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_fwf.html">read_fwf</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_hdf.html">read_hdf</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_html.html">read_html</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html">read_json</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_msgpack.html">read_msgpack</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_parquet.html">read_parquet</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_pickle.html">read_pickle</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sas.html">read_sas</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html">read_sql</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql_query.html">read_sql_query</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql_table.html">read_sql_table</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_stata.html">read_stata</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_table.html">read_table</a></p></li>
+</ul>
+<p>You can click through to the documentation for each of these. In this tutorial, we’ll cover the most basic reading function in the pandas library, which is <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>. Despite the name, this function isn’t just for reading comma seperated values, but also pretty much any delimited text file, including tab and space delimited files.</p>
+<p>A very small example csv data file is included in the transportation_tutorials package:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY-POP&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;FL-COUNTY-POP.csv.gz&#39;
+</pre></div></div>
+</div>
+<p>For most csv files, you can just pass the name of the file to the read_csv function, and pandas will figure out the rest. This includes, as shown here, when a csv file is gzipped on disk, in which case it is transparently decompressed while reading.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Pinellas County</td>
+      <td>970637</td>
+      <td>5.908084</td>
+      <td>273.80</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Duval County</td>
+      <td>937934</td>
+      <td>8.349131</td>
+      <td>762.19</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Lee County</td>
+      <td>739224</td>
+      <td>19.139938</td>
+      <td>784.51</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Polk County</td>
+      <td>686483</td>
+      <td>13.819128</td>
+      <td>1797.84</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Brevard County</td>
+      <td>589162</td>
+      <td>8.306616</td>
+      <td>1015.66</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Volusia County</td>
+      <td>538692</td>
+      <td>8.949042</td>
+      <td>1101.03</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Pasco County</td>
+      <td>525643</td>
+      <td>12.922512</td>
+      <td>746.89</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Seminole County</td>
+      <td>462659</td>
+      <td>9.358846</td>
+      <td>309.22</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Sarasota County</td>
+      <td>419119</td>
+      <td>10.310730</td>
+      <td>555.87</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Manatee County</td>
+      <td>385571</td>
+      <td>19.209805</td>
+      <td>742.93</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Collier County</td>
+      <td>372880</td>
+      <td>15.585507</td>
+      <td>1998.32</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Marion County</td>
+      <td>354353</td>
+      <td>6.944143</td>
+      <td>1584.55</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Osceola County</td>
+      <td>352180</td>
+      <td>30.508575</td>
+      <td>1327.45</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Lake County</td>
+      <td>346017</td>
+      <td>16.228536</td>
+      <td>938.38</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Escambia County</td>
+      <td>313512</td>
+      <td>5.192661</td>
+      <td>656.46</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>St. Lucie County</td>
+      <td>313506</td>
+      <td>12.659688</td>
+      <td>571.93</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Leon County</td>
+      <td>290292</td>
+      <td>5.189313</td>
+      <td>666.85</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Alachua County</td>
+      <td>266944</td>
+      <td>7.809988</td>
+      <td>875.02</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>St. Johns County</td>
+      <td>243812</td>
+      <td>27.492731</td>
+      <td>600.66</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Clay County</td>
+      <td>212230</td>
+      <td>10.863853</td>
+      <td>604.36</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Okaloosa County</td>
+      <td>202970</td>
+      <td>12.315593</td>
+      <td>930.25</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Hernando County</td>
+      <td>186553</td>
+      <td>7.857172</td>
+      <td>472.54</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Bay County</td>
+      <td>183563</td>
+      <td>8.484283</td>
+      <td>758.46</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>Charlotte County</td>
+      <td>182033</td>
+      <td>13.863851</td>
+      <td>680.28</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>Santa Rosa County</td>
+      <td>174272</td>
+      <td>13.969564</td>
+      <td>1011.61</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Monroe County</td>
+      <td>77013</td>
+      <td>5.181715</td>
+      <td>983.28</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Putnam County</td>
+      <td>73464</td>
+      <td>-0.997251</td>
+      <td>727.62</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>Columbia County</td>
+      <td>69612</td>
+      <td>3.043401</td>
+      <td>797.57</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Walton County</td>
+      <td>68376</td>
+      <td>23.840400</td>
+      <td>1037.63</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Jackson County</td>
+      <td>48330</td>
+      <td>-2.650767</td>
+      <td>917.76</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Gadsden County</td>
+      <td>46071</td>
+      <td>-3.607072</td>
+      <td>516.33</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Suwannee County</td>
+      <td>44190</td>
+      <td>4.406379</td>
+      <td>688.55</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Okeechobee County</td>
+      <td>41605</td>
+      <td>3.934549</td>
+      <td>768.91</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Levy County</td>
+      <td>40355</td>
+      <td>-0.906100</td>
+      <td>1118.21</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Hendry County</td>
+      <td>40347</td>
+      <td>3.414072</td>
+      <td>1152.75</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>DeSoto County</td>
+      <td>36862</td>
+      <td>5.512938</td>
+      <td>637.06</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Wakulla County</td>
+      <td>32120</td>
+      <td>4.201135</td>
+      <td>606.42</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Baker County</td>
+      <td>28283</td>
+      <td>4.511862</td>
+      <td>585.23</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>Hardee County</td>
+      <td>27411</td>
+      <td>-1.132552</td>
+      <td>637.78</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>Bradford County</td>
+      <td>27038</td>
+      <td>-5.249509</td>
+      <td>293.96</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>Washington County</td>
+      <td>24567</td>
+      <td>-0.622952</td>
+      <td>582.80</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Taylor County</td>
+      <td>21833</td>
+      <td>-3.338203</td>
+      <td>1043.31</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>Holmes County</td>
+      <td>19558</td>
+      <td>-1.446208</td>
+      <td>478.78</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>Madison County</td>
+      <td>18449</td>
+      <td>-4.151081</td>
+      <td>695.95</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>Gilchrist County</td>
+      <td>17743</td>
+      <td>4.364449</td>
+      <td>349.68</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>Dixie County</td>
+      <td>16673</td>
+      <td>1.658435</td>
+      <td>705.05</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>Gulf County</td>
+      <td>16160</td>
+      <td>2.123357</td>
+      <td>564.01</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>Union County</td>
+      <td>15517</td>
+      <td>-0.180122</td>
+      <td>243.56</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>Calhoun County</td>
+      <td>14483</td>
+      <td>-1.112932</td>
+      <td>567.33</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>Hamilton County</td>
+      <td>14184</td>
+      <td>-3.398488</td>
+      <td>513.79</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>Jefferson County</td>
+      <td>14144</td>
+      <td>-4.095471</td>
+      <td>598.10</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>Glades County</td>
+      <td>13754</td>
+      <td>6.843782</td>
+      <td>806.01</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>Franklin County</td>
+      <td>11727</td>
+      <td>1.779205</td>
+      <td>534.73</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>Lafayette County</td>
+      <td>8451</td>
+      <td>-4.074915</td>
+      <td>543.41</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>Liberty County</td>
+      <td>8242</td>
+      <td>-1.269765</td>
+      <td>835.56</td>
+    </tr>
+  </tbody>
+</table>
+<p>67 rows × 4 columns</p>
+</div></div>
+</div>
+<p>Within the Jupyter notebook, by default if you try to view a large data frame, the middle section is not displayed. If you look carefully above, you’ll see a row of ellipsis marking the place where some rows are not shown. Still, we get the first 30 and last 30 rows of the table. If you don’t want to review so large a section of a DataFrame, you can use the <code class="docutils literal notranslate"><span class="pre">head</span></code> method of DataFrames to see just the first few rows.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>One notable tabular file format you may encounter in transportation planning that is <em>not</em> directly readable by pandas is the <code class="docutils literal notranslate"><span class="pre">DBF</span></code> file. Fortunately, there are other related tools that can read this kind of file, including <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>. Geopandas includes just one main reading function: <code class="docutils literal notranslate"><span class="pre">read_file</span></code>. When you read a DBF file with <code class="docutils literal notranslate"><span class="pre">geopandas.read_file</span></code>, you’ll get a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> object instead of a regular pandas.DataFrame – but don’t worry, everything you can do with a DataFrame you
+can also do with a GeoDataFrame.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;US-STATES&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;US-STATES.dbf&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">states</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;US-STATES&#39;</span><span class="p">))</span>
+<span class="n">states</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>STUSPS</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>01</td>
+      <td>01779775</td>
+      <td>0400000US01</td>
+      <td>01</td>
+      <td>AL</td>
+      <td>Alabama</td>
+      <td>00</td>
+      <td>131173688951</td>
+      <td>4593686489</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>02</td>
+      <td>01785533</td>
+      <td>0400000US02</td>
+      <td>02</td>
+      <td>AK</td>
+      <td>Alaska</td>
+      <td>00</td>
+      <td>1477946266785</td>
+      <td>245390495931</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>04</td>
+      <td>01779777</td>
+      <td>0400000US04</td>
+      <td>04</td>
+      <td>AZ</td>
+      <td>Arizona</td>
+      <td>00</td>
+      <td>294198560125</td>
+      <td>1027346486</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>05</td>
+      <td>00068085</td>
+      <td>0400000US05</td>
+      <td>05</td>
+      <td>AR</td>
+      <td>Arkansas</td>
+      <td>00</td>
+      <td>134771517596</td>
+      <td>2960191698</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>06</td>
+      <td>01779778</td>
+      <td>0400000US06</td>
+      <td>06</td>
+      <td>CA</td>
+      <td>California</td>
+      <td>00</td>
+      <td>403501101370</td>
+      <td>20466718403</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">larch</span>
+</pre></div>
+</div>
+</div>
+<p>An alternate DBF reading implementation is included in Larch. This optimized DBF reader can currently only handle text and numeric datatyped (i.e., types ‘C’, ‘F’, and ‘N’; no dates, memos, or logical fields). However, it can read data quite fast even for large files, and will extract the basic contents of the file (headers, number of rows) even without actually reading the data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">f</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DBF</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;US-STATES&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>To actually load the data into a DataFrame, use the <code class="docutils literal notranslate"><span class="pre">load_dataframe</span></code> method.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">states</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">load_dataframe</span><span class="p">()</span>
+<span class="n">states</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;STUSPS&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">states</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+    </tr>
+    <tr>
+      <th>STUSPS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AL</th>
+      <td>01</td>
+      <td>01779775</td>
+      <td>0400000US01</td>
+      <td>01</td>
+      <td>Alabama</td>
+      <td>00</td>
+      <td>131173688951</td>
+      <td>4593686489</td>
+    </tr>
+    <tr>
+      <th>AK</th>
+      <td>02</td>
+      <td>01785533</td>
+      <td>0400000US02</td>
+      <td>02</td>
+      <td>Alaska</td>
+      <td>00</td>
+      <td>1477946266785</td>
+      <td>245390495931</td>
+    </tr>
+    <tr>
+      <th>AZ</th>
+      <td>04</td>
+      <td>01779777</td>
+      <td>0400000US04</td>
+      <td>04</td>
+      <td>Arizona</td>
+      <td>00</td>
+      <td>294198560125</td>
+      <td>1027346486</td>
+    </tr>
+    <tr>
+      <th>AR</th>
+      <td>05</td>
+      <td>00068085</td>
+      <td>0400000US05</td>
+      <td>05</td>
+      <td>Arkansas</td>
+      <td>00</td>
+      <td>134771517596</td>
+      <td>2960191698</td>
+    </tr>
+    <tr>
+      <th>CA</th>
+      <td>06</td>
+      <td>01779778</td>
+      <td>0400000US06</td>
+      <td>06</td>
+      <td>California</td>
+      <td>00</td>
+      <td>403501101370</td>
+      <td>20466718403</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="Data-Cleaning">
+<h3>Data Cleaning<a class="headerlink" href="#Data-Cleaning" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, data that is read in from raw files will require some cleaning to be usable. Consider this example of data on bridges in Florida:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-BRIDGES&#39;</span><span class="p">),</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">previewfile</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">previewfile</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+﻿County,Total #,Good #,Fair #,Poor #,SD #,Total Area,Good Area,Fair Area,Poor Area,SD Area
+ ALACHUA (001),111,64,47,-,-,64767,55794,8973,,
+ BAKER (003),89,30,52,7,8,32162,19369,12282,510,623
+ BAY (005),122,49,63,10,11,210039,98834,109628,1577,10120
+ BRADFORD (007),62,23,37,2,2,9330,5492,3217,620,620
+ BREVARD (009),241,160,81,-,-,364138,204179,159959,,
+
+</pre></div></div>
+</div>
+<p>The data is loaded by pandas in the usual way without errors.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-BRIDGES&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>However, not all is well, and problems will appear during analysis.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;-8112-711-324152218128--6-1--22913622-286111-136313-3-7-3331352-13917696256&#39;
+</pre></div></div>
+</div>
+<p>That is clearly not the number of structurally deficient bridges in Florida. And it’s not even a number at all, it’s a string. If you look carefully and compare against the first few rows of the DataFrame shown below, you may figure out that the string is actually a concatenation of the numbers in the column, not the sum.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>Total #</th>
+      <th>Good #</th>
+      <th>Fair #</th>
+      <th>Poor #</th>
+      <th>SD #</th>
+      <th>Total Area</th>
+      <th>Good Area</th>
+      <th>Fair Area</th>
+      <th>Poor Area</th>
+      <th>SD Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ALACHUA (001)</td>
+      <td>111</td>
+      <td>64</td>
+      <td>47</td>
+      <td>-</td>
+      <td>-</td>
+      <td>64767</td>
+      <td>55794</td>
+      <td>8973</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>BAKER (003)</td>
+      <td>89</td>
+      <td>30</td>
+      <td>52</td>
+      <td>7</td>
+      <td>8</td>
+      <td>32162</td>
+      <td>19369</td>
+      <td>12282</td>
+      <td>510.0</td>
+      <td>623.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BAY (005)</td>
+      <td>122</td>
+      <td>49</td>
+      <td>63</td>
+      <td>10</td>
+      <td>11</td>
+      <td>210039</td>
+      <td>98834</td>
+      <td>109628</td>
+      <td>1577.0</td>
+      <td>10120.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BRADFORD (007)</td>
+      <td>62</td>
+      <td>23</td>
+      <td>37</td>
+      <td>2</td>
+      <td>2</td>
+      <td>9330</td>
+      <td>5492</td>
+      <td>3217</td>
+      <td>620.0</td>
+      <td>620.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BREVARD (009)</td>
+      <td>241</td>
+      <td>160</td>
+      <td>81</td>
+      <td>-</td>
+      <td>-</td>
+      <td>364138</td>
+      <td>204179</td>
+      <td>159959</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>This is happening because the values in that columns are read by pandas as strings, not numbers, because the zero values are given as ‘-’ instead of 0. We can see the problem clearly if we look at the <code class="docutils literal notranslate"><span class="pre">info</span></code> for the bridges DataFrame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 68 entries, 0 to 67
+Data columns (total 11 columns):
+County        68 non-null object
+Total #       68 non-null int64
+Good #        68 non-null int64
+Fair #        68 non-null int64
+Poor #        68 non-null object
+SD #          68 non-null object
+Total Area    68 non-null int64
+Good Area     68 non-null int64
+Fair Area     68 non-null int64
+Poor Area     47 non-null float64
+SD Area       49 non-null float64
+dtypes: float64(2), int64(6), object(3)
+memory usage: 6.0+ KB
+</pre></div></div>
+</div>
+<p>To fix this, we can use the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method to fill all the ‘-’ values with zeros, and then change the dtype of the affected columns back to integer.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span> <span class="o">=</span> <span class="n">bridges</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">bridges</span><span class="p">[[</span><span class="s1">&#39;Poor #&#39;</span><span class="p">,</span> <span class="s1">&#39;SD #&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">bridges</span><span class="p">[[</span><span class="s1">&#39;Poor #&#39;</span><span class="p">,</span> <span class="s1">&#39;SD #&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Then we are able to compute the total number of structurally deficient bridges in Florida.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+512
+</pre></div></div>
+</div>
+<p>Whoa, that seems high. Let’s check on the values in the table and see where all those structurally deficient bridges are. We can sort on the ‘SD #’ column and take a look at the highest few rows:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;SD #&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>Total #</th>
+      <th>Good #</th>
+      <th>Fair #</th>
+      <th>Poor #</th>
+      <th>SD #</th>
+      <th>Total Area</th>
+      <th>Good Area</th>
+      <th>Fair Area</th>
+      <th>Poor Area</th>
+      <th>SD Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>67</th>
+      <td>TOTALS</td>
+      <td>12313</td>
+      <td>8534</td>
+      <td>3545</td>
+      <td>233</td>
+      <td>256</td>
+      <td>16759416</td>
+      <td>11232342</td>
+      <td>5149876</td>
+      <td>376033.0</td>
+      <td>402201.0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>DUVAL (031)</td>
+      <td>763</td>
+      <td>479</td>
+      <td>262</td>
+      <td>22</td>
+      <td>22</td>
+      <td>1795247</td>
+      <td>932820</td>
+      <td>811836</td>
+      <td>50590.0</td>
+      <td>50590.0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>ESCAMBIA (033)</td>
+      <td>243</td>
+      <td>116</td>
+      <td>111</td>
+      <td>16</td>
+      <td>18</td>
+      <td>585435</td>
+      <td>259541</td>
+      <td>233423</td>
+      <td>92471.0</td>
+      <td>92585.0</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>MIAMI-DADE (086)</td>
+      <td>957</td>
+      <td>804</td>
+      <td>146</td>
+      <td>7</td>
+      <td>13</td>
+      <td>1743024</td>
+      <td>1315449</td>
+      <td>404966</td>
+      <td>22609.0</td>
+      <td>33739.0</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>OKALOOSA (091)</td>
+      <td>216</td>
+      <td>111</td>
+      <td>92</td>
+      <td>13</td>
+      <td>13</td>
+      <td>269312</td>
+      <td>77988</td>
+      <td>171330</td>
+      <td>19993.0</td>
+      <td>19993.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Oops! The data we loaded includes a ‘TOTALS’ row, but we don’t want that row included in our DataFrame for analysis. We can drop it (using the index for that row, 67), to fix the problem:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">67</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+256
+</pre></div></div>
+</div>
+<p>A slightly different problem occurs in the data for ‘SD Area’. In this column, the zero values were not given by ‘-’ values, but instead were actually omitted. When read in by pandas, omitted values are valid input and are different from zero values.</p>
+<p>If the intention is that missing values are indeed missing, this behavior is expected and useful. If, however, the missing values should be interpreted as zeros, then that instruction needs to be applied to the DataFrame explicitly, or problems may arise. For example, missing values don’t count in the denominator when computing the mean for a column:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+8379.208333333334
+</pre></div></div>
+</div>
+<p>If we compute the mean manually using the actual number of counties, we get a different value:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+6003.014925373134
+</pre></div></div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">fillna</span></code> method to set all the missing values to zero, and then we get the correct answer:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+6003.014925373134
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Expanding">
+<h2>Expanding<a class="headerlink" href="#Expanding" title="Permalink to this headline">¶</a></h2>
+<p>New columns can be added to an existing DataFrame simply by assiging a value to a new column label, using plain square bracket notation. This makes it easy to create and derived values to a DataFrame.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Population Density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Land Area&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+      <td>1493.170473</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Adding rows to a DataFrame can be done as well, using the <code class="docutils literal notranslate"><span class="pre">loc</span></code> indexer (see the next section on slicing for more about <code class="docutils literal notranslate"><span class="pre">loc</span></code>).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">999</span><span class="p">,[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Dry Tortugas&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>63</th>
+      <td>Glades County</td>
+      <td>13754.0</td>
+      <td>6.843782</td>
+      <td>806.01</td>
+      <td>17.064304</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>Franklin County</td>
+      <td>11727.0</td>
+      <td>1.779205</td>
+      <td>534.73</td>
+      <td>21.930694</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>Lafayette County</td>
+      <td>8451.0</td>
+      <td>-4.074915</td>
+      <td>543.41</td>
+      <td>15.551793</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>Liberty County</td>
+      <td>8242.0</td>
+      <td>-1.269765</td>
+      <td>835.56</td>
+      <td>9.864043</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>Dry Tortugas</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Slicing">
+<h2>Slicing<a class="headerlink" href="#Slicing" title="Permalink to this headline">¶</a></h2>
+<p>There are two main ways to slice a DataFrame, by label and by position.</p>
+<div class="section" id="Slicing-by-Position">
+<h3>Slicing by Position<a class="headerlink" href="#Slicing-by-Position" title="Permalink to this headline">¶</a></h3>
+<p>Slicing by index is done using the <code class="docutils literal notranslate"><span class="pre">iloc</span></code>. This makes the DataFrame operate in a manner similar to a numpy array.</p>
+<p>Giving only one index or set of indexes selects from the rows only.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Giving two sets of of indexes selects from the rows and columns.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">states</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+    </tr>
+    <tr>
+      <th>STUSPS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AK</th>
+      <td>0400000US02</td>
+      <td>02</td>
+      <td>Alaska</td>
+    </tr>
+    <tr>
+      <th>AZ</th>
+      <td>0400000US04</td>
+      <td>04</td>
+      <td>Arizona</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>See more in <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#indexing-integer">Selection by Position</a> in the Pandas documentation.</p>
+</div>
+<div class="section" id="Slicing-by-Label">
+<h3>Slicing by Label<a class="headerlink" href="#Slicing-by-Label" title="Permalink to this headline">¶</a></h3>
+<p>Slicing by label is done using the <code class="docutils literal notranslate"><span class="pre">loc</span></code>. Instead of finding rows or columns based on the raw position in the DataFrame, the <code class="docutils literal notranslate"><span class="pre">loc</span></code> indexer finds rows or columns based upon the values in the <code class="docutils literal notranslate"><span class="pre">index</span></code> or <code class="docutils literal notranslate"><span class="pre">columns</span></code> attributes of the DataFrame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">states</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;AK&#39;</span><span class="p">:</span><span class="s1">&#39;CA&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+    </tr>
+    <tr>
+      <th>STUSPS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AK</th>
+      <td>02</td>
+      <td>01785533</td>
+      <td>0400000US02</td>
+      <td>02</td>
+      <td>Alaska</td>
+      <td>00</td>
+      <td>1477946266785</td>
+      <td>245390495931</td>
+    </tr>
+    <tr>
+      <th>AZ</th>
+      <td>04</td>
+      <td>01779777</td>
+      <td>0400000US04</td>
+      <td>04</td>
+      <td>Arizona</td>
+      <td>00</td>
+      <td>294198560125</td>
+      <td>1027346486</td>
+    </tr>
+    <tr>
+      <th>AR</th>
+      <td>05</td>
+      <td>00068085</td>
+      <td>0400000US05</td>
+      <td>05</td>
+      <td>Arkansas</td>
+      <td>00</td>
+      <td>134771517596</td>
+      <td>2960191698</td>
+    </tr>
+    <tr>
+      <th>CA</th>
+      <td>06</td>
+      <td>01779778</td>
+      <td>0400000US06</td>
+      <td>06</td>
+      <td>California</td>
+      <td>00</td>
+      <td>403501101370</td>
+      <td>20466718403</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>An important feature of the <code class="docutils literal notranslate"><span class="pre">loc</span></code> selector is that the resulting selection includes both the starting <em>and</em> the ending label. This is different from the usual Python slicing process, where the slice runs from the starting position up to but not including the ending position.</p>
+<p>It can also be confusing to use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> selector when the <code class="docutils literal notranslate"><span class="pre">index</span></code> being used has integer values. Case must be taken to select the rows you want, even when the <code class="docutils literal notranslate"><span class="pre">index</span></code> is a RangeIndex starting from zero. Consider these two selections, which are very similar but yield different results:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566.0</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>See more in <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#indexing-label">Selection by Label</a> in the Pandas documentation.</p>
+</div>
+</div>
+<div class="section" id="Sorting">
+<h2>Sorting<a class="headerlink" href="#Sorting" title="Permalink to this headline">¶</a></h2>
+<p>Sorting must be done explictly using the index, or one or more columns of values.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">states</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+    </tr>
+    <tr>
+      <th>STUSPS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AK</th>
+      <td>02</td>
+      <td>01785533</td>
+      <td>0400000US02</td>
+      <td>02</td>
+      <td>Alaska</td>
+      <td>00</td>
+      <td>1477946266785</td>
+      <td>245390495931</td>
+    </tr>
+    <tr>
+      <th>AL</th>
+      <td>01</td>
+      <td>01779775</td>
+      <td>0400000US01</td>
+      <td>01</td>
+      <td>Alabama</td>
+      <td>00</td>
+      <td>131173688951</td>
+      <td>4593686489</td>
+    </tr>
+    <tr>
+      <th>AR</th>
+      <td>05</td>
+      <td>00068085</td>
+      <td>0400000US05</td>
+      <td>05</td>
+      <td>Arkansas</td>
+      <td>00</td>
+      <td>134771517596</td>
+      <td>2960191698</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>60</td>
+      <td>01802701</td>
+      <td>0400000US60</td>
+      <td>60</td>
+      <td>American Samoa</td>
+      <td>00</td>
+      <td>197759069</td>
+      <td>1307243753</td>
+    </tr>
+    <tr>
+      <th>AZ</th>
+      <td>04</td>
+      <td>01779777</td>
+      <td>0400000US04</td>
+      <td>04</td>
+      <td>Arizona</td>
+      <td>00</td>
+      <td>294198560125</td>
+      <td>1027346486</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">states</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+    </tr>
+    <tr>
+      <th>STUSPS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>AL</th>
+      <td>01</td>
+      <td>01779775</td>
+      <td>0400000US01</td>
+      <td>01</td>
+      <td>Alabama</td>
+      <td>00</td>
+      <td>131173688951</td>
+      <td>4593686489</td>
+    </tr>
+    <tr>
+      <th>AK</th>
+      <td>02</td>
+      <td>01785533</td>
+      <td>0400000US02</td>
+      <td>02</td>
+      <td>Alaska</td>
+      <td>00</td>
+      <td>1477946266785</td>
+      <td>245390495931</td>
+    </tr>
+    <tr>
+      <th>AS</th>
+      <td>60</td>
+      <td>01802701</td>
+      <td>0400000US60</td>
+      <td>60</td>
+      <td>American Samoa</td>
+      <td>00</td>
+      <td>197759069</td>
+      <td>1307243753</td>
+    </tr>
+    <tr>
+      <th>AZ</th>
+      <td>04</td>
+      <td>01779777</td>
+      <td>0400000US04</td>
+      <td>04</td>
+      <td>Arizona</td>
+      <td>00</td>
+      <td>294198560125</td>
+      <td>1027346486</td>
+    </tr>
+    <tr>
+      <th>AR</th>
+      <td>05</td>
+      <td>00068085</td>
+      <td>0400000US05</td>
+      <td>05</td>
+      <td>Arkansas</td>
+      <td>00</td>
+      <td>134771517596</td>
+      <td>2960191698</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Merging">
+<h2>Merging<a class="headerlink" href="#Merging" title="Permalink to this headline">¶</a></h2>
+<p>If we have two DataFrames that contain related data, we may want to merge the contents into a single DataFrame for some kinds of analysis. For example, suppose we have a DataFrame that gives enumerates counties in Florida by FDOT District, like this one:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">districts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY-BY-DISTRICT&#39;</span><span class="p">))</span>
+<span class="n">districts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Charlotte</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Collier</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DeSoto</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Glades</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Hardee</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>This is useful information if we want to compute statistics by FDOT District instead of by county, but it will need to be merged with the other available Florida county data we have.</p>
+<p>Pandas provides a <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html#pandas.merge">merge</a> function, which provides the core functionality for all standard database-style join operations between DataFrames. These operations let the analyst connect two DataFrames that are related in some systematic way.</p>
+<p>The principal arguments to the merge function include:</p>
+<ul class="simple">
+<li><p><strong>left</strong>: The left-side DataFrame to merge.</p></li>
+<li><p><strong>right</strong>: The right-side DataFrame to merge (can also be a named pandas.Series instead of a DataFrame).</p></li>
+<li><p><strong>how</strong>: Type of merge to be performed, defaults to ‘inner’.</p>
+<ul>
+<li><p><em>‘left’</em>, or <em>‘right’</em>: use only keys from left or right frame, similar to a SQL outer join; rows from the other DataFrame that do not match one of these keys are dropped.</p></li>
+<li><p><em>‘outer’</em>: use union of keys from both frames, similar to a SQL full outer join; keeps all rows in both DataFrames.</p></li>
+<li><p><em>‘inner’</em>: use intersection of keys from both frames, similar to a SQL inner join; rows in either DataFrame that do not match one of the keys in the other are dropped</p></li>
+</ul>
+</li>
+</ul>
+<p>In addition, some combination of selector arguments must be given, to indicate the keys to use for the join:</p>
+<ul class="simple">
+<li><p><strong>on</strong>: A label or list, giving column or index level names to join on, which must be found in both DataFrames.</p></li>
+<li><p><strong>left_on</strong>, <strong>right_on</strong>: A label or list, giving column or index level names to join on in the left or right DataFrame, respectively.</p></li>
+<li><p><strong>left_index</strong>, <strong>right_index</strong>: A bool (defaults to False) indicating if the index should be used instead of data columns, for the left or right DataFrame, respectively.</p></li>
+</ul>
+<p>Advanced users will find details on a variety of other <code class="docutils literal notranslate"><span class="pre">merge</span></code> arguments in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html#pandas.merge">function documentation</a>. There are also <code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">join</span></code> shorthand methods available as methods on a DataFrame, although each represents an application of the more general <code class="docutils literal notranslate"><span class="pre">merge</span></code> method illustrated here.</p>
+<p>To merge the county data with the District numbers, we can merge the two datasets using the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function. In the population data file we previously loaded, the county names are given in a column named ‘Name’, while in the district mbmership table, the county names are given in a column named ‘County’, we we’ll use the <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> arguments to identify that the merge keys have different names.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">districts</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>In this instance, the ‘inner’ merge resulted in a new DataFrame, but with zero rows of data. This is because, as it turns out, the merge keys are not actually the same:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566.0</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975.0</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+      <td>1493.170473</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">districts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Charlotte</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Collier</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DeSoto</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Glades</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Hardee</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The names of the counties in the first table are given with the appelation “Name County”, while in the second table, they are identified merely as “Name”. In order to use the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function, the keys must match exactly across the two tables. To make this work, we’ll need to strip the ‘County’ from the names in the first table. We can do so with the <code class="docutils literal notranslate"><span class="pre">str.replace</span></code> method, like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; County&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Then, if we attempt the merge again, we’ll get the results we expect.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">districts</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
+<span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+      <td>Miami-Dade</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+      <td>Broward</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+      <td>Palm Beach</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566.0</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+      <td>Hillsborough</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975.0</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+      <td>1493.170473</td>
+      <td>Orange</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The merge here, adding the FDOT district to the County table, is a one-to-one merge (i.e., every row in the left table matches one and only one row in the right table). However, that one-to-one is <em>not</em> required to undertake a merge. We can also merge data that has one-to-many and many-to-one relationships, and even many-to-many, although that merge type is less common in most transportation applications.</p>
+<p>As an example, consider this table that gives the FDOT District name and headquarters location for each district:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">district_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-DISTRICTS&#39;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span>
+<span class="n">district_info</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Headquarters</th>
+    </tr>
+    <tr>
+      <th>District</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Southwest Florida</td>
+      <td>Bartow</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Northeast Florida</td>
+      <td>Lake City</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Northwest Florida</td>
+      <td>Chipley</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Southeast Florida</td>
+      <td>Fort Lauderdale</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Central Florida</td>
+      <td>DeLand</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>South Florida</td>
+      <td>Miami</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>West Central Florida</td>
+      <td>Tampa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>If we want to add a column that gives the district name to the counties table we already have, we can use a many-to-one merge. This is actually just detected automatically, so there is no extra argument to give.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl_2</span><span class="p">,</span> <span class="n">district_info</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name_x</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+      <th>Name_y</th>
+      <th>Headquarters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+      <td>Miami-Dade</td>
+      <td>6</td>
+      <td>South Florida</td>
+      <td>Miami</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Monroe County</td>
+      <td>77013.0</td>
+      <td>5.181715</td>
+      <td>983.28</td>
+      <td>78.322553</td>
+      <td>Monroe</td>
+      <td>6</td>
+      <td>South Florida</td>
+      <td>Miami</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+      <td>Broward</td>
+      <td>4</td>
+      <td>Southeast Florida</td>
+      <td>Fort Lauderdale</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+      <td>Palm Beach</td>
+      <td>4</td>
+      <td>Southeast Florida</td>
+      <td>Fort Lauderdale</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>St. Lucie County</td>
+      <td>313506.0</td>
+      <td>12.659688</td>
+      <td>571.93</td>
+      <td>548.154494</td>
+      <td>St. Lucie</td>
+      <td>4</td>
+      <td>Southeast Florida</td>
+      <td>Fort Lauderdale</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Because both the left and right DataFrames have a column named ‘Name’, in the merged result the column from the left DataFrame has a ‘_x’ appended, while the column from the right DataFrame has a ‘_y’ appended. This is configurable using the <em>suffixes</em> argument, or by just changing the column names before merging. In fact, many merge details can be controlled easily by manipulating the left and right arguments before merging. For example, if we only want to get the district name, not the
+headquarters, we can slice the right DataFrame to only include what we want:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl_2</span><span class="p">,</span> <span class="n">district_info</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">add_prefix</span><span class="p">(</span><span class="s1">&#39;District_&#39;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+      <th>District_Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+      <td>Miami-Dade</td>
+      <td>6</td>
+      <td>South Florida</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Monroe County</td>
+      <td>77013.0</td>
+      <td>5.181715</td>
+      <td>983.28</td>
+      <td>78.322553</td>
+      <td>Monroe</td>
+      <td>6</td>
+      <td>South Florida</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+      <td>Broward</td>
+      <td>4</td>
+      <td>Southeast Florida</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+      <td>Palm Beach</td>
+      <td>4</td>
+      <td>Southeast Florida</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>St. Lucie County</td>
+      <td>313506.0</td>
+      <td>12.659688</td>
+      <td>571.93</td>
+      <td>548.154494</td>
+      <td>St. Lucie</td>
+      <td>4</td>
+      <td>Southeast Florida</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Multi-level-Column-and-Index-Values">
+<h2>Multi-level Column and Index Values<a class="headerlink" href="#Multi-level-Column-and-Index-Values" title="Permalink to this headline">¶</a></h2>
+<p>Often data we are working with has multiple categories of columns. For example, the bridge data we worked with above has two data types: the number of bridges by condition, and the deck area by condition. We can explicitly gather together those groups of columns using a multi-level index.</p>
+<p>To demonstate this, we’ll make a copy of the <code class="docutils literal notranslate"><span class="pre">bridges</span></code> DataFrame with the county name as the index.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges2</span> <span class="o">=</span> <span class="n">bridges</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>There are ten columns of this dataframe now, five counts and five areas.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, &#39;SD #&#39;, &#39;Total Area&#39;,
+       &#39;Good Area&#39;, &#39;Fair Area&#39;, &#39;Poor Area&#39;, &#39;SD Area&#39;],
+      dtype=&#39;object&#39;)
+</pre></div></div>
+</div>
+<p>We can use a list of tuples to create a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> that gives both the column’s category and a name. Notice that we can duplicate the condition names without trouble, because the duplicate values have different categories.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Total&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Good&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Fair&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Poor&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;SD&#39;</span><span class="p">),</span>
+     <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Total&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Good&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Fair&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Poor&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;SD&#39;</span><span class="p">),</span>     <span class="p">],</span>
+    <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;measure&#39;</span><span class="p">,</span> <span class="s1">&#39;condition&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>measure</th>
+      <th colspan="5" halign="left">Count</th>
+      <th colspan="5" halign="left">Area</th>
+    </tr>
+    <tr>
+      <th>condition</th>
+      <th>Total</th>
+      <th>Good</th>
+      <th>Fair</th>
+      <th>Poor</th>
+      <th>SD</th>
+      <th>Total</th>
+      <th>Good</th>
+      <th>Fair</th>
+      <th>Poor</th>
+      <th>SD</th>
+    </tr>
+    <tr>
+      <th>County</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ALACHUA (001)</th>
+      <td>111</td>
+      <td>64</td>
+      <td>47</td>
+      <td>0</td>
+      <td>0</td>
+      <td>64767</td>
+      <td>55794</td>
+      <td>8973</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>BAKER (003)</th>
+      <td>89</td>
+      <td>30</td>
+      <td>52</td>
+      <td>7</td>
+      <td>8</td>
+      <td>32162</td>
+      <td>19369</td>
+      <td>12282</td>
+      <td>510.0</td>
+      <td>623.0</td>
+    </tr>
+    <tr>
+      <th>BAY (005)</th>
+      <td>122</td>
+      <td>49</td>
+      <td>63</td>
+      <td>10</td>
+      <td>11</td>
+      <td>210039</td>
+      <td>98834</td>
+      <td>109628</td>
+      <td>1577.0</td>
+      <td>10120.0</td>
+    </tr>
+    <tr>
+      <th>BRADFORD (007)</th>
+      <td>62</td>
+      <td>23</td>
+      <td>37</td>
+      <td>2</td>
+      <td>2</td>
+      <td>9330</td>
+      <td>5492</td>
+      <td>3217</td>
+      <td>620.0</td>
+      <td>620.0</td>
+    </tr>
+    <tr>
+      <th>BREVARD (009)</th>
+      <td>241</td>
+      <td>160</td>
+      <td>81</td>
+      <td>0</td>
+      <td>0</td>
+      <td>364138</td>
+      <td>204179</td>
+      <td>159959</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>MultiIndexes can be used for both the columns and the index of a DataFrame.</p>
+<div class="section" id="Stacking-and-Unstacking">
+<h3>Stacking and Unstacking<a class="headerlink" href="#Stacking-and-Unstacking" title="Permalink to this headline">¶</a></h3>
+<p>One advantage of using this multi-index approach to grouping similar data is that it makes it much easier to reshape the DataFrame for different types of analysis. For example, we can transform the bridges dataframe to have a for for each county and condition, and just two columns (count and area), by <code class="docutils literal notranslate"><span class="pre">stack</span></code> ing the data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges3</span> <span class="o">=</span> <span class="n">bridges2</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+<span class="n">bridges3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>measure</th>
+      <th>Area</th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>County</th>
+      <th>condition</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">ALACHUA (001)</th>
+      <th>Fair</th>
+      <td>8973.0</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>55794.0</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>Poor</th>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>SD</th>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td>64767.0</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">BAKER (003)</th>
+      <th>Fair</th>
+      <td>12282.0</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>19369.0</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>Poor</th>
+      <td>510.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>SD</th>
+      <td>623.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td>32162.0</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">BAY (005)</th>
+      <th>Fair</th>
+      <td>109628.0</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>98834.0</td>
+      <td>49</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>One thing you might notice here is that the conditions have been reordered. The new order isn’t consistent with the categorical meanings, but instead is simply alphabetic. We can preserve the ordering by converting these values into ordered categorical values like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">conditions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">CategoricalIndex</span><span class="p">(</span>
+    <span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="s1">&#39;Good&#39;</span><span class="p">,</span> <span class="s1">&#39;Fair&#39;</span><span class="p">,</span> <span class="s1">&#39;Poor&#39;</span><span class="p">,</span> <span class="s1">&#39;SD&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">set_levels</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bridges2</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>measure</th>
+      <th>Area</th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>County</th>
+      <th>condition</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">ALACHUA (001)</th>
+      <th>Total</th>
+      <td>64767.0</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>55794.0</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>Fair</th>
+      <td>8973.0</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>Poor</th>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>SD</th>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">BAKER (003)</th>
+      <th>Total</th>
+      <td>32162.0</td>
+      <td>89</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>19369.0</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>Fair</th>
+      <td>12282.0</td>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>Poor</th>
+      <td>510.0</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>SD</th>
+      <td>623.0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">BAY (005)</th>
+      <th>Total</th>
+      <td>210039.0</td>
+      <td>122</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>98834.0</td>
+      <td>49</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Although obviously that’s a bit complicated and it may be easier to simply rename the conditions in a way that the alphabetic sorting works for us.</p>
+<p>Now, for example, we can easily get the average deck area of bridges by condition.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;AvgArea&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;Count&#39;</span><span class="p">]</span>
+<span class="n">bridges3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>measure</th>
+      <th>Area</th>
+      <th>Count</th>
+      <th>AvgArea</th>
+    </tr>
+    <tr>
+      <th>County</th>
+      <th>condition</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">ALACHUA (001)</th>
+      <th>Fair</th>
+      <td>8973.0</td>
+      <td>47</td>
+      <td>190.914894</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>55794.0</td>
+      <td>64</td>
+      <td>871.781250</td>
+    </tr>
+    <tr>
+      <th>Poor</th>
+      <td>0.0</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>SD</th>
+      <td>0.0</td>
+      <td>0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td>64767.0</td>
+      <td>111</td>
+      <td>583.486486</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">BAKER (003)</th>
+      <th>Fair</th>
+      <td>12282.0</td>
+      <td>52</td>
+      <td>236.192308</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>19369.0</td>
+      <td>30</td>
+      <td>645.633333</td>
+    </tr>
+    <tr>
+      <th>Poor</th>
+      <td>510.0</td>
+      <td>7</td>
+      <td>72.857143</td>
+    </tr>
+    <tr>
+      <th>SD</th>
+      <td>623.0</td>
+      <td>8</td>
+      <td>77.875000</td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td>32162.0</td>
+      <td>89</td>
+      <td>361.370787</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">BAY (005)</th>
+      <th>Fair</th>
+      <td>109628.0</td>
+      <td>63</td>
+      <td>1740.126984</td>
+    </tr>
+    <tr>
+      <th>Good</th>
+      <td>98834.0</td>
+      <td>49</td>
+      <td>2017.020408</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>We can also reverse this transformation, returning to a wider format, with the <code class="docutils literal notranslate"><span class="pre">unstack</span></code> method.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges4</span> <span class="o">=</span> <span class="n">bridges3</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="n">bridges4</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>measure</th>
+      <th colspan="5" halign="left">Area</th>
+      <th colspan="5" halign="left">Count</th>
+      <th colspan="5" halign="left">AvgArea</th>
+    </tr>
+    <tr>
+      <th>condition</th>
+      <th>Fair</th>
+      <th>Good</th>
+      <th>Poor</th>
+      <th>SD</th>
+      <th>Total</th>
+      <th>Fair</th>
+      <th>Good</th>
+      <th>Poor</th>
+      <th>SD</th>
+      <th>Total</th>
+      <th>Fair</th>
+      <th>Good</th>
+      <th>Poor</th>
+      <th>SD</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <th>County</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ALACHUA (001)</th>
+      <td>8973.0</td>
+      <td>55794.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>64767.0</td>
+      <td>47</td>
+      <td>64</td>
+      <td>0</td>
+      <td>0</td>
+      <td>111</td>
+      <td>190.914894</td>
+      <td>871.781250</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>583.486486</td>
+    </tr>
+    <tr>
+      <th>BAKER (003)</th>
+      <td>12282.0</td>
+      <td>19369.0</td>
+      <td>510.0</td>
+      <td>623.0</td>
+      <td>32162.0</td>
+      <td>52</td>
+      <td>30</td>
+      <td>7</td>
+      <td>8</td>
+      <td>89</td>
+      <td>236.192308</td>
+      <td>645.633333</td>
+      <td>72.857143</td>
+      <td>77.875</td>
+      <td>361.370787</td>
+    </tr>
+    <tr>
+      <th>BAY (005)</th>
+      <td>109628.0</td>
+      <td>98834.0</td>
+      <td>1577.0</td>
+      <td>10120.0</td>
+      <td>210039.0</td>
+      <td>63</td>
+      <td>49</td>
+      <td>10</td>
+      <td>11</td>
+      <td>122</td>
+      <td>1740.126984</td>
+      <td>2017.020408</td>
+      <td>157.700000</td>
+      <td>920.000</td>
+      <td>1721.631148</td>
+    </tr>
+    <tr>
+      <th>BRADFORD (007)</th>
+      <td>3217.0</td>
+      <td>5492.0</td>
+      <td>620.0</td>
+      <td>620.0</td>
+      <td>9330.0</td>
+      <td>37</td>
+      <td>23</td>
+      <td>2</td>
+      <td>2</td>
+      <td>62</td>
+      <td>86.945946</td>
+      <td>238.782609</td>
+      <td>310.000000</td>
+      <td>310.000</td>
+      <td>150.483871</td>
+    </tr>
+    <tr>
+      <th>BREVARD (009)</th>
+      <td>159959.0</td>
+      <td>204179.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>364138.0</td>
+      <td>81</td>
+      <td>160</td>
+      <td>0</td>
+      <td>0</td>
+      <td>241</td>
+      <td>1974.802469</td>
+      <td>1276.118750</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1510.946058</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>If you <code class="docutils literal notranslate"><span class="pre">unstack</span></code> a DataFrame that doesn’t have a MultiIndex index with at least two levels, you’ll get a one dimensional Series instead of a DataFrame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges4</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+measure  condition  County
+Area     Fair       ALACHUA (001)         8973.000000
+                    BAKER (003)          12282.000000
+                    BAY (005)           109628.000000
+                    BRADFORD (007)        3217.000000
+                    BREVARD (009)       159959.000000
+                                            ...
+AvgArea  Total      UNION (125)            447.107143
+                    VOLUSIA (127)         1439.052863
+                    WAKULLA (129)          355.660000
+                    WALTON (131)           475.378995
+                    WASHINGTON (133)       751.208333
+Length: 1005, dtype: float64
+</pre></div></div>
+</div>
+<p>The pandas documentation includes a lot more detail about <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html#reshaping-by-stacking-and-unstacking">reshaping</a> data, including a variety of other tools for reshaping in other ways.</p>
+</div>
+</div>
+<div class="section" id="Grouping">
+<span id="pandas-grouping"></span><h2>Grouping<a class="headerlink" href="#Grouping" title="Permalink to this headline">¶</a></h2>
+<p>A common task in data analysis is to conduct group-wise analysis. This involves splitting a DataFrame into groups of related rows, then computing some sort of measure on each group. The results are then usually combined into a final coherent data structure, generally having one row for each original row (a transformation), or one row for each group (an aggregation). It is possible to introduce some <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#filtration">filtering</a> in
+the process so the results do not conform to one of these patterns, but that is a more advanced topic that will not be discussed here.</p>
+<p>For example, we might group counties by district, and then total the population values, to get to total population by district:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+      <td>Miami-Dade</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+      <td>Broward</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+      <td>Palm Beach</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566.0</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+      <td>Hillsborough</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975.0</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+      <td>1493.170473</td>
+      <td>Orange</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2019 Population</th>
+    </tr>
+    <tr>
+      <th>District</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>3048172.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2139433.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1468387.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4034840.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4227713.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2828809.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>3237046.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The splitting into groups in done using the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method of DataFrames, which is fairly flexible—it can be used to group rows or columns, and to group on an index or on values. Pandas provides an <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html">extensive tutorial</a> that covers <code class="docutils literal notranslate"><span class="pre">groupby</span></code> in more depth. In this tutorial, we’ll focus on the most common tasks for data analysis in the transportation context (and, most data analysis): grouping rows using one or more
+columns, or a function thereof, as the grouping keys.</p>
+<p>In the example above, the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method is called with a single argument ‘District’, which indicates that the groups are delineated by common values of the column named ‘District’. Grouping by an identifier like this is convenient, because the identifiers are naturally well defined and the groups are inherently meaningful.</p>
+<p>Similar for merging, <code class="docutils literal notranslate"><span class="pre">groupby</span></code> keys need to be actually identical in order to match. Attempting to use <code class="docutils literal notranslate"><span class="pre">groupby</span></code> directly with continuous data that not generally categorical in nature will not give good results – you can expect that more or less every row will be its own group. Instead, if you want to group rows in this way, you’ll need to convert it to categorical data first. This can be done using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.cut.html">pandas.cut</a>
+or <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.qcut.html">pandas.qcut</a>.</p>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">cut</span></code> defines categorical bins either by dividing the entire range of values into a number of equal sized bins (by giving the number of bins as an integer) or by giving a list of explicit breakpoints for the bins.</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">qcut</span></code> defines categorical bins either setting the bin edges so that each bin contains a roughly equal number of observations (by giving the number of bins as an integer) or by giving a list of explicit quantile levels for the bin breakpoints (e.g., <code class="docutils literal notranslate"><span class="pre">[0,10,25,50,75,90,100]</span></code>).</p></li>
+</ul>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">cut</span></code> to create five categorical values of county population:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population_binned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">population_binned</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0    (2203085.2, 2751796.0]
+1    (1654374.4, 2203085.2]
+2    (1105663.6, 1654374.4]
+3    (1105663.6, 1654374.4]
+4    (1105663.6, 1654374.4]
+Name: 2019 Population, dtype: category
+Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663.6] &lt; (1105663.6, 1654374.4] &lt; (1654374.4, 2203085.2] &lt; (2203085.2, 2751796.0]]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">population_binned</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0     (2203085.2, 2751796.0]
+1     (1654374.4, 2203085.2]
+2     (1105663.6, 1654374.4]
+3     (1105663.6, 1654374.4]
+4     (1105663.6, 1654374.4]
+               ...
+62      (5498.446, 556952.8]
+63      (5498.446, 556952.8]
+64      (5498.446, 556952.8]
+65      (5498.446, 556952.8]
+66      (5498.446, 556952.8]
+Name: 2019 Population, Length: 67, dtype: category
+Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663.6] &lt; (1105663.6, 1654374.4] &lt; (1654374.4, 2203085.2] &lt; (2203085.2, 2751796.0]]
+</pre></div></div>
+</div>
+<p>Those bins divide the range of population values evenly into 5 bins, but they do appear a bit random. We can set more reasonable value by explicitly giving bin boundaries that are round numbers of our choosing:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">5_000</span><span class="p">,</span> <span class="mi">500_000</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">,</span> <span class="mi">1_500_000</span><span class="p">,</span> <span class="mi">2_000_000</span><span class="p">,</span> <span class="mi">3_000_000</span><span class="p">]</span>
+<span class="n">population_binned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
+<span class="n">population_binned</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0    (2000000, 3000000]
+1    (1500000, 2000000]
+2    (1000000, 1500000]
+3    (1000000, 1500000]
+4    (1000000, 1500000]
+Name: 2019 Population, dtype: category
+Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (1000000, 1500000] &lt; (1500000, 2000000] &lt; (2000000, 3000000]]
+</pre></div></div>
+</div>
+<p>We can then pass this categorical data directly to the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method, instead of naming existing columns in the DataFrame to use as the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> keys.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">population_binned</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2019 Population</th>
+    </tr>
+    <tr>
+      <th>2019 Population</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>(5000, 500000]</th>
+      <td>7080260.0</td>
+    </tr>
+    <tr>
+      <th>(500000, 1000000]</th>
+      <td>4987775.0</td>
+    </tr>
+    <tr>
+      <th>(1000000, 1500000]</th>
+      <td>4228691.0</td>
+    </tr>
+    <tr>
+      <th>(1500000, 2000000]</th>
+      <td>1935878.0</td>
+    </tr>
+    <tr>
+      <th>(2000000, 3000000]</th>
+      <td>2751796.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="Aggregation">
+<h3>Aggregation<a class="headerlink" href="#Aggregation" title="Permalink to this headline">¶</a></h3>
+<p>The examples above all use the <code class="docutils literal notranslate"><span class="pre">sum</span></code> method, which is an aggregate function: it takes a set of values drawn from a group of rows, and returns a single output value. Other common aggregation functions include:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>function</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mean</span></code></p></td>
+<td><p>within-group means</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">std</span></code></p></td>
+<td><p>within-group standard deviation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">min</span></code></p></td>
+<td><p>within-group minimum</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max</span></code></p></td>
+<td><p>within-group maximum</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">first</span></code></p></td>
+<td><p>first value in group</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">last</span></code></p></td>
+<td><p>last value in group</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">size</span></code></p></td>
+<td><p>number of group members including NaN</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">count</span></code></p></td>
+<td><p>number of group members excluding NaN</p></td>
+</tr>
+</tbody>
+</table>
+<p>When aggregation function are applied, the result is generally one row per group, instead of one row per row.</p>
+<p>Multiple aggregation functions can be applied simultaneously using the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method, like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">population_binned</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3" halign="left">2019 Population</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+      <th>size</th>
+    </tr>
+    <tr>
+      <th>2019 Population</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>(5000, 500000]</th>
+      <td>1.287320e+05</td>
+      <td>130660.887798</td>
+      <td>55.0</td>
+    </tr>
+    <tr>
+      <th>(500000, 1000000]</th>
+      <td>7.125393e+05</td>
+      <td>182201.018266</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>(1000000, 1500000]</th>
+      <td>1.409564e+06</td>
+      <td>61093.609816</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>(1500000, 2000000]</th>
+      <td>1.935878e+06</td>
+      <td>NaN</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>(2000000, 3000000]</th>
+      <td>2.751796e+06</td>
+      <td>NaN</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Transformation">
+<h3>Transformation<a class="headerlink" href="#Transformation" title="Permalink to this headline">¶</a></h3>
+<p>In contrast with aggregation, which returns a value for each group, <code class="docutils literal notranslate"><span class="pre">transform</span></code> returns a value for each row in the original DataFrame. Many of the same functions can be used as with <code class="docutils literal notranslate"><span class="pre">transform</span></code>, and the results are simply broadcast back to the original rows (i.e., a copy of the relevant aggregated value is attached to each original row, so that if there are multiple rows in a group, then there are multiple copies of the aggregate output). The return value is a new Series or DataFrame,
+indexed the same as the original, which makes it easy to use <code class="docutils literal notranslate"><span class="pre">transform</span></code> to create new derived columns based on group-wise aggregations or transforms.</p>
+<p>For example, to add a new column that contains the FDOT District total population for each county, we can give the <code class="docutils literal notranslate"><span class="pre">sum</span></code> function to <code class="docutils literal notranslate"><span class="pre">transform</span></code>, and write the result as a new column in the original DataFrame:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pop_sum</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="n">pop_sum</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0    2828809.0
+1    4034840.0
+2    4034840.0
+3    3237046.0
+4    4227713.0
+Name: 2019 Population, dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+      <td>Miami-Dade</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+      <td>Broward</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+      <td>Palm Beach</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566.0</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+      <td>Hillsborough</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975.0</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+      <td>1493.170473</td>
+      <td>Orange</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The second and third counties in the <code class="docutils literal notranslate"><span class="pre">fl_2</span></code> DataFrame are both in District 4, so both rows of this output give the total population in District 4. Generating the output like this makes it super easy to attach the result as a new column in the DataFrame:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;District Population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+      <th>District Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+      <td>Miami-Dade</td>
+      <td>6</td>
+      <td>2828809.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+      <td>Broward</td>
+      <td>4</td>
+      <td>4034840.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+      <td>Palm Beach</td>
+      <td>4</td>
+      <td>4034840.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566.0</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+      <td>Hillsborough</td>
+      <td>7</td>
+      <td>3237046.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975.0</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+      <td>1493.170473</td>
+      <td>Orange</td>
+      <td>5</td>
+      <td>4227713.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>In addition to expanding aggregate measures to match with the rows of the original DataFrame, the <code class="docutils literal notranslate"><span class="pre">transform</span></code> function can also generate unique row-wise values, which can be computed relative to the group instead of relative to the entire DataFrame. For example, to compute the fraction of the population of each district living in each county:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;Fraction of Pop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>2019 Population</th>
+      <th>Growth Since 2010</th>
+      <th>Land Area</th>
+      <th>Population Density</th>
+      <th>County</th>
+      <th>District</th>
+      <th>District Population</th>
+      <th>Fraction of Pop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miami-Dade County</td>
+      <td>2751796.0</td>
+      <td>9.754518</td>
+      <td>1897.72</td>
+      <td>1450.053749</td>
+      <td>Miami-Dade</td>
+      <td>6</td>
+      <td>2828809.0</td>
+      <td>0.972775</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Broward County</td>
+      <td>1935878.0</td>
+      <td>10.438146</td>
+      <td>1209.79</td>
+      <td>1600.176890</td>
+      <td>Broward</td>
+      <td>4</td>
+      <td>4034840.0</td>
+      <td>0.479791</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Palm Beach County</td>
+      <td>1471150.0</td>
+      <td>11.134781</td>
+      <td>1969.76</td>
+      <td>746.867639</td>
+      <td>Palm Beach</td>
+      <td>4</td>
+      <td>4034840.0</td>
+      <td>0.364612</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Hillsborough County</td>
+      <td>1408566.0</td>
+      <td>14.187346</td>
+      <td>1020.21</td>
+      <td>1380.662805</td>
+      <td>Hillsborough</td>
+      <td>7</td>
+      <td>3237046.0</td>
+      <td>0.435139</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Orange County</td>
+      <td>1348975.0</td>
+      <td>17.435335</td>
+      <td>903.43</td>
+      <td>1493.170473</td>
+      <td>Orange</td>
+      <td>5</td>
+      <td>4227713.0</td>
+      <td>0.319079</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pivot-tables.html" class="btn btn-neutral float-right" title="Crosstab and Pivot Tables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="_index.html" class="btn btn-neutral float-left" title="Tabular Data Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

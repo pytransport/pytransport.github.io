@@ -1,0 +1,1724 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial Data Files &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Using Dynamic Mapping" href="../exercises/solution-geo-dynamic-map.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial Data Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Florida-Statewide">Florida Statewide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Household-Income,-by-County">Household Income, by County</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#County-Shapefile">County Shapefile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SERPM8-Region">SERPM8 Region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#TAZ-Shapefile">TAZ Shapefile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#MAZ-Shapefile">MAZ Shapefile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#MAZ-Socio-Economic-Data">MAZ Socio-Economic Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Loaded-Highway-Network">Loaded Highway Network</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Jupiter-Example-Study-Area">Jupiter Example Study Area</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Households">Households</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Persons">Persons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Tours">Tours</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Trips">Trips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Highway-Skims">Highway Skims</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Exampville-Simulated-Data">Exampville Simulated Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">TAZ Shapefile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#TAZ-Employment-Data">TAZ Employment Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Skims">Skims</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Households</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Persons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Tours</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Miscellaneous-Other-Files">Miscellaneous Other Files</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Tutorial Data Files</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/data/example-data.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Tutorial-Data-Files">
+<h1>Tutorial Data Files<a class="headerlink" href="#Tutorial-Data-Files" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">larch</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Florida-Statewide">
+<h2>Florida Statewide<a class="headerlink" href="#Florida-Statewide" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Household-Income,-by-County">
+<h3>Household Income, by County<a class="headerlink" href="#Household-Income,-by-County" title="Permalink to this headline">¶</a></h3>
+<p>Census data giving a tabulation of household income, by county in Florida. This data comes from the 2017 5-year <a class="reference external" href="https://www.census.gov/programs-surveys/acs">ACS</a>, <a class="reference external" href="https://censusreporter.org/tables/B19001/">Table B19001</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;ACS_17_5YR_B19001&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;ACS_17_5YR_B19001.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hhinc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;ACS_17_5YR_B19001&#39;</span><span class="p">),</span> <span class="n">header</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hhinc</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 67 entries, 0500000US12001 to 0500000US12133
+Data columns (total 36 columns):
+(GEO.id2, Id2)                                                 67 non-null int64
+(GEO.display-label, Geography)                                 67 non-null object
+(HD01_VD01, Estimate; Total:)                                  67 non-null int64
+(HD02_VD01, Margin of Error; Total:)                           67 non-null int64
+(HD01_VD02, Estimate; Total: - Less than $10,000)              67 non-null int64
+(HD02_VD02, Margin of Error; Total: - Less than $10,000)       67 non-null int64
+(HD01_VD03, Estimate; Total: - $10,000 to $14,999)             67 non-null int64
+(HD02_VD03, Margin of Error; Total: - $10,000 to $14,999)      67 non-null int64
+(HD01_VD04, Estimate; Total: - $15,000 to $19,999)             67 non-null int64
+(HD02_VD04, Margin of Error; Total: - $15,000 to $19,999)      67 non-null int64
+(HD01_VD05, Estimate; Total: - $20,000 to $24,999)             67 non-null int64
+(HD02_VD05, Margin of Error; Total: - $20,000 to $24,999)      67 non-null int64
+(HD01_VD06, Estimate; Total: - $25,000 to $29,999)             67 non-null int64
+(HD02_VD06, Margin of Error; Total: - $25,000 to $29,999)      67 non-null int64
+(HD01_VD07, Estimate; Total: - $30,000 to $34,999)             67 non-null int64
+(HD02_VD07, Margin of Error; Total: - $30,000 to $34,999)      67 non-null int64
+(HD01_VD08, Estimate; Total: - $35,000 to $39,999)             67 non-null int64
+(HD02_VD08, Margin of Error; Total: - $35,000 to $39,999)      67 non-null int64
+(HD01_VD09, Estimate; Total: - $40,000 to $44,999)             67 non-null int64
+(HD02_VD09, Margin of Error; Total: - $40,000 to $44,999)      67 non-null int64
+(HD01_VD10, Estimate; Total: - $45,000 to $49,999)             67 non-null int64
+(HD02_VD10, Margin of Error; Total: - $45,000 to $49,999)      67 non-null int64
+(HD01_VD11, Estimate; Total: - $50,000 to $59,999)             67 non-null int64
+(HD02_VD11, Margin of Error; Total: - $50,000 to $59,999)      67 non-null int64
+(HD01_VD12, Estimate; Total: - $60,000 to $74,999)             67 non-null int64
+(HD02_VD12, Margin of Error; Total: - $60,000 to $74,999)      67 non-null int64
+(HD01_VD13, Estimate; Total: - $75,000 to $99,999)             67 non-null int64
+(HD02_VD13, Margin of Error; Total: - $75,000 to $99,999)      67 non-null int64
+(HD01_VD14, Estimate; Total: - $100,000 to $124,999)           67 non-null int64
+(HD02_VD14, Margin of Error; Total: - $100,000 to $124,999)    67 non-null int64
+(HD01_VD15, Estimate; Total: - $125,000 to $149,999)           67 non-null int64
+(HD02_VD15, Margin of Error; Total: - $125,000 to $149,999)    67 non-null int64
+(HD01_VD16, Estimate; Total: - $150,000 to $199,999)           67 non-null int64
+(HD02_VD16, Margin of Error; Total: - $150,000 to $199,999)    67 non-null int64
+(HD01_VD17, Estimate; Total: - $200,000 or more)               67 non-null int64
+(HD02_VD17, Margin of Error; Total: - $200,000 or more)        67 non-null int64
+dtypes: int64(35), object(1)
+memory usage: 19.4+ KB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="County-Shapefile">
+<h3>County Shapefile<a class="headerlink" href="#County-Shapefile" title="Permalink to this headline">¶</a></h3>
+<p>This shapefile contains the boundaries of counties in Florida.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY-SHAPE&#39;</span><span class="p">,</span> <span class="s1">&#39;*.shp&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;Florida_County_Lines.shp&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_county</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY-SHAPE&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fl_county</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
+RangeIndex: 616 entries, 0 to 615
+Data columns (total 5 columns):
+OBJECTID     616 non-null int64
+COASTBND     616 non-null object
+DATESTAMP    616 non-null object
+SHAPELEN     616 non-null float64
+geometry     616 non-null object
+dtypes: float64(1), int64(1), object(3)
+memory usage: 24.1+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">fl_county</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_data_example-data_11_0.png" src="../../_images/course-content_data_example-data_11_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="SERPM8-Region">
+<h2>SERPM8 Region<a class="headerlink" href="#SERPM8-Region" title="Permalink to this headline">¶</a></h2>
+<p>The following files include data for the entire SERPM8 region.</p>
+<div class="section" id="TAZ-Shapefile">
+<h3>TAZ Shapefile<a class="headerlink" href="#TAZ-Shapefile" title="Permalink to this headline">¶</a></h3>
+<p>This shapefile contains geographic data for travel analysis zones (TAZ) in the SERPM region.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-TAZSHAPE&#39;</span><span class="p">,</span> <span class="s1">&#39;*.shp&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8TAZ_NAD83_170502.shp&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">taz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-TAZSHAPE&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">taz</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
+RangeIndex: 4236 entries, 0 to 4235
+Data columns (total 15 columns):
+OBJECTID      4236 non-null int64
+TAZ_REG       4236 non-null float64
+TAZ_OLD05     4236 non-null int64
+TAZ_MPO       4236 non-null int64
+COUNTY        4236 non-null float64
+CENSUSTAZ     1506 non-null object
+TAZ_BF        4236 non-null int64
+FIX           4236 non-null int64
+AREA          4236 non-null float64
+F_NETAREA     4236 non-null float64
+CBD           4236 non-null int64
+HM_ROOMS      4236 non-null int64
+Shape_Leng    4236 non-null float64
+Shape_Area    4236 non-null float64
+geometry      4236 non-null object
+dtypes: float64(6), int64(7), object(2)
+memory usage: 496.5+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_data_example-data_17_0.png" src="../../_images/course-content_data_example-data_17_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="MAZ-Shapefile">
+<h3>MAZ Shapefile<a class="headerlink" href="#MAZ-Shapefile" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZSHAPE&#39;</span><span class="p">,</span> <span class="s1">&#39;*.shp&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8MAZ_NAD83_170502.shp&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZSHAPE&#39;</span><span class="p">,</span> <span class="s1">&#39;*.shp&#39;</span><span class="p">))</span>
+<span class="n">maz</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;geopandas.geodataframe.GeoDataFrame&#39;&gt;
+RangeIndex: 12022 entries, 0 to 12021
+Data columns (total 8 columns):
+OBJECTID      12022 non-null int64
+MAZ           12022 non-null int64
+SHAPE_LENG    12022 non-null float64
+SHAPE_AREA    12022 non-null float64
+ACRES         12022 non-null int64
+POINT_X       12022 non-null int64
+POINT_Y       12022 non-null int64
+geometry      12022 non-null object
+dtypes: float64(2), int64(5), object(1)
+memory usage: 751.5+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">maz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_data_example-data_21_0.png" src="../../_images/course-content_data_example-data_21_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="MAZ-Socio-Economic-Data">
+<h3>MAZ Socio-Economic Data<a class="headerlink" href="#MAZ-Socio-Economic-Data" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZDATA&#39;</span><span class="p">,</span> <span class="s1">&#39;*.csv&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;MAZ_DATA.csv&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mazd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZDATA&#39;</span><span class="p">,</span> <span class="s1">&#39;*.csv&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mazd</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 12022 entries, 0 to 12021
+Data columns (total 76 columns):
+mgra                            12022 non-null int64
+TAZ                             12022 non-null int64
+HH                              12022 non-null int64
+POP                             12022 non-null int64
+emp_self                        12022 non-null int64
+emp_ag                          12022 non-null int64
+emp_const_non_bldg_prod         12022 non-null int64
+emp_const_non_bldg_office       12022 non-null int64
+emp_utilities_prod              12022 non-null int64
+emp_utilities_office            12022 non-null int64
+emp_const_bldg_prod             12022 non-null int64
+emp_const_bldg_office           12022 non-null int64
+emp_mfg_prod                    12022 non-null int64
+emp_mfg_office                  12022 non-null int64
+emp_whsle_whs                   12022 non-null int64
+emp_trans                       12022 non-null int64
+emp_retail                      12022 non-null int64
+emp_prof_bus_svcs               12022 non-null int64
+emp_prof_bus_svcs_bldg_maint    12022 non-null int64
+emp_pvt_ed_k12                  12022 non-null int64
+emp_pvt_ed_post_k12_oth         12022 non-null int64
+emp_health                      12022 non-null int64
+emp_personal_svcs_office        12022 non-null int64
+emp_amusement                   12022 non-null int64
+emp_hotel                       12022 non-null int64
+emp_restaurant_bar              12022 non-null int64
+emp_personal_svcs_retail        12022 non-null int64
+emp_religious                   12022 non-null int64
+emp_pvt_hh                      12022 non-null int64
+emp_state_local_gov_ent         12022 non-null int64
+emp_scrap_other                 12022 non-null int64
+emp_fed_non_mil                 12022 non-null int64
+emp_fed_mil                     12022 non-null int64
+emp_state_local_gov_blue        12022 non-null int64
+emp_state_local_gov_white       12022 non-null int64
+emp_public_ed                   12022 non-null int64
+emp_own_occ_dwell_mgmt          12022 non-null int64
+emp_fed_gov_accts               12022 non-null int64
+emp_st_lcl_gov_accts            12022 non-null int64
+emp_cap_accts                   12022 non-null int64
+emp_total                       12022 non-null int64
+collegeEnroll                   12022 non-null int64
+otherCollegeEnroll              12022 non-null int64
+AdultSchEnrl                    12022 non-null int64
+EnrollGradeKto8                 12022 non-null int64
+EnrollGrade9to12                12022 non-null int64
+PrivateEnrollGradeKto8          12022 non-null int64
+ech_dist                        12022 non-null int64
+hch_dist                        12022 non-null int64
+parkarea                        12022 non-null int64
+hstallsoth                      12022 non-null int64
+hstallssam                      12022 non-null int64
+hparkcost                       12022 non-null int64
+numfreehrs                      12022 non-null int64
+dstallsoth                      12022 non-null int64
+dstallssam                      12022 non-null int64
+dparkcost                       12022 non-null int64
+mstallsoth                      12022 non-null int64
+mstallssam                      12022 non-null int64
+mparkcost                       12022 non-null float64
+TotInt                          12022 non-null int64
+DUDen                           12022 non-null float64
+EmpDen                          12022 non-null float64
+PopDen                          12022 non-null float64
+RetEmpDen                       12022 non-null float64
+IntDenBin                       12022 non-null int64
+EmpDenBin                       12022 non-null int64
+DuDenBin                        12022 non-null int64
+POINT_X                         12022 non-null int64
+POINT_Y                         12022 non-null int64
+ACRES                           12022 non-null int64
+HotelRoomTotal                  12022 non-null int64
+mall_flag                       12022 non-null int64
+beachAcres                      12022 non-null int64
+geoSRate                        12022 non-null int64
+geoSRateNm                      12022 non-null int64
+dtypes: float64(5), int64(71)
+memory usage: 7.0 MB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Loaded-Highway-Network">
+<h3>Loaded Highway Network<a class="headerlink" href="#Loaded-Highway-Network" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-AM_HLOAD&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8-BASE2015-AM_HLOAD.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hwy</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-AM_HLOAD&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hwy</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 50865 entries, 0 to 50864
+Columns: 228 entries, Unnamed: 0 to LW_RCTOLLPK
+dtypes: float64(94), int64(134)
+memory usage: 88.5 MB
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Jupiter-Example-Study-Area">
+<h2>Jupiter Example Study Area<a class="headerlink" href="#Jupiter-Example-Study-Area" title="Permalink to this headline">¶</a></h2>
+<p>The following files include synthetic data that has been generated for the Jupiter Example Study Area. All data has been generated using the 2015 base year scenario. Note that while this data is <em>representative</em> of the data from real people, this is purely synthetic data, and does not show the actual behavior of any real person.</p>
+<div class="section" id="Households">
+<h3>Households<a class="headerlink" href="#Households" title="Permalink to this headline">¶</a></h3>
+<p>Data on synthetic households residing in the Jupiter study area.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-HOUSEHOLDS&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8-BASE2015-HOUSEHOLDS.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-HOUSEHOLDS&#39;</span><span class="p">))</span>
+<span class="n">hh</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 18178 entries, 0 to 18177
+Data columns (total 10 columns):
+Unnamed: 0      18178 non-null int64
+hh_id           18178 non-null int64
+home_mgra       18178 non-null int64
+income          18178 non-null int64
+autos           18178 non-null int64
+transponder     18178 non-null int64
+cdap_pattern    18178 non-null object
+jtf_choice      18178 non-null int64
+autotech        18178 non-null int64
+tncmemb         18178 non-null int64
+dtypes: int64(9), object(1)
+memory usage: 1.4+ MB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Persons">
+<h3>Persons<a class="headerlink" href="#Persons" title="Permalink to this headline">¶</a></h3>
+<p>Data on synthetic persons residing in the Jupiter study area.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-PERSONS&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8-BASE2015-PERSONS.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-PERSONS&#39;</span><span class="p">))</span>
+<span class="n">pers</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 40683 entries, 0 to 40682
+Data columns (total 13 columns):
+hh_id               40683 non-null int64
+person_id           40683 non-null int64
+person_num          40683 non-null int64
+age                 40683 non-null int64
+gender              40683 non-null object
+type                40683 non-null object
+value_of_time       40683 non-null float64
+activity_pattern    40683 non-null object
+imf_choice          40683 non-null int64
+inmf_choice         40683 non-null int64
+fp_choice           40683 non-null int64
+reimb_pct           40683 non-null float64
+wrkr_type           40683 non-null int64
+dtypes: float64(2), int64(8), object(3)
+memory usage: 4.0+ MB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Tours">
+<h3>Tours<a class="headerlink" href="#Tours" title="Permalink to this headline">¶</a></h3>
+<p>All individual tours made by synthetic persons residing in the Jupiter study area. Note this includes home-based tours that have destinations outside the study area, as well as work-based tours that may be entirely outside the study area.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TOURS&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8-BASE2015-TOURS.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TOURS&#39;</span><span class="p">))</span>
+<span class="n">hh</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 47485 entries, 0 to 47484
+Data columns (total 61 columns):
+hh_id            47485 non-null int64
+person_id        47485 non-null int64
+person_num       47485 non-null int64
+person_type      47485 non-null int64
+tour_id          47485 non-null int64
+tour_category    47485 non-null object
+tour_purpose     47485 non-null object
+orig_mgra        47485 non-null int64
+dest_mgra        47485 non-null int64
+start_period     47485 non-null int64
+end_period       47485 non-null int64
+tour_mode        47485 non-null int64
+tour_distance    47485 non-null float64
+tour_time        47485 non-null float64
+atWork_freq      47485 non-null int64
+num_ob_stops     47485 non-null int64
+num_ib_stops     47485 non-null int64
+out_btap         47485 non-null int64
+out_atap         47485 non-null int64
+in_btap          47485 non-null int64
+in_atap          47485 non-null int64
+util_1           47485 non-null float64
+util_2           47485 non-null float64
+util_3           47485 non-null float64
+util_4           47485 non-null float64
+util_5           47485 non-null float64
+util_6           47485 non-null float64
+util_7           47485 non-null float64
+util_8           47485 non-null float64
+util_9           47485 non-null float64
+util_10          47485 non-null float64
+util_11          47485 non-null float64
+util_12          47485 non-null float64
+util_13          47485 non-null float64
+util_14          47485 non-null float64
+util_15          47485 non-null float64
+util_16          47485 non-null float64
+util_17          47485 non-null float64
+util_18          47485 non-null float64
+util_19          47485 non-null float64
+util_20          47485 non-null float64
+prob_1           47485 non-null float64
+prob_2           47485 non-null float64
+prob_3           47485 non-null float64
+prob_4           47485 non-null float64
+prob_5           47485 non-null float64
+prob_6           47485 non-null float64
+prob_7           47485 non-null float64
+prob_8           47485 non-null float64
+prob_9           47485 non-null float64
+prob_10          47485 non-null float64
+prob_11          47485 non-null float64
+prob_12          47485 non-null float64
+prob_13          47485 non-null float64
+prob_14          47485 non-null float64
+prob_15          47485 non-null float64
+prob_16          47485 non-null float64
+prob_17          47485 non-null float64
+prob_18          47485 non-null float64
+prob_19          47485 non-null float64
+prob_20          47485 non-null float64
+dtypes: float64(42), int64(17), object(2)
+memory usage: 22.1+ MB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Trips">
+<h3>Trips<a class="headerlink" href="#Trips" title="Permalink to this headline">¶</a></h3>
+<p>All trips on individual tours made by synthetic persons residing in the Jupiter study area. Note this includes trips that have origins or destinations outside the study area.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TRIPS&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8-BASE2015-TRIPS.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TRIPS&#39;</span><span class="p">))</span>
+<span class="n">trips</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 123874 entries, 0 to 123873
+Data columns (total 20 columns):
+hh_id              123874 non-null int64
+person_id          123874 non-null int64
+person_num         123874 non-null int64
+tour_id            123874 non-null int64
+stop_id            123874 non-null int64
+inbound            123874 non-null int64
+tour_purpose       123874 non-null object
+orig_purpose       123874 non-null object
+dest_purpose       123874 non-null object
+orig_mgra          123874 non-null int64
+dest_mgra          123874 non-null int64
+parking_mgra       123874 non-null int64
+stop_period        123874 non-null int64
+trip_mode          123874 non-null int64
+trip_board_tap     123874 non-null int64
+trip_alight_tap    123874 non-null int64
+tour_mode          123874 non-null int64
+smplRate_geo       123874 non-null float64
+autotech           123874 non-null int64
+tncmemb            123874 non-null int64
+dtypes: float64(1), int64(16), object(3)
+memory usage: 18.9+ MB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Highway-Skims">
+<h3>Highway Skims<a class="headerlink" href="#Highway-Skims" title="Permalink to this headline">¶</a></h3>
+<p>The tutorial data contains a set of highway skims for the Jupiter example area, in openmatrix (omx) format.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-JUPITER-AMHSKIMS&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;SERPM8-JUPITER-AMHSKIMS.omx&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">skims</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">OMX</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-JUPITER-AMHSKIMS&#39;</span><span class="p">))</span>
+<span class="n">skims</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;larch.OMX&gt; ⋯/SERPM8-JUPITER-AMHSKIMS.omx
+ |  shape:(220, 220)
+ |  data:
+ |    AM_DAT_DIST      (float64)
+ |    AM_DAT_FFTIME    (float64)
+ |    AM_DAT_TIME      (float64)
+ |    AM_DAT_TOLLCOST  (float64)
+ |    AM_DAT_TOLLDIST  (float64)
+ |    AM_GP_DIST       (float64)
+ |    AM_GP_FFTIME     (float64)
+ |    AM_GP_TIME       (float64)
+ |    AM_S2NH_DIST     (float64)
+ |    AM_S2NH_FFTIME   (float64)
+ |    AM_S2NH_HOVDIST  (float64)
+ |    AM_S2NH_TIME     (float64)
+ |    AM_S2TH_DIST     (float64)
+ |    AM_S2TH_FFTIME   (float64)
+ |    AM_S2TH_HOVDIST  (float64)
+ |    AM_S2TH_TIME     (float64)
+ |    AM_S2TH_TOLLCOST (float64)
+ |    AM_S2TH_TOLLDIST (float64)
+ |  lookup:
+ |    TAZ_ID (220 int64)
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Exampville-Simulated-Data">
+<h2>Exampville Simulated Data<a class="headerlink" href="#Exampville-Simulated-Data" title="Permalink to this headline">¶</a></h2>
+<p>Exampville is an entirely fictional town built for the express purpose of demostrating the use of discrete choice modeling tools for transportation planning. The exampville data files are packaged with <code class="docutils literal notranslate"><span class="pre">Larch</span></code>, an open source package for discrete choice models.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">larch.exampville</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>TAZ Shapefile<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The shapefile that includes a map of the travel analysis zones in Exampville is stored in a zip file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">shapefile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;exampville_taz.zip&#39;
+</pre></div></div>
+</div>
+<p>Geopandas can open and read this data directly with unzipping it on disk first, by including the “zip://” protocol in front of the filename.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">taz_shape</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;zip://&quot;</span><span class="o">+</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">shapefile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">taz_shape</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_data_example-data_53_0.png" src="../../_images/course-content_data_example-data_53_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="TAZ-Employment-Data">
+<h3>TAZ Employment Data<a class="headerlink" href="#TAZ-Employment-Data" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">employment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;exampville_employment.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">emp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">employment</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;TAZ&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">emp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 40 entries, 1 to 40
+Data columns (total 3 columns):
+NONRETAIL_EMP    40 non-null int64
+RETAIL_EMP       40 non-null int64
+TOTAL_EMP        40 non-null int64
+dtypes: int64(3)
+memory usage: 1.2 KB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Skims">
+<h3>Skims<a class="headerlink" href="#Skims" title="Permalink to this headline">¶</a></h3>
+<p>The network skims for Exampville are stored in open matrix format. Larch includes a OMX reader, which also embeds a number of handy tools for processing OMX data into formats useful for discrete choice analysis.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">skims</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;exampville_skims.omx&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">skims</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">OMX</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">skims</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span> <span class="p">)</span>
+<span class="n">skims</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;larch.OMX&gt; ⋯/exampville_skims.omx
+ |  shape:(40, 40)
+ |  data:
+ |    AUTO_COST    (float64)
+ |    AUTO_DIST    (float64)
+ |    AUTO_TIME    (float64)
+ |    BIKE_TIME    (float64)
+ |    TRANSIT_FARE (float64)
+ |    TRANSIT_IVTT (float64)
+ |    TRANSIT_OVTT (float64)
+ |    WALK_DIST    (float64)
+ |    WALK_TIME    (float64)
+ |  lookup:
+ |    TAZ_ID (40 int64)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Households<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">hh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;exampville_households.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">hh</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 5000 entries, 0 to 4999
+Data columns (total 7 columns):
+X           5000 non-null float64
+Y           5000 non-null float64
+INCOME      5000 non-null int64
+geometry    5000 non-null object
+HOMETAZ     5000 non-null int64
+HHSIZE      5000 non-null int64
+HHID        5000 non-null int64
+dtypes: float64(2), int64(4), object(1)
+memory usage: 273.5+ KB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Persons<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">person</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;exampville_persons.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">person</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 9146 entries, 0 to 9145
+Data columns (total 8 columns):
+PERSONID         9146 non-null int64
+HHID             9146 non-null int64
+HHIDX            9146 non-null int64
+AGE              9146 non-null int64
+WORKS            9146 non-null int64
+N_WORK_TOURS     9146 non-null int64
+N_OTHER_TOURS    9146 non-null int64
+N_TOURS          9146 non-null int64
+dtypes: int64(8)
+memory usage: 571.7 KB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Tours<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">tour</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;exampville_tours.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tour</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">tour</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tour</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 15934 entries, 0 to 15933
+Data columns (total 6 columns):
+TOURID      15934 non-null int64
+HHID        15934 non-null int64
+PERSONID    15934 non-null int64
+DTAZ        15934 non-null int64
+TOURMODE    15934 non-null int64
+TOURPURP    15934 non-null int64
+dtypes: int64(6)
+memory usage: 747.0 KB
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Miscellaneous-Other-Files">
+<h2>Miscellaneous Other Files<a class="headerlink" href="#Miscellaneous-Other-Files" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;THIS-FILE-IS-CORRUPT&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;THIS-FILE-IS-CORRUPT.csv.gz&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">gzip</span>
+<span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;THIS-FILE-IS-CORRUPT&#39;</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+b&#39;&#34;Name&#34;,&#34;2019 Population&#34;,&#34;Growth Since 2010&#34;\n&#34;Miami-Dade County&#34;,2751796,9.754517738314988\n&#34;Broward County&#34;,1935878,10.438146461848802\n&#34;Palm Beach County&#34;,1471150,11.134781186520442\n&#34;Hillsborough County&#34;,1408566,14.187346024545278\n&#34;Orange County&#34;,1348975,17.43533537158656\n&#34;Pinellas County&#34;,970637,5.908084103481755\n&#34;Duval County&#34;,937934,8.349130546785744\n&#34;Lee County&#34;,739224,19.13993814336621\n&#34;Polk County&#34;,686483,13.819128387508599\n&#34;Brevard County&#34;,589162,8.306616468373605\n&#34;Volusia County&#34;,538692,8.949041751947647\n&#34;Pasco County&#34;,525643,12.922511761799399\n&#34;Seminole County&#34;,462659,9.358845567465991\n&#34;Sarasota County&#34;,419119,10.310730002316134\n&#34;Manatee County&#34;,385571,19.209804630857747\n&#34;Collier County&#34;,372880,15.585506554536408\n&#34;Marion County&#34;,354353,6.94414264329518\n&#34;Osceola County&#34;,352180,30.50857507077953\n&#34;Lake County&#34;,346017,16.228535726762146\n&#34;Escambia County&#34;,313512,5.19266128924022\n&#34;St. Lucie Count\x97\xef\x88\xf5;\xd6\r\xa7\xf3\x9d\xd9\xf4\xbd\xaeZt\xb2\x88\xfb\xc8(\xb5\xb4\r\xf1%\xc05\xb4BM\xc1\xe3\xb4\xad\xd45\xb1:M\x00s|\x0f\xd9\x0eA\xb5\xa4\xcb&gt;\xc28\xeb\x89\x9b\x1aR\xb8v\xc7\xc8\x84\x804&#34;^\xf2\xd0\xad\x8ar\x0c\xf59\xdfU\xad\xafo\xae\xe2\x0c\xc4\xce94\xba\xdco\xdf&lt;\x840\r\x97#\xaf\xe0\xcb\xcbf\xed\x02\xbe\xf1\x18\xb8Fm\x80\xb0:3\x1d\x02&#39;
+</pre></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../exercises/solution-geo-dynamic-map.html" class="btn btn-neutral float-left" title="Using Dynamic Mapping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

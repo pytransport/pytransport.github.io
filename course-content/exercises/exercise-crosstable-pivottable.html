@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using Pivot Tables &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using Linear Regression" href="exercise-linear-regression.html" />
+    <link rel="prev" title="Using Groupby and Transform" href="exercise-groupby-transform.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Exercises</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="exercise-groupby-transform.html">Using Groupby and Transform</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using Pivot Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Questions">Questions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Data">Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-linear-regression.html">Using Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-heatmap.html">Using Heatmaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-boxplots.html">Using Boxplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-frequency-barplots.html">Using Frequency Plots and Bar Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-selection.html">Using Selection by Geography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-sjoin.html">Using Spatial Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-static-map.html">Using Static Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-dynamic-map.html">Using Dynamic Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_index.html#solutions">Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="_index.html">Exercises</a> &raquo;</li>
+        
+      <li>Using Pivot Tables</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/exercises/exercise-crosstable-pivottable.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Using-Pivot-Tables">
+<h1>Using Pivot Tables<a class="headerlink" href="#Using-Pivot-Tables" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Questions">
+<h2>Questions<a class="headerlink" href="#Questions" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Within the Jupiter study area, what is the average distance for bike tours to work? <em>(Hint: It is 4.03 miles)</em></p></li>
+<li><p>What tour purpose has the highest average tour distance? <em>(Hint: Work tours)</em></p></li>
+<li><p>What is the median distance of walking for all tour purposes? <em>(Hint: 0.548 miles)</em></p></li>
+</ol>
+</div>
+<div class="section" id="Data">
+<h2>Data<a class="headerlink" href="#Data" title="Permalink to this headline">¶</a></h2>
+<p>To answer the questions, use the following data:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tour</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TOURS&#39;</span><span class="p">))</span>
+<span class="n">tour</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hh_id</th>
+      <th>person_id</th>
+      <th>person_num</th>
+      <th>person_type</th>
+      <th>tour_id</th>
+      <th>tour_category</th>
+      <th>tour_purpose</th>
+      <th>orig_mgra</th>
+      <th>dest_mgra</th>
+      <th>start_period</th>
+      <th>end_period</th>
+      <th>tour_mode</th>
+      <th>tour_distance</th>
+      <th>tour_time</th>
+      <th>atWork_freq</th>
+      <th>num_ob_stops</th>
+      <th>num_ib_stops</th>
+      <th>out_btap</th>
+      <th>out_atap</th>
+      <th>in_btap</th>
+      <th>in_atap</th>
+      <th>util_1</th>
+      <th>util_2</th>
+      <th>util_3</th>
+      <th>util_4</th>
+      <th>util_5</th>
+      <th>util_6</th>
+      <th>util_7</th>
+      <th>util_8</th>
+      <th>util_9</th>
+      <th>util_10</th>
+      <th>util_11</th>
+      <th>util_12</th>
+      <th>util_13</th>
+      <th>util_14</th>
+      <th>util_15</th>
+      <th>util_16</th>
+      <th>util_17</th>
+      <th>util_18</th>
+      <th>util_19</th>
+      <th>util_20</th>
+      <th>prob_1</th>
+      <th>prob_2</th>
+      <th>prob_3</th>
+      <th>prob_4</th>
+      <th>prob_5</th>
+      <th>prob_6</th>
+      <th>prob_7</th>
+      <th>prob_8</th>
+      <th>prob_9</th>
+      <th>prob_10</th>
+      <th>prob_11</th>
+      <th>prob_12</th>
+      <th>prob_13</th>
+      <th>prob_14</th>
+      <th>prob_15</th>
+      <th>prob_16</th>
+      <th>prob_17</th>
+      <th>prob_18</th>
+      <th>prob_19</th>
+      <th>prob_20</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1690841</td>
+      <td>4502948</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>MANDATORY</td>
+      <td>Work</td>
+      <td>7736</td>
+      <td>9290</td>
+      <td>8</td>
+      <td>29</td>
+      <td>6</td>
+      <td>22.261</td>
+      <td>32.311001</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1.395076</td>
+      <td>-998.970825</td>
+      <td>-2.360061</td>
+      <td>-2.051275</td>
+      <td>-2.361161</td>
+      <td>-1.139561</td>
+      <td>-999.0</td>
+      <td>-999.0</td>
+      <td>-996.401001</td>
+      <td>-997.447021</td>
+      <td>-996.244019</td>
+      <td>-996.244019</td>
+      <td>-997.664978</td>
+      <td>-999.883789</td>
+      <td>-999.883789</td>
+      <td>-1001.335999</td>
+      <td>-999.883789</td>
+      <td>-999.883789</td>
+      <td>-1001.335999</td>
+      <td>-999.0</td>
+      <td>0.340576</td>
+      <td>0.0</td>
+      <td>0.000096</td>
+      <td>0.091587</td>
+      <td>0.000000</td>
+      <td>0.567742</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1690841</td>
+      <td>4502948</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>AT_WORK</td>
+      <td>Work-Based</td>
+      <td>9290</td>
+      <td>7980</td>
+      <td>13</td>
+      <td>14</td>
+      <td>1</td>
+      <td>1.910</td>
+      <td>4.752000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.259837</td>
+      <td>-998.668518</td>
+      <td>-0.758937</td>
+      <td>-999.608398</td>
+      <td>-0.687137</td>
+      <td>-999.858276</td>
+      <td>-999.0</td>
+      <td>-999.0</td>
+      <td>-5.843162</td>
+      <td>-28.534241</td>
+      <td>-8.014107</td>
+      <td>-1024.000000</td>
+      <td>-1024.000000</td>
+      <td>-30.581329</td>
+      <td>-1024.000000</td>
+      <td>-32.709736</td>
+      <td>-30.581329</td>
+      <td>-1024.000000</td>
+      <td>-32.709736</td>
+      <td>-999.0</td>
+      <td>0.555677</td>
+      <td>0.0</td>
+      <td>0.204790</td>
+      <td>0.000000</td>
+      <td>0.236415</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.002799</td>
+      <td>0.0</td>
+      <td>0.000319</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1690841</td>
+      <td>4502948</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>AT_WORK</td>
+      <td>Work-Based</td>
+      <td>9290</td>
+      <td>10608</td>
+      <td>19</td>
+      <td>23</td>
+      <td>3</td>
+      <td>1.357</td>
+      <td>3.777000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-0.195235</td>
+      <td>-998.668518</td>
+      <td>-0.694335</td>
+      <td>-999.608398</td>
+      <td>-0.622535</td>
+      <td>-999.858276</td>
+      <td>-999.0</td>
+      <td>-999.0</td>
+      <td>-4.755019</td>
+      <td>-28.262205</td>
+      <td>-8.655456</td>
+      <td>-1024.000000</td>
+      <td>-1024.000000</td>
+      <td>-33.426655</td>
+      <td>-1024.000000</td>
+      <td>-31.728464</td>
+      <td>-33.426655</td>
+      <td>-1024.000000</td>
+      <td>-31.728464</td>
+      <td>-999.0</td>
+      <td>0.553007</td>
+      <td>0.0</td>
+      <td>0.203806</td>
+      <td>0.000000</td>
+      <td>0.235279</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.007751</td>
+      <td>0.0</td>
+      <td>0.000157</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1690841</td>
+      <td>4502949</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>MANDATORY</td>
+      <td>Work</td>
+      <td>7736</td>
+      <td>8289</td>
+      <td>27</td>
+      <td>30</td>
+      <td>4</td>
+      <td>30.930</td>
+      <td>55.431000</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-2.548089</td>
+      <td>-998.970825</td>
+      <td>-3.130183</td>
+      <td>-1.918921</td>
+      <td>-3.237083</td>
+      <td>-1.397364</td>
+      <td>-999.0</td>
+      <td>-999.0</td>
+      <td>-996.401001</td>
+      <td>-997.447021</td>
+      <td>-996.244019</td>
+      <td>-996.244019</td>
+      <td>-997.664978</td>
+      <td>-999.883789</td>
+      <td>-999.883789</td>
+      <td>-1001.335999</td>
+      <td>-999.883789</td>
+      <td>-999.883789</td>
+      <td>-1001.335999</td>
+      <td>-999.0</td>
+      <td>0.068926</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.242591</td>
+      <td>0.000000</td>
+      <td>0.688483</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1690841</td>
+      <td>4502949</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1</td>
+      <td>MANDATORY</td>
+      <td>Work</td>
+      <td>7736</td>
+      <td>8289</td>
+      <td>31</td>
+      <td>36</td>
+      <td>4</td>
+      <td>30.930</td>
+      <td>55.431000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-2.493357</td>
+      <td>-998.970825</td>
+      <td>-3.075933</td>
+      <td>-1.860832</td>
+      <td>-3.182833</td>
+      <td>-1.339275</td>
+      <td>-999.0</td>
+      <td>-999.0</td>
+      <td>-996.401001</td>
+      <td>-997.447021</td>
+      <td>-996.244019</td>
+      <td>-996.244019</td>
+      <td>-997.664978</td>
+      <td>-999.883789</td>
+      <td>-999.883789</td>
+      <td>-1001.335999</td>
+      <td>-999.883789</td>
+      <td>-999.883789</td>
+      <td>-1001.335999</td>
+      <td>-999.0</td>
+      <td>0.068497</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.242703</td>
+      <td>0.000000</td>
+      <td>0.688801</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tour_mode_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;DRIVEALONEFREE&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;DRIVEALONEPAY&quot;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;SHARED2GP&quot;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;SHARED2PAY&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;SHARED3GP&quot;</span><span class="p">,</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s2">&quot;SHARED3PAY&quot;</span><span class="p">,</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="s2">&quot;TNCALONE&quot;</span><span class="p">,</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="s2">&quot;TNCSHARED&quot;</span><span class="p">,</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="s2">&quot;WALK&quot;</span><span class="p">,</span>
+    <span class="mi">10</span><span class="p">:</span> <span class="s2">&quot;BIKE&quot;</span><span class="p">,</span>
+    <span class="mi">11</span><span class="p">:</span> <span class="s2">&quot;WALK_MIX&quot;</span><span class="p">,</span>
+    <span class="mi">12</span><span class="p">:</span> <span class="s2">&quot;WALK_PRMW&quot;</span><span class="p">,</span>
+    <span class="mi">13</span><span class="p">:</span> <span class="s2">&quot;WALK_PRMD&quot;</span><span class="p">,</span>
+    <span class="mi">14</span><span class="p">:</span> <span class="s2">&quot;PNR_MIX&quot;</span><span class="p">,</span>
+    <span class="mi">15</span><span class="p">:</span> <span class="s2">&quot;PNR_PRMW&quot;</span><span class="p">,</span>
+    <span class="mi">16</span><span class="p">:</span> <span class="s2">&quot;PNR_PRMD&quot;</span><span class="p">,</span>
+    <span class="mi">17</span><span class="p">:</span> <span class="s2">&quot;KNR_MIX&quot;</span><span class="p">,</span>
+    <span class="mi">18</span><span class="p">:</span> <span class="s2">&quot;KNR_PRMW&quot;</span><span class="p">,</span>
+    <span class="mi">19</span><span class="p">:</span> <span class="s2">&quot;KNR_PRMD&quot;</span><span class="p">,</span>
+    <span class="mi">20</span><span class="p">:</span> <span class="s2">&quot;SCHBUS&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="exercise-linear-regression.html" class="btn btn-neutral float-right" title="Using Linear Regression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="exercise-groupby-transform.html" class="btn btn-neutral float-left" title="Using Groupby and Transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

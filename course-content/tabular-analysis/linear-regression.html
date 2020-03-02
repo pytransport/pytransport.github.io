@@ -1,0 +1,1194 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Linear Regression &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Visualization" href="../visualization/_index.html" />
+    <link rel="prev" title="Crosstab and Pivot Tables" href="pivot-tables.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Tabular Data Analysis</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html">Basic Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pivot-tables.html">Crosstab and Pivot Tables</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Linear Regression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Piecewise-Linear-Functions">Piecewise Linear Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Polynomial-Functions">Polynomial Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="_index.html">Tabular Data Analysis</a> &raquo;</li>
+        
+      <li>Linear Regression</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/tabular-analysis/linear-regression.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Linear-Regression">
+<h1>Linear Regression<a class="headerlink" href="#Linear-Regression" title="Permalink to this headline">¶</a></h1>
+<p>A popular package for developing linear regression models in Python is <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. This packages includes an extensive set of tools for statisitical modeling, but in this tutorial we will focus on linear regression models.</p>
+<p>Generally, linear regression models will be developed using a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing both independent (explanatory) and dependent (target) variables. We’ll work with data in the households and trips table from the Jupiter study area.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-HOUSEHOLDS&#39;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">hh</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;hh_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TRIPS&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>If we want to develop a linear regression model to predict trip generation by households, we’ll need to merge these two data tables, tabulating the number of trips taken by each household. (See the tutorial on <a class="reference external" href="./basic-analysis-with-pandas.html#Grouping">grouping</a> for more details on how to do this).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">trips</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;hh_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;n_trips&#39;</span><span class="p">),</span>
+    <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hh_id&#39;</span><span class="p">],</span>
+    <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can review what variables we now have in the <code class="docutils literal notranslate"><span class="pre">hh</span></code> DataFrame:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 17260 entries, 1690841 to 1726370
+Data columns (total 9 columns):
+home_mgra       17260 non-null int64
+income          17260 non-null int64
+autos           17260 non-null int64
+transponder     17260 non-null int64
+cdap_pattern    17260 non-null object
+jtf_choice      17260 non-null int64
+autotech        17260 non-null int64
+tncmemb         17260 non-null int64
+n_trips         17260 non-null int64
+dtypes: int64(8), object(1)
+memory usage: 1.3+ MB
+</pre></div></div>
+</div>
+<p>If we suppose that the number of trips made by a household is a function of income and the number of automobiles owned, we can create an ordinary least squares regression model, and find the best fitting parameters like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income&#39;</span><span class="p">]])</span>
+<span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                n_trips   R-squared:                       0.229
+Model:                            OLS   Adj. R-squared:                  0.229
+Method:                 Least Squares   F-statistic:                     2563.
+Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
+Time:                        13:45:17   Log-Likelihood:                -48167.
+No. Observations:               17260   AIC:                         9.634e+04
+Df Residuals:                   17257   BIC:                         9.636e+04
+Df Model:                           2
+Covariance Type:            nonrobust
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          2.4460      0.073     33.694      0.000       2.304       2.588
+autos          2.5804      0.039     65.547      0.000       2.503       2.658
+income       1.97e-06   2.79e-07      7.049      0.000    1.42e-06    2.52e-06
+==============================================================================
+Omnibus:                     4116.620   Durbin-Watson:                   1.926
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11185.853
+Skew:                           1.273   Prob(JB):                         0.00
+Kurtosis:                       6.011   Cond. No.                     4.14e+05
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 4.14e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/jpn/anaconda/envs/tt/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
+</pre></div></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">hh</span></code> dataframes contains a variety of other columns of data, but since we’re not interested in using them for this model, they can be implicitly omitted by creating a dataframe view that includes only the variables we do want.</p>
+<p>Also, we use <code class="docutils literal notranslate"><span class="pre">sm.add_constant</span></code>, which includes a constant in the regression function. By default, the <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> module does <em>not</em> include a constant in an ordinary least squares (OLS) model, so you must explicitly add one to the explanatory variables to include it.</p>
+<p>The output of the model <code class="docutils literal notranslate"><span class="pre">summary()</span></code> is relatively extensive and includes a large number of statistical measures and tests that may or may not interest you. The most important of these measures include the coefficient estimates shown in the center panel of this report, as well as the R-squared measure at the upper right.</p>
+<div class="line-block">
+<div class="line">One other item that may be concerning in this report is the second warning at the bottom, which reports that there may be some numerical problem with the model. This problem is actually reflected also in the coefficients themselves, as the coefficient for income is many orders of magnitide different from the others.</div>
+<div class="line">This is reasonable and intuititve: the impact of a unit (single dollar) change in annual household income is insignificant compared to a unit (single car) change in automobile ownership. If we review the standard deviations of these explanatory variables, we can also see they vary greatly.</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+const          0.000000
+autos          0.801841
+income    112974.383573
+dtype: float64
+</pre></div></div>
+</div>
+<p>A magnitude variance this large is not problematic in raw statistical theory, but it can introduce numerical stability problems when using computers to represent these models. To solve this issue, we can simply scale one or more variables to more consistent variance:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span><span class="p">[</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="n">income</span> <span class="o">/</span> <span class="mi">100_000</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]])</span>
+<span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                n_trips   R-squared:                       0.229
+Model:                            OLS   Adj. R-squared:                  0.229
+Method:                 Least Squares   F-statistic:                     2563.
+Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
+Time:                        13:45:17   Log-Likelihood:                -48167.
+No. Observations:               17260   AIC:                         9.634e+04
+Df Residuals:                   17257   BIC:                         9.636e+04
+Df Model:                           2
+Covariance Type:            nonrobust
+===============================================================================
+                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------
+const           2.4460      0.073     33.694      0.000       2.304       2.588
+autos           2.5804      0.039     65.547      0.000       2.503       2.658
+income_100k     0.1970      0.028      7.049      0.000       0.142       0.252
+==============================================================================
+Omnibus:                     4116.620   Durbin-Watson:                   1.926
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11185.853
+Skew:                           1.273   Prob(JB):                         0.00
+Kurtosis:                       6.011   Cond. No.                         6.60
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div></div>
+</div>
+<p>The R-squared and t-statistics of this model are the same as before, as this is in effect the same model as above. But in this revised model, the magnitude of the income coefficient is now much closer to that of the other coefficients, and the “condition number” warning is not present in the summary.</p>
+<div class="section" id="Piecewise-Linear-Functions">
+<h2>Piecewise Linear Functions<a class="headerlink" href="#Piecewise-Linear-Functions" title="Permalink to this headline">¶</a></h2>
+<p>OLS linear regression models are by design written as linear-in-parameters models, but that does not mean that the explanitory data cannot be first transformed, for example by using a piece-wise linear expansion. The <code class="docutils literal notranslate"><span class="pre">larch</span></code> package includes a <code class="docutils literal notranslate"><span class="pre">piecewise_expansion</span></code> function that can expand a single column of data in a pandas.DataFrame into multiple columns based on defined breakpoints.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">larch.util.data_expansion</span> <span class="kn">import</span> <span class="n">piecewise_expansion</span>
+</pre></div>
+</div>
+</div>
+<p>For example, to create a piecewise linear version of household income, with break points at $25 and $75 thouand, we could write:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">piecewise_expansion</span><span class="p">(</span><span class="n">hh</span><span class="o">.</span><span class="n">income</span><span class="p">,</span> <span class="p">[</span><span class="mi">25_000</span><span class="p">,</span> <span class="mi">75_000</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>piece(income,None,25000)</th>
+      <th>piece(income,25000,75000)</th>
+      <th>piece(income,75000,None)</th>
+    </tr>
+    <tr>
+      <th>hh_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1690841</th>
+      <td>25000</td>
+      <td>50000</td>
+      <td>437000</td>
+    </tr>
+    <tr>
+      <th>1690961</th>
+      <td>25000</td>
+      <td>2500</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1690866</th>
+      <td>25000</td>
+      <td>50000</td>
+      <td>75000</td>
+    </tr>
+    <tr>
+      <th>1690895</th>
+      <td>25000</td>
+      <td>50000</td>
+      <td>29000</td>
+    </tr>
+    <tr>
+      <th>1690933</th>
+      <td>25000</td>
+      <td>50000</td>
+      <td>20000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The result is three columns of data instead of one, with the first giving income up to the lower breakpoint, the next giving income between the two breakpoints, and the last giving the amount of income above the top breakpoint.</p>
+<p>We can readily concatenate this expanded data with any other explanatory variables by using <code class="docutils literal notranslate"><span class="pre">pandas.concat</span></code>. Note that by default this function concatenates dataframes vertically (combining columns and stacking rows), but in this case we want to concatenate horizontally (combining rows and stacking columns). We can achieve this by also passing <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> to the function in addition to the list of dataframes to concatenate.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh_edited</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">autos</span><span class="p">,</span>
+    <span class="n">piecewise_expansion</span><span class="p">(</span><span class="n">hh</span><span class="o">.</span><span class="n">income_100k</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="mi">25</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">]),</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">hh_edited</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>autos</th>
+      <th>piece(income_100k,None,0.25)</th>
+      <th>piece(income_100k,0.25,0.75)</th>
+      <th>piece(income_100k,0.75,None)</th>
+    </tr>
+    <tr>
+      <th>hh_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1690841</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>4.37</td>
+    </tr>
+    <tr>
+      <th>1690961</th>
+      <td>1</td>
+      <td>0.25</td>
+      <td>0.025</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>1690866</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>1690895</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>0.29</td>
+    </tr>
+    <tr>
+      <th>1690933</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>0.20</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Then we can use this modified dataframe to construct a piecewise linear OLS regression model. Because the original and modified dataframes have the same index (i.e. number and order of rows) we can mix them in the OLS defintion, using the <code class="docutils literal notranslate"><span class="pre">n_trips</span></code> column from the original as the dependent variable and the explanatory data from the modified dataframe.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh_edited</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                n_trips   R-squared:                       0.231
+Model:                            OLS   Adj. R-squared:                  0.231
+Method:                 Least Squares   F-statistic:                     1297.
+Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
+Time:                        13:45:17   Log-Likelihood:                -48143.
+No. Observations:               17260   AIC:                         9.630e+04
+Df Residuals:                   17255   BIC:                         9.633e+04
+Df Model:                           4
+Covariance Type:            nonrobust
+================================================================================================
+                                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------------
+const                            1.9177      0.153     12.542      0.000       1.618       2.217
+autos                            2.4769      0.042     58.560      0.000       2.394       2.560
+piece(income_100k,None,0.25)     2.2983      0.722      3.181      0.001       0.882       3.714
+piece(income_100k,0.25,0.75)     1.0124      0.204      4.972      0.000       0.613       1.412
+piece(income_100k,0.75,None)     0.0977      0.033      3.002      0.003       0.034       0.162
+==============================================================================
+Omnibus:                     4132.769   Durbin-Watson:                   1.925
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11235.615
+Skew:                           1.278   Prob(JB):                         0.00
+Kurtosis:                       6.015   Cond. No.                         56.0
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/jpn/anaconda/envs/tt/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Polynomial-Functions">
+<h2>Polynomial Functions<a class="headerlink" href="#Polynomial-Functions" title="Permalink to this headline">¶</a></h2>
+<p>In addition to piecewise linear terms in the regression equation, standard OLS allows for any arbitrary non-linear transformation. Students of statistics will be familiar with fitting a polynomial function with OLS coefficients, and this can be done using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> for example by explicitly computing the desired polynomial terms before estimating model parameter.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span><span class="p">[</span><span class="s1">&#39;autos^2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="p">[</span><span class="s1">&#39;autos&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="n">hh</span><span class="p">[</span><span class="s1">&#39;income^2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="p">[</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income_100k&#39;</span><span class="p">,</span> <span class="s1">&#39;autos^2&#39;</span><span class="p">,</span> <span class="s1">&#39;income^2&#39;</span><span class="p">]])</span>
+<span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                n_trips   R-squared:                       0.230
+Model:                            OLS   Adj. R-squared:                  0.229
+Method:                 Least Squares   F-statistic:                     1286.
+Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
+Time:                        13:45:17   Log-Likelihood:                -48160.
+No. Observations:               17260   AIC:                         9.633e+04
+Df Residuals:                   17255   BIC:                         9.637e+04
+Df Model:                           4
+Covariance Type:            nonrobust
+===============================================================================
+                  coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------
+const           2.6596      0.127     20.926      0.000       2.411       2.909
+autos           2.2161      0.139     15.970      0.000       1.944       2.488
+income_100k     0.3748      0.067      5.578      0.000       0.243       0.507
+autos^2         0.0839      0.033      2.545      0.011       0.019       0.148
+income^2       -0.0314      0.011     -2.788      0.005      -0.054      -0.009
+==============================================================================
+Omnibus:                     4098.383   Durbin-Watson:                   1.925
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11134.434
+Skew:                           1.268   Prob(JB):                         0.00
+Kurtosis:                       6.009   Cond. No.                         46.6
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div></div>
+</div>
+<p>Alternatively, polynomial terms can be created automatically for every column in the source data, as well as for interactions, using the <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code> preprocessor from the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> package. This tool doesn’t automatically maintain the DataFrame formatting when applied (instead it outputs a simple array of values), but it is simple to write a small function that will do so.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">polynomial</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+    <span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">poly</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Then we can use the function to calculate polynomial terms automatically. In this example, by setting the <code class="docutils literal notranslate"><span class="pre">degree</span></code> to 3, we not only get squared and cubed versions of the two parameters, but also all the interactions of these parameters up to degree 3.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh_poly</span> <span class="o">=</span> <span class="n">polynomial</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]],</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">hh_poly</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>autos</th>
+      <th>income_100k</th>
+      <th>autos^2</th>
+      <th>autos income_100k</th>
+      <th>income_100k^2</th>
+      <th>autos^3</th>
+      <th>autos^2 income_100k</th>
+      <th>autos income_100k^2</th>
+      <th>income_100k^3</th>
+    </tr>
+    <tr>
+      <th>hh_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1690841</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>5.120</td>
+      <td>4.0</td>
+      <td>10.240</td>
+      <td>26.214400</td>
+      <td>8.0</td>
+      <td>20.480</td>
+      <td>52.428800</td>
+      <td>134.217728</td>
+    </tr>
+    <tr>
+      <th>1690961</th>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.275</td>
+      <td>1.0</td>
+      <td>0.275</td>
+      <td>0.075625</td>
+      <td>1.0</td>
+      <td>0.275</td>
+      <td>0.075625</td>
+      <td>0.020797</td>
+    </tr>
+    <tr>
+      <th>1690866</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.500</td>
+      <td>4.0</td>
+      <td>3.000</td>
+      <td>2.250000</td>
+      <td>8.0</td>
+      <td>6.000</td>
+      <td>4.500000</td>
+      <td>3.375000</td>
+    </tr>
+    <tr>
+      <th>1690895</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.040</td>
+      <td>4.0</td>
+      <td>2.080</td>
+      <td>1.081600</td>
+      <td>8.0</td>
+      <td>4.160</td>
+      <td>2.163200</td>
+      <td>1.124864</td>
+    </tr>
+    <tr>
+      <th>1690933</th>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>0.950</td>
+      <td>4.0</td>
+      <td>1.900</td>
+      <td>0.902500</td>
+      <td>8.0</td>
+      <td>3.800</td>
+      <td>1.805000</td>
+      <td>0.857375</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Great care should be used with this automatic polynomial expansion of the data, as it is easy to end up with an overfitted model, especially when using a tool like OLS that does not attempt to self-correct to limit overfitting.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
+    <span class="n">hh_poly</span>
+<span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                n_trips   R-squared:                       0.236
+Model:                            OLS   Adj. R-squared:                  0.235
+Method:                 Least Squares   F-statistic:                     590.5
+Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
+Time:                        13:45:17   Log-Likelihood:                -48093.
+No. Observations:               17260   AIC:                         9.621e+04
+Df Residuals:                   17250   BIC:                         9.628e+04
+Df Model:                           9
+Covariance Type:            nonrobust
+=======================================================================================
+                          coef    std err          t      P&gt;|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+1                       3.6606      0.192     19.086      0.000       3.285       4.037
+autos                  -0.1241      0.321     -0.386      0.699      -0.754       0.506
+income_100k             0.6579      0.223      2.955      0.003       0.222       1.094
+autos^2                 1.2151      0.178      6.828      0.000       0.866       1.564
+autos income_100k       0.5617      0.182      3.088      0.002       0.205       0.918
+income_100k^2          -0.3633      0.052     -6.984      0.000      -0.465      -0.261
+autos^3                -0.1641      0.030     -5.515      0.000      -0.222      -0.106
+autos^2 income_100k    -0.1079      0.039     -2.790      0.005      -0.184      -0.032
+autos income_100k^2    -0.0216      0.016     -1.337      0.181      -0.053       0.010
+income_100k^3           0.0349      0.004      8.257      0.000       0.027       0.043
+==============================================================================
+Omnibus:                     4055.002   Durbin-Watson:                   1.926
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            10960.315
+Skew:                           1.257   Prob(JB):                         0.00
+Kurtosis:                       5.987   Cond. No.                         659.
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../visualization/_index.html" class="btn btn-neutral float-right" title="Data Visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pivot-tables.html" class="btn btn-neutral float-left" title="Crosstab and Pivot Tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1113 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using Dynamic Mapping &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tutorial Data Files" href="../data/example-data.html" />
+    <link rel="prev" title="Using Static Mapping" href="solution-geo-static-map.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Exercises</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="exercise-groupby-transform.html">Using Groupby and Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-crosstable-pivottable.html">Using Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-linear-regression.html">Using Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-heatmap.html">Using Heatmaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-boxplots.html">Using Boxplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-frequency-barplots.html">Using Frequency Plots and Bar Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-selection.html">Using Selection by Geography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-sjoin.html">Using Spatial Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-static-map.html">Using Static Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-dynamic-map.html">Using Dynamic Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="_index.html#solutions">Solutions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="solution-groupby-transform.html">Using Groupby and Transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-crosstable-pivottable.html">Using Pivot Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-linear-regression.html">Using Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-heatmap.html">Using Heatmaps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-boxplots.html">Using Boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-frequency-barplots.html">Using Frequency Plots and Bar Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-geo-selection.html">Using Selection by Geography</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-geo-sjoin.html">Using Spatial Joins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-geo-static-map.html">Using Static Mapping</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using Dynamic Mapping</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Questions">Questions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Data">Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Solution">Solution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="_index.html">Exercises</a> &raquo;</li>
+        
+      <li>Using Dynamic Mapping</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/exercises/solution-geo-dynamic-map.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Using-Dynamic-Mapping">
+<h1>Using Dynamic Mapping<a class="headerlink" href="#Using-Dynamic-Mapping" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">folium</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Questions">
+<h2>Questions<a class="headerlink" href="#Questions" title="Permalink to this headline">¶</a></h2>
+<p>Using folium, create a dynamic map and place markers on the centroids of the five MAZ’s with the highest population density MAZs. Use popup text on markers to show population density and total employment information for each of those MAZs. By clicking the markers, you should be able to answer the following questions:</p>
+<ol class="arabic simple">
+<li><p>Where is the highest population density?</p></li>
+<li><p>What is the total employment in the MAZ that has the highest population density?</p></li>
+</ol>
+</div>
+<div class="section" id="Data">
+<h2>Data<a class="headerlink" href="#Data" title="Permalink to this headline">¶</a></h2>
+<p>To answer the questions, use the following files:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZSHAPE&#39;</span><span class="p">))</span>
+<span class="n">maz_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZDATA&#39;</span><span class="p">,</span> <span class="s1">&#39;*.csv&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>MAZ</th>
+      <th>SHAPE_LENG</th>
+      <th>SHAPE_AREA</th>
+      <th>ACRES</th>
+      <th>POINT_X</th>
+      <th>POINT_Y</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>5347</td>
+      <td>8589.393674</td>
+      <td>3.111034e+06</td>
+      <td>71</td>
+      <td>953130</td>
+      <td>724165</td>
+      <td>POLYGON ((953970.4660769962 723936.0810402408,...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>5348</td>
+      <td>11974.067469</td>
+      <td>7.628753e+06</td>
+      <td>175</td>
+      <td>907018</td>
+      <td>634551</td>
+      <td>POLYGON ((908505.2801046632 635081.7738410756,...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>5349</td>
+      <td>9446.131753</td>
+      <td>4.007041e+06</td>
+      <td>92</td>
+      <td>923725</td>
+      <td>707062</td>
+      <td>POLYGON ((922736.6374686621 708387.6918614879,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>5350</td>
+      <td>21773.153739</td>
+      <td>2.487397e+07</td>
+      <td>571</td>
+      <td>908988</td>
+      <td>713484</td>
+      <td>POLYGON ((908334.2374677472 715692.2628822401,...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>5351</td>
+      <td>17882.701416</td>
+      <td>1.963139e+07</td>
+      <td>451</td>
+      <td>909221</td>
+      <td>717493</td>
+      <td>POLYGON ((911883.0187559947 719309.3261861578,...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#maz = maz.to_crs(epsg = 4326)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;init&#39;: &#39;epsg:2236&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x1a28780a20&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_exercises_solution-geo-dynamic-map_10_1.png" src="../../_images/course-content_exercises_solution-geo-dynamic-map_10_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mgra</th>
+      <th>TAZ</th>
+      <th>HH</th>
+      <th>POP</th>
+      <th>emp_self</th>
+      <th>emp_ag</th>
+      <th>emp_const_non_bldg_prod</th>
+      <th>emp_const_non_bldg_office</th>
+      <th>emp_utilities_prod</th>
+      <th>emp_utilities_office</th>
+      <th>...</th>
+      <th>EmpDenBin</th>
+      <th>DuDenBin</th>
+      <th>POINT_X</th>
+      <th>POINT_Y</th>
+      <th>ACRES</th>
+      <th>HotelRoomTotal</th>
+      <th>mall_flag</th>
+      <th>beachAcres</th>
+      <th>geoSRate</th>
+      <th>geoSRateNm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2901</td>
+      <td>43</td>
+      <td>169</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>841743</td>
+      <td>586817</td>
+      <td>510</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2902</td>
+      <td>9</td>
+      <td>21</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1006</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>855391</td>
+      <td>585688</td>
+      <td>5678</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2903</td>
+      <td>403</td>
+      <td>1389</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>858417</td>
+      <td>549492</td>
+      <td>85</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>2903</td>
+      <td>477</td>
+      <td>1659</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>858468</td>
+      <td>552269</td>
+      <td>103</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>2903</td>
+      <td>374</td>
+      <td>1389</td>
+      <td>0</td>
+      <td>0</td>
+      <td>11</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>859899</td>
+      <td>552161</td>
+      <td>72</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 76 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Solution">
+<h2>Solution<a class="headerlink" href="#Solution" title="Permalink to this headline">¶</a></h2>
+<p>First, we will merge <code class="docutils literal notranslate"><span class="pre">maz_data</span></code> dataframe with <code class="docutils literal notranslate"><span class="pre">maz</span></code> geo-dataframe to get a single dataframe with required geographic and demographic information together. After merging, we select top 5 highly populated MAZs.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz_data</span> <span class="o">=</span> <span class="n">maz_data</span><span class="p">[[</span><span class="s1">&#39;mgra&#39;</span><span class="p">,</span> <span class="s1">&#39;POP&#39;</span><span class="p">,</span> <span class="s1">&#39;PopDen&#39;</span><span class="p">,</span> <span class="s1">&#39;emp_total&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># maz_data = maz_data.astype(float)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span> <span class="o">=</span> <span class="n">maz</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">maz_data</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">left_on</span> <span class="o">=</span> <span class="s1">&#39;MAZ&#39;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s1">&#39;mgra&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span><span class="p">[</span><span class="s1">&#39;ExactPopDen&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">maz</span><span class="p">[</span><span class="s1">&#39;POP&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">maz</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="mi">5280</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span> <span class="o">=</span> <span class="n">maz</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s1">&#39;ExactPopDen&#39;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Then, we prepare the geographic information for dynamic mapping. We convert the CRS format of coordinates of MAZ centroids to input them in <code class="docutils literal notranslate"><span class="pre">folium</span></code>, the mapping package that we are going to use. We will use <code class="docutils literal notranslate"><span class="pre">pyproj</span></code> for this purpose.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">Proj</span><span class="p">,</span> <span class="n">transform</span>
+<span class="n">input_Proj</span>  <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="s2">&quot;+init=EPSG:2236&quot;</span><span class="p">,</span><span class="n">preserve_units</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">output_Proj</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="s2">&quot;+init=EPSG:4326&quot;</span><span class="p">)</span>
+
+<span class="n">point_x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">point_y</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">maz</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+
+    <span class="n">coor</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">input_Proj</span><span class="p">,</span><span class="n">output_Proj</span><span class="p">,</span><span class="n">row</span><span class="o">.</span><span class="n">POINT_X</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">POINT_Y</span><span class="p">)</span>
+    <span class="n">point_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coor</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">point_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coor</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">maz</span><span class="p">[</span><span class="s1">&#39;POINT_X_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_x</span>
+<span class="n">maz</span><span class="p">[</span><span class="s1">&#39;POINT_Y_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_y</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>MAZ</th>
+      <th>SHAPE_LENG</th>
+      <th>SHAPE_AREA</th>
+      <th>ACRES</th>
+      <th>POINT_X</th>
+      <th>POINT_Y</th>
+      <th>geometry</th>
+      <th>mgra</th>
+      <th>POP</th>
+      <th>PopDen</th>
+      <th>emp_total</th>
+      <th>ExactPopDen</th>
+      <th>POINT_X_</th>
+      <th>POINT_Y_</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8719</th>
+      <td>8720</td>
+      <td>2043</td>
+      <td>1118.734044</td>
+      <td>73775.530919</td>
+      <td>2</td>
+      <td>923754</td>
+      <td>523748</td>
+      <td>POLYGON ((923616.3597905785 523581.4791255742,...</td>
+      <td>2043</td>
+      <td>1271</td>
+      <td>33.70</td>
+      <td>2127</td>
+      <td>480287.243731</td>
+      <td>-80.186882</td>
+      <td>25.772271</td>
+    </tr>
+    <tr>
+      <th>7439</th>
+      <td>7440</td>
+      <td>763</td>
+      <td>4598.270892</td>
+      <td>96146.266956</td>
+      <td>2</td>
+      <td>932171</td>
+      <td>571467</td>
+      <td>POLYGON ((932668.741948247 572438.5365949869, ...</td>
+      <td>763</td>
+      <td>869</td>
+      <td>16.03</td>
+      <td>0</td>
+      <td>251973.689328</td>
+      <td>-80.160381</td>
+      <td>25.903407</td>
+    </tr>
+    <tr>
+      <th>8753</th>
+      <td>8754</td>
+      <td>2077</td>
+      <td>2213.840968</td>
+      <td>284133.182991</td>
+      <td>7</td>
+      <td>922641</td>
+      <td>521139</td>
+      <td>POLYGON ((922916.4012167454 521429.7248989046,...</td>
+      <td>2077</td>
+      <td>1508</td>
+      <td>52.82</td>
+      <td>1040</td>
+      <td>147960.990538</td>
+      <td>-80.190312</td>
+      <td>25.765112</td>
+    </tr>
+    <tr>
+      <th>8640</th>
+      <td>8641</td>
+      <td>1964</td>
+      <td>2578.656554</td>
+      <td>344555.061769</td>
+      <td>8</td>
+      <td>923398</td>
+      <td>531247</td>
+      <td>POLYGON ((923850.8084686622 531288.7324118242,...</td>
+      <td>1964</td>
+      <td>1755</td>
+      <td>25.74</td>
+      <td>62</td>
+      <td>141999.341843</td>
+      <td>-80.187823</td>
+      <td>25.792908</td>
+    </tr>
+    <tr>
+      <th>8642</th>
+      <td>8643</td>
+      <td>1966</td>
+      <td>2030.071693</td>
+      <td>247320.734972</td>
+      <td>6</td>
+      <td>923906</td>
+      <td>530650</td>
+      <td>POLYGON ((924173.7717334963 530376.9533954933,...</td>
+      <td>1966</td>
+      <td>1118</td>
+      <td>22.44</td>
+      <td>978</td>
+      <td>126022.798709</td>
+      <td>-80.186290</td>
+      <td>25.791257</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Now, we create a map with a suitable starting location and zoom level. Then, we plot the markers with necessary popup text.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz_map</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span> <span class="o">=</span> <span class="p">[</span><span class="n">maz</span><span class="o">.</span><span class="n">POINT_Y_</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">maz</span><span class="o">.</span><span class="n">POINT_X_</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> <span class="n">tiles</span> <span class="o">=</span> <span class="s1">&#39;Stamen Toner&#39;</span><span class="p">,</span> <span class="n">zoom_start</span> <span class="o">=</span> <span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">maz</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">popup</span> <span class="o">=</span> <span class="s1">&#39;PopDen:</span><span class="si">{}</span><span class="s1">, EMP:</span><span class="si">{}</span><span class="s1">, ExactPopDen:</span><span class="si">{:,.0f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">PopDen</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">emp_total</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">ExactPopDen</span><span class="p">)</span>
+    <span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">([</span><span class="n">row</span><span class="o">.</span><span class="n">POINT_Y_</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">POINT_X_</span><span class="p">],</span> <span class="n">popup</span> <span class="o">=</span> <span class="n">popup</span><span class="p">,</span> <span class="n">tooltip</span> <span class="o">=</span> <span class="s1">&#39;MAZ ID:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">MAZ</span><span class="p">))</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">maz_map</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">maz_map</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><iframe src="data:text/html;charset=utf-8;base64,PCFET0NUWVBFIGh0bWw+CjxoZWFkPiAgICAKICAgIDxtZXRhIGh0dHAtZXF1aXY9ImNvbnRlbnQtdHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PVVURi04IiAvPgogICAgCiAgICAgICAgPHNjcmlwdD4KICAgICAgICAgICAgTF9OT19UT1VDSCA9IGZhbHNlOwogICAgICAgICAgICBMX0RJU0FCTEVfM0QgPSBmYWxzZTsKICAgICAgICA8L3NjcmlwdD4KICAgIAogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vbGVhZmxldEAxLjUuMS9kaXN0L2xlYWZsZXQuanMiPjwvc2NyaXB0PgogICAgPHNjcmlwdCBzcmM9Imh0dHBzOi8vY29kZS5qcXVlcnkuY29tL2pxdWVyeS0xLjEyLjQubWluLmpzIj48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSJodHRwczovL21heGNkbi5ib290c3RyYXBjZG4uY29tL2Jvb3RzdHJhcC8zLjIuMC9qcy9ib290c3RyYXAubWluLmpzIj48L3NjcmlwdD4KICAgIDxzY3JpcHQgc3JjPSJodHRwczovL2NkbmpzLmNsb3VkZmxhcmUuY29tL2FqYXgvbGlicy9MZWFmbGV0LmF3ZXNvbWUtbWFya2Vycy8yLjAuMi9sZWFmbGV0LmF3ZXNvbWUtbWFya2Vycy5qcyI+PC9zY3JpcHQ+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vbGVhZmxldEAxLjUuMS9kaXN0L2xlYWZsZXQuY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vbWF4Y2RuLmJvb3RzdHJhcGNkbi5jb20vYm9vdHN0cmFwLzMuMi4wL2Nzcy9ib290c3RyYXAubWluLmNzcyIvPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJodHRwczovL21heGNkbi5ib290c3RyYXBjZG4uY29tL2Jvb3RzdHJhcC8zLjIuMC9jc3MvYm9vdHN0cmFwLXRoZW1lLm1pbi5jc3MiLz4KICAgIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0iaHR0cHM6Ly9tYXhjZG4uYm9vdHN0cmFwY2RuLmNvbS9mb250LWF3ZXNvbWUvNC42LjMvY3NzL2ZvbnQtYXdlc29tZS5taW4uY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Imh0dHBzOi8vY2RuanMuY2xvdWRmbGFyZS5jb20vYWpheC9saWJzL0xlYWZsZXQuYXdlc29tZS1tYXJrZXJzLzIuMC4yL2xlYWZsZXQuYXdlc29tZS1tYXJrZXJzLmNzcyIvPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJodHRwczovL3Jhd2Nkbi5naXRoYWNrLmNvbS9weXRob24tdmlzdWFsaXphdGlvbi9mb2xpdW0vbWFzdGVyL2ZvbGl1bS90ZW1wbGF0ZXMvbGVhZmxldC5hd2Vzb21lLnJvdGF0ZS5jc3MiLz4KICAgIDxzdHlsZT5odG1sLCBib2R5IHt3aWR0aDogMTAwJTtoZWlnaHQ6IDEwMCU7bWFyZ2luOiAwO3BhZGRpbmc6IDA7fTwvc3R5bGU+CiAgICA8c3R5bGU+I21hcCB7cG9zaXRpb246YWJzb2x1dGU7dG9wOjA7Ym90dG9tOjA7cmlnaHQ6MDtsZWZ0OjA7fTwvc3R5bGU+CiAgICAKICAgICAgICAgICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwKICAgICAgICAgICAgICAgIGluaXRpYWwtc2NhbGU9MS4wLCBtYXhpbXVtLXNjYWxlPTEuMCwgdXNlci1zY2FsYWJsZT1ubyIgLz4KICAgICAgICAgICAgPHN0eWxlPgogICAgICAgICAgICAgICAgI21hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSB7CiAgICAgICAgICAgICAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlOwogICAgICAgICAgICAgICAgICAgIHdpZHRoOiAxMDAuMCU7CiAgICAgICAgICAgICAgICAgICAgaGVpZ2h0OiAxMDAuMCU7CiAgICAgICAgICAgICAgICAgICAgbGVmdDogMC4wJTsKICAgICAgICAgICAgICAgICAgICB0b3A6IDAuMCU7CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIDwvc3R5bGU+CiAgICAgICAgCjwvaGVhZD4KPGJvZHk+ICAgIAogICAgCiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImZvbGl1bS1tYXAiIGlkPSJtYXBfYWY3NDg2ZDlmMDUzNGEwNTg5ODljZWE0M2IzNzUxOWUiID48L2Rpdj4KICAgICAgICAKPC9ib2R5Pgo8c2NyaXB0PiAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllID0gTC5tYXAoCiAgICAgICAgICAgICAgICAibWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllIiwKICAgICAgICAgICAgICAgIHsKICAgICAgICAgICAgICAgICAgICBjZW50ZXI6IFsyNS44MDQ5OTA4NTIzMjcyMSwgLTgwLjE4MjMzNzU5MjM0MTA0XSwKICAgICAgICAgICAgICAgICAgICBjcnM6IEwuQ1JTLkVQU0czODU3LAogICAgICAgICAgICAgICAgICAgIHpvb206IDksCiAgICAgICAgICAgICAgICAgICAgem9vbUNvbnRyb2w6IHRydWUsCiAgICAgICAgICAgICAgICAgICAgcHJlZmVyQ2FudmFzOiBmYWxzZSwKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgKTsKCiAgICAgICAgICAgIAoKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgdGlsZV9sYXllcl9mOGNjMTc2YWExZDU0ODMxYjM5OGMwOTc2ZGNmNTFhYiA9IEwudGlsZUxheWVyKAogICAgICAgICAgICAgICAgImh0dHBzOi8vc3RhbWVuLXRpbGVzLXtzfS5hLnNzbC5mYXN0bHkubmV0L3RvbmVyL3t6fS97eH0ve3l9LnBuZyIsCiAgICAgICAgICAgICAgICB7ImF0dHJpYnV0aW9uIjogIk1hcCB0aWxlcyBieSBcdTAwM2NhIGhyZWY9XCJodHRwOi8vc3RhbWVuLmNvbVwiXHUwMDNlU3RhbWVuIERlc2lnblx1MDAzYy9hXHUwMDNlLCB1bmRlciBcdTAwM2NhIGhyZWY9XCJodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9saWNlbnNlcy9ieS8zLjBcIlx1MDAzZUNDIEJZIDMuMFx1MDAzYy9hXHUwMDNlLiBEYXRhIGJ5IFx1MDAyNmNvcHk7IFx1MDAzY2EgaHJlZj1cImh0dHA6Ly9vcGVuc3RyZWV0bWFwLm9yZ1wiXHUwMDNlT3BlblN0cmVldE1hcFx1MDAzYy9hXHUwMDNlLCB1bmRlciBcdTAwM2NhIGhyZWY9XCJodHRwOi8vd3d3Lm9wZW5zdHJlZXRtYXAub3JnL2NvcHlyaWdodFwiXHUwMDNlT0RiTFx1MDAzYy9hXHUwMDNlLiIsICJkZXRlY3RSZXRpbmEiOiBmYWxzZSwgIm1heE5hdGl2ZVpvb20iOiAxOCwgIm1heFpvb20iOiAxOCwgIm1pblpvb20iOiAwLCAibm9XcmFwIjogZmFsc2UsICJvcGFjaXR5IjogMSwgInN1YmRvbWFpbnMiOiAiYWJjIiwgInRtcyI6IGZhbHNlfQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8xYTM3MGM1YTMzZGI0NDNiYTY3MzFjMTU0NjE2NjU5NCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzUyMzc0OC4wLCA5MjM3NTQuMF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfYWVkYWE1NTc1NmFlNGE2ZGFmZDc1OWIwYWU0MTJhODcgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sX2Y2MTU0NGY0NzY3YjRjY2M4OTg1NmZmYmViMTA3NmRiID0gJChgPGRpdiBpZD0iaHRtbF9mNjE1NDRmNDc2N2I0Y2NjODk4NTZmZmJlYjEwNzZkYiIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjMzLjcsIEVNUDoyMTI3PC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwX2FlZGFhNTU3NTZhZTRhNmRhZmQ3NTliMGFlNDEyYTg3LnNldENvbnRlbnQoaHRtbF9mNjE1NDRmNDc2N2I0Y2NjODk4NTZmZmJlYjEwNzZkYik7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl8xYTM3MGM1YTMzZGI0NDNiYTY3MzFjMTU0NjE2NjU5NC5iaW5kUG9wdXAocG9wdXBfYWVkYWE1NTc1NmFlNGE2ZGFmZDc1OWIwYWU0MTJhODcpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl8xYTM3MGM1YTMzZGI0NDNiYTY3MzFjMTU0NjE2NjU5NC5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6MjA0MwogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8zMGZmNzk0YTRlMTU0OTk0YjRmMjMzYmViMzdmOGE0MyA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzU3MTQ2Ny4wLCA5MzIxNzEuMF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfZGFiNDViMGNiODMzNGU2NTg0Y2M1OWJhZjAzZTE0OTQgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sXzAzZTZlNmE0MDVhZTRlNzE5YzE4MjI4NzJlMzNlNjlmID0gJChgPGRpdiBpZD0iaHRtbF8wM2U2ZTZhNDA1YWU0ZTcxOWMxODIyODcyZTMzZTY5ZiIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjE2LjAzLCBFTVA6MDwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF9kYWI0NWIwY2I4MzM0ZTY1ODRjYzU5YmFmMDNlMTQ5NC5zZXRDb250ZW50KGh0bWxfMDNlNmU2YTQwNWFlNGU3MTljMTgyMjg3MmUzM2U2OWYpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfMzBmZjc5NGE0ZTE1NDk5NGI0ZjIzM2JlYjM3ZjhhNDMuYmluZFBvcHVwKHBvcHVwX2RhYjQ1YjBjYjgzMzRlNjU4NGNjNTliYWYwM2UxNDk0KQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfMzBmZjc5NGE0ZTE1NDk5NGI0ZjIzM2JlYjM3ZjhhNDMuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjc2MwogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl85YThkMTg5ODQ4ZWQ0Y2U4YTY1NzAzN2Y0ZWJhY2RjYiA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzUyMTEzOS4wLCA5MjI2NDEuMF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfNzNjNmYyNTc3ZDQyNDI3MWEzOTNhZWM4YjJhNDI4MmYgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sXzc1NzE0ZmRiNzI5ZjQ5YzI4ZGYwNjk3NTRjZWZlMmYxID0gJChgPGRpdiBpZD0iaHRtbF83NTcxNGZkYjcyOWY0OWMyOGRmMDY5NzU0Y2VmZTJmMSIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjUyLjgyLCBFTVA6MTA0MDwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF83M2M2ZjI1NzdkNDI0MjcxYTM5M2FlYzhiMmE0MjgyZi5zZXRDb250ZW50KGh0bWxfNzU3MTRmZGI3MjlmNDljMjhkZjA2OTc1NGNlZmUyZjEpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfOWE4ZDE4OTg0OGVkNGNlOGE2NTcwMzdmNGViYWNkY2IuYmluZFBvcHVwKHBvcHVwXzczYzZmMjU3N2Q0MjQyNzFhMzkzYWVjOGIyYTQyODJmKQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfOWE4ZDE4OTg0OGVkNGNlOGE2NTcwMzdmNGViYWNkY2IuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjIwNzcKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfZWY1ZjU0ODA4NWFlNDAyZDhkNmJiYTY2YjVhM2JkOWEgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFs1MzEyNDcuMCwgOTIzMzk4LjBdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYWY3NDg2ZDlmMDUzNGEwNTg5ODljZWE0M2IzNzUxOWUpOwogICAgICAgIAogICAgCiAgICAgICAgdmFyIHBvcHVwXzc4MDQ2ZjVkNjA5NjQ0MWY5ODdiNTBhNzg3MGIyYWNlID0gTC5wb3B1cCh7Im1heFdpZHRoIjogIjEwMCUifSk7CgogICAgICAgIAogICAgICAgICAgICB2YXIgaHRtbF9iZjIyNTc1NzY3Mzk0MjI1YmUyODI2NjliYmRkZjRhYSA9ICQoYDxkaXYgaWQ9Imh0bWxfYmYyMjU3NTc2NzM5NDIyNWJlMjgyNjY5YmJkZGY0YWEiIHN0eWxlPSJ3aWR0aDogMTAwLjAlOyBoZWlnaHQ6IDEwMC4wJTsiPlBvcERlbjoyNS43NCwgRU1QOjYyPC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwXzc4MDQ2ZjVkNjA5NjQ0MWY5ODdiNTBhNzg3MGIyYWNlLnNldENvbnRlbnQoaHRtbF9iZjIyNTc1NzY3Mzk0MjI1YmUyODI2NjliYmRkZjRhYSk7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl9lZjVmNTQ4MDg1YWU0MDJkOGQ2YmJhNjZiNWEzYmQ5YS5iaW5kUG9wdXAocG9wdXBfNzgwNDZmNWQ2MDk2NDQxZjk4N2I1MGE3ODcwYjJhY2UpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl9lZjVmNTQ4MDg1YWU0MDJkOGQ2YmJhNjZiNWEzYmQ5YS5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6MTk2NAogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9jYzI2Y2E3MDU3M2M0NDBmOTA1N2I2YjBkY2YyMzBkOSA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzUzMDY1MC4wLCA5MjM5MDYuMF0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfMTQ5ZDhlYzBmZDk3NGI4ZGIzNTViZTE5M2FlZTNhZjggPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sXzZiYTNkOGIzN2UxNzRmMWViZTkxNDRiY2VhMjNhYzMwID0gJChgPGRpdiBpZD0iaHRtbF82YmEzZDhiMzdlMTc0ZjFlYmU5MTQ0YmNlYTIzYWMzMCIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjIyLjQ0LCBFTVA6OTc4PC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwXzE0OWQ4ZWMwZmQ5NzRiOGRiMzU1YmUxOTNhZWUzYWY4LnNldENvbnRlbnQoaHRtbF82YmEzZDhiMzdlMTc0ZjFlYmU5MTQ0YmNlYTIzYWMzMCk7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl9jYzI2Y2E3MDU3M2M0NDBmOTA1N2I2YjBkY2YyMzBkOS5iaW5kUG9wdXAocG9wdXBfMTQ5ZDhlYzBmZDk3NGI4ZGIzNTViZTE5M2FlZTNhZjgpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl9jYzI2Y2E3MDU3M2M0NDBmOTA1N2I2YjBkY2YyMzBkOS5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6MTk2NgogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8zZTAxMDM0NzFhZjU0YWYxODI1ZDYxMGZiMWRlZTg2MCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzI1Ljc3MjI3MDc5MTM3Njk0MywgLTgwLjE4Njg4MTY2NjQyMDIyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF81OWZiN2FjM2ExMWI0MTAxYTUzOWQyY2RjOGQ1NzQxYiA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfZjhhMDg0ZTE2NTkxNDM2ZWFlZTNmZmI0NTdiN2Q2OGEgPSAkKGA8ZGl2IGlkPSJodG1sX2Y4YTA4NGUxNjU5MTQzNmVhZWUzZmZiNDU3YjdkNjhhIiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MzMuNywgRU1QOjIxMjc8L2Rpdj5gKVswXTsKICAgICAgICAgICAgcG9wdXBfNTlmYjdhYzNhMTFiNDEwMWE1MzlkMmNkYzhkNTc0MWIuc2V0Q29udGVudChodG1sX2Y4YTA4NGUxNjU5MTQzNmVhZWUzZmZiNDU3YjdkNjhhKTsKICAgICAgICAKCiAgICAgICAgbWFya2VyXzNlMDEwMzQ3MWFmNTRhZjE4MjVkNjEwZmIxZGVlODYwLmJpbmRQb3B1cChwb3B1cF81OWZiN2FjM2ExMWI0MTAxYTUzOWQyY2RjOGQ1NzQxYikKICAgICAgICA7CgogICAgICAgIAogICAgCiAgICAKICAgICAgICAgICAgbWFya2VyXzNlMDEwMzQ3MWFmNTRhZjE4MjVkNjEwZmIxZGVlODYwLmJpbmRUb29sdGlwKAogICAgICAgICAgICAgICAgYDxkaXY+CiAgICAgICAgICAgICAgICAgICAgIE1BWiBJRDoyMDQzCiAgICAgICAgICAgICAgICAgPC9kaXY+YCwKICAgICAgICAgICAgICAgIHsic3RpY2t5IjogdHJ1ZX0KICAgICAgICAgICAgKTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzFkYWNlZmEwZDUxZDQ3MjNhMDhiOTgzNGZhZGU2Y2FjID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbMjUuOTAzNDA2OTczNjU1OTMzLCAtODAuMTYwMzgwOTgzMDgzNzNdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYWY3NDg2ZDlmMDUzNGEwNTg5ODljZWE0M2IzNzUxOWUpOwogICAgICAgIAogICAgCiAgICAgICAgdmFyIHBvcHVwXzgwMjdjZTQxYTg5ZDQwMzdhMzc1YjI0Yjg2ZmVhYTZhID0gTC5wb3B1cCh7Im1heFdpZHRoIjogIjEwMCUifSk7CgogICAgICAgIAogICAgICAgICAgICB2YXIgaHRtbF9mYzA1MjEyN2ZhNjc0N2VkYmVhMGUwMWFlNWY0ZDQyYyA9ICQoYDxkaXYgaWQ9Imh0bWxfZmMwNTIxMjdmYTY3NDdlZGJlYTBlMDFhZTVmNGQ0MmMiIHN0eWxlPSJ3aWR0aDogMTAwLjAlOyBoZWlnaHQ6IDEwMC4wJTsiPlBvcERlbjoxNi4wMywgRU1QOjA8L2Rpdj5gKVswXTsKICAgICAgICAgICAgcG9wdXBfODAyN2NlNDFhODlkNDAzN2EzNzViMjRiODZmZWFhNmEuc2V0Q29udGVudChodG1sX2ZjMDUyMTI3ZmE2NzQ3ZWRiZWEwZTAxYWU1ZjRkNDJjKTsKICAgICAgICAKCiAgICAgICAgbWFya2VyXzFkYWNlZmEwZDUxZDQ3MjNhMDhiOTgzNGZhZGU2Y2FjLmJpbmRQb3B1cChwb3B1cF84MDI3Y2U0MWE4OWQ0MDM3YTM3NWIyNGI4NmZlYWE2YSkKICAgICAgICA7CgogICAgICAgIAogICAgCiAgICAKICAgICAgICAgICAgbWFya2VyXzFkYWNlZmEwZDUxZDQ3MjNhMDhiOTgzNGZhZGU2Y2FjLmJpbmRUb29sdGlwKAogICAgICAgICAgICAgICAgYDxkaXY+CiAgICAgICAgICAgICAgICAgICAgIE1BWiBJRDo3NjMKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfMGE2ZjExODk5ZjAzNDM5YzlhNjIzODNmMjc2NmQwZjcgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43NjUxMTE4MTk1ODY1NjUsIC04MC4xOTAzMTIxNzg5OTQ0OV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfYjFmOTdiNTJkY2Q3NDk4NmE2NTljYWE0ZTlhMTcxZDIgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sXzFjMzFlMzBhMjFkMjQzMDlhZGI1MDc5NDBkNmZjNzE1ID0gJChgPGRpdiBpZD0iaHRtbF8xYzMxZTMwYTIxZDI0MzA5YWRiNTA3OTQwZDZmYzcxNSIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjUyLjgyLCBFTVA6MTA0MDwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF9iMWY5N2I1MmRjZDc0OTg2YTY1OWNhYTRlOWExNzFkMi5zZXRDb250ZW50KGh0bWxfMWMzMWUzMGEyMWQyNDMwOWFkYjUwNzk0MGQ2ZmM3MTUpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfMGE2ZjExODk5ZjAzNDM5YzlhNjIzODNmMjc2NmQwZjcuYmluZFBvcHVwKHBvcHVwX2IxZjk3YjUyZGNkNzQ5ODZhNjU5Y2FhNGU5YTE3MWQyKQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfMGE2ZjExODk5ZjAzNDM5YzlhNjIzODNmMjc2NmQwZjcuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjIwNzcKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfODQ2ZTgzYWIxOTQ2NGNjMjhmNjM3MzIzMTFjMjNjZDEgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43OTI5MDc4NzY3MDkzMjUsIC04MC4xODc4MjI4NjI4OTkyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF81YjljYzRjNGQxZDk0ZDUxYWEzYTliMGU5MmEwZmM0ZCA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfODI2MTA5MjE3YjJjNGI1NmFiZTJhZWVlZWJhZDg4NWEgPSAkKGA8ZGl2IGlkPSJodG1sXzgyNjEwOTIxN2IyYzRiNTZhYmUyYWVlZWViYWQ4ODVhIiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MjUuNzQsIEVNUDo2MjwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF81YjljYzRjNGQxZDk0ZDUxYWEzYTliMGU5MmEwZmM0ZC5zZXRDb250ZW50KGh0bWxfODI2MTA5MjE3YjJjNGI1NmFiZTJhZWVlZWJhZDg4NWEpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfODQ2ZTgzYWIxOTQ2NGNjMjhmNjM3MzIzMTFjMjNjZDEuYmluZFBvcHVwKHBvcHVwXzViOWNjNGM0ZDFkOTRkNTFhYTNhOWIwZTkyYTBmYzRkKQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfODQ2ZTgzYWIxOTQ2NGNjMjhmNjM3MzIzMTFjMjNjZDEuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjE5NjQKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfMDlmNzA2NjVhMzNhNDllM2E3ZjAwYTEwNGRhM2ViMGIgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43OTEyNTY4MDAzMDcyOTUsIC04MC4xODYyOTAyNzAzMDc2MV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfNzg3ZDcwMDRlM2I4NGIwOGFhMGY0ZjdhNGVhNzE4MDUgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sX2VkZmQ0YTVmNzczYjQ1MTI4ZTcyOTNlYWNmZWM2MjUxID0gJChgPGRpdiBpZD0iaHRtbF9lZGZkNGE1Zjc3M2I0NTEyOGU3MjkzZWFjZmVjNjI1MSIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjIyLjQ0LCBFTVA6OTc4PC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwXzc4N2Q3MDA0ZTNiODRiMDhhYTBmNGY3YTRlYTcxODA1LnNldENvbnRlbnQoaHRtbF9lZGZkNGE1Zjc3M2I0NTEyOGU3MjkzZWFjZmVjNjI1MSk7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl8wOWY3MDY2NWEzM2E0OWUzYTdmMDBhMTA0ZGEzZWIwYi5iaW5kUG9wdXAocG9wdXBfNzg3ZDcwMDRlM2I4NGIwOGFhMGY0ZjdhNGVhNzE4MDUpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl8wOWY3MDY2NWEzM2E0OWUzYTdmMDBhMTA0ZGEzZWIwYi5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6MTk2NgogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl8zYTEwYzc0NWNhNjc0YjNhODc1OTkzMDRmODUwMzI4MiA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzI1Ljc3MjI3MDc5MTM3Njk0MywgLTgwLjE4Njg4MTY2NjQyMDIyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF8wM2I1YzM1N2ZkNzY0NTBjYTJkY2U4NGJlZjFhMWNhMCA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfYzQwM2QwMWJmMTVkNGRiYzkzNDFjZDE5ZTMzOTE5ZTggPSAkKGA8ZGl2IGlkPSJodG1sX2M0MDNkMDFiZjE1ZDRkYmM5MzQxY2QxOWUzMzkxOWU4IiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MzMuNywgRU1QOjIxMjcsIEV4YWN0UG9wRGVuOjQ4MCwyODc8L2Rpdj5gKVswXTsKICAgICAgICAgICAgcG9wdXBfMDNiNWMzNTdmZDc2NDUwY2EyZGNlODRiZWYxYTFjYTAuc2V0Q29udGVudChodG1sX2M0MDNkMDFiZjE1ZDRkYmM5MzQxY2QxOWUzMzkxOWU4KTsKICAgICAgICAKCiAgICAgICAgbWFya2VyXzNhMTBjNzQ1Y2E2NzRiM2E4NzU5OTMwNGY4NTAzMjgyLmJpbmRQb3B1cChwb3B1cF8wM2I1YzM1N2ZkNzY0NTBjYTJkY2U4NGJlZjFhMWNhMCkKICAgICAgICA7CgogICAgICAgIAogICAgCiAgICAKICAgICAgICAgICAgbWFya2VyXzNhMTBjNzQ1Y2E2NzRiM2E4NzU5OTMwNGY4NTAzMjgyLmJpbmRUb29sdGlwKAogICAgICAgICAgICAgICAgYDxkaXY+CiAgICAgICAgICAgICAgICAgICAgIE1BWiBJRDoyMDQzCiAgICAgICAgICAgICAgICAgPC9kaXY+YCwKICAgICAgICAgICAgICAgIHsic3RpY2t5IjogdHJ1ZX0KICAgICAgICAgICAgKTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzZlMTYyMmM1MmEzODQxMjc5ZTk3OGYwZDVhNDViODY4ID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbMjUuOTAzNDA2OTczNjU1OTMzLCAtODAuMTYwMzgwOTgzMDgzNzNdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYWY3NDg2ZDlmMDUzNGEwNTg5ODljZWE0M2IzNzUxOWUpOwogICAgICAgIAogICAgCiAgICAgICAgdmFyIHBvcHVwXzk4YmE3NzlkODQ3OTRhMDBhNmIyMjU4MTZmODMzZmJkID0gTC5wb3B1cCh7Im1heFdpZHRoIjogIjEwMCUifSk7CgogICAgICAgIAogICAgICAgICAgICB2YXIgaHRtbF9mZjFlY2EzZDI0NWY0ZTVlYjViOTNhNTljOWNjNzM3NiA9ICQoYDxkaXYgaWQ9Imh0bWxfZmYxZWNhM2QyNDVmNGU1ZWI1YjkzYTU5YzljYzczNzYiIHN0eWxlPSJ3aWR0aDogMTAwLjAlOyBoZWlnaHQ6IDEwMC4wJTsiPlBvcERlbjoxNi4wMywgRU1QOjAsIEV4YWN0UG9wRGVuOjI1MSw5NzQ8L2Rpdj5gKVswXTsKICAgICAgICAgICAgcG9wdXBfOThiYTc3OWQ4NDc5NGEwMGE2YjIyNTgxNmY4MzNmYmQuc2V0Q29udGVudChodG1sX2ZmMWVjYTNkMjQ1ZjRlNWViNWI5M2E1OWM5Y2M3Mzc2KTsKICAgICAgICAKCiAgICAgICAgbWFya2VyXzZlMTYyMmM1MmEzODQxMjc5ZTk3OGYwZDVhNDViODY4LmJpbmRQb3B1cChwb3B1cF85OGJhNzc5ZDg0Nzk0YTAwYTZiMjI1ODE2ZjgzM2ZiZCkKICAgICAgICA7CgogICAgICAgIAogICAgCiAgICAKICAgICAgICAgICAgbWFya2VyXzZlMTYyMmM1MmEzODQxMjc5ZTk3OGYwZDVhNDViODY4LmJpbmRUb29sdGlwKAogICAgICAgICAgICAgICAgYDxkaXY+CiAgICAgICAgICAgICAgICAgICAgIE1BWiBJRDo3NjMKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfZTBhNzVjZjI0ZjA3NDAzNGJkZTkyODc5ODZhNTJjZjEgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43NjUxMTE4MTk1ODY1NjUsIC04MC4xOTAzMTIxNzg5OTQ0OV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfYWY3NzQzYjI2MmY4NDFmNmE3YmE1ZjcxODY4NGRmNGEgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sX2EzZDVlNjFmYTlkNTRlZTQ4ZTAxZWZjYjUzNDVlZjUwID0gJChgPGRpdiBpZD0iaHRtbF9hM2Q1ZTYxZmE5ZDU0ZWU0OGUwMWVmY2I1MzQ1ZWY1MCIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjUyLjgyLCBFTVA6MTA0MCwgRXhhY3RQb3BEZW46MTQ3LDk2MTwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF9hZjc3NDNiMjYyZjg0MWY2YTdiYTVmNzE4Njg0ZGY0YS5zZXRDb250ZW50KGh0bWxfYTNkNWU2MWZhOWQ1NGVlNDhlMDFlZmNiNTM0NWVmNTApOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfZTBhNzVjZjI0ZjA3NDAzNGJkZTkyODc5ODZhNTJjZjEuYmluZFBvcHVwKHBvcHVwX2FmNzc0M2IyNjJmODQxZjZhN2JhNWY3MTg2ODRkZjRhKQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfZTBhNzVjZjI0ZjA3NDAzNGJkZTkyODc5ODZhNTJjZjEuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjIwNzcKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfYzQ3NWZiMGYwM2RiNDVkZGI4OTNjNmIyZTM0MDE3NTMgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43OTI5MDc4NzY3MDkzMjUsIC04MC4xODc4MjI4NjI4OTkyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF9iY2Y2ZmVlNGExZGI0NmFjODY0MzRjZDhmZDgxZTk2NCA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfM2Y5ZWQ1NzY5MjQyNDk1MDk0NjljMzVkZjZiMWIzNmQgPSAkKGA8ZGl2IGlkPSJodG1sXzNmOWVkNTc2OTI0MjQ5NTA5NDY5YzM1ZGY2YjFiMzZkIiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MjUuNzQsIEVNUDo2MiwgRXhhY3RQb3BEZW46MTQxLDk5OTwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF9iY2Y2ZmVlNGExZGI0NmFjODY0MzRjZDhmZDgxZTk2NC5zZXRDb250ZW50KGh0bWxfM2Y5ZWQ1NzY5MjQyNDk1MDk0NjljMzVkZjZiMWIzNmQpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfYzQ3NWZiMGYwM2RiNDVkZGI4OTNjNmIyZTM0MDE3NTMuYmluZFBvcHVwKHBvcHVwX2JjZjZmZWU0YTFkYjQ2YWM4NjQzNGNkOGZkODFlOTY0KQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfYzQ3NWZiMGYwM2RiNDVkZGI4OTNjNmIyZTM0MDE3NTMuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjE5NjQKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfOWM2OTA3MmE0MWJjNDc4YTg2ZWM3NTQxNDQ4ZDliMjkgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43OTEyNTY4MDAzMDcyOTUsIC04MC4xODYyOTAyNzAzMDc2MV0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfYjdjMDcyMjAxOTkzNGQzNDhlMTY0NTM0Nzk5MjFjMTQgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sX2U0MDYxNTM5ODhiYTQ0NjRiZWUwNjg5NWFmZjBhMDI4ID0gJChgPGRpdiBpZD0iaHRtbF9lNDA2MTUzOTg4YmE0NDY0YmVlMDY4OTVhZmYwYTAyOCIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjIyLjQ0LCBFTVA6OTc4LCBFeGFjdFBvcERlbjoxMjYsMDIzPC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwX2I3YzA3MjIwMTk5MzRkMzQ4ZTE2NDUzNDc5OTIxYzE0LnNldENvbnRlbnQoaHRtbF9lNDA2MTUzOTg4YmE0NDY0YmVlMDY4OTVhZmYwYTAyOCk7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl85YzY5MDcyYTQxYmM0NzhhODZlYzc1NDE0NDhkOWIyOS5iaW5kUG9wdXAocG9wdXBfYjdjMDcyMjAxOTkzNGQzNDhlMTY0NTM0Nzk5MjFjMTQpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl85YzY5MDcyYTQxYmM0NzhhODZlYzc1NDE0NDhkOWIyOS5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6MTk2NgogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl82Y2U2NDc5ODFjOTA0YjhiOTY5MTZkNzJjYmU5ODg4ZiA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzI1Ljc3MjI3MDc5MTM3Njk0MywgLTgwLjE4Njg4MTY2NjQyMDIyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF82Njk5MmVkYjYxMzA0NDYxYmFkZWYwMTQ0YjM0YmM2MyA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfZmQ3NDYxZGM5Y2EzNGZhZDljMTE2NWYwNWViMDY1NjcgPSAkKGA8ZGl2IGlkPSJodG1sX2ZkNzQ2MWRjOWNhMzRmYWQ5YzExNjVmMDVlYjA2NTY3IiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MzMuNywgRU1QOjIxMjcsIEV4YWN0UG9wRGVuOjQ4MDI4NzwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF82Njk5MmVkYjYxMzA0NDYxYmFkZWYwMTQ0YjM0YmM2My5zZXRDb250ZW50KGh0bWxfZmQ3NDYxZGM5Y2EzNGZhZDljMTE2NWYwNWViMDY1NjcpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfNmNlNjQ3OTgxYzkwNGI4Yjk2OTE2ZDcyY2JlOTg4OGYuYmluZFBvcHVwKHBvcHVwXzY2OTkyZWRiNjEzMDQ0NjFiYWRlZjAxNDRiMzRiYzYzKQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfNmNlNjQ3OTgxYzkwNGI4Yjk2OTE2ZDcyY2JlOTg4OGYuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjIwNDMKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNjA4Yzg1MTRkNjk3NDg1N2FlMDBkNjJmNzNkYWVjNTggPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS45MDM0MDY5NzM2NTU5MzMsIC04MC4xNjAzODA5ODMwODM3M10sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfN2JmZWU3MzZlOTczNGU4NmFiMWNkMDRmYzYzZjIyM2QgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sXzM0Mzk5YzhmYWU3OTRkNjZhNTAyZmEwNjQwM2RkMDdmID0gJChgPGRpdiBpZD0iaHRtbF8zNDM5OWM4ZmFlNzk0ZDY2YTUwMmZhMDY0MDNkZDA3ZiIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjE2LjAzLCBFTVA6MCwgRXhhY3RQb3BEZW46MjUxOTc0PC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwXzdiZmVlNzM2ZTk3MzRlODZhYjFjZDA0ZmM2M2YyMjNkLnNldENvbnRlbnQoaHRtbF8zNDM5OWM4ZmFlNzk0ZDY2YTUwMmZhMDY0MDNkZDA3Zik7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl82MDhjODUxNGQ2OTc0ODU3YWUwMGQ2MmY3M2RhZWM1OC5iaW5kUG9wdXAocG9wdXBfN2JmZWU3MzZlOTczNGU4NmFiMWNkMDRmYzYzZjIyM2QpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl82MDhjODUxNGQ2OTc0ODU3YWUwMGQ2MmY3M2RhZWM1OC5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6NzYzCiAgICAgICAgICAgICAgICAgPC9kaXY+YCwKICAgICAgICAgICAgICAgIHsic3RpY2t5IjogdHJ1ZX0KICAgICAgICAgICAgKTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2ZlZWFkNDM4MDI0MDRlYzY5ZjBmZjUyZDE3NWM5ZWMyID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbMjUuNzY1MTExODE5NTg2NTY1LCAtODAuMTkwMzEyMTc4OTk0NDldLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYWY3NDg2ZDlmMDUzNGEwNTg5ODljZWE0M2IzNzUxOWUpOwogICAgICAgIAogICAgCiAgICAgICAgdmFyIHBvcHVwXzk2NzkzNWI0MmU0MzRjMmQ5NDYwN2M2NTgzOTZiNGQ1ID0gTC5wb3B1cCh7Im1heFdpZHRoIjogIjEwMCUifSk7CgogICAgICAgIAogICAgICAgICAgICB2YXIgaHRtbF9jOWEzNzQ1NDI0YTM0MTI0YTQ4NTE3MDhiYTkxMDM4NyA9ICQoYDxkaXYgaWQ9Imh0bWxfYzlhMzc0NTQyNGEzNDEyNGE0ODUxNzA4YmE5MTAzODciIHN0eWxlPSJ3aWR0aDogMTAwLjAlOyBoZWlnaHQ6IDEwMC4wJTsiPlBvcERlbjo1Mi44MiwgRU1QOjEwNDAsIEV4YWN0UG9wRGVuOjE0Nzk2MTwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF85Njc5MzViNDJlNDM0YzJkOTQ2MDdjNjU4Mzk2YjRkNS5zZXRDb250ZW50KGh0bWxfYzlhMzc0NTQyNGEzNDEyNGE0ODUxNzA4YmE5MTAzODcpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfZmVlYWQ0MzgwMjQwNGVjNjlmMGZmNTJkMTc1YzllYzIuYmluZFBvcHVwKHBvcHVwXzk2NzkzNWI0MmU0MzRjMmQ5NDYwN2M2NTgzOTZiNGQ1KQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfZmVlYWQ0MzgwMjQwNGVjNjlmMGZmNTJkMTc1YzllYzIuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjIwNzcKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfZGU4NGVjMGUyYjkzNDBmNTk2ZDViM2MwNzg0NWIxZjggPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43OTI5MDc4NzY3MDkzMjUsIC04MC4xODc4MjI4NjI4OTkyXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF81ZjNhN2I1MTg2N2Q0MzQzODgwNjE4MGNmMTE1Y2E0MyA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfOWNlMzU4ZTVkNDkyNDM1YmI5NTg4MjdkNDRiN2QwOTUgPSAkKGA8ZGl2IGlkPSJodG1sXzljZTM1OGU1ZDQ5MjQzNWJiOTU4ODI3ZDQ0YjdkMDk1IiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MjUuNzQsIEVNUDo2MiwgRXhhY3RQb3BEZW46MTQxOTk5PC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwXzVmM2E3YjUxODY3ZDQzNDM4ODA2MTgwY2YxMTVjYTQzLnNldENvbnRlbnQoaHRtbF85Y2UzNThlNWQ0OTI0MzViYjk1ODgyN2Q0NGI3ZDA5NSk7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl9kZTg0ZWMwZTJiOTM0MGY1OTZkNWIzYzA3ODQ1YjFmOC5iaW5kUG9wdXAocG9wdXBfNWYzYTdiNTE4NjdkNDM0Mzg4MDYxODBjZjExNWNhNDMpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl9kZTg0ZWMwZTJiOTM0MGY1OTZkNWIzYzA3ODQ1YjFmOC5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6MTk2NAogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl9kNjM1NzIxMjdlODM0YWUwYjY1NDgwMDM3ODI3ZjA3NSA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzI1Ljc5MTI1NjgwMDMwNzI5NSwgLTgwLjE4NjI5MDI3MDMwNzYxXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF9kMmZlMWQ0ZTlmNTA0MTg4OWI1OGQ5MmVkZDk3NWE3YiA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfZDg4NWRjYWQ3MGNmNGJhYmEwMmI0YzlhMGFkOWU1ZmIgPSAkKGA8ZGl2IGlkPSJodG1sX2Q4ODVkY2FkNzBjZjRiYWJhMDJiNGM5YTBhZDllNWZiIiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MjIuNDQsIEVNUDo5NzgsIEV4YWN0UG9wRGVuOjEyNjAyMzwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF9kMmZlMWQ0ZTlmNTA0MTg4OWI1OGQ5MmVkZDk3NWE3Yi5zZXRDb250ZW50KGh0bWxfZDg4NWRjYWQ3MGNmNGJhYmEwMmI0YzlhMGFkOWU1ZmIpOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfZDYzNTcyMTI3ZTgzNGFlMGI2NTQ4MDAzNzgyN2YwNzUuYmluZFBvcHVwKHBvcHVwX2QyZmUxZDRlOWY1MDQxODg5YjU4ZDkyZWRkOTc1YTdiKQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfZDYzNTcyMTI3ZTgzNGFlMGI2NTQ4MDAzNzgyN2YwNzUuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjE5NjYKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAogICAgCiAgICAgICAgICAgIHZhciBtYXJrZXJfNjAxNWMxZjBkZTI5NGFlMTg0YjJjOTYxMDgzYjZiOWEgPSBMLm1hcmtlcigKICAgICAgICAgICAgICAgIFsyNS43NzIyNzA3OTEzNzY5NDMsIC04MC4xODY4ODE2NjY0MjAyMl0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfNDg4YTdjM2QyNDY4NDc1ODgwNzI3YTUwZjdkNzJmNjEgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sX2ZjYjY4NGIzZmM4NjRiNmQ5YjQ4ODJlNTc0NDcxMzcxID0gJChgPGRpdiBpZD0iaHRtbF9mY2I2ODRiM2ZjODY0YjZkOWI0ODgyZTU3NDQ3MTM3MSIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjMzLjcsIEVNUDoyMTI3LCBFeGFjdFBvcERlbjo0ODAsMjg3PC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwXzQ4OGE3YzNkMjQ2ODQ3NTg4MDcyN2E1MGY3ZDcyZjYxLnNldENvbnRlbnQoaHRtbF9mY2I2ODRiM2ZjODY0YjZkOWI0ODgyZTU3NDQ3MTM3MSk7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl82MDE1YzFmMGRlMjk0YWUxODRiMmM5NjEwODNiNmI5YS5iaW5kUG9wdXAocG9wdXBfNDg4YTdjM2QyNDY4NDc1ODgwNzI3YTUwZjdkNzJmNjEpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl82MDE1YzFmMGRlMjk0YWUxODRiMmM5NjEwODNiNmI5YS5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6MjA0MwogICAgICAgICAgICAgICAgIDwvZGl2PmAsCiAgICAgICAgICAgICAgICB7InN0aWNreSI6IHRydWV9CiAgICAgICAgICAgICk7CiAgICAgICAgCiAgICAKICAgICAgICAgICAgdmFyIG1hcmtlcl84YzI4YjY5NTAxMmM0Y2M2OWEwZGU0YzhiM2U5YzVhZCA9IEwubWFya2VyKAogICAgICAgICAgICAgICAgWzI1LjkwMzQwNjk3MzY1NTkzMywgLTgwLjE2MDM4MDk4MzA4MzczXSwKICAgICAgICAgICAgICAgIHt9CiAgICAgICAgICAgICkuYWRkVG8obWFwX2FmNzQ4NmQ5ZjA1MzRhMDU4OTg5Y2VhNDNiMzc1MTllKTsKICAgICAgICAKICAgIAogICAgICAgIHZhciBwb3B1cF8xODMxN2JhYmI5MDY0YTk5OTYzODE4OWQwOTJkZDQzOCA9IEwucG9wdXAoeyJtYXhXaWR0aCI6ICIxMDAlIn0pOwoKICAgICAgICAKICAgICAgICAgICAgdmFyIGh0bWxfMTk3NDAwYTYyNTM0NDMwNDgxNmM1MTNiNzkzOGYwNTcgPSAkKGA8ZGl2IGlkPSJodG1sXzE5NzQwMGE2MjUzNDQzMDQ4MTZjNTEzYjc5MzhmMDU3IiBzdHlsZT0id2lkdGg6IDEwMC4wJTsgaGVpZ2h0OiAxMDAuMCU7Ij5Qb3BEZW46MTYuMDMsIEVNUDowLCBFeGFjdFBvcERlbjoyNTEsOTc0PC9kaXY+YClbMF07CiAgICAgICAgICAgIHBvcHVwXzE4MzE3YmFiYjkwNjRhOTk5NjM4MTg5ZDA5MmRkNDM4LnNldENvbnRlbnQoaHRtbF8xOTc0MDBhNjI1MzQ0MzA0ODE2YzUxM2I3OTM4ZjA1Nyk7CiAgICAgICAgCgogICAgICAgIG1hcmtlcl84YzI4YjY5NTAxMmM0Y2M2OWEwZGU0YzhiM2U5YzVhZC5iaW5kUG9wdXAocG9wdXBfMTgzMTdiYWJiOTA2NGE5OTk2MzgxODlkMDkyZGQ0MzgpCiAgICAgICAgOwoKICAgICAgICAKICAgIAogICAgCiAgICAgICAgICAgIG1hcmtlcl84YzI4YjY5NTAxMmM0Y2M2OWEwZGU0YzhiM2U5YzVhZC5iaW5kVG9vbHRpcCgKICAgICAgICAgICAgICAgIGA8ZGl2PgogICAgICAgICAgICAgICAgICAgICBNQVogSUQ6NzYzCiAgICAgICAgICAgICAgICAgPC9kaXY+YCwKICAgICAgICAgICAgICAgIHsic3RpY2t5IjogdHJ1ZX0KICAgICAgICAgICAgKTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2NlZWNkY2RkNTZkMzQwODc4NDA0NmNhYzcxYThiODBkID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbMjUuNzY1MTExODE5NTg2NTY1LCAtODAuMTkwMzEyMTc4OTk0NDldLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYWY3NDg2ZDlmMDUzNGEwNTg5ODljZWE0M2IzNzUxOWUpOwogICAgICAgIAogICAgCiAgICAgICAgdmFyIHBvcHVwXzdiOGI5ZmFlZDI4MjQwMWZiZDMyOWU5NDNiYTY3MTQzID0gTC5wb3B1cCh7Im1heFdpZHRoIjogIjEwMCUifSk7CgogICAgICAgIAogICAgICAgICAgICB2YXIgaHRtbF8yYWZlN2I4ZDU5YjY0YmE1OTY0MTAzOWFjNTBiNzE4MCA9ICQoYDxkaXYgaWQ9Imh0bWxfMmFmZTdiOGQ1OWI2NGJhNTk2NDEwMzlhYzUwYjcxODAiIHN0eWxlPSJ3aWR0aDogMTAwLjAlOyBoZWlnaHQ6IDEwMC4wJTsiPlBvcERlbjo1Mi44MiwgRU1QOjEwNDAsIEV4YWN0UG9wRGVuOjE0Nyw5NjE8L2Rpdj5gKVswXTsKICAgICAgICAgICAgcG9wdXBfN2I4YjlmYWVkMjgyNDAxZmJkMzI5ZTk0M2JhNjcxNDMuc2V0Q29udGVudChodG1sXzJhZmU3YjhkNTliNjRiYTU5NjQxMDM5YWM1MGI3MTgwKTsKICAgICAgICAKCiAgICAgICAgbWFya2VyX2NlZWNkY2RkNTZkMzQwODc4NDA0NmNhYzcxYThiODBkLmJpbmRQb3B1cChwb3B1cF83YjhiOWZhZWQyODI0MDFmYmQzMjllOTQzYmE2NzE0MykKICAgICAgICA7CgogICAgICAgIAogICAgCiAgICAKICAgICAgICAgICAgbWFya2VyX2NlZWNkY2RkNTZkMzQwODc4NDA0NmNhYzcxYThiODBkLmJpbmRUb29sdGlwKAogICAgICAgICAgICAgICAgYDxkaXY+CiAgICAgICAgICAgICAgICAgICAgIE1BWiBJRDoyMDc3CiAgICAgICAgICAgICAgICAgPC9kaXY+YCwKICAgICAgICAgICAgICAgIHsic3RpY2t5IjogdHJ1ZX0KICAgICAgICAgICAgKTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyXzI3Y2ZmNjNkZDM1ZTQ4NmFiMTZkMDBhNDExMmNiZmYzID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbMjUuNzkyOTA3ODc2NzA5MzI1LCAtODAuMTg3ODIyODYyODk5Ml0sCiAgICAgICAgICAgICAgICB7fQogICAgICAgICAgICApLmFkZFRvKG1hcF9hZjc0ODZkOWYwNTM0YTA1ODk4OWNlYTQzYjM3NTE5ZSk7CiAgICAgICAgCiAgICAKICAgICAgICB2YXIgcG9wdXBfZjc2MGVjNjE4YTk2NDVlYTliMjZmZDY3YThjZDljM2YgPSBMLnBvcHVwKHsibWF4V2lkdGgiOiAiMTAwJSJ9KTsKCiAgICAgICAgCiAgICAgICAgICAgIHZhciBodG1sXzhjYmM1MmM0MGYyYjRlYWFhYzY5NjkyNmQ3ZWIyZmVhID0gJChgPGRpdiBpZD0iaHRtbF84Y2JjNTJjNDBmMmI0ZWFhYWM2OTY5MjZkN2ViMmZlYSIgc3R5bGU9IndpZHRoOiAxMDAuMCU7IGhlaWdodDogMTAwLjAlOyI+UG9wRGVuOjI1Ljc0LCBFTVA6NjIsIEV4YWN0UG9wRGVuOjE0MSw5OTk8L2Rpdj5gKVswXTsKICAgICAgICAgICAgcG9wdXBfZjc2MGVjNjE4YTk2NDVlYTliMjZmZDY3YThjZDljM2Yuc2V0Q29udGVudChodG1sXzhjYmM1MmM0MGYyYjRlYWFhYzY5NjkyNmQ3ZWIyZmVhKTsKICAgICAgICAKCiAgICAgICAgbWFya2VyXzI3Y2ZmNjNkZDM1ZTQ4NmFiMTZkMDBhNDExMmNiZmYzLmJpbmRQb3B1cChwb3B1cF9mNzYwZWM2MThhOTY0NWVhOWIyNmZkNjdhOGNkOWMzZikKICAgICAgICA7CgogICAgICAgIAogICAgCiAgICAKICAgICAgICAgICAgbWFya2VyXzI3Y2ZmNjNkZDM1ZTQ4NmFiMTZkMDBhNDExMmNiZmYzLmJpbmRUb29sdGlwKAogICAgICAgICAgICAgICAgYDxkaXY+CiAgICAgICAgICAgICAgICAgICAgIE1BWiBJRDoxOTY0CiAgICAgICAgICAgICAgICAgPC9kaXY+YCwKICAgICAgICAgICAgICAgIHsic3RpY2t5IjogdHJ1ZX0KICAgICAgICAgICAgKTsKICAgICAgICAKICAgIAogICAgICAgICAgICB2YXIgbWFya2VyX2M4ZDAwMmRhNjJiODQxNmRiNmYyNjA2ZjkyYzA3ZDc2ID0gTC5tYXJrZXIoCiAgICAgICAgICAgICAgICBbMjUuNzkxMjU2ODAwMzA3Mjk1LCAtODAuMTg2MjkwMjcwMzA3NjFdLAogICAgICAgICAgICAgICAge30KICAgICAgICAgICAgKS5hZGRUbyhtYXBfYWY3NDg2ZDlmMDUzNGEwNTg5ODljZWE0M2IzNzUxOWUpOwogICAgICAgIAogICAgCiAgICAgICAgdmFyIHBvcHVwXzg5YWUzMjA0OGNkMjRhNWVhNzkxNzhhZWMxNzcwYjJhID0gTC5wb3B1cCh7Im1heFdpZHRoIjogIjEwMCUifSk7CgogICAgICAgIAogICAgICAgICAgICB2YXIgaHRtbF9iMTEzYjkzZjFkZWQ0NTc0YTg1MGY5NWNhM2UzMjFkMCA9ICQoYDxkaXYgaWQ9Imh0bWxfYjExM2I5M2YxZGVkNDU3NGE4NTBmOTVjYTNlMzIxZDAiIHN0eWxlPSJ3aWR0aDogMTAwLjAlOyBoZWlnaHQ6IDEwMC4wJTsiPlBvcERlbjoyMi40NCwgRU1QOjk3OCwgRXhhY3RQb3BEZW46MTI2LDAyMzwvZGl2PmApWzBdOwogICAgICAgICAgICBwb3B1cF84OWFlMzIwNDhjZDI0YTVlYTc5MTc4YWVjMTc3MGIyYS5zZXRDb250ZW50KGh0bWxfYjExM2I5M2YxZGVkNDU3NGE4NTBmOTVjYTNlMzIxZDApOwogICAgICAgIAoKICAgICAgICBtYXJrZXJfYzhkMDAyZGE2MmI4NDE2ZGI2ZjI2MDZmOTJjMDdkNzYuYmluZFBvcHVwKHBvcHVwXzg5YWUzMjA0OGNkMjRhNWVhNzkxNzhhZWMxNzcwYjJhKQogICAgICAgIDsKCiAgICAgICAgCiAgICAKICAgIAogICAgICAgICAgICBtYXJrZXJfYzhkMDAyZGE2MmI4NDE2ZGI2ZjI2MDZmOTJjMDdkNzYuYmluZFRvb2x0aXAoCiAgICAgICAgICAgICAgICBgPGRpdj4KICAgICAgICAgICAgICAgICAgICAgTUFaIElEOjE5NjYKICAgICAgICAgICAgICAgICA8L2Rpdj5gLAogICAgICAgICAgICAgICAgeyJzdGlja3kiOiB0cnVlfQogICAgICAgICAgICApOwogICAgICAgIAo8L3NjcmlwdD4=" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../data/example-data.html" class="btn btn-neutral float-right" title="Tutorial Data Files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="solution-geo-static-map.html" class="btn btn-neutral float-left" title="Using Static Mapping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
