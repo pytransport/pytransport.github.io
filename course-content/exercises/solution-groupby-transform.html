@@ -1,0 +1,1930 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using Groupby and Transform &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using Pivot Tables" href="solution-crosstable-pivottable.html" />
+    <link rel="prev" title="Using Dynamic Mapping" href="exercise-geo-dynamic-map.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Exercises</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="exercise-groupby-transform.html">Using Groupby and Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-crosstable-pivottable.html">Using Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-linear-regression.html">Using Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-heatmap.html">Using Heatmaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-boxplots.html">Using Boxplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-frequency-barplots.html">Using Frequency Plots and Bar Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-selection.html">Using Selection by Geography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-sjoin.html">Using Spatial Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-static-map.html">Using Static Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-dynamic-map.html">Using Dynamic Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="_index.html#solutions">Solutions</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using Groupby and Transform</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Questions">Questions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Data">Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Solution">Solution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solution-crosstable-pivottable.html">Using Pivot Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-linear-regression.html">Using Linear Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-heatmap.html">Using Heatmaps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-boxplots.html">Using Boxplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-frequency-barplots.html">Using Frequency Plots and Bar Charts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-geo-selection.html">Using Selection by Geography</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-geo-sjoin.html">Using Spatial Joins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-geo-static-map.html">Using Static Mapping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solution-geo-dynamic-map.html">Using Dynamic Mapping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="_index.html">Exercises</a> &raquo;</li>
+        
+      <li>Using Groupby and Transform</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/exercises/solution-groupby-transform.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Using-Groupby-and-Transform">
+<h1>Using Groupby and Transform<a class="headerlink" href="#Using-Groupby-and-Transform" title="Permalink to this headline">¶</a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Questions">
+<h2>Questions<a class="headerlink" href="#Questions" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Within each FDOT District, what is the fraction of structurally deficient bridge deck area in each County?</p></li>
+<li><p>Which county has the highest share of structurally deficient bridge deck area within its FDOT District? <em>(Hint: the correct answer is PALM BEACH.)</em></p></li>
+</ol>
+</div>
+<div class="section" id="Data">
+<h2>Data<a class="headerlink" href="#Data" title="Permalink to this headline">¶</a></h2>
+<p>To answer the question, use the following data files:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">districts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY-BY-DISTRICT&#39;</span><span class="p">))</span>
+<span class="n">districts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Charlotte</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Collier</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>DeSoto</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Glades</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Hardee</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-BRIDGES&#39;</span><span class="p">))</span>
+
+<span class="c1"># Recall the necessary cleaning for the bridges data file</span>
+<span class="n">bridges</span> <span class="o">=</span> <span class="n">bridges</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">bridges</span><span class="p">[[</span><span class="s1">&#39;Poor #&#39;</span><span class="p">,</span> <span class="s1">&#39;SD #&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">bridges</span><span class="p">[[</span><span class="s1">&#39;Poor #&#39;</span><span class="p">,</span> <span class="s1">&#39;SD #&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">bridges</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">bridges</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>Total #</th>
+      <th>Good #</th>
+      <th>Fair #</th>
+      <th>Poor #</th>
+      <th>SD #</th>
+      <th>Total Area</th>
+      <th>Good Area</th>
+      <th>Fair Area</th>
+      <th>Poor Area</th>
+      <th>SD Area</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ALACHUA (001)</td>
+      <td>111</td>
+      <td>64</td>
+      <td>47</td>
+      <td>0</td>
+      <td>0</td>
+      <td>64767</td>
+      <td>55794</td>
+      <td>8973</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>BAKER (003)</td>
+      <td>89</td>
+      <td>30</td>
+      <td>52</td>
+      <td>7</td>
+      <td>8</td>
+      <td>32162</td>
+      <td>19369</td>
+      <td>12282</td>
+      <td>510.0</td>
+      <td>623.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BAY (005)</td>
+      <td>122</td>
+      <td>49</td>
+      <td>63</td>
+      <td>10</td>
+      <td>11</td>
+      <td>210039</td>
+      <td>98834</td>
+      <td>109628</td>
+      <td>1577.0</td>
+      <td>10120.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BRADFORD (007)</td>
+      <td>62</td>
+      <td>23</td>
+      <td>37</td>
+      <td>2</td>
+      <td>2</td>
+      <td>9330</td>
+      <td>5492</td>
+      <td>3217</td>
+      <td>620.0</td>
+      <td>620.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BREVARD (009)</td>
+      <td>241</td>
+      <td>160</td>
+      <td>81</td>
+      <td>0</td>
+      <td>0</td>
+      <td>364138</td>
+      <td>204179</td>
+      <td>159959</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Solution">
+<h2>Solution<a class="headerlink" href="#Solution" title="Permalink to this headline">¶</a></h2>
+<p>We need to create a table that answers (1). The first step is to attach the district number for each row (County) in the bridges table. The <code class="docutils literal notranslate"><span class="pre">County</span></code> field in the bridges table is not just the county name in upper case, but also a three digit code number, but the districts file only has plain names in title case. We’ll need to strip the code numbers from <code class="docutils literal notranslate"><span class="pre">bridges</span></code> (six characters, including the 3 digits, two parentheses, and a space), and convert the names in <code class="docutils literal notranslate"><span class="pre">districts</span></code> to all upper case,
+so there is an exact match for merging.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">districts</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">districts</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">bridges</span><span class="p">,</span>
+    <span class="n">districts</span><span class="p">[[</span><span class="s1">&#39;County&#39;</span><span class="p">,</span><span class="s1">&#39;District&#39;</span><span class="p">]],</span>
+    <span class="n">on</span><span class="o">=</span><span class="s1">&#39;County&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>Total #</th>
+      <th>Good #</th>
+      <th>Fair #</th>
+      <th>Poor #</th>
+      <th>SD #</th>
+      <th>Total Area</th>
+      <th>Good Area</th>
+      <th>Fair Area</th>
+      <th>Poor Area</th>
+      <th>SD Area</th>
+      <th>District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ALACHUA</td>
+      <td>111</td>
+      <td>64</td>
+      <td>47</td>
+      <td>0</td>
+      <td>0</td>
+      <td>64767</td>
+      <td>55794</td>
+      <td>8973</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>BAKER</td>
+      <td>89</td>
+      <td>30</td>
+      <td>52</td>
+      <td>7</td>
+      <td>8</td>
+      <td>32162</td>
+      <td>19369</td>
+      <td>12282</td>
+      <td>510.0</td>
+      <td>623.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BAY</td>
+      <td>122</td>
+      <td>49</td>
+      <td>63</td>
+      <td>10</td>
+      <td>11</td>
+      <td>210039</td>
+      <td>98834</td>
+      <td>109628</td>
+      <td>1577.0</td>
+      <td>10120.0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BRADFORD</td>
+      <td>62</td>
+      <td>23</td>
+      <td>37</td>
+      <td>2</td>
+      <td>2</td>
+      <td>9330</td>
+      <td>5492</td>
+      <td>3217</td>
+      <td>620.0</td>
+      <td>620.0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BREVARD</td>
+      <td>241</td>
+      <td>160</td>
+      <td>81</td>
+      <td>0</td>
+      <td>0</td>
+      <td>364138</td>
+      <td>204179</td>
+      <td>159959</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The we need to use <code class="docutils literal notranslate"><span class="pre">transform</span></code> to compute the share of total ‘SD Area’ across the district in each county.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges_2</span><span class="p">[</span><span class="s1">&#39;SD Area Share in District&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bridges_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges_2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>County</th>
+      <th>Total #</th>
+      <th>Good #</th>
+      <th>Fair #</th>
+      <th>Poor #</th>
+      <th>SD #</th>
+      <th>Total Area</th>
+      <th>Good Area</th>
+      <th>Fair Area</th>
+      <th>Poor Area</th>
+      <th>SD Area</th>
+      <th>District</th>
+      <th>SD Area Share in District</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ALACHUA</td>
+      <td>111</td>
+      <td>64</td>
+      <td>47</td>
+      <td>0</td>
+      <td>0</td>
+      <td>64767</td>
+      <td>55794</td>
+      <td>8973</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>BAKER</td>
+      <td>89</td>
+      <td>30</td>
+      <td>52</td>
+      <td>7</td>
+      <td>8</td>
+      <td>32162</td>
+      <td>19369</td>
+      <td>12282</td>
+      <td>510.0</td>
+      <td>623.0</td>
+      <td>2</td>
+      <td>0.010061</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BAY</td>
+      <td>122</td>
+      <td>49</td>
+      <td>63</td>
+      <td>10</td>
+      <td>11</td>
+      <td>210039</td>
+      <td>98834</td>
+      <td>109628</td>
+      <td>1577.0</td>
+      <td>10120.0</td>
+      <td>3</td>
+      <td>0.071854</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BRADFORD</td>
+      <td>62</td>
+      <td>23</td>
+      <td>37</td>
+      <td>2</td>
+      <td>2</td>
+      <td>9330</td>
+      <td>5492</td>
+      <td>3217</td>
+      <td>620.0</td>
+      <td>620.0</td>
+      <td>2</td>
+      <td>0.010012</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>BREVARD</td>
+      <td>241</td>
+      <td>160</td>
+      <td>81</td>
+      <td>0</td>
+      <td>0</td>
+      <td>364138</td>
+      <td>204179</td>
+      <td>159959</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>BROWARD</td>
+      <td>689</td>
+      <td>535</td>
+      <td>150</td>
+      <td>4</td>
+      <td>7</td>
+      <td>1192081</td>
+      <td>952849</td>
+      <td>238309</td>
+      <td>923.0</td>
+      <td>1372.0</td>
+      <td>4</td>
+      <td>0.036054</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>CALHOUN</td>
+      <td>49</td>
+      <td>19</td>
+      <td>29</td>
+      <td>1</td>
+      <td>1</td>
+      <td>76300</td>
+      <td>50437</td>
+      <td>25863</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>CHARLOTTE</td>
+      <td>207</td>
+      <td>172</td>
+      <td>35</td>
+      <td>0</td>
+      <td>1</td>
+      <td>250385</td>
+      <td>229102</td>
+      <td>21284</td>
+      <td>0.0</td>
+      <td>1511.0</td>
+      <td>1</td>
+      <td>0.105179</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>CITRUS</td>
+      <td>41</td>
+      <td>32</td>
+      <td>9</td>
+      <td>0</td>
+      <td>0</td>
+      <td>21903</td>
+      <td>19948</td>
+      <td>1955</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>CLAY</td>
+      <td>77</td>
+      <td>29</td>
+      <td>45</td>
+      <td>3</td>
+      <td>3</td>
+      <td>68282</td>
+      <td>19034</td>
+      <td>48860</td>
+      <td>388.0</td>
+      <td>388.0</td>
+      <td>2</td>
+      <td>0.006266</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>COLLIER</td>
+      <td>356</td>
+      <td>281</td>
+      <td>73</td>
+      <td>2</td>
+      <td>2</td>
+      <td>190375</td>
+      <td>158006</td>
+      <td>32207</td>
+      <td>162.0</td>
+      <td>162.0</td>
+      <td>1</td>
+      <td>0.011277</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>COLUMBIA</td>
+      <td>113</td>
+      <td>60</td>
+      <td>49</td>
+      <td>4</td>
+      <td>4</td>
+      <td>51928</td>
+      <td>32910</td>
+      <td>18304</td>
+      <td>715.0</td>
+      <td>715.0</td>
+      <td>2</td>
+      <td>0.011546</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>DIXIE</td>
+      <td>55</td>
+      <td>39</td>
+      <td>11</td>
+      <td>5</td>
+      <td>5</td>
+      <td>19017</td>
+      <td>10921</td>
+      <td>7033</td>
+      <td>1063.0</td>
+      <td>1063.0</td>
+      <td>2</td>
+      <td>0.017166</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>DUVAL</td>
+      <td>763</td>
+      <td>479</td>
+      <td>262</td>
+      <td>22</td>
+      <td>22</td>
+      <td>1795247</td>
+      <td>932820</td>
+      <td>811836</td>
+      <td>50590.0</td>
+      <td>50590.0</td>
+      <td>2</td>
+      <td>0.816969</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>ESCAMBIA</td>
+      <td>243</td>
+      <td>116</td>
+      <td>111</td>
+      <td>16</td>
+      <td>18</td>
+      <td>585435</td>
+      <td>259541</td>
+      <td>233423</td>
+      <td>92471.0</td>
+      <td>92585.0</td>
+      <td>3</td>
+      <td>0.657368</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>FLAGLER</td>
+      <td>96</td>
+      <td>72</td>
+      <td>23</td>
+      <td>1</td>
+      <td>1</td>
+      <td>70184</td>
+      <td>65303</td>
+      <td>4881</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>FRANKLIN</td>
+      <td>52</td>
+      <td>6</td>
+      <td>44</td>
+      <td>2</td>
+      <td>2</td>
+      <td>211234</td>
+      <td>979</td>
+      <td>209810</td>
+      <td>445.0</td>
+      <td>445.0</td>
+      <td>3</td>
+      <td>0.003160</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>GADSDEN</td>
+      <td>120</td>
+      <td>63</td>
+      <td>49</td>
+      <td>8</td>
+      <td>8</td>
+      <td>138044</td>
+      <td>57793</td>
+      <td>77427</td>
+      <td>2824.0</td>
+      <td>2824.0</td>
+      <td>3</td>
+      <td>0.020051</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>GILCHRIST</td>
+      <td>11</td>
+      <td>3</td>
+      <td>8</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4052</td>
+      <td>670</td>
+      <td>3382</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>GLADES</td>
+      <td>59</td>
+      <td>43</td>
+      <td>16</td>
+      <td>0</td>
+      <td>0</td>
+      <td>42294</td>
+      <td>35081</td>
+      <td>7213</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>GULF</td>
+      <td>62</td>
+      <td>18</td>
+      <td>38</td>
+      <td>6</td>
+      <td>6</td>
+      <td>44915</td>
+      <td>35451</td>
+      <td>5690</td>
+      <td>3774.0</td>
+      <td>3774.0</td>
+      <td>3</td>
+      <td>0.026796</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>HAMILTON</td>
+      <td>61</td>
+      <td>30</td>
+      <td>31</td>
+      <td>0</td>
+      <td>0</td>
+      <td>34327</td>
+      <td>21766</td>
+      <td>12560</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>HARDEE</td>
+      <td>91</td>
+      <td>64</td>
+      <td>26</td>
+      <td>1</td>
+      <td>1</td>
+      <td>26997</td>
+      <td>20293</td>
+      <td>6548</td>
+      <td>155.0</td>
+      <td>155.0</td>
+      <td>1</td>
+      <td>0.010789</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>HENDRY</td>
+      <td>81</td>
+      <td>63</td>
+      <td>18</td>
+      <td>0</td>
+      <td>0</td>
+      <td>18807</td>
+      <td>14827</td>
+      <td>3980</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>HERNANDO</td>
+      <td>58</td>
+      <td>53</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>29667</td>
+      <td>27895</td>
+      <td>1772</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>HIGHLANDS</td>
+      <td>63</td>
+      <td>42</td>
+      <td>20</td>
+      <td>1</td>
+      <td>2</td>
+      <td>19106</td>
+      <td>10743</td>
+      <td>8147</td>
+      <td>216.0</td>
+      <td>281.0</td>
+      <td>1</td>
+      <td>0.019560</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>HILLSBOROUGH</td>
+      <td>808</td>
+      <td>654</td>
+      <td>152</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1361594</td>
+      <td>1048235</td>
+      <td>311399</td>
+      <td>1959.0</td>
+      <td>1959.0</td>
+      <td>7</td>
+      <td>0.260748</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>HOLMES</td>
+      <td>156</td>
+      <td>71</td>
+      <td>77</td>
+      <td>8</td>
+      <td>9</td>
+      <td>86481</td>
+      <td>53332</td>
+      <td>32662</td>
+      <td>487.0</td>
+      <td>566.0</td>
+      <td>3</td>
+      <td>0.004019</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>INDIAN RIVER</td>
+      <td>122</td>
+      <td>84</td>
+      <td>37</td>
+      <td>1</td>
+      <td>1</td>
+      <td>145658</td>
+      <td>82890</td>
+      <td>62621</td>
+      <td>147.0</td>
+      <td>147.0</td>
+      <td>4</td>
+      <td>0.003863</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>JACKSON</td>
+      <td>146</td>
+      <td>72</td>
+      <td>72</td>
+      <td>2</td>
+      <td>3</td>
+      <td>77392</td>
+      <td>47785</td>
+      <td>29398</td>
+      <td>209.0</td>
+      <td>241.0</td>
+      <td>3</td>
+      <td>0.001711</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>LEON</td>
+      <td>152</td>
+      <td>86</td>
+      <td>64</td>
+      <td>2</td>
+      <td>2</td>
+      <td>103547</td>
+      <td>63816</td>
+      <td>39518</td>
+      <td>212.0</td>
+      <td>212.0</td>
+      <td>3</td>
+      <td>0.001505</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>LEVY</td>
+      <td>75</td>
+      <td>31</td>
+      <td>36</td>
+      <td>8</td>
+      <td>8</td>
+      <td>18031</td>
+      <td>5843</td>
+      <td>10466</td>
+      <td>1722.0</td>
+      <td>1722.0</td>
+      <td>2</td>
+      <td>0.027808</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>LIBERTY</td>
+      <td>77</td>
+      <td>22</td>
+      <td>49</td>
+      <td>6</td>
+      <td>6</td>
+      <td>25453</td>
+      <td>6217</td>
+      <td>18611</td>
+      <td>625.0</td>
+      <td>625.0</td>
+      <td>3</td>
+      <td>0.004438</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>MADISON</td>
+      <td>59</td>
+      <td>31</td>
+      <td>27</td>
+      <td>1</td>
+      <td>1</td>
+      <td>39957</td>
+      <td>26896</td>
+      <td>13061</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>MANATEE</td>
+      <td>199</td>
+      <td>133</td>
+      <td>65</td>
+      <td>1</td>
+      <td>1</td>
+      <td>269545</td>
+      <td>157364</td>
+      <td>103091</td>
+      <td>9090.0</td>
+      <td>9090.0</td>
+      <td>1</td>
+      <td>0.632744</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>MARION</td>
+      <td>69</td>
+      <td>55</td>
+      <td>13</td>
+      <td>1</td>
+      <td>1</td>
+      <td>73228</td>
+      <td>45865</td>
+      <td>27364</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>MARTIN</td>
+      <td>128</td>
+      <td>95</td>
+      <td>33</td>
+      <td>0</td>
+      <td>0</td>
+      <td>295820</td>
+      <td>248523</td>
+      <td>47297</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>MIAMI-DADE</td>
+      <td>957</td>
+      <td>804</td>
+      <td>146</td>
+      <td>7</td>
+      <td>13</td>
+      <td>1743024</td>
+      <td>1315449</td>
+      <td>404966</td>
+      <td>22609.0</td>
+      <td>33739.0</td>
+      <td>6</td>
+      <td>0.322624</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>MONROE</td>
+      <td>100</td>
+      <td>55</td>
+      <td>39</td>
+      <td>6</td>
+      <td>6</td>
+      <td>527717</td>
+      <td>198916</td>
+      <td>257963</td>
+      <td>70838.0</td>
+      <td>70838.0</td>
+      <td>6</td>
+      <td>0.677376</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>NASSAU</td>
+      <td>102</td>
+      <td>50</td>
+      <td>48</td>
+      <td>3</td>
+      <td>3</td>
+      <td>100719</td>
+      <td>53027</td>
+      <td>45884</td>
+      <td>644.0</td>
+      <td>644.0</td>
+      <td>2</td>
+      <td>0.010400</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>OKALOOSA</td>
+      <td>216</td>
+      <td>111</td>
+      <td>92</td>
+      <td>13</td>
+      <td>13</td>
+      <td>269312</td>
+      <td>77988</td>
+      <td>171330</td>
+      <td>19993.0</td>
+      <td>19993.0</td>
+      <td>3</td>
+      <td>0.141953</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>OKEECHOBEE</td>
+      <td>65</td>
+      <td>45</td>
+      <td>20</td>
+      <td>0</td>
+      <td>0</td>
+      <td>28011</td>
+      <td>22654</td>
+      <td>5357</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>ORANGE</td>
+      <td>754</td>
+      <td>601</td>
+      <td>150</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1031407</td>
+      <td>779028</td>
+      <td>251598</td>
+      <td>780.0</td>
+      <td>780.0</td>
+      <td>5</td>
+      <td>0.028880</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>OSCEOLA</td>
+      <td>236</td>
+      <td>167</td>
+      <td>69</td>
+      <td>0</td>
+      <td>0</td>
+      <td>203856</td>
+      <td>160646</td>
+      <td>43210</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>PALM BEACH</td>
+      <td>604</td>
+      <td>516</td>
+      <td>81</td>
+      <td>7</td>
+      <td>7</td>
+      <td>805336</td>
+      <td>647923</td>
+      <td>120878</td>
+      <td>36535.0</td>
+      <td>36535.0</td>
+      <td>4</td>
+      <td>0.960083</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>PASCO</td>
+      <td>123</td>
+      <td>105</td>
+      <td>18</td>
+      <td>0</td>
+      <td>0</td>
+      <td>94623</td>
+      <td>88405</td>
+      <td>6218</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>7</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>PINELLAS</td>
+      <td>414</td>
+      <td>314</td>
+      <td>97</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1185162</td>
+      <td>989323</td>
+      <td>190285</td>
+      <td>5554.0</td>
+      <td>5554.0</td>
+      <td>7</td>
+      <td>0.739252</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>POLK</td>
+      <td>357</td>
+      <td>273</td>
+      <td>82</td>
+      <td>2</td>
+      <td>3</td>
+      <td>228351</td>
+      <td>207445</td>
+      <td>20013</td>
+      <td>893.0</td>
+      <td>1559.0</td>
+      <td>1</td>
+      <td>0.108520</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>PUTNAM</td>
+      <td>68</td>
+      <td>25</td>
+      <td>40</td>
+      <td>3</td>
+      <td>3</td>
+      <td>85997</td>
+      <td>16783</td>
+      <td>69008</td>
+      <td>206.0</td>
+      <td>206.0</td>
+      <td>2</td>
+      <td>0.003327</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>SANTA ROSA</td>
+      <td>190</td>
+      <td>97</td>
+      <td>89</td>
+      <td>4</td>
+      <td>5</td>
+      <td>211179</td>
+      <td>39776</td>
+      <td>167685</td>
+      <td>3719.0</td>
+      <td>3838.0</td>
+      <td>3</td>
+      <td>0.027250</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>SARASOTA</td>
+      <td>295</td>
+      <td>230</td>
+      <td>64</td>
+      <td>1</td>
+      <td>2</td>
+      <td>224007</td>
+      <td>181891</td>
+      <td>41825</td>
+      <td>290.0</td>
+      <td>1608.0</td>
+      <td>1</td>
+      <td>0.111931</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>SEMINOLE</td>
+      <td>143</td>
+      <td>126</td>
+      <td>17</td>
+      <td>0</td>
+      <td>0</td>
+      <td>225280</td>
+      <td>182245</td>
+      <td>43035</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>SUMTER</td>
+      <td>76</td>
+      <td>59</td>
+      <td>17</td>
+      <td>0</td>
+      <td>1</td>
+      <td>95533</td>
+      <td>88154</td>
+      <td>7379</td>
+      <td>0.0</td>
+      <td>665.0</td>
+      <td>5</td>
+      <td>0.024622</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>SUWANNEE</td>
+      <td>37</td>
+      <td>23</td>
+      <td>11</td>
+      <td>3</td>
+      <td>3</td>
+      <td>28317</td>
+      <td>18950</td>
+      <td>7368</td>
+      <td>1999.0</td>
+      <td>1999.0</td>
+      <td>2</td>
+      <td>0.032282</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>TAYLOR</td>
+      <td>94</td>
+      <td>22</td>
+      <td>63</td>
+      <td>9</td>
+      <td>9</td>
+      <td>24629</td>
+      <td>10014</td>
+      <td>12520</td>
+      <td>2095.0</td>
+      <td>2095.0</td>
+      <td>2</td>
+      <td>0.033832</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>UNION</td>
+      <td>28</td>
+      <td>7</td>
+      <td>20</td>
+      <td>1</td>
+      <td>1</td>
+      <td>12519</td>
+      <td>5843</td>
+      <td>5698</td>
+      <td>978.0</td>
+      <td>978.0</td>
+      <td>2</td>
+      <td>0.015794</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>VOLUSIA</td>
+      <td>227</td>
+      <td>144</td>
+      <td>76</td>
+      <td>7</td>
+      <td>7</td>
+      <td>326665</td>
+      <td>164435</td>
+      <td>147618</td>
+      <td>14612.0</td>
+      <td>14612.0</td>
+      <td>5</td>
+      <td>0.541025</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>WAKULLA</td>
+      <td>50</td>
+      <td>21</td>
+      <td>23</td>
+      <td>6</td>
+      <td>6</td>
+      <td>17783</td>
+      <td>10011</td>
+      <td>7649</td>
+      <td>123.0</td>
+      <td>123.0</td>
+      <td>3</td>
+      <td>0.000873</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>WALTON</td>
+      <td>219</td>
+      <td>125</td>
+      <td>86</td>
+      <td>8</td>
+      <td>9</td>
+      <td>104108</td>
+      <td>69478</td>
+      <td>34056</td>
+      <td>575.0</td>
+      <td>627.0</td>
+      <td>3</td>
+      <td>0.004452</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>WASHINGTON</td>
+      <td>96</td>
+      <td>57</td>
+      <td>34</td>
+      <td>5</td>
+      <td>6</td>
+      <td>72116</td>
+      <td>46988</td>
+      <td>23224</td>
+      <td>1904.0</td>
+      <td>3220.0</td>
+      <td>3</td>
+      <td>0.022862</td>
+    </tr>
+  </tbody>
+</table>
+<p>64 rows × 13 columns</p>
+</div></div>
+</div>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">idxmax</span></code> to get the index of the highest value in this new column, and the answer to part (2).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">bridges_2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bridges_2</span><span class="p">[</span><span class="s1">&#39;SD Area Share in District&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+County                       PALM BEACH
+Total #                             604
+Good #                              516
+Fair #                               81
+Poor #                                7
+SD #                                  7
+Total Area                       805336
+Good Area                        647923
+Fair Area                        120878
+Poor Area                         36535
+SD Area                           36535
+District                              4
+SD Area Share in District      0.960083
+Name: 48, dtype: object
+</pre></div></div>
+</div>
+<p>Palm Beach County only has a few structurally deficient bridges, but they are big ones, including two that span the intracostal waterway.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="solution-crosstable-pivottable.html" class="btn btn-neutral float-right" title="Using Pivot Tables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="exercise-geo-dynamic-map.html" class="btn btn-neutral float-left" title="Using Dynamic Mapping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

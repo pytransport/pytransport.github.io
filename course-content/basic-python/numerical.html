@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Numerical Analysis in Python &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Python Packages" href="packages.html" />
+    <link rel="prev" title="Understanding Errors" href="error-handling.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Python Fundamentals</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basics.html">Some Basics of Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Writing and Using Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-handling.html">Understanding Errors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Numerical Analysis in Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Vectorization">Vectorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Making-Arrays">Making Arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Python Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="_index.html">Python Fundamentals</a> &raquo;</li>
+        
+      <li>Numerical Analysis in Python</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/basic-python/numerical.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Numerical-Analysis-in-Python">
+<h1>Numerical Analysis in Python<a class="headerlink" href="#Numerical-Analysis-in-Python" title="Permalink to this headline">¶</a></h1>
+<p>The basic structure of Python is great for a lot of purposes, as it is super simple, and the underlying Python system handles much of the more complicated data management operations more or less transparently: there’s no need to tell Python to allocate or free memory, or what the data type of variables is, or how to actually complete many complex operations. Thus we can do things like creating a list of values or initializing a variable by simply writing:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5000</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<p>However, this simplicity comes at a cost: Python handles all these tasks for you, but depending on the workload you create, it may end up being extremely slow. For example, consider the following commands to square the numbers in our list:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">y</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+41654167500
+</pre></div></div>
+</div>
+<p>Underneath the hood, Python is actually executing low level commands roughly equivalent to this monologue:</p>
+<ul class="simple">
+<li><p>Get the first item in the list <code class="docutils literal notranslate"><span class="pre">x</span></code> and store it in <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
+<li><p>Note that I am using this value in one additional place.</p></li>
+<li><p>Identify that the data type for the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is an integer.</p></li>
+<li><p>Look up that the double-asterisk operator means ‘power’ when applied to integers.</p></li>
+<li><p>Find the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> somewhere in the computer’s memory.</p></li>
+<li><p>Take the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> and raise it to the power of 2.</p></li>
+<li><p>The result is also an integer.</p></li>
+<li><p>Identify that the data type for the variable <code class="docutils literal notranslate"><span class="pre">y</span></code> is an integer.</p></li>
+<li><p>Look up that the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator means ‘add’ when applied to integers.</p></li>
+<li><p>Find the value of <code class="docutils literal notranslate"><span class="pre">y</span></code> somewhere in the computer’s memory.</p></li>
+<li><p>Add the integer in <code class="docutils literal notranslate"><span class="pre">y</span></code> to the integer result of the power operation above.</p></li>
+<li><p>Store the result of the addition in variable <code class="docutils literal notranslate"><span class="pre">y</span></code>, and write the value to somewhere in the computer’s memory.</p></li>
+<li><p>Note that I am using this value that I just stored in <code class="docutils literal notranslate"><span class="pre">y</span></code> in one additional place.</p></li>
+<li><p>Note that I am using the previously stored value of <code class="docutils literal notranslate"><span class="pre">y</span></code> in one fewer place.</p></li>
+<li><p>If the total number of places I am using the old value of <code class="docutils literal notranslate"><span class="pre">y</span></code> is now zero, I can flag this memory to be freed up.</p></li>
+<li><p>Get the next item in the list <code class="docutils literal notranslate"><span class="pre">x</span></code> and store it in <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
+<li><p>Note that I am using the old value of <code class="docutils literal notranslate"><span class="pre">i</span></code> in one fewer place.</p></li>
+<li><p>If the total number of places I am using the old value of <code class="docutils literal notranslate"><span class="pre">i</span></code> is now zero, I can flag this memory to be freed up.</p></li>
+<li><p>Identify that the data type for the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> is an integer.</p></li>
+<li><p>Look up that the double-asterisk operator means ‘power’ when applied to integers.</p></li>
+<li><p>Take the value of <code class="docutils literal notranslate"><span class="pre">i</span></code> and raise it to the power of 2.</p></li>
+<li><p>The result is also an integer.</p></li>
+<li><p>Identify that the data type for the variable <code class="docutils literal notranslate"><span class="pre">y</span></code> is an integer.</p></li>
+<li><p>Look up that the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator means ‘add’ when applied to integers.</p></li>
+<li><p>Add the integer in <code class="docutils literal notranslate"><span class="pre">y</span></code> to the integer result of the power operation above.</p></li>
+<li><p>Store the result of the addition in variable <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+<li><p>Note that I am using this value that I just stored in <code class="docutils literal notranslate"><span class="pre">y</span></code> in one additional place.</p></li>
+<li><p>Note that I am using the previously stored value of <code class="docutils literal notranslate"><span class="pre">y</span></code> in one fewer place.</p></li>
+<li><p>If the total number of places I am using the old value of <code class="docutils literal notranslate"><span class="pre">y</span></code> is now zero, I can flag this memory to be freed up.</p></li>
+<li><p>Get the next item in the list <code class="docutils literal notranslate"><span class="pre">x</span></code> and store it in <code class="docutils literal notranslate"><span class="pre">i</span></code>.</p></li>
+<li><p>… and repeat the previous 14 lines 4,997 more times.</p></li>
+<li><p>Done. (Phew!)</p></li>
+</ul>
+<p>Fortunately, our computer can run through these instructions quite fast, so for the five item list, this quite long list of instructions appears to run instantanously. Nevertheless, it is obviously extraordinarily repetitive, and if the loop is to run on thousands of items in a list, the sheer number of instructions will slow down the process to the point where executing code becomes painfully slow.</p>
+<div class="section" id="Vectorization">
+<h2>Vectorization<a class="headerlink" href="#Vectorization" title="Permalink to this headline">¶</a></h2>
+<p>To speed things up, it is necessary to get rid of a lot of the excessively repetitive instructions. This is called “vectorization” of Python code. The two key features of vectorization that helps speed things up are:</p>
+<ol class="arabic simple">
+<li><p>We store data in an array of same-datatype values.</p></li>
+<li><p>We figure out operations that will be applied to those values, and then apply those operations straight down the line of values directly, without creating and destroying a lot of intermediate Python variables along the way.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package includes the tools necessary to do this efficiently. For example, we can vectorize the example code above like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+<span class="p">(</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+41654167500
+</pre></div></div>
+</div>
+<p>In comparison to the instructions above, this code is executed in a manner loosely equivalent to this monologue:</p>
+<ul class="simple">
+<li><p>I have an array of five thousand integers.</p></li>
+<li><p>Look up that the double-asterisk operator means ‘power’ when applied to integers.</p></li>
+<li><p>Find the group of 5,000 integer values of <code class="docutils literal notranslate"><span class="pre">x</span></code> somewhere in a contiguous block of the computer’s memory.</p></li>
+<li><p>Allocate a similarly sized contiguous block of the computer’s memory to store the result of a ‘power’ operation.</p></li>
+<li><p>Take each of 5,000 values in <code class="docutils literal notranslate"><span class="pre">x</span></code>, square it, and write that to the memory allocated above.</p></li>
+<li><p>Look up that the <code class="docutils literal notranslate"><span class="pre">sum</span></code> method means ‘add these up’ when applied to integers.</p></li>
+<li><p>Allocate memory for an integer value that will be the total.</p></li>
+<li><p>Take each of 5,000 squared values and add them to the running total.</p></li>
+<li><p>Return the final value.</p></li>
+<li><p>Done.</p></li>
+</ul>
+<p>It should be clear that the code above is wildly more efficient. For such a small set of operations described above, the different in time that it takes to compute the result either way is insignificant for a human perspective: does it really matter to you if the work is completed in a millisecond or a microsecond?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%time</span>it
+<span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2.05 ms ± 287 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%time</span>it
+<span class="p">(</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+8.41 µs ± 578 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+</pre></div></div>
+</div>
+<p>But when scaled up to larger data sets and more complex operations, these differences are extremely important: make each a million times longer, and we’re looking at the difference between one second and 15 minutes.</p>
+<p>Many of the tools and libraries described in the rest of these tutorials already take advantage of the speed benefit of vectorization as much as reasonable, but it is still important for a user to know about these differences. The simplest way to take advantage of these speed ups in coding your own Python tools is to avoid using “for” loops as much as possible in any section of your code that runs slowly, especially in places where “for” loops are nested inside other “for” loops. For example,
+writing code that loops for each destination TAZ inside a loop for each origin TAZ is generally a bad idea.</p>
+<p>Conversely, there’s no reason to fear using “for” loops in other places. As we observed above, a single loop that iterates over a few thousand items in a list can complete in just a millisecond. It’s only necessary to vectorize code when the number of loops <em>and</em> the complexity of calculation inside the loop are both high.</p>
+</div>
+<div class="section" id="Making-Arrays">
+<h2>Making Arrays<a class="headerlink" href="#Making-Arrays" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">arange</span></code> function in <code class="docutils literal notranslate"><span class="pre">numpy</span></code> creates an array of evenly spaced values, analogous to the <code class="docutils literal notranslate"><span class="pre">range</span></code> function in Python itself. Arrays can also be created out of lists:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mi">44</span><span class="p">])</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([11, 22, 33, 44])
+</pre></div></div>
+</div>
+<p>Importantly, the data type of the values in the array is all the same. You can inspect the datatype using the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> attribute:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+dtype(&#39;int64&#39;)
+</pre></div></div>
+</div>
+<p>You cannot create a simple array of mixed data types; instead the data will be up-casted as necessary to create a common datatype. For example, if you mix integers and floating point values, the resulting array will be all floating point values.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mf">4.4</span><span class="p">])</span>
+<span class="n">b</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+dtype(&#39;float64&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([11. , 22. , 33. ,  4.4])
+</pre></div></div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="packages.html" class="btn btn-neutral float-right" title="Python Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="error-handling.html" class="btn btn-neutral float-left" title="Understanding Errors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

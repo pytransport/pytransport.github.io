@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta content="noindex, nofollow" name="robots" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Python for Transportation Modeling &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="course-content/starting/_index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="course-content/starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/choice-modeling/_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Python for Transportation Modeling</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="python-for-transportation-modeling">
+<h1>Python for Transportation Modeling<a class="headerlink" href="#python-for-transportation-modeling" title="Permalink to this headline">¶</a></h1>
+<p>This course provides a basic introduction on the use of Python for
+transportation planning and modeling.  It includes a brief review
+of the fundamentals of writing code in Python, as well as modules
+on tabular data analysis, visualizations, and geographic analysis.
+The course assumes that students are already somewhat familiar with
+the mathematical tools of transportation modeling in general, and
+focuses exclusively on the how these models are constructed and
+implemented within Python.</p>
+<blockquote class="pull-quote">
+<div><a class="reference internal image-reference" href="_images/fdot-logo.png"><img alt="Florida Department of Transportation" class="align-left" src="_images/fdot-logo.png" style="height: 50px;" /></a>
+<p>The <a class="reference external" href="http://www.fsutmsonline.net/fdot-python/fdot-python-html/index.html">first version</a>
+of this course was developed with funding provided by the Florida Department of Transportation.</p>
+</div></blockquote>
+<hr class="docutils" />
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="course-content/starting/_index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/starting/quickstart.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/starting/installing-conda.html">Installing Conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/starting/environments.html">Managing Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/starting/starting-jupyter.html">Starting Jupyter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/basic-python/_index.html">Python Fundamentals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/basic-python/basics.html">Some Basics of Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/basic-python/functions.html">Writing and Using Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/basic-python/error-handling.html">Understanding Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/basic-python/numerical.html">Numerical Analysis in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/basic-python/packages.html">Python Packages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/tabular-analysis/_index.html">Tabular Data Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/tabular-analysis/basic-analysis-with-pandas.html">Basic Data Analysis with Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/tabular-analysis/pivot-tables.html">Crosstab and Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/tabular-analysis/linear-regression.html">Linear Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/visualization/_index.html">Data Visualization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/visualization/two-dim-plots.html">Basic Data Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/visualization/histograms.html">Histograms and Frequency Plots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/geographic-analysis/_index.html">Geographic Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/geographic-analysis/working-with-geodata.html">Manipulating Geographic Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/geographic-analysis/accessing-openstreetmap.html">Accessing OpenStreetMap Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/geographic-analysis/static-maps.html">Creating Static Maps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/geographic-analysis/dynamic-maps.html">Creating Dynamic Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/choice-modeling/_index.html">Discrete Choice Modeling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/choice-modeling/data_shapes.html">Data Formats for Choice Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/choice-modeling/1_exville_mode_choice.html">Exampville Mode Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/choice-modeling/2_exville_mc_logsums.html">Exampville Mode Choice Logsums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/choice-modeling/3_exville_dest.html">Exampville Destination Choice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/exercises/_index.html">Exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-groupby-transform.html">Using Groupby and Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-crosstable-pivottable.html">Using Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-linear-regression.html">Using Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-heatmap.html">Using Heatmaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-boxplots.html">Using Boxplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-frequency-barplots.html">Using Frequency Plots and Bar Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-geo-selection.html">Using Selection by Geography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-geo-sjoin.html">Using Spatial Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-geo-static-map.html">Using Static Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/exercise-geo-dynamic-map.html">Using Dynamic Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/exercises/_index.html#solutions">Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="course-content/data/example-data.html">Tutorial Data Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="course-content/data/example-data.html#Florida-Statewide">Florida Statewide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/data/example-data.html#SERPM8-Region">SERPM8 Region</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/data/example-data.html#Jupiter-Example-Study-Area">Jupiter Example Study Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/data/example-data.html#Exampville-Simulated-Data">Exampville Simulated Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="course-content/data/example-data.html#Miscellaneous-Other-Files">Miscellaneous Other Files</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="course-content/starting/_index.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
