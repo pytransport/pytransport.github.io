@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Exampville Destination Choice &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  <title>Exampville Destination Choice &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
   
 
   
@@ -26,6 +26,8 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -62,7 +64,7 @@
             
             
               <div class="version">
-                1.0.1
+                1.0.2
               </div>
             
           
@@ -760,9 +762,9 @@ larch.DataFrames:  (not computation-ready)
 </div>
 <p>Destination choice models are premised on the theory that each trip or tour has a particular destination to which it is attracted, and each travel zone represents not one individual alternative, but rather a number of similar alternatives grouped together. Thus the utility function in a destination choice model typically is comprised of two components: a qualitative component (i.e., how good are the alternatives in a zone) and a quantitative component (i.e., how many discrete alternatives are in
 a zone). The mathematical form of the utility function for the zone is</p>
-<div class="math">
-<p><span class="math">\sum_i{\beta_i}X_i + \theta\log\left(\sum_j{\exp(\gamma_j)}Z_j\right)</span></p>
-</div><p>The quantitative component of this utility function is written for Larch in a linear-in-parameters format similarly to that for the typical utility function, but assigned to the <code class="docutils literal notranslate"><span class="pre">quantity_ca</span></code> attribute instead of <code class="docutils literal notranslate"><span class="pre">utility_ca</span></code>. Also, the exponentiation of the <span class="math">\gamma</span> parameters is implied by using <code class="docutils literal notranslate"><span class="pre">quantity_ca</span></code>. Note that the quantitative term is in theory always applied only to the alternatives themselves and not alone to attributes of the decision maker, so the <code class="docutils literal notranslate"><span class="pre">quantity_co</span></code>
+<div class="math notranslate nohighlight">
+\[\sum_i{\beta_i}X_i + \theta\log\left(\sum_j{\exp(\gamma_j)}Z_j\right)\]</div>
+<p>The quantitative component of this utility function is written for Larch in a linear-in-parameters format similarly to that for the typical utility function, but assigned to the <code class="docutils literal notranslate"><span class="pre">quantity_ca</span></code> attribute instead of <code class="docutils literal notranslate"><span class="pre">utility_ca</span></code>. Also, the exponentiation of the <span class="math notranslate nohighlight">\(\gamma\)</span> parameters is implied by using <code class="docutils literal notranslate"><span class="pre">quantity_ca</span></code>. Note that the quantitative term is in theory always applied only to the alternatives themselves and not alone to attributes of the decision maker, so the <code class="docutils literal notranslate"><span class="pre">quantity_co</span></code>
 attribute is not implemented and cannot be used.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
@@ -778,7 +780,7 @@ attribute is not implemented and cannot be used.</p>
 </pre></div>
 </div>
 </div>
-<p>The parameter <span class="math">\theta</span> is a coefficient on the entire log-of-quantity term, and can be defined by assigning a parameter name to the <code class="docutils literal notranslate"><span class="pre">quantity_scale</span></code> attribute.</p>
+<p>The parameter <span class="math notranslate nohighlight">\(\theta\)</span> is a coefficient on the entire log-of-quantity term, and can be defined by assigning a parameter name to the <code class="docutils literal notranslate"><span class="pre">quantity_scale</span></code> attribute.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>

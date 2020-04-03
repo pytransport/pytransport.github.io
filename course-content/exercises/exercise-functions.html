@@ -5,11 +5,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta content="noindex, nofollow" name="robots" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tabular Data Analysis &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
+  <title>Using Functions &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
   
 
   
@@ -40,8 +39,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Basic Data Analysis with Pandas" href="basic-analysis-with-pandas.html" />
-    <link rel="prev" title="Python Packages" href="../basic-python/packages.html" /> 
+    <link rel="next" title="Using Groupby and Transform" href="exercise-groupby-transform.html" />
+    <link rel="prev" title="Exercises" href="_index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,16 +91,28 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tabular Data Analysis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html">Basic Data Analysis with Pandas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pivot-tables.html">Crosstab and Pivot Tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linear-regression.html">Linear Regression</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Exercises</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Questions">Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-groupby-transform.html">Using Groupby and Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-crosstable-pivottable.html">Using Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-linear-regression.html">Using Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-heatmap.html">Using Heatmaps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-boxplots.html">Using Boxplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-frequency-barplots.html">Using Frequency Plots and Bar Charts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-selection.html">Using Selection by Geography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-sjoin.html">Using Spatial Joins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-static-map.html">Using Static Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercise-geo-dynamic-map.html">Using Dynamic Mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_index.html#solutions">Solutions</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
 </ul>
 
@@ -148,13 +159,15 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Tabular Data Analysis</li>
+          <li><a href="_index.html">Exercises</a> &raquo;</li>
+        
+      <li>Using Functions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/course-content/tabular-analysis/_index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/course-content/exercises/exercise-functions.ipynb.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -191,49 +204,15 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="tabular-data-analysis">
-<h1>Tabular Data Analysis<a class="headerlink" href="#tabular-data-analysis" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="basic-analysis-with-pandas.html">Basic Data Analysis with Pandas</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Row-and-Column-Labels">Row and Column Labels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Data-Types">Data Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Reading-from-a-File">Reading from a File</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="basic-analysis-with-pandas.html#Data-Cleaning">Data Cleaning</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Expanding">Expanding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Slicing">Slicing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="basic-analysis-with-pandas.html#Slicing-by-Position">Slicing by Position</a></li>
-<li class="toctree-l3"><a class="reference internal" href="basic-analysis-with-pandas.html#Slicing-by-Label">Slicing by Label</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Sorting">Sorting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Merging">Merging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Multi-level-Column-and-Index-Values">Multi-level Column and Index Values</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="basic-analysis-with-pandas.html#Stacking-and-Unstacking">Stacking and Unstacking</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="basic-analysis-with-pandas.html#Grouping">Grouping</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="basic-analysis-with-pandas.html#Aggregation">Aggregation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="basic-analysis-with-pandas.html#Transformation">Transformation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pivot-tables.html">Crosstab and Pivot Tables</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pivot-tables.html#Simple-Pivot-Tables">Simple Pivot Tables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pivot-tables.html#Marginals">Marginals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pivot-tables.html#Aggregation-Functions">Aggregation Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pivot-tables.html#Using-Binning-of-Continuous-Variables">Using Binning of Continuous Variables</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="linear-regression.html">Linear Regression</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="linear-regression.html#Piecewise-Linear-Functions">Piecewise Linear Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linear-regression.html#Polynomial-Functions">Polynomial Functions</a></li>
-</ul>
-</li>
-</ul>
+<div class="section" id="Using-Functions">
+<h1>Using Functions<a class="headerlink" href="#Using-Functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Questions">
+<h2>Questions<a class="headerlink" href="#Questions" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Write a function that accepts an integer number of alligators as an input, and returns a string describing that number of alligators.</p></li>
+<li><p>Write a function that accepts an arbitrary number of integers, adds them together, and reports on that number of alligators (using the function you wrote in the first part).</p></li>
+<li><p>Write a function that converts a list of traffic counts into a list of traveler counts, including an optional automobile occupancy argument that defaults to 1.1 if not otherwise given.</p></li>
+</ol>
 </div>
 </div>
 
@@ -245,10 +224,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="basic-analysis-with-pandas.html" class="btn btn-neutral float-right" title="Basic Data Analysis with Pandas" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="exercise-groupby-transform.html" class="btn btn-neutral float-right" title="Using Groupby and Transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../basic-python/packages.html" class="btn btn-neutral float-left" title="Python Packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="_index.html" class="btn btn-neutral float-left" title="Exercises" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Exercises &mdash; Python for Transportation 1.0.1, March 2020 documentation</title>
+  <title>Exercises &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
   
 
   
@@ -27,6 +27,8 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
         <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
@@ -38,7 +40,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Using Groupby and Transform" href="exercise-groupby-transform.html" />
+    <link rel="next" title="Using Functions" href="exercise-functions.html" />
     <link rel="prev" title="Exampville Destination Choice" href="../choice-modeling/3_exville_dest.html" /> 
 </head>
 
@@ -63,7 +65,7 @@
             
             
               <div class="version">
-                1.0.1
+                1.0.2
               </div>
             
           
@@ -95,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../choice-modeling/_index.html">Discrete Choice Modeling</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercise-functions.html">Using Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercise-groupby-transform.html">Using Groupby and Transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercise-crosstable-pivottable.html">Using Pivot Tables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercise-linear-regression.html">Using Linear Regression</a></li>
@@ -106,6 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="exercise-geo-static-map.html">Using Static Mapping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercise-geo-dynamic-map.html">Using Dynamic Mapping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#solutions">Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solution-functions.html">Using Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="solution-groupby-transform.html">Using Groupby and Transform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="solution-crosstable-pivottable.html">Using Pivot Tables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="solution-linear-regression.html">Using Linear Regression</a></li>
@@ -213,6 +217,10 @@
 <h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="exercise-functions.html">Using Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercise-functions.html#Questions">Questions</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="exercise-groupby-transform.html">Using Groupby and Transform</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="exercise-groupby-transform.html#Questions">Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercise-groupby-transform.html#Data">Data</a></li>
@@ -270,6 +278,11 @@
 <h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="solution-functions.html">Using Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solution-functions.html#Questions">Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solution-functions.html#Solution">Solution</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="solution-groupby-transform.html">Using Groupby and Transform</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="solution-groupby-transform.html#Questions">Questions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="solution-groupby-transform.html#Data">Data</a></li>
@@ -343,7 +356,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="exercise-groupby-transform.html" class="btn btn-neutral float-right" title="Using Groupby and Transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="exercise-functions.html" class="btn btn-neutral float-right" title="Using Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../choice-modeling/3_exville_dest.html" class="btn btn-neutral float-left" title="Exampville Destination Choice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
