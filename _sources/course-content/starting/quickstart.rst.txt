@@ -14,13 +14,45 @@ If you're impatient and just want to get going, follow these instructions.
 
         conda env create camsys/tt
 
-3.  Open "Anaconda Prompt" (Windows) or the Terminal (Linux/MacOS) and enter this commands
-    to start up *Jupyter Lab*:
+3.  Open "Anaconda Prompt" (Windows) or the Terminal (Linux/MacOS) and enter these two commands
+    to start up *Jupyter Notebook*:
 
     .. code-block:: console
 
-        conda activate tt && jupyter lab
+        conda activate tt
+        jupyter notebook
+
+    Alternatively, if you prefer the *JupyterLab* interface:
+	
+    .. code-block:: console
+
+        conda activate tt
+        jupyter lab
+
 
 Only *Step 3* is required for subsequent sessions on the same computer.
 
+What's the difference between *Jupyter Notebook* and *JupyterLab*?  Both provide a
+web-based interactive environment for Python (and a few other languages, but mostly
+Python).  The *Notebook* has more limited capabilities, tightly focused on using
+one notebook at a time.  *JupyterLab* has a more modular approach, where you can open
+several notebooks or other related files as tabs in the same window. It offers more
+of an IDE-like experience, but may be a little slower to work with, especially if
+you create large notebooks with a lot of interactive components.
 
+
+Troubleshooting
+---------------
+
+**I got a `ModuleNotFoundError` when trying to import the `transportation_tutorials` package.**
+
+The quick start instructions above will sometimes fail to install the transportation_tutorials
+package correctly.  If you get this error, you can try re-installing the module using `pip`:
+
+.. code-block:: console
+
+    conda activate tt
+    pip install transportation_tutorials
+
+This re-install procedure should only need to be done once to download and install the files
+in the `tt` conda environment, and then you'll have the files you need in te future.

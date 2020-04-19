@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Creating Static Maps &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
+  <title>Creating Static Maps &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
   
 
   
@@ -28,7 +28,6 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -64,7 +63,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -577,82 +576,84 @@ div.rendered_html tbody tr:hover {
 &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 12022 entries, 0 to 12021
 Data columns (total 76 columns):
-mgra                            12022 non-null int64
-TAZ                             12022 non-null int64
-HH                              12022 non-null int64
-POP                             12022 non-null int64
-emp_self                        12022 non-null int64
-emp_ag                          12022 non-null int64
-emp_const_non_bldg_prod         12022 non-null int64
-emp_const_non_bldg_office       12022 non-null int64
-emp_utilities_prod              12022 non-null int64
-emp_utilities_office            12022 non-null int64
-emp_const_bldg_prod             12022 non-null int64
-emp_const_bldg_office           12022 non-null int64
-emp_mfg_prod                    12022 non-null int64
-emp_mfg_office                  12022 non-null int64
-emp_whsle_whs                   12022 non-null int64
-emp_trans                       12022 non-null int64
-emp_retail                      12022 non-null int64
-emp_prof_bus_svcs               12022 non-null int64
-emp_prof_bus_svcs_bldg_maint    12022 non-null int64
-emp_pvt_ed_k12                  12022 non-null int64
-emp_pvt_ed_post_k12_oth         12022 non-null int64
-emp_health                      12022 non-null int64
-emp_personal_svcs_office        12022 non-null int64
-emp_amusement                   12022 non-null int64
-emp_hotel                       12022 non-null int64
-emp_restaurant_bar              12022 non-null int64
-emp_personal_svcs_retail        12022 non-null int64
-emp_religious                   12022 non-null int64
-emp_pvt_hh                      12022 non-null int64
-emp_state_local_gov_ent         12022 non-null int64
-emp_scrap_other                 12022 non-null int64
-emp_fed_non_mil                 12022 non-null int64
-emp_fed_mil                     12022 non-null int64
-emp_state_local_gov_blue        12022 non-null int64
-emp_state_local_gov_white       12022 non-null int64
-emp_public_ed                   12022 non-null int64
-emp_own_occ_dwell_mgmt          12022 non-null int64
-emp_fed_gov_accts               12022 non-null int64
-emp_st_lcl_gov_accts            12022 non-null int64
-emp_cap_accts                   12022 non-null int64
-emp_total                       12022 non-null int64
-collegeEnroll                   12022 non-null int64
-otherCollegeEnroll              12022 non-null int64
-AdultSchEnrl                    12022 non-null int64
-EnrollGradeKto8                 12022 non-null int64
-EnrollGrade9to12                12022 non-null int64
-PrivateEnrollGradeKto8          12022 non-null int64
-ech_dist                        12022 non-null int64
-hch_dist                        12022 non-null int64
-parkarea                        12022 non-null int64
-hstallsoth                      12022 non-null int64
-hstallssam                      12022 non-null int64
-hparkcost                       12022 non-null int64
-numfreehrs                      12022 non-null int64
-dstallsoth                      12022 non-null int64
-dstallssam                      12022 non-null int64
-dparkcost                       12022 non-null int64
-mstallsoth                      12022 non-null int64
-mstallssam                      12022 non-null int64
-mparkcost                       12022 non-null float64
-TotInt                          12022 non-null int64
-DUDen                           12022 non-null float64
-EmpDen                          12022 non-null float64
-PopDen                          12022 non-null float64
-RetEmpDen                       12022 non-null float64
-IntDenBin                       12022 non-null int64
-EmpDenBin                       12022 non-null int64
-DuDenBin                        12022 non-null int64
-POINT_X                         12022 non-null int64
-POINT_Y                         12022 non-null int64
-ACRES                           12022 non-null int64
-HotelRoomTotal                  12022 non-null int64
-mall_flag                       12022 non-null int64
-beachAcres                      12022 non-null int64
-geoSRate                        12022 non-null int64
-geoSRateNm                      12022 non-null int64
+ #   Column                        Non-Null Count  Dtype
+---  ------                        --------------  -----
+ 0   mgra                          12022 non-null  int64
+ 1   TAZ                           12022 non-null  int64
+ 2   HH                            12022 non-null  int64
+ 3   POP                           12022 non-null  int64
+ 4   emp_self                      12022 non-null  int64
+ 5   emp_ag                        12022 non-null  int64
+ 6   emp_const_non_bldg_prod       12022 non-null  int64
+ 7   emp_const_non_bldg_office     12022 non-null  int64
+ 8   emp_utilities_prod            12022 non-null  int64
+ 9   emp_utilities_office          12022 non-null  int64
+ 10  emp_const_bldg_prod           12022 non-null  int64
+ 11  emp_const_bldg_office         12022 non-null  int64
+ 12  emp_mfg_prod                  12022 non-null  int64
+ 13  emp_mfg_office                12022 non-null  int64
+ 14  emp_whsle_whs                 12022 non-null  int64
+ 15  emp_trans                     12022 non-null  int64
+ 16  emp_retail                    12022 non-null  int64
+ 17  emp_prof_bus_svcs             12022 non-null  int64
+ 18  emp_prof_bus_svcs_bldg_maint  12022 non-null  int64
+ 19  emp_pvt_ed_k12                12022 non-null  int64
+ 20  emp_pvt_ed_post_k12_oth       12022 non-null  int64
+ 21  emp_health                    12022 non-null  int64
+ 22  emp_personal_svcs_office      12022 non-null  int64
+ 23  emp_amusement                 12022 non-null  int64
+ 24  emp_hotel                     12022 non-null  int64
+ 25  emp_restaurant_bar            12022 non-null  int64
+ 26  emp_personal_svcs_retail      12022 non-null  int64
+ 27  emp_religious                 12022 non-null  int64
+ 28  emp_pvt_hh                    12022 non-null  int64
+ 29  emp_state_local_gov_ent       12022 non-null  int64
+ 30  emp_scrap_other               12022 non-null  int64
+ 31  emp_fed_non_mil               12022 non-null  int64
+ 32  emp_fed_mil                   12022 non-null  int64
+ 33  emp_state_local_gov_blue      12022 non-null  int64
+ 34  emp_state_local_gov_white     12022 non-null  int64
+ 35  emp_public_ed                 12022 non-null  int64
+ 36  emp_own_occ_dwell_mgmt        12022 non-null  int64
+ 37  emp_fed_gov_accts             12022 non-null  int64
+ 38  emp_st_lcl_gov_accts          12022 non-null  int64
+ 39  emp_cap_accts                 12022 non-null  int64
+ 40  emp_total                     12022 non-null  int64
+ 41  collegeEnroll                 12022 non-null  int64
+ 42  otherCollegeEnroll            12022 non-null  int64
+ 43  AdultSchEnrl                  12022 non-null  int64
+ 44  EnrollGradeKto8               12022 non-null  int64
+ 45  EnrollGrade9to12              12022 non-null  int64
+ 46  PrivateEnrollGradeKto8        12022 non-null  int64
+ 47  ech_dist                      12022 non-null  int64
+ 48  hch_dist                      12022 non-null  int64
+ 49  parkarea                      12022 non-null  int64
+ 50  hstallsoth                    12022 non-null  int64
+ 51  hstallssam                    12022 non-null  int64
+ 52  hparkcost                     12022 non-null  int64
+ 53  numfreehrs                    12022 non-null  int64
+ 54  dstallsoth                    12022 non-null  int64
+ 55  dstallssam                    12022 non-null  int64
+ 56  dparkcost                     12022 non-null  int64
+ 57  mstallsoth                    12022 non-null  int64
+ 58  mstallssam                    12022 non-null  int64
+ 59  mparkcost                     12022 non-null  float64
+ 60  TotInt                        12022 non-null  int64
+ 61  DUDen                         12022 non-null  float64
+ 62  EmpDen                        12022 non-null  float64
+ 63  PopDen                        12022 non-null  float64
+ 64  RetEmpDen                     12022 non-null  float64
+ 65  IntDenBin                     12022 non-null  int64
+ 66  EmpDenBin                     12022 non-null  int64
+ 67  DuDenBin                      12022 non-null  int64
+ 68  POINT_X                       12022 non-null  int64
+ 69  POINT_Y                       12022 non-null  int64
+ 70  ACRES                         12022 non-null  int64
+ 71  HotelRoomTotal                12022 non-null  int64
+ 72  mall_flag                     12022 non-null  int64
+ 73  beachAcres                    12022 non-null  int64
+ 74  geoSRate                      12022 non-null  int64
+ 75  geoSRateNm                    12022 non-null  int64
 dtypes: float64(5), int64(71)
 memory usage: 7.0 MB
 </pre></div></div>
@@ -731,11 +732,43 @@ memory usage: 7.0 MB
 <img alt="../../_images/course-content_geographic-analysis_static-maps_24_0.png" src="../../_images/course-content_geographic-analysis_static-maps_24_0.png" />
 </div>
 </div>
+<p>We can also apply various other commands from matplotlib. For example, we can use <code class="docutils literal notranslate"><span class="pre">annotate</span></code> to write the MAZ id’s onto the map. We’ll only write them on MAZ’s that are sufficiently large areas that the map won’t appear as a jumble of labels.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">annotate_map</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">annot</span><span class="p">,</span> <span class="n">row_slice</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_slice</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+            <span class="n">s</span><span class="o">=</span><span class="n">annot</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">x</span><span class="p">),</span>
+            <span class="n">xy</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span> <span class="c1"># don&#39;t show axis</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Population Density&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">maz1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;PopDen&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">annotate_map</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">maz1</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{MAZ}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">maz1</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span> <span class="o">&gt;</span> <span class="mf">1e7</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_geographic-analysis_static-maps_26_0.png" src="../../_images/course-content_geographic-analysis_static-maps_26_0.png" />
+</div>
+</div>
 <div class="section" id="Adding-a-Background">
 <h3>Adding a Background<a class="headerlink" href="#Adding-a-Background" title="Permalink to this headline">¶</a></h3>
 <p>If we would like some additional context for the map, we can add a background layer with some familiar map content. To do so, we will need to get some map tiles (rendered map pieces), and we can use <a class="reference external" href="https://github.com/darribas/contextily">contextily</a> to help automate this.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -768,13 +801,42 @@ memory usage: 7.0 MB
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+
+<span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://tile.stamen.com/terrain/tileZ/tileX/tileY.png&#39;</span><span class="p">):</span>
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
+    <span class="n">basemap</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">bounds2img</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">)</span>
+    <span class="c1"># restore original x/y limits</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">((</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">))</span>
+
+    <span class="n">attribution_txt</span> <span class="o">=</span> <span class="s2">&quot;Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">attribution_txt</span><span class="p">,</span>
+        <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span>
+        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+        <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+<p>Web map tiles are typically provided in <a class="reference external" href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a> <a class="reference external" href="https://epsg.io/3857">EPSG 3857</a>, so we need to make sure to convert our data first to the same CRS to combine our polygons and background tiles in the same map.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">maz2</span> <span class="o">=</span> <span class="n">maz1</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Then we can create the map. We set the <code class="docutils literal notranslate"><span class="pre">alpha</span></code> (opacity) of the choropleth plot itself to be only 0.6, so we can see the map tile detail underneath the colors.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -790,7 +852,7 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_31_0.png" src="../../_images/course-content_geographic-analysis_static-maps_31_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_35_0.png" src="../../_images/course-content_geographic-analysis_static-maps_35_0.png" />
 </div>
 </div>
 </div>
@@ -800,7 +862,7 @@ memory usage: 7.0 MB
 <p>For certain kinds of data, it might make sense to plot a dot density map instead of a choropleth.</p>
 <p>We’ll use some code from the tutorials package to generate a dot density map the shows population density in each MAZ.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -886,13 +948,13 @@ memory usage: 7.0 MB
 <div class="pygments"><pre><span></span><span class="c1"># Code based on an original given in</span>
 <span class="c1"># https://github.com/agaidus/census_data_extraction/blob/master/census_mapper.py</span>
 
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
 <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">RandomState</span><span class="p">,</span> <span class="n">uniform</span>
 
 
-<span class="k">def</span> <span class="nf">generate_random_points_in_polygon</span><span class="p">(</span><span class="n">poly</span><span class="p">,</span> <span class="n">num_points</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">generate_random_points_in_polygon</span><span class="p">(</span><span class="n">poly</span><span class="p">,</span> <span class="n">num_points</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   Create a list of randomly generated points within a polygon.</span>
 
@@ -920,7 +982,7 @@ memory usage: 7.0 MB
     <span class="k">return</span> <span class="n">points</span>
 
 
-<span class="k">def</span> <span class="nf">generate_points_in_areas</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">points_per_unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">generate_points_in_areas</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">points_per_unit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   Create a GeoSeries of random points in polygons.</span>
 
@@ -952,7 +1014,7 @@ memory usage: 7.0 MB
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">generate_points_in_areas</span></code> function above will allow us to generate a set of point to plot, filling in the dot density map.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -961,7 +1023,7 @@ memory usage: 7.0 MB
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -981,12 +1043,12 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_37_0.png" src="../../_images/course-content_geographic-analysis_static-maps_37_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_41_0.png" src="../../_images/course-content_geographic-analysis_static-maps_41_0.png" />
 </div>
 </div>
 <p>Dot density maps render very nicely on top of the <a class="reference external" href="http://maps.stamen.com/toner-lite/">Stamen Toner Light</a> tiles.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -995,7 +1057,7 @@ memory usage: 7.0 MB
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1019,12 +1081,12 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_40_0.png" src="../../_images/course-content_geographic-analysis_static-maps_40_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_44_0.png" src="../../_images/course-content_geographic-analysis_static-maps_44_0.png" />
 </div>
 </div>
 <p>It is also possible to plot multiple different sets of dot density data on the same map. In the following example, we pull out retail and healthcare employment, and plot those in different colors.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1038,7 +1100,7 @@ memory usage: 7.0 MB
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1070,7 +1132,7 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_43_0.png" src="../../_images/course-content_geographic-analysis_static-maps_43_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_47_0.png" src="../../_images/course-content_geographic-analysis_static-maps_47_0.png" />
 </div>
 </div>
 <p>Using different colored points helps to highlight important traffic generators, including the Scripps Research Institute (green, on Donald Ross Road) and the Gardens Mall (red).</p>
