@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Some Basics of Python &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
+  <title>Some Basics of Python &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
   
 
   
@@ -28,7 +28,6 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -64,7 +63,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -604,7 +603,7 @@ False
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># float</span>
+<span></span><span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># float</span>
 </pre></div>
 </div>
 </div>
@@ -613,7 +612,7 @@ False
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -631,7 +630,7 @@ False
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
+<span></span><span class="nb">isinstance</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -644,9 +643,28 @@ False
 True
 </pre></div></div>
 </div>
-<p>Python recognizes comma characters as meaningful, so you cannot put commas into numerical expressions in code:</p>
+<p>You can compare an <code class="docutils literal notranslate"><span class="pre">int</span></code> against a <code class="docutils literal notranslate"><span class="pre">float</span></code> to see if they are equal, which gives you the result you would expect.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
+<p>Python recognizes comma characters as meaningful, so you cannot put commas into numerical expressions in code:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -655,7 +673,7 @@ True
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -665,7 +683,7 @@ True
 </div>
 <p>Instead of commas, underscores can be inserted within numbers in code to make it more readable by humans, but retain the correct value by Python:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -674,7 +692,7 @@ True
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -682,23 +700,32 @@ True
 1000000
 </pre></div></div>
 </div>
-<p>If you want to output a nicely formatted large number with commas for the thousands, you need to convert the number to a string. There is an extensive section on <a class="reference external" href="https://docs.python.org/3/library/string.html#format-string-syntax">string formatting</a> provided in the Python documentation that outlines how to format numbers (and other Python objects) into virtually any format imaginable.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<p>If you want to output a nicely formatted large number with commas for the thousands, you need to convert the number to a string. There is an extensive section on <a class="reference external" href="https://docs.python.org/3/library/string.html#format-string-syntax">string formatting</a> provided in the Python documentation that outlines how to format numbers (and other Python objects) into virtually any format imaginable. Here we’ll assign the newly created string to a new variable.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="s2">&quot;</span><span class="si">{:,}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">)</span>
+<span></span><span class="n">million_dollars</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">million_dollars</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;1,000,000&#39;
+&#39;$1,000,000.00&#39;
 </pre></div></div>
 </div>
 </div>
@@ -706,7 +733,7 @@ True
 <h2>Strings<a class="headerlink" href="#Strings" title="Permalink to this headline">¶</a></h2>
 <p>Python can also work with strings, which can be enclosed in single quotes (<code class="docutils literal notranslate"><span class="pre">'...'</span></code>) or double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code>). If the string needs to contain text which also includes quotes, they can be escaped using a backslash.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -715,7 +742,7 @@ True
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -724,7 +751,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -733,7 +760,7 @@ True
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -742,7 +769,7 @@ True
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -751,7 +778,7 @@ True
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -759,9 +786,48 @@ True
 &#34;Florida&#39;s Turnpike&#34;
 </pre></div></div>
 </div>
+<p>Note that Python is case sensitive with respect to handling strings. So, these two strings are not equal:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="s1">&#39;Florida&#39;</span> <span class="o">==</span> <span class="s1">&#39;florida&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+False
+</pre></div></div>
+</div>
+<p>If you want to make a case <em>insensitive</em> comparison, you need to first transform a string into all lowercase letters:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">statename</span> <span class="o">=</span> <span class="s1">&#39;Florida&#39;</span>
+<span class="n">statename</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;florida&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
+</div>
 <p>In addition to using the backslash to escape quote marks in a string, it can also be used to escape other special characters, including <code class="docutils literal notranslate"><span class="pre">'\n'</span></code> for newlines, <code class="docutils literal notranslate"><span class="pre">'\t'</span></code> for tabs, and <code class="docutils literal notranslate"><span class="pre">'\\'</span></code> for literal backslashes. If you don’t want to escape anything a instead treat any backslash as a single backslash, you can use <em>raw strings</em> by adding an <code class="docutils literal notranslate"><span class="pre">r</span></code> before the first quote:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -778,7 +844,7 @@ C:\Python       ransportation-tutorials
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -798,7 +864,7 @@ C:\Python\transportation-tutorials
 written using forward slashes instead of the default backslashes.</p>
 <p>String literals can span multiple lines. One way is using triple-quotes: <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;...&quot;&quot;&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">'''...'''</span></code>. End of lines are automatically included in the string, but it’s possible to prevent this by adding a <code class="docutils literal notranslate"><span class="pre">\</span></code> at the end of the line. The following example:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -825,7 +891,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>Two or more <em>string literals</em> (i.e. the ones enclosed between quotes) next to each other are automatically concatenated. :</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -834,7 +900,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -844,7 +910,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>Strings (literal or otherwise) can be concatenated (glued together) with the <code class="docutils literal notranslate"><span class="pre">+</span></code> operator:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -855,7 +921,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -868,7 +934,7 @@ written using forward slashes instead of the default backslashes.</p>
 <h2>Lists<a class="headerlink" href="#Lists" title="Permalink to this headline">¶</a></h2>
 <p>There are a variety of <em>compound</em> data types, used to group together other values. One of these is the <em>list</em>, which can be written as a list of comma-separated values (items) between square brackets.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -878,7 +944,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>Lists are ordered, and can be indexed starting at zero for the first item.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -887,7 +953,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -897,7 +963,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>They can also be sliced, passing a <code class="docutils literal notranslate"><span class="pre">start:stop</span></code> syntax instead of a single number to the indexer:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -906,7 +972,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -917,7 +983,7 @@ written using forward slashes instead of the default backslashes.</p>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">stop</span></code> value indicates the first value past the end of the slice, not the last value in the slice.</p>
 <p>You can append items to a list like this:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -925,18 +991,8 @@ written using forward slashes instead of the default backslashes.</p>
 </pre></div>
 </div>
 </div>
-<p>The items in a list are not restricted to be all the same data type, so Python won’t prevent you from doing something like this:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">cities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -945,7 +1001,35 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;Miami&#39;, &#39;Orlando&#39;, &#39;Tampa&#39;, &#39;Jacksonville&#39;, &#39;Tallahassee&#39;]
+</pre></div></div>
+</div>
+<p>The items in a list are not restricted to be all the same data type, so Python won’t prevent you from doing something like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">cities</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">cities</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -955,7 +1039,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>But for your sanity, you may not want to do that. The <code class="docutils literal notranslate"><span class="pre">pop</span></code> method can help here, by removing and returning the last item in the list.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -964,7 +1048,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -973,7 +1057,7 @@ written using forward slashes instead of the default backslashes.</p>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -982,7 +1066,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -992,7 +1076,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>You can also change values within a list:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1002,7 +1086,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1015,7 +1099,7 @@ written using forward slashes instead of the default backslashes.</p>
 <h2>Tuples<a class="headerlink" href="#Tuples" title="Permalink to this headline">¶</a></h2>
 <p>A tuple is like a list, except it is <em>immutable</em> (i.e. you cannot change any part of it after it exists). Tuples are created using round parenthesis instead of square brackets.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1024,7 +1108,29 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">counties</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-41-4c1678edfab1&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>counties<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">123</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: &#39;tuple&#39; object has no attribute &#39;append&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1039,7 +1145,7 @@ written using forward slashes instead of the default backslashes.</p>
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-36-9e6b786104ce&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">&lt;ipython-input-42-9e6b786104ce&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>counties<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;Miami&#39;</span>
 
 <span class="ansi-red-fg">TypeError</span>: &#39;tuple&#39; object does not support item assignment
@@ -1054,17 +1160,21 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>When writing a dictionary directly in Python code, we use curly brackets, and give the contents of the dictionary as key:label pairs.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">jurisdictions</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Miami&#39;</span><span class="p">:</span> <span class="s1">&#39;Dade County&#39;</span><span class="p">,</span> <span class="s1">&#39;Orlando&#39;</span><span class="p">:</span> <span class="s1">&#39;Orange County&#39;</span><span class="p">}</span>
+<span></span><span class="n">jurisdictions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Miami&#39;</span><span class="p">:</span> <span class="s1">&#39;Dade County&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Orlando&#39;</span><span class="p">:</span> <span class="s1">&#39;Orange County&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Ft. Lauderdale&#39;</span><span class="p">:</span> <span class="s1">&#39;Broward County&#39;</span><span class="p">,</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <p>We can add new items by assignment with index-like syntax like this:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1074,7 +1184,7 @@ written using forward slashes instead of the default backslashes.</p>
 </div>
 <p>And access members similarly:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1092,7 +1202,7 @@ Dade County
 </div>
 <p>An attempt to access a key that does not exist in the dictionary raises an error:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1107,7 +1217,7 @@ Dade County
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-40-34b0fab846be&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">&lt;ipython-input-46-34b0fab846be&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>jurisdictions<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;Tallahassee&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">KeyError</span>: &#39;Tallahassee&#39;
@@ -1115,7 +1225,7 @@ Dade County
 </div>
 <p>Although the values that are stored in a dictionary can be anything, the <em>keys</em> need to be both unique and immutable. Assigning a new value to the same key deletes the old value:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1128,13 +1238,32 @@ Dade County
 <h2>Sets<a class="headerlink" href="#Sets" title="Permalink to this headline">¶</a></h2>
 <p>A set is an unordered bunch of unique objects. Although the implemention is a bit different, you can generally think of a set as a dictionary that only has the keys and doesn’t have any values attached to those keys.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">national_parks</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Everglades&#39;</span><span class="p">,</span> <span class="s1">&#39;Biscayne&#39;</span><span class="p">,</span> <span class="s1">&#39;Dry Tortugas&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
+</div>
+<p>The primary reason to use a set instead of a tuple is to speed up the process of checking if some value is contained in the set or not.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="s1">&#39;Everglades&#39;</span> <span class="ow">in</span> <span class="n">national_parks</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+True
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Syntax">
@@ -1147,7 +1276,7 @@ Dade County
 <p>Common flow control keywords are <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">for</span></code>, and <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
 <p>An <code class="docutils literal notranslate"><span class="pre">if</span></code> statement can be used alone, or along with <code class="docutils literal notranslate"><span class="pre">elif</span></code> (short for else if) and/or <code class="docutils literal notranslate"><span class="pre">else</span></code> statements.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1172,7 +1301,7 @@ didn&#39;t find Miami Beach
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">for</span></code> statement will iterate over items in a sequence (list, tuple, or similar).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1194,7 +1323,7 @@ Duval County
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">while</span></code> statement loops until the conditional evaluates as False.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1218,7 +1347,7 @@ Duval County
 </div>
 <p>You can exit a <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> block early with a <code class="docutils literal notranslate"><span class="pre">break</span></code> statement.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1247,7 +1376,7 @@ Duval County
 <p>Only the most basic functionality is exposed in Python by default. Almost all functions and object classes will need to be imported from a library, either one that is built-in to Python (but still needs to be imported) or one installed alongside Python (by conda or pip, usually). Libraries are loaded with the <code class="docutils literal notranslate"><span class="pre">import</span></code> keyword. You can also use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">[libname]</span> <span class="pre">import</span> <span class="pre">[funcname]</span></code> to access library components, and you can use the <code class="docutils literal notranslate"><span class="pre">as</span></code> keyword to provide a unique or different name for the
 thing you are importing. For example:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1259,7 +1388,7 @@ thing you are importing. For example:</p>
 </div>
 <p>You can then use functions and modules that are found in these packages using “dot” notation. For example, the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package includes a <code class="docutils literal notranslate"><span class="pre">zeros</span></code> function, that creates an array full of zeros, which we can call like this:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1268,7 +1397,7 @@ thing you are importing. For example:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1278,7 +1407,7 @@ array([0., 0., 0., 0., 0.])
 </div>
 <p>In a Jupyter notebook, we can also access function documentation by using a special question mark syntax, which will print out the built-in documentation for any function, if it is available (most standard analytical packages including numpy, scipy, and pandas have extensive documentation for nearly every function).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>

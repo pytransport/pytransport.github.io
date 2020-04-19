@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Numerical Analysis in Python &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
+  <title>Numerical Analysis in Python &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
   
 
   
@@ -28,7 +28,6 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -64,7 +63,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -612,14 +611,16 @@ array([11, 22, 33, 44])
 dtype(&#39;int64&#39;)
 </pre></div></div>
 </div>
-<p>You cannot create a simple array of mixed data types; instead the data will be up-casted as necessary to create a common datatype. For example, if you mix integers and floating point values, the resulting array will be all floating point values.</p>
+<p>The default data types used by Python are operating system dependent, so it’s possible if you run this code you may see something different that the ‘int64’ shown here. On some versions of Windows, the default data type is ‘int32’ (even if you install the 64 bit version of Python). As long as you are manipulating data that can be stored correctly in the given data type, this difference won’t matter. However, if you are doing calculations that will cause an overflow (i.e. a number needs to be
+stored that is too large to fit in the designated dtype) then you’ll get some potentially surprising results.</p>
+<p>For example, consider what happens if you run the <code class="docutils literal notranslate"><span class="pre">arange</span></code> test code above explicitly using the ‘int32’ dtype:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mf">4.4</span><span class="p">])</span>
-<span class="n">b</span><span class="o">.</span><span class="n">dtype</span>
+<span></span><span class="n">z32</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">z32</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -629,11 +630,71 @@ dtype(&#39;int64&#39;)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+-1295505460
+</pre></div></div>
+</div>
+<p>The negative value is obviously incorrect; a sum of squares can’t be negative. But the problem is that the correct value (41,654,167,500) can’t be expressed as a signed 32 bit integer – the maximum such value is…</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="s2">&quot;</span><span class="si">{:,}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;2,147,483,647&#39;
+</pre></div></div>
+</div>
+<p>To maximize speed, numpy doesn’t check for overflows the same way plain Python does, so the result if a negative value (although it doesn’t necessarily have to be negative, that’s just coincidental here, and an incorrect positive value is also possible).</p>
+<p>A reasonable solution to this problem is to use explicit dtypes on arrays if you expect there is any risk of an overflow. Just as the code above explicitly created a problem by forcing the use of ‘int32’, we can avoid the problem by forcing the use of ‘int64’ (this code should work on any platform):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">z32</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<span class="p">(</span><span class="n">z32</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+41654167500
+</pre></div></div>
+</div>
+<p>You cannot create a simple array of mixed data types; instead the data will be up-casted as necessary to create a common datatype. For example, if you mix integers and floating point values, the resulting array will be all floating point values.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mf">4.4</span><span class="p">])</span>
+<span class="n">b</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
 dtype(&#39;float64&#39;)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -642,7 +703,7 @@ dtype(&#39;float64&#39;)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">

@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Quick Start &mdash; Python for Transportation 1.0.2, March 2020 documentation</title>
+  <title>Quick Start &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
   
 
   
@@ -29,7 +29,6 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -65,7 +64,7 @@
             
             
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
             
           
@@ -91,7 +90,10 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="_index.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick Start</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="installing-conda.html">Installing Conda</a></li>
 <li class="toctree-l2"><a class="reference internal" href="environments.html">Managing Environments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="starting-jupyter.html">Starting Jupyter</a></li>
@@ -206,14 +208,39 @@ set up a working environment to use with this tutorial:</p>
 </pre></div>
 </div>
 </li>
-<li><p>Open “Anaconda Prompt” (Windows) or the Terminal (Linux/MacOS) and enter this commands
-to start up <em>Jupyter Lab</em>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate tt &amp;&amp; jupyter lab</span>
+<li><p>Open “Anaconda Prompt” (Windows) or the Terminal (Linux/MacOS) and enter these two commands
+to start up <em>Jupyter Notebook</em>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate tt</span>
+<span class="go">jupyter notebook</span>
+</pre></div>
+</div>
+<p>Alternatively, if you prefer the <em>JupyterLab</em> interface:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate tt</span>
+<span class="go">jupyter lab</span>
 </pre></div>
 </div>
 </li>
 </ol>
 <p>Only <em>Step 3</em> is required for subsequent sessions on the same computer.</p>
+<p>What’s the difference between <em>Jupyter Notebook</em> and <em>JupyterLab</em>?  Both provide a
+web-based interactive environment for Python (and a few other languages, but mostly
+Python).  The <em>Notebook</em> has more limited capabilities, tightly focused on using
+one notebook at a time.  <em>JupyterLab</em> has a more modular approach, where you can open
+several notebooks or other related files as tabs in the same window. It offers more
+of an IDE-like experience, but may be a little slower to work with, especially if
+you create large notebooks with a lot of interactive components.</p>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<p><strong>I got a `ModuleNotFoundError` when trying to import the `transportation_tutorials` package.</strong></p>
+<p>The quick start instructions above will sometimes fail to install the transportation_tutorials
+package correctly.  If you get this error, you can try re-installing the module using <cite>pip</cite>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate tt</span>
+<span class="go">pip install transportation_tutorials</span>
+</pre></div>
+</div>
+<p>This re-install procedure should only need to be done once to download and install the files
+in the <cite>tt</cite> conda environment, and then you’ll have the files you need in te future.</p>
+</div>
 </div>
 
 
