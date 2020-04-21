@@ -44,7 +44,7 @@ you create large notebooks with a lot of interactive components.
 Troubleshooting
 ---------------
 
-**I got a `ModuleNotFoundError` when trying to import the `transportation_tutorials` package.**
+**I got `ModuleNotFoundError` when trying to import the `transportation_tutorials` package.**
 
 The quick start instructions above will sometimes fail to install the transportation_tutorials
 package correctly.  If you get this error, you can try re-installing the module using `pip`:
@@ -55,4 +55,14 @@ package correctly.  If you get this error, you can try re-installing the module 
     pip install transportation_tutorials
 
 This re-install procedure should only need to be done once to download and install the files
-in the `tt` conda environment, and then you'll have the files you need in te future.
+in the `tt` conda environment, and then you'll have the files you need in the future.
+
+**I got `CondaValueError: prefix already exists` when running `conda env create camsys/tt`.**
+
+If you already have an environment named "tt" (i.e. because you installed this tutorial in the
+past once before) then you won't be able to use the command `conda env create camsys/tt`.  In
+this case you have two options:
+
+- To delete the "tt" environment and start over, run `conda env remove -n tt`, confirm at the
+  prompt, and then try `conda env create camsys/tt` again.
+- To update the "tt" environment in place, run `conda env update camsys/tt`.

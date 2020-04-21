@@ -231,7 +231,7 @@ of an IDE-like experience, but may be a little slower to work with, especially i
 you create large notebooks with a lot of interactive components.</p>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-<p><strong>I got a `ModuleNotFoundError` when trying to import the `transportation_tutorials` package.</strong></p>
+<p><strong>I got `ModuleNotFoundError` when trying to import the `transportation_tutorials` package.</strong></p>
 <p>The quick start instructions above will sometimes fail to install the transportation_tutorials
 package correctly.  If you get this error, you can try re-installing the module using <cite>pip</cite>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate tt</span>
@@ -239,7 +239,16 @@ package correctly.  If you get this error, you can try re-installing the module 
 </pre></div>
 </div>
 <p>This re-install procedure should only need to be done once to download and install the files
-in the <cite>tt</cite> conda environment, and then you’ll have the files you need in te future.</p>
+in the <cite>tt</cite> conda environment, and then you’ll have the files you need in the future.</p>
+<p><strong>I got `CondaValueError: prefix already exists` when running `conda env create camsys/tt`.</strong></p>
+<p>If you already have an environment named “tt” (i.e. because you installed this tutorial in the
+past once before) then you won’t be able to use the command <cite>conda env create camsys/tt</cite>.  In
+this case you have two options:</p>
+<ul class="simple">
+<li><p>To delete the “tt” environment and start over, run <cite>conda env remove -n tt</cite>, confirm at the
+prompt, and then try <cite>conda env create camsys/tt</cite> again.</p></li>
+<li><p>To update the “tt” environment in place, run <cite>conda env update camsys/tt</cite>.</p></li>
+</ul>
 </div>
 </div>
 
