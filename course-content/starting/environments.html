@@ -250,7 +250,7 @@ installed, by giving them as well:</p>
 command, and a bit unwieldy to use.  Fortunately, you can instead just
 describe the environment you want to create in a YAML file instead of
 doing so on the command line.  To do so, you would get or create a YAML
-file that looks something like this:</p>
+file named ‘my_environment.yml’ that looks something like this:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">your_environment_name</span>
 
 <span class="nt">channels</span><span class="p">:</span>
@@ -270,7 +270,7 @@ file that looks something like this:</p>
 </pre></div>
 </div>
 <p>And then create the environment using the file.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda env create -f environment.yml</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda env create -f my_environment.yml</span>
 </pre></div>
 </div>
 <p>You may notice that the <code class="docutils literal notranslate"><span class="pre">specialty_package</span></code> in the environment.yml file

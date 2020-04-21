@@ -249,6 +249,12 @@ this case you have two options:</p>
 prompt, and then try <cite>conda env create camsys/tt</cite> again.</p></li>
 <li><p>To update the “tt” environment in place, run <cite>conda env update camsys/tt</cite>.</p></li>
 </ul>
+<p><strong>I didn’t get an environment named “tt” when running `conda env create camsys/tt`.</strong></p>
+<p>By default, the conda environment creation tool looks first for a YAML file in the current
+directory named “environment.yml”, and if this file exists it will be used to create the new
+environment instead of downloading the environment definition from the cloud.  To avoid this,
+use the <cite>conda env create camsys/tt</cite> command in a directory that does not contain a file
+with this name.</p>
 </div>
 </div>
 

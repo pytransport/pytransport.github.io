@@ -66,3 +66,11 @@ this case you have two options:
 - To delete the "tt" environment and start over, run `conda env remove -n tt`, confirm at the
   prompt, and then try `conda env create camsys/tt` again.
 - To update the "tt" environment in place, run `conda env update camsys/tt`.
+
+**I didn't get an environment named "tt" when running `conda env create camsys/tt`.**
+
+By default, the conda environment creation tool looks first for a YAML file in the current
+directory named "environment.yml", and if this file exists it will be used to create the new
+environment instead of downloading the environment definition from the cloud.  To avoid this,
+use the `conda env create camsys/tt` command in a directory that does not contain a file
+with this name.
