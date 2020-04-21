@@ -99,6 +99,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#Box-Plots">Box Plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Fancy-Figures">Fancy Figures</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="histograms.html">Histograms and Frequency Plots</a></li>
@@ -761,6 +762,94 @@ the values above the new maximum to the color at the maximum point. Since we are
 </div>
 <div class="output_area docutils container">
 <img alt="../../_images/course-content_visualization_two-dim-plots_31_0.png" src="../../_images/course-content_visualization_two-dim-plots_31_0.png" />
+</div>
+</div>
+<p>The figure shown includes quite a lot of outliers across a very large range of incomes, but much of the detail in the highest echelons of income is not really important for transportation planning analysis. We can adjust the figure’s limits on the horizontal axis to focus in on the more relevant portion of the data.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span>
+    <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">],</span>
+    <span class="n">notch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Household Income by Household Size&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">10_000</span><span class="p">,</span><span class="mi">200_000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Household Income&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Household Size&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_visualization_two-dim-plots_33_0.png" src="../../_images/course-content_visualization_two-dim-plots_33_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Fancy-Figures">
+<h2>Fancy Figures<a class="headerlink" href="#Fancy-Figures" title="Permalink to this headline">¶</a></h2>
+<p>More complex visualizations can be created using Seaborn, and are not too hard to create by following and modifying recipes found on the <a class="reference external" href="https://seaborn.pydata.org/examples/index.html">gallery</a> in the Seaborn documention. As an example, this code snippet is lightly edited from the recipe offered for <a class="reference external" href="https://seaborn.pydata.org/examples/kde_ridgeplot.html">overlapping ridge plots</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;axes.facecolor&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)})</span>
+
+<span class="c1"># Initialize the FacetGrid object</span>
+<span class="n">pal</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">cubehelix_palette</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">rot</span><span class="o">=-.</span><span class="mi">25</span><span class="p">,</span> <span class="n">light</span><span class="o">=.</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span>
+    <span class="n">hh</span><span class="p">[</span><span class="n">hh</span><span class="o">.</span><span class="n">income</span><span class="o">&lt;=</span><span class="mi">300_000</span><span class="p">],</span> <span class="n">row</span><span class="o">=</span><span class="s2">&quot;hhsize5&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;hhsize5&quot;</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">pal</span><span class="p">,</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">95000</span><span class="p">,</span><span class="mi">300000</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Draw the densities in a few steps</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">bw</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Define and use a simple function to label the plot in axes coordinates</span>
+<span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">.</span><span class="mi">15</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{label}</span><span class="s1"> Persons&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the subplots to overlap</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=-</span><span class="mf">0.625</span><span class="p">)</span>
+
+<span class="c1"># Remove axes details that don&#39;t play well with overlap</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">yticks</span><span class="o">=</span><span class="p">[],</span>
+      <span class="n">xticks</span><span class="o">=</span><span class="p">[</span>       <span class="mi">0</span><span class="p">,</span><span class="mi">50_000</span><span class="p">,</span><span class="mi">100_000</span><span class="p">,</span><span class="mi">150_000</span><span class="p">,</span><span class="mi">200_000</span><span class="p">,</span><span class="mi">300_000</span><span class="p">],</span>
+      <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;50K&#39;</span> <span class="p">,</span><span class="s1">&#39;100K&#39;</span> <span class="p">,</span><span class="s1">&#39;150K&#39;</span> <span class="p">,</span><span class="s1">&#39;200K&#39;</span>  <span class="p">,</span><span class="s1">&#39;300K&#39;</span><span class="p">,],</span>
+     <span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">row_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;HH Size </span><span class="si">{i}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">row_names</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_visualization_two-dim-plots_35_0.png" src="../../_images/course-content_visualization_two-dim-plots_35_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
 </div>
 </div>
 </div>

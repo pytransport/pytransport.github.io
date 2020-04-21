@@ -95,6 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pivot-tables.html">Crosstab and Pivot Tables</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Linear Regression</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Piecewise-Linear-Functions">Piecewise Linear Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Polynomial-Functions">Polynomial Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -730,6 +731,159 @@ Warnings:
 </div>
 <p>The result is three columns of data instead of one, with the first giving income up to the lower breakpoint, the next giving income between the two breakpoints, and the last giving the amount of income above the top breakpoint.</p>
 <p>We can readily concatenate this expanded data with any other explanatory variables by using <code class="docutils literal notranslate"><span class="pre">pandas.concat</span></code>. Note that by default this function concatenates dataframes vertically (combining columns and stacking rows), but in this case we want to concatenate horizontally (combining rows and stacking columns). We can achieve this by also passing <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> to the function in addition to the list of dataframes to concatenate.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh_edited</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">autos</span><span class="p">,</span>
+    <span class="n">piecewise_expansion</span><span class="p">(</span><span class="n">hh</span><span class="o">.</span><span class="n">income_100k</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="mi">25</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">]),</span>
+<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">hh_edited</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>autos</th>
+      <th>piece(income_100k,None,0.25)</th>
+      <th>piece(income_100k,0.25,0.75)</th>
+      <th>piece(income_100k,0.75,None)</th>
+    </tr>
+    <tr>
+      <th>hh_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1690841</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>4.37</td>
+    </tr>
+    <tr>
+      <th>1690961</th>
+      <td>1</td>
+      <td>0.25</td>
+      <td>0.025</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>1690866</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>0.75</td>
+    </tr>
+    <tr>
+      <th>1690895</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>0.29</td>
+    </tr>
+    <tr>
+      <th>1690933</th>
+      <td>2</td>
+      <td>0.25</td>
+      <td>0.500</td>
+      <td>0.20</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Then we can use this modified dataframe to construct a piecewise linear OLS regression model. Because the original and modified dataframes have the same index (i.e. number and order of rows) we can mix them in the OLS defintion, using the <code class="docutils literal notranslate"><span class="pre">n_trips</span></code> column from the original as the dependent variable and the explanatory data from the modified dataframe.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+    <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh_edited</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                n_trips   R-squared:                       0.231
+Model:                            OLS   Adj. R-squared:                  0.231
+Method:                 Least Squares   F-statistic:                     1297.
+Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
+Time:                        13:45:17   Log-Likelihood:                -48143.
+No. Observations:               17260   AIC:                         9.630e+04
+Df Residuals:                   17255   BIC:                         9.633e+04
+Df Model:                           4
+Covariance Type:            nonrobust
+================================================================================================
+                                   coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------------
+const                            1.9177      0.153     12.542      0.000       1.618       2.217
+autos                            2.4769      0.042     58.560      0.000       2.394       2.560
+piece(income_100k,None,0.25)     2.2983      0.722      3.181      0.001       0.882       3.714
+piece(income_100k,0.25,0.75)     1.0124      0.204      4.972      0.000       0.613       1.412
+piece(income_100k,0.75,None)     0.0977      0.033      3.002      0.003       0.034       0.162
+==============================================================================
+Omnibus:                     4132.769   Durbin-Watson:                   1.925
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11235.615
+Skew:                           1.278   Prob(JB):                         0.00
+Kurtosis:                       6.015   Cond. No.                         56.0
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/jpn/anaconda/envs/tt/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
+  return ptp(axis=axis, out=out, **kwargs)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Polynomial-Functions">
+<h2>Polynomial Functions<a class="headerlink" href="#Polynomial-Functions" title="Permalink to this headline">¶</a></h2>
+<p>In addition to piecewise linear terms in the regression equation, standard OLS allows for any arbitrary non-linear transformation. Students of statistics will be familiar with fitting a polynomial function with OLS coefficients, and this can be done using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> for example by explicitly computing the desired polynomial terms before estimating model parameter.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>

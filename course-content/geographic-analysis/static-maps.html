@@ -103,6 +103,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#Dot-Density-Map">Dot Density Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Network-Map">Network Map</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dynamic-maps.html">Creating Dynamic Maps</a></li>
@@ -768,35 +769,6 @@ memory usage: 7.0 MB
 <h3>Adding a Background<a class="headerlink" href="#Adding-a-Background" title="Permalink to this headline">¶</a></h3>
 <p>If we would like some additional context for the map, we can add a background layer with some familiar map content. To do so, we will need to get some map tiles (rendered map pieces), and we can use <a class="reference external" href="https://github.com/darribas/contextily">contextily</a> to help automate this.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
-
-<span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://tile.stamen.com/terrain/tileZ/tileX/tileY.png&#39;</span><span class="p">):</span>
-    <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
-    <span class="n">basemap</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">bounds2img</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">)</span>
-    <span class="c1"># restore original x/y limits</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">((</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">))</span>
-
-    <span class="n">attribution_txt</span> <span class="o">=</span> <span class="s2">&quot;Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.&quot;</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-        <span class="n">attribution_txt</span><span class="p">,</span>
-        <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;axes fraction&#39;</span><span class="p">,</span>
-        <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
-        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
-        <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span>
-        <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">ax</span>
-</pre></div>
-</div>
-</div>
-<p>Web map tiles are typically provided in <a class="reference external" href="https://en.wikipedia.org/wiki/Web_Mercator">Web Mercator</a> <a class="reference external" href="https://epsg.io/3857">EPSG 3857</a>, so we need to make sure to convert our data first to the same CRS to combine our polygons and background tiles in the same map.</p>
-<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
@@ -852,7 +824,7 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_35_0.png" src="../../_images/course-content_geographic-analysis_static-maps_35_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_33_0.png" src="../../_images/course-content_geographic-analysis_static-maps_33_0.png" />
 </div>
 </div>
 </div>
@@ -1043,7 +1015,7 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_41_0.png" src="../../_images/course-content_geographic-analysis_static-maps_41_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_39_0.png" src="../../_images/course-content_geographic-analysis_static-maps_39_0.png" />
 </div>
 </div>
 <p>Dot density maps render very nicely on top of the <a class="reference external" href="http://maps.stamen.com/toner-lite/">Stamen Toner Light</a> tiles.</p>
@@ -1081,7 +1053,7 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_44_0.png" src="../../_images/course-content_geographic-analysis_static-maps_44_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_42_0.png" src="../../_images/course-content_geographic-analysis_static-maps_42_0.png" />
 </div>
 </div>
 <p>It is also possible to plot multiple different sets of dot density data on the same map. In the following example, we pull out retail and healthcare employment, and plot those in different colors.</p>
@@ -1132,10 +1104,228 @@ memory usage: 7.0 MB
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_47_0.png" src="../../_images/course-content_geographic-analysis_static-maps_47_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_static-maps_45_0.png" src="../../_images/course-content_geographic-analysis_static-maps_45_0.png" />
 </div>
 </div>
 <p>Using different colored points helps to highlight important traffic generators, including the Scripps Research Institute (green, on Donald Ross Road) and the Gardens Mall (red).</p>
+</div>
+<div class="section" id="Network-Map">
+<h2>Network Map<a class="headerlink" href="#Network-Map" title="Permalink to this headline">¶</a></h2>
+<p>We can use a similar set of tools to generate a map of a network. As an example, let’s use OSMNX to load a small snippet of streets from Jupiter.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
+<span class="n">west</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">north</span> <span class="o">=</span> <span class="o">-</span><span class="mf">80.12</span><span class="p">,</span> <span class="mf">26.88</span><span class="p">,</span> <span class="o">-</span><span class="mf">80.10</span><span class="p">,</span> <span class="mf">26.90</span>
+<span class="n">streets</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_bbox</span><span class="p">(</span><span class="n">north</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">graph_to_gdfs</span></code> function in OSMNX will convert the downloaded street network into two GeoDataFrames, one for nodes and one for links.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">street_nodes</span><span class="p">,</span> <span class="n">street_edges</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_to_gdfs</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">street_edges</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>u</th>
+      <th>v</th>
+      <th>key</th>
+      <th>osmid</th>
+      <th>highway</th>
+      <th>oneway</th>
+      <th>length</th>
+      <th>geometry</th>
+      <th>lanes</th>
+      <th>name</th>
+      <th>junction</th>
+      <th>service</th>
+      <th>ref</th>
+      <th>bridge</th>
+      <th>access</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6654312479</td>
+      <td>6654367094</td>
+      <td>0</td>
+      <td>708170971</td>
+      <td>footway</td>
+      <td>False</td>
+      <td>10.601</td>
+      <td>LINESTRING (-80.11866 26.88009, -80.11866 26.8...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1395523619</td>
+      <td>1395523685</td>
+      <td>0</td>
+      <td>125704242</td>
+      <td>tertiary</td>
+      <td>True</td>
+      <td>133.511</td>
+      <td>LINESTRING (-80.11114 26.88809, -80.11119 26.8...</td>
+      <td>2</td>
+      <td>Central Boulevard</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1395523619</td>
+      <td>1395523622</td>
+      <td>0</td>
+      <td>682181038</td>
+      <td>tertiary</td>
+      <td>True</td>
+      <td>93.879</td>
+      <td>LINESTRING (-80.11114 26.88809, -80.11120 26.8...</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>roundabout</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1395523622</td>
+      <td>5817784099</td>
+      <td>0</td>
+      <td>11207454</td>
+      <td>tertiary</td>
+      <td>True</td>
+      <td>36.891</td>
+      <td>LINESTRING (-80.11199 26.88818, -80.11205 26.8...</td>
+      <td>2</td>
+      <td>NaN</td>
+      <td>roundabout</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5690294318</td>
+      <td>1502469402</td>
+      <td>0</td>
+      <td>136957668</td>
+      <td>service</td>
+      <td>False</td>
+      <td>21.310</td>
+      <td>LINESTRING (-80.10483 26.89099, -80.10482 26.8...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>We can plot the streets using the regular plotting commands.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">street_edges</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([]);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_geographic-analysis_static-maps_53_0.png" src="../../_images/course-content_geographic-analysis_static-maps_53_0.png" />
+</div>
+</div>
+<p>We can add labels to certain map elements using the <code class="docutils literal notranslate"><span class="pre">annotate</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Axes</span></code> object. As an example, let’s add a label indicating the link length for each “primary” link in the plot. We’ll use the <code class="docutils literal notranslate"><span class="pre">apply</span></code> method of the <code class="docutils literal notranslate"><span class="pre">street_edges</span></code> GeoDataFrame to apply the annotate to each relevant row, formatting a label to give the length value to one decimal place, and placing the label at the link centroid.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">street_edges</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">street_edges</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">street_edges</span><span class="p">[</span><span class="s1">&#39;highway&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;primary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">s</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{length:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">x</span><span class="p">),</span>
+        <span class="n">xy</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_geographic-analysis_static-maps_55_0.png" src="../../_images/course-content_geographic-analysis_static-maps_55_0.png" />
+</div>
+</div>
+<p>Unfortunately, because these links are small, the labels end up overlapping each other. This is challenging to overcome in an automatic manner using just matplotlib, but some other tools may help alleviate this issue (examples coming soon).</p>
 </div>
 </div>
 

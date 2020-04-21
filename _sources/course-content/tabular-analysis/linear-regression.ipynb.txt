@@ -178,11 +178,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "Note that the `hh` dataframes contains a variety of other columns of data, but\n",
     "since we're not interested in using them for this model, they can be implicitly \n",
@@ -212,11 +208,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -238,11 +230,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "A magnitude variance this large is not problematic in raw statistical theory,\n",
     "but it can introduce numerical stability problems when using computers to \n",
@@ -253,11 +241,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "hh['income_100k'] = hh.income / 100_000"
@@ -312,11 +296,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "The R-squared and t-statistics of this model are the same as before,\n",
     "as this is in effect the same model as above.  But in this revised model, the\n",
@@ -341,11 +321,7 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "from larch.util.data_expansion import piecewise_expansion"
@@ -353,11 +329,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "pycharm": {
-     "name": "#%% md\n"
-    }
-   },
+   "metadata": {},
    "source": [
     "For example, to create a piecewise linear version of household income,\n",
     "with break points at \\$25 and \\$75 thouand, we could write:"
@@ -366,11 +338,7 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "metadata": {
-    "pycharm": {
-     "name": "#%%\n"
-    }
-   },
+   "metadata": {},
    "outputs": [
     {
      "data": {
@@ -481,6 +449,198 @@
     "but in this case we want to concatenate horizontally (combining rows and\n",
     "stacking columns).  We can achieve this by also passing `axis=1` to the\n",
     "function in addition to the list of dataframes to concatenate."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>autos</th>\n",
+       "      <th>piece(income_100k,None,0.25)</th>\n",
+       "      <th>piece(income_100k,0.25,0.75)</th>\n",
+       "      <th>piece(income_100k,0.75,None)</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>hh_id</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>1690841</th>\n",
+       "      <td>2</td>\n",
+       "      <td>0.25</td>\n",
+       "      <td>0.500</td>\n",
+       "      <td>4.37</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1690961</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0.25</td>\n",
+       "      <td>0.025</td>\n",
+       "      <td>0.00</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1690866</th>\n",
+       "      <td>2</td>\n",
+       "      <td>0.25</td>\n",
+       "      <td>0.500</td>\n",
+       "      <td>0.75</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1690895</th>\n",
+       "      <td>2</td>\n",
+       "      <td>0.25</td>\n",
+       "      <td>0.500</td>\n",
+       "      <td>0.29</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1690933</th>\n",
+       "      <td>2</td>\n",
+       "      <td>0.25</td>\n",
+       "      <td>0.500</td>\n",
+       "      <td>0.20</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "         autos  piece(income_100k,None,0.25)  piece(income_100k,0.25,0.75)  \\\n",
+       "hh_id                                                                        \n",
+       "1690841      2                          0.25                         0.500   \n",
+       "1690961      1                          0.25                         0.025   \n",
+       "1690866      2                          0.25                         0.500   \n",
+       "1690895      2                          0.25                         0.500   \n",
+       "1690933      2                          0.25                         0.500   \n",
+       "\n",
+       "         piece(income_100k,0.75,None)  \n",
+       "hh_id                                  \n",
+       "1690841                          4.37  \n",
+       "1690961                          0.00  \n",
+       "1690866                          0.75  \n",
+       "1690895                          0.29  \n",
+       "1690933                          0.20  "
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "hh_edited = pd.concat([\n",
+    "    hh.autos,\n",
+    "    piecewise_expansion(hh.income_100k, [.25, .75]),\n",
+    "], axis=1)\n",
+    "\n",
+    "hh_edited.head()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Then we can use this modified dataframe to construct a piecewise linear OLS regression model.\n",
+    "Because the original and modified dataframes have the same index (i.e. number and order of rows)\n",
+    "we can mix them in the OLS defintion, using the `n_trips` column from the original as the dependent \n",
+    "variable and the explanatory data from the modified dataframe."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "                            OLS Regression Results                            \n",
+      "==============================================================================\n",
+      "Dep. Variable:                n_trips   R-squared:                       0.231\n",
+      "Model:                            OLS   Adj. R-squared:                  0.231\n",
+      "Method:                 Least Squares   F-statistic:                     1297.\n",
+      "Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00\n",
+      "Time:                        13:45:17   Log-Likelihood:                -48143.\n",
+      "No. Observations:               17260   AIC:                         9.630e+04\n",
+      "Df Residuals:                   17255   BIC:                         9.633e+04\n",
+      "Df Model:                           4                                         \n",
+      "Covariance Type:            nonrobust                                         \n",
+      "================================================================================================\n",
+      "                                   coef    std err          t      P>|t|      [0.025      0.975]\n",
+      "------------------------------------------------------------------------------------------------\n",
+      "const                            1.9177      0.153     12.542      0.000       1.618       2.217\n",
+      "autos                            2.4769      0.042     58.560      0.000       2.394       2.560\n",
+      "piece(income_100k,None,0.25)     2.2983      0.722      3.181      0.001       0.882       3.714\n",
+      "piece(income_100k,0.25,0.75)     1.0124      0.204      4.972      0.000       0.613       1.412\n",
+      "piece(income_100k,0.75,None)     0.0977      0.033      3.002      0.003       0.034       0.162\n",
+      "==============================================================================\n",
+      "Omnibus:                     4132.769   Durbin-Watson:                   1.925\n",
+      "Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11235.615\n",
+      "Skew:                           1.278   Prob(JB):                         0.00\n",
+      "Kurtosis:                       6.015   Cond. No.                         56.0\n",
+      "==============================================================================\n",
+      "\n",
+      "Warnings:\n",
+      "[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/Users/jpn/anaconda/envs/tt/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.\n",
+      "  return ptp(axis=axis, out=out, **kwargs)\n"
+     ]
+    }
+   ],
+   "source": [
+    "mod = sm.OLS(\n",
+    "    hh.n_trips, \n",
+    "    sm.add_constant(hh_edited)\n",
+    ")\n",
+    "res = mod.fit()\n",
+    "print(res.summary())"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Polynomial Functions\n",
+    "\n",
+    "In addition to piecewise linear terms in the regression equation, \n",
+    "standard OLS allows for any arbitrary non-linear transformation.\n",
+    "Students of statistics will be familiar with fitting a polynomial\n",
+    "function with OLS coefficients, and this can be done using `statsmodels`\n",
+    "for example by explicitly computing the desired polynomial terms\n",
+    "before estimating model parameter."
    ]
   },
   {
@@ -807,15 +967,6 @@
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
    "version": "3.7.4"
-  },
-  "pycharm": {
-   "stem_cell": {
-    "cell_type": "raw",
-    "source": [],
-    "metadata": {
-     "collapsed": false
-    }
-   }
   }
  },
  "nbformat": 4,
