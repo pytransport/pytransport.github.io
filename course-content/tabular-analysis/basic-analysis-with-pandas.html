@@ -28,6 +28,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -94,6 +95,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic Data Analysis with Pandas</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Row-and-Column-Labels">Row and Column Labels</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Data-Types">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Indexing">Indexing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Reading-from-a-File">Reading from a File</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Data-Cleaning">Data Cleaning</a></li>
 </ul>
@@ -979,6 +981,208 @@ dtype: object
 </pre></div></div>
 </div>
 </div>
+<div class="section" id="Indexing">
+<h2>Indexing<a class="headerlink" href="#Indexing" title="Permalink to this headline">¶</a></h2>
+<p>The motivation behind the dtypes restrictions on a DataFrame is the underlying storage of the data. In some ways, a DataFrame is kind of like a dictionary of column arrays: each column is stored as an array, and the column labels are the keys that reference these columns. This similarity also follows through to indexing from a DataFrame, where we can access individual columns using the square bracket notation similar to dictionaries.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0    7
+1    8
+2    9
+Name: A, dtype: int64
+</pre></div></div>
+</div>
+<p>The analogy is only a loose one, though, as not every aspect of dictionaries carries over. For example, you can get two (or more) columns at the same time by passing a list of column labels to the square bracket indexer. In this example, the outer square brackets denote that we are indexing from <code class="docutils literal notranslate"><span class="pre">df</span></code>, and the inner square brackets denote a Python list:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>5.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>6.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Also, the column names of a DataFrame don’t need to be unique like they do for dictionary keys. So it’s fair to assign repeating column names like this:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>a</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7</td>
+      <td>1</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>2</td>
+      <td>5.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>3</td>
+      <td>6.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>And if you try to access one of those repeated names, you’ll get both columns:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>a</th>
+      <th>a</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>5.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>9</td>
+      <td>6.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>There might be good reasons to have duplicate column names, but unless you have a very good reason, you’ll generally be better off if you stick to unique values for columns names. There are also a number of other ways to slice the data in a DataFrame, which we’ll examine below under “Slicing”.</p>
+</div>
 <div class="section" id="Reading-from-a-File">
 <h2>Reading from a File<a class="headerlink" href="#Reading-from-a-File" title="Permalink to this headline">¶</a></h2>
 <p>For virtually all transportation data analysis, the data used will be loaded from a file, instead of being entered directly in Python commands. Fortunately, Pandas comes with a host of data reading methods that can be used to read data in a variety of formats:</p>
@@ -1004,7 +1208,7 @@ dtype: object
 <p>You can click through to the documentation for each of these. In this tutorial, we’ll cover the most basic reading function in the pandas library, which is <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>. Despite the name, this function isn’t just for reading comma seperated values, but also pretty much any delimited text file, including tab and space delimited files.</p>
 <p>A very small example csv data file is included in the transportation_tutorials package:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1013,7 +1217,7 @@ dtype: object
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1023,7 +1227,7 @@ dtype: object
 </div>
 <p>For most csv files, you can just pass the name of the file to the read_csv function, and pandas will figure out the rest. This includes, as shown here, when a csv file is gzipped on disk, in which case it is transparently decompressed while reading.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1032,7 +1236,7 @@ dtype: object
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1041,7 +1245,7 @@ dtype: object
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1154,7 +1358,7 @@ dtype: object
 </div>
 <p>Within the Jupyter notebook, by default if you try to view a large data frame, the middle section is not displayed. If you look carefully above, you’ll see a row of ellipsis marking the place where some rows are not shown. Still, we get the first 30 and last 30 rows of the table. If you don’t want to review so large a section of a DataFrame, you can use the <code class="docutils literal notranslate"><span class="pre">head</span></code> method of DataFrames to see just the first few rows.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1163,7 +1367,7 @@ dtype: object
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1234,7 +1438,7 @@ dtype: object
 <p>One notable tabular file format you may encounter in transportation planning that is <em>not</em> directly readable by pandas is the <code class="docutils literal notranslate"><span class="pre">DBF</span></code> file. Fortunately, there are other related tools that can read this kind of file, including <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>. Geopandas includes just one main reading function: <code class="docutils literal notranslate"><span class="pre">read_file</span></code>. When you read a DBF file with <code class="docutils literal notranslate"><span class="pre">geopandas.read_file</span></code>, you’ll get a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> object instead of a regular pandas.DataFrame – but don’t worry, everything you can do with a DataFrame you
 can also do with a GeoDataFrame.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1244,7 +1448,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1253,7 +1457,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1262,7 +1466,7 @@ can also do with a GeoDataFrame.</p>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1272,7 +1476,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1377,7 +1581,7 @@ can also do with a GeoDataFrame.</p>
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1387,7 +1591,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>An alternate DBF reading implementation is included in Larch. This optimized DBF reader can currently only handle text and numeric datatyped (i.e., types ‘C’, ‘F’, and ‘N’; no dates, memos, or logical fields). However, it can read data quite fast even for large files, and will extract the basic contents of the file (headers, number of rows) even without actually reading the data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1397,7 +1601,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>To actually load the data into a DataFrame, use the <code class="docutils literal notranslate"><span class="pre">load_dataframe</span></code> method.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1408,7 +1612,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1515,7 +1719,7 @@ can also do with a GeoDataFrame.</p>
 <h3>Data Cleaning<a class="headerlink" href="#Data-Cleaning" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes, data that is read in from raw files will require some cleaning to be usable. Consider this example of data on bridges in Florida:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1540,7 +1744,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>The data is loaded by pandas in the usual way without errors.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1550,7 +1754,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>However, not all is well, and problems will appear during analysis.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1559,7 +1763,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1569,7 +1773,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>That is clearly not the number of structurally deficient bridges in Florida. And it’s not even a number at all, it’s a string. If you look carefully and compare against the first few rows of the DataFrame shown below, you may figure out that the string is actually a concatenation of the numbers in the column, not the sum.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1578,7 +1782,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1690,7 +1894,7 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>This is happening because the values in that columns are read by pandas as strings, not numbers, because the zero values are given as ‘-’ instead of 0. We can see the problem clearly if we look at the <code class="docutils literal notranslate"><span class="pre">info</span></code> for the bridges DataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1725,7 +1929,7 @@ memory usage: 6.0+ KB
 </div>
 <p>To fix this, we can use the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method to fill all the ‘-’ values with zeros, and then change the dtype of the affected columns back to integer.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1736,7 +1940,7 @@ memory usage: 6.0+ KB
 </div>
 <p>Then we are able to compute the total number of structurally deficient bridges in Florida.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1745,7 +1949,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1755,7 +1959,7 @@ memory usage: 6.0+ KB
 </div>
 <p>Whoa, that seems high. Let’s check on the values in the table and see where all those structurally deficient bridges are. We can sort on the ‘SD #’ column and take a look at the highest few rows:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1764,7 +1968,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1876,7 +2080,7 @@ memory usage: 6.0+ KB
 </div>
 <p>Oops! The data we loaded includes a ‘TOTALS’ row, but we don’t want that row included in our DataFrame for analysis. We can drop it (using the index for that row, 67), to fix the problem:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1886,7 +2090,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1897,7 +2101,7 @@ memory usage: 6.0+ KB
 <p>A slightly different problem occurs in the data for ‘SD Area’. In this column, the zero values were not given by ‘-’ values, but instead were actually omitted. When read in by pandas, omitted values are valid input and are different from zero values.</p>
 <p>If the intention is that missing values are indeed missing, this behavior is expected and useful. If, however, the missing values should be interpreted as zeros, then that instruction needs to be applied to the DataFrame explicitly, or problems may arise. For example, missing values don’t count in the denominator when computing the mean for a column:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1906,7 +2110,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1916,7 +2120,7 @@ memory usage: 6.0+ KB
 </div>
 <p>If we compute the mean manually using the actual number of counties, we get a different value:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1925,7 +2129,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1935,7 +2139,7 @@ memory usage: 6.0+ KB
 </div>
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">fillna</span></code> method to set all the missing values to zero, and then we get the correct answer:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1945,7 +2149,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1959,7 +2163,7 @@ memory usage: 6.0+ KB
 <h2>Expanding<a class="headerlink" href="#Expanding" title="Permalink to this headline">¶</a></h2>
 <p>New columns can be added to an existing DataFrame simply by assiging a value to a new column label, using plain square bracket notation. This makes it easy to create and derived values to a DataFrame.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1968,7 +2172,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1977,7 +2181,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2053,7 +2257,7 @@ memory usage: 6.0+ KB
 </div>
 <p>Adding rows to a DataFrame can be done as well, using the <code class="docutils literal notranslate"><span class="pre">loc</span></code> indexer (see the next section on slicing for more about <code class="docutils literal notranslate"><span class="pre">loc</span></code>).</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2062,7 +2266,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2071,7 +2275,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2154,7 +2358,7 @@ memory usage: 6.0+ KB
 <p>Slicing by index is done using the <code class="docutils literal notranslate"><span class="pre">iloc</span></code>. This makes the DataFrame operate in a manner similar to a numpy array.</p>
 <p>Giving only one index or set of indexes selects from the rows only.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2163,7 +2367,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2215,7 +2419,7 @@ memory usage: 6.0+ KB
 </div>
 <p>Giving two sets of of indexes selects from the rows and columns.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2224,7 +2428,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2280,7 +2484,7 @@ memory usage: 6.0+ KB
 <h3>Slicing by Label<a class="headerlink" href="#Slicing-by-Label" title="Permalink to this headline">¶</a></h3>
 <p>Slicing by label is done using the <code class="docutils literal notranslate"><span class="pre">loc</span></code>. Instead of finding rows or columns based on the raw position in the DataFrame, the <code class="docutils literal notranslate"><span class="pre">loc</span></code> indexer finds rows or columns based upon the values in the <code class="docutils literal notranslate"><span class="pre">index</span></code> or <code class="docutils literal notranslate"><span class="pre">columns</span></code> attributes of the DataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2289,7 +2493,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2384,7 +2588,7 @@ memory usage: 6.0+ KB
 <p>An important feature of the <code class="docutils literal notranslate"><span class="pre">loc</span></code> selector is that the resulting selection includes both the starting <em>and</em> the ending label. This is different from the usual Python slicing process, where the slice runs from the starting position up to but not including the ending position.</p>
 <p>It can also be confusing to use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> selector when the <code class="docutils literal notranslate"><span class="pre">index</span></code> being used has integer values. Case must be taken to select the rows you want, even when the <code class="docutils literal notranslate"><span class="pre">index</span></code> is a RangeIndex starting from zero. Consider these two selections, which are very similar but yield different results:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2393,7 +2597,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2452,7 +2656,7 @@ memory usage: 6.0+ KB
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2461,7 +2665,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2518,7 +2722,7 @@ memory usage: 6.0+ KB
 <h2>Sorting<a class="headerlink" href="#Sorting" title="Permalink to this headline">¶</a></h2>
 <p>Sorting must be done explictly using the index, or one or more columns of values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2527,7 +2731,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2631,7 +2835,7 @@ memory usage: 6.0+ KB
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2640,7 +2844,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2748,7 +2952,7 @@ memory usage: 6.0+ KB
 <h2>Merging<a class="headerlink" href="#Merging" title="Permalink to this headline">¶</a></h2>
 <p>If we have two DataFrames that contain related data, we may want to merge the contents into a single DataFrame for some kinds of analysis. For example, suppose we have a DataFrame that gives enumerates counties in Florida by FDOT District, like this one:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2758,7 +2962,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2837,7 +3041,7 @@ memory usage: 6.0+ KB
 <p>Advanced users will find details on a variety of other <code class="docutils literal notranslate"><span class="pre">merge</span></code> arguments in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html#pandas.merge">function documentation</a>. There are also <code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">join</span></code> shorthand methods available as methods on a DataFrame, although each represents an application of the more general <code class="docutils literal notranslate"><span class="pre">merge</span></code> method illustrated here.</p>
 <p>To merge the county data with the District numbers, we can merge the two datasets using the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function. In the population data file we previously loaded, the county names are given in a column named ‘Name’, while in the district mbmership table, the county names are given in a column named ‘County’, we we’ll use the <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> arguments to identify that the merge keys have different names.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2846,7 +3050,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2884,7 +3088,7 @@ memory usage: 6.0+ KB
 </div>
 <p>In this instance, the ‘inner’ merge resulted in a new DataFrame, but with zero rows of data. This is because, as it turns out, the merge keys are not actually the same:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2893,7 +3097,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2968,7 +3172,7 @@ memory usage: 6.0+ KB
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -2977,7 +3181,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3035,7 +3239,7 @@ memory usage: 6.0+ KB
 </div>
 <p>The names of the counties in the first table are given with the appelation “Name County”, while in the second table, they are identified merely as “Name”. In order to use the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function, the keys must match exactly across the two tables. To make this work, we’ll need to strip the ‘County’ from the names in the first table. We can do so with the <code class="docutils literal notranslate"><span class="pre">str.replace</span></code> method, like this:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3045,7 +3249,7 @@ memory usage: 6.0+ KB
 </div>
 <p>Then, if we attempt the merge again, we’ll get the results we expect.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3055,7 +3259,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3144,7 +3348,7 @@ memory usage: 6.0+ KB
 <p>The merge here, adding the FDOT district to the County table, is a one-to-one merge (i.e., every row in the left table matches one and only one row in the right table). However, that one-to-one is <em>not</em> required to undertake a merge. We can also merge data that has one-to-many and many-to-one relationships, and even many-to-many, although that merge type is less common in most transportation applications.</p>
 <p>As an example, consider this table that gives the FDOT District name and headquarters location for each district:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3154,7 +3358,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3227,7 +3431,7 @@ memory usage: 6.0+ KB
 </div>
 <p>If we want to add a column that gives the district name to the counties table we already have, we can use a many-to-one merge. This is actually just detected automatically, so there is no extra argument to give.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3236,7 +3440,7 @@ memory usage: 6.0+ KB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3337,7 +3541,7 @@ memory usage: 6.0+ KB
 <p>Because both the left and right DataFrames have a column named ‘Name’, in the merged result the column from the left DataFrame has a ‘_x’ appended, while the column from the right DataFrame has a ‘_y’ appended. This is configurable using the <em>suffixes</em> argument, or by just changing the column names before merging. In fact, many merge details can be controlled easily by manipulating the left and right arguments before merging. For example, if we only want to get the district name, not the
 headquarters, we can slice the right DataFrame to only include what we want:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3346,7 +3550,7 @@ headquarters, we can slice the right DataFrame to only include what we want:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3444,7 +3648,7 @@ headquarters, we can slice the right DataFrame to only include what we want:</p>
 <p>Often data we are working with has multiple categories of columns. For example, the bridge data we worked with above has two data types: the number of bridges by condition, and the deck area by condition. We can explicitly gather together those groups of columns using a multi-level index.</p>
 <p>To demonstate this, we’ll make a copy of the <code class="docutils literal notranslate"><span class="pre">bridges</span></code> DataFrame with the county name as the index.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3454,7 +3658,7 @@ headquarters, we can slice the right DataFrame to only include what we want:</p>
 </div>
 <p>There are ten columns of this dataframe now, five counts and five areas.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3463,7 +3667,7 @@ headquarters, we can slice the right DataFrame to only include what we want:</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -3475,7 +3679,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>We can use a list of tuples to create a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> that gives both the column’s category and a name. Notice that we can duplicate the condition names without trouble, because the duplicate values have different categories.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3488,7 +3692,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3497,7 +3701,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3628,7 +3832,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 <h3>Stacking and Unstacking<a class="headerlink" href="#Stacking-and-Unstacking" title="Permalink to this headline">¶</a></h3>
 <p>One advantage of using this multi-index approach to grouping similar data is that it makes it much easier to reshape the DataFrame for different types of analysis. For example, we can transform the bridges dataframe to have a for for each county and condition, and just two columns (count and area), by <code class="docutils literal notranslate"><span class="pre">stack</span></code> ing the data.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3638,7 +3842,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3741,7 +3945,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>One thing you might notice here is that the conditions have been reordered. The new order isn’t consistent with the categorical meanings, but instead is simply alphabetic. We can preserve the ordering by converting these values into ordered categorical values like this:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3756,7 +3960,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3860,7 +4064,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 <p>Although obviously that’s a bit complicated and it may be easier to simply rename the conditions in a way that the alphabetic sorting works for us.</p>
 <p>Now, for example, we can easily get the average deck area of bridges by condition.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3870,7 +4074,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3987,7 +4191,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>We can also reverse this transformation, returning to a wider format, with the <code class="docutils literal notranslate"><span class="pre">unstack</span></code> method.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -3997,7 +4201,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4161,7 +4365,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>If you <code class="docutils literal notranslate"><span class="pre">unstack</span></code> a DataFrame that doesn’t have a MultiIndex index with at least two levels, you’ll get a one dimensional Series instead of a DataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4170,7 +4374,7 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4199,7 +4403,7 @@ Length: 1005, dtype: float64
 the process so the results do not conform to one of these patterns, but that is a more advanced topic that will not be discussed here.</p>
 <p>For example, we might group counties by district, and then total the population values, to get to total population by district:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4208,7 +4412,7 @@ the process so the results do not conform to one of these patterns, but that is 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4295,7 +4499,7 @@ the process so the results do not conform to one of these patterns, but that is 
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4304,7 +4508,7 @@ the process so the results do not conform to one of these patterns, but that is 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4377,7 +4581,7 @@ or <a class="reference external" href="https://pandas.pydata.org/pandas-docs/sta
 </ul>
 <p>Let’s use <code class="docutils literal notranslate"><span class="pre">cut</span></code> to create five categorical values of county population:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4387,7 +4591,7 @@ or <a class="reference external" href="https://pandas.pydata.org/pandas-docs/sta
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4402,7 +4606,7 @@ Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4411,7 +4615,7 @@ Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4433,7 +4637,7 @@ Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663
 </div>
 <p>Those bins divide the range of population values evenly into 5 bins, but they do appear a bit random. We can set more reasonable value by explicitly giving bin boundaries that are round numbers of our choosing:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4444,7 +4648,7 @@ Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4460,7 +4664,7 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
 </div>
 <p>We can then pass this categorical data directly to the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method, instead of naming existing columns in the DataFrame to use as the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> keys.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4469,7 +4673,7 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4566,7 +4770,7 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
 <p>When aggregation function are applied, the result is generally one row per group, instead of one row per row.</p>
 <p>Multiple aggregation functions can be applied simultaneously using the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method, like this:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4575,7 +4779,7 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4658,7 +4862,7 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
 indexed the same as the original, which makes it easy to use <code class="docutils literal notranslate"><span class="pre">transform</span></code> to create new derived columns based on group-wise aggregations or transforms.</p>
 <p>For example, to add a new column that contains the FDOT District total population for each county, we can give the <code class="docutils literal notranslate"><span class="pre">sum</span></code> function to <code class="docutils literal notranslate"><span class="pre">transform</span></code>, and write the result as a new column in the original DataFrame:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4668,7 +4872,7 @@ indexed the same as the original, which makes it easy to use <code class="docuti
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4682,7 +4886,7 @@ Name: 2019 Population, dtype: float64
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4691,7 +4895,7 @@ Name: 2019 Population, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4779,7 +4983,7 @@ Name: 2019 Population, dtype: float64
 </div>
 <p>The second and third counties in the <code class="docutils literal notranslate"><span class="pre">fl_2</span></code> DataFrame are both in District 4, so both rows of this output give the total population in District 4. Generating the output like this makes it super easy to attach the result as a new column in the DataFrame:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4788,7 +4992,7 @@ Name: 2019 Population, dtype: float64
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4797,7 +5001,7 @@ Name: 2019 Population, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4891,7 +5095,7 @@ Name: 2019 Population, dtype: float64
 </div>
 <p>In addition to expanding aggregate measures to match with the rows of the original DataFrame, the <code class="docutils literal notranslate"><span class="pre">transform</span></code> function can also generate unique row-wise values, which can be computed relative to the group instead of relative to the entire DataFrame. For example, to compute the fraction of the population of each district living in each county:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -4901,7 +5105,7 @@ Name: 2019 Population, dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">

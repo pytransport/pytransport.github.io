@@ -29,6 +29,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -39,7 +40,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Data Formats for Choice Modeling" href="data_shapes.html" />
+    <link rel="next" title="Discrete Choice Theory" href="001-fundamentals.html" />
     <link rel="prev" title="Creating Dynamic Maps" href="../geographic-analysis/dynamic-maps.html" /> 
 </head>
 
@@ -95,10 +96,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Discrete Choice Modeling</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_shapes.html">Data Formats for Choice Modeling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_exville_mode_choice.html">Exampville Mode Choice</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_exville_mc_logsums.html">Exampville Mode Choice Logsums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_exville_dest.html">Exampville Destination Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html">Discrete Choice Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html">Estimating Model Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html">Data for Discrete Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="004-mtc-modechoice-practical.html">Practical Mode Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="101_exville_mode_choice.html">Exampville Mode Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="102_exville_mc_logsums.html">Exampville Mode Choice Logsums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103_exville_dest.html">Exampville Destination Choice</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
@@ -195,29 +199,104 @@
 <h1>Discrete Choice Modeling<a class="headerlink" href="#discrete-choice-modeling" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="data_shapes.html">Data Formats for Choice Modeling</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_shapes.html#idco">idco Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_shapes.html#idca">idca Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="001-fundamentals.html">Discrete Choice Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Mathematical-Derivation">Mathematical Derivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#The-Gumbel-Distribution">The Gumbel Distribution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="001-fundamentals.html#Scale-and-Translation">Scale and Translation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="1_exville_mode_choice.html">Exampville Mode Choice</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="1_exville_mode_choice.html#Preprocessing">Preprocessing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="1_exville_mode_choice.html#Filtering">Filtering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="1_exville_mode_choice.html#Merging">Merging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#The-Logistic-Distribution">The Logistic Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Maximium-over-Multiple-Gumbels">Maximium over Multiple Gumbels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Deriving-the-Multinomial-Logit-Choice-Model">Deriving the Multinomial Logit Choice Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Arbitrary-Scale">Arbitrary Scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Arbitrary-Location">Arbitrary Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Too-Much-Arbitrary-ness-in-Location">Too Much Arbitrary-ness in Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Typical-Form-of-Systematic-Utility">Typical Form of Systematic Utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html#Independence-of-Irrelevant-Alternatives-(IIA)">Independence of Irrelevant Alternatives (IIA)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="1_exville_mode_choice.html#Model-Definition">Model Definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_exville_mode_choice.html#Model-Estimation">Model Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="1_exville_mode_choice.html#Save-and-Report-Model">Save and Report Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="002-estimating-parameters.html">Estimating Model Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Only-differences-in-utility-matter">Only differences in utility matter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Probability-not-utility">Probability not utility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Likelihood">Likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Maximum-likelihood">Maximum likelihood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Alternative-specific-constants">Alternative specific constants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Standard-error-of-the-estimate">Standard error of the estimate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Goodness-of-Fit">Goodness of Fit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="002-estimating-parameters.html#Rho-Squared">Rho Squared</a></li>
+<li class="toctree-l3"><a class="reference internal" href="002-estimating-parameters.html#Adjusted-Rho-Squared">Adjusted Rho Squared</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="2_exville_mc_logsums.html">Exampville Mode Choice Logsums</a></li>
-<li class="toctree-l1"><a class="reference internal" href="3_exville_dest.html">Exampville Destination Choice</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="3_exville_dest.html#Data-Preparation">Data Preparation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_exville_dest.html#Model-Definition">Model Definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_exville_dest.html#Model-Estimation">Model Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_exville_dest.html#Model-Visualization">Model Visualization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_exville_dest.html#Save-and-Report-Model">Save and Report Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html#Hypothesis-Testing">Hypothesis Testing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="002-estimating-parameters.html#Single-Parameter-Tests">Single Parameter Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="002-estimating-parameters.html#Parameter-Equality-Tests">Parameter Equality Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="002-estimating-parameters.html#Parameter-Ratio-Tests">Parameter Ratio Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="002-estimating-parameters.html#Full-Model-Likelihood-Ratio-Test">Full Model Likelihood Ratio Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="003-data-for-discrete-choice.html">Data for Discrete Choice</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html#Fundamental-Data-Formats">Fundamental Data Formats</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003-data-for-discrete-choice.html#idco-Format">idco Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="003-data-for-discrete-choice.html#idca-Format">idca Format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="003-data-for-discrete-choice.html#Data-Conversion">Data Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html#Data-Encoding">Data Encoding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003-data-for-discrete-choice.html#Categorical-Encoding">Categorical Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="003-data-for-discrete-choice.html#One-Hot-Encoding">One Hot Encoding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html#Adding-on-to-Data">Adding on to Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="003-data-for-discrete-choice.html#Geocoding">Geocoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="003-data-for-discrete-choice.html#Attaching-Skims">Attaching Skims</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html#Assembling-Data-for-Estimation">Assembling Data for Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html#Data-Subsets">Data Subsets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="004-mtc-modechoice-practical.html">Practical Mode Choice</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="004-mtc-modechoice-practical.html#Model-Design">Model Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Income-Refinements">Income Refinements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Alternative-Travel-Time-Specifications">Alternative Travel Time Specifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#The-Value-of-Travel-Time">The Value of Travel Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Better-Value-of-Time-Specifications">Better Value of Time Specifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Additional-Decision-Maker-Related-Variables">Additional Decision Maker Related Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Including-Trip-Context-Variables">Including Trip Context Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Including-Interactions-Between-Variables">Including Interactions Between Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Additional-Model-Testing-and-Refinement">Additional Model Testing and Refinement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="004-mtc-modechoice-practical.html#Market-Segmentation">Market Segmentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Market-Segmentation-Hypothesis-Tests">Market Segmentation Hypothesis Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Segmentation-on-Auto-Ownership">Segmentation on Auto Ownership</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Segmentation-on-Gender">Segmentation on Gender</a></li>
+<li class="toctree-l3"><a class="reference internal" href="004-mtc-modechoice-practical.html#Partial-Segmentation">Partial Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="004-mtc-modechoice-practical.html#Summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="101_exville_mode_choice.html">Exampville Mode Choice</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="101_exville_mode_choice.html#Preprocessing">Preprocessing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="101_exville_mode_choice.html#Filtering">Filtering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="101_exville_mode_choice.html#Merging">Merging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="101_exville_mode_choice.html#Model-Definition">Model Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="101_exville_mode_choice.html#Model-Estimation">Model Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="101_exville_mode_choice.html#Save-and-Report-Model">Save and Report Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="102_exville_mc_logsums.html">Exampville Mode Choice Logsums</a></li>
+<li class="toctree-l1"><a class="reference internal" href="103_exville_dest.html">Exampville Destination Choice</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="103_exville_dest.html#Data-Preparation">Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103_exville_dest.html#Model-Definition">Model Definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103_exville_dest.html#Model-Estimation">Model Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103_exville_dest.html#Model-Visualization">Model Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103_exville_dest.html#Save-and-Report-Model">Save and Report Model</a></li>
 </ul>
 </li>
 </ul>
@@ -232,7 +311,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="data_shapes.html" class="btn btn-neutral float-right" title="Data Formats for Choice Modeling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="001-fundamentals.html" class="btn btn-neutral float-right" title="Discrete Choice Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../geographic-analysis/dynamic-maps.html" class="btn btn-neutral float-left" title="Creating Dynamic Maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

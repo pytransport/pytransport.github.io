@@ -1,0 +1,1313 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/choice-modeling/SERPM-Public-Use-Data.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;Masked_SEFL_HTS_Data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;../../example-package/transportation_tutorials/data/Masked_SEFL_HTS_Data.xlsx&#39;
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hhs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;Masked_SEFL_HTS_Data&quot;</span><span class="p">),</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Households&quot;</span><span class="p">)</span>
+<span class="n">persons</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;Masked_SEFL_HTS_Data&quot;</span><span class="p">),</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Persons&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;Masked_SEFL_HTS_Data&quot;</span><span class="p">),</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;Trips&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;ID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">skims</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;SEFlorida_HTS_Public_Use_Skims2&quot;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Id&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">trips</span><span class="p">,</span> <span class="n">skims</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span><span class="o">.</span><span class="n">TRPMODE</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1     13738
+12      651
+11      289
+3       186
+4       165
+6       121
+8        75
+10       73
+5        72
+13       53
+2        49
+7        19
+9         3
+Name: TRPMODE, dtype: int64
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mode_codes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Car&#39;</span><span class="p">,</span>     <span class="c1"># &lt;1&gt; “Car, truck, or van</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Car&#39;</span><span class="p">,</span>     <span class="c1"># &lt;2&gt; “Motorcycle/Moped”</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Bus&#39;</span><span class="p">,</span>     <span class="c1"># &lt;3&gt; “Local Bus (Breeze, Metrobus, Palm Tran)”</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Car&#39;</span><span class="p">,</span>     <span class="c1"># &lt;4&gt; “School Bus”</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Bus&#39;</span><span class="p">,</span>     <span class="c1"># &lt;5&gt; “Commuter Bus”</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Rail&#39;</span><span class="p">,</span>    <span class="c1"># &lt;6&gt; “Metrorail”</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="s1">&#39;Rail&#39;</span><span class="p">,</span>    <span class="c1"># &lt;7&gt; “Metromover”</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="s1">&#39;Rail&#39;</span><span class="p">,</span>    <span class="c1"># &lt;8&gt; “Tri-Rail”</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="s1">&#39;Taxi&#39;</span><span class="p">,</span>    <span class="c1"># &lt;9&gt; “Taxicab”</span>
+    <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;TNC&#39;</span><span class="p">,</span>    <span class="c1"># &lt;10&gt; “Shared-car services (Lyft, Uber, Zip Car)”</span>
+    <span class="mi">11</span><span class="p">:</span> <span class="s1">&#39;Bike&#39;</span><span class="p">,</span>   <span class="c1"># &lt;11&gt; “Bicycle”</span>
+    <span class="mi">12</span><span class="p">:</span> <span class="s1">&#39;Walk&#39;</span><span class="p">,</span>   <span class="c1"># &lt;12&gt; “Walked”</span>
+    <span class="mi">13</span><span class="p">:</span> <span class="s1">&#39;Nope&#39;</span><span class="p">,</span>   <span class="c1"># &lt;13&gt; “Other method&quot;</span>
+    <span class="mi">97</span><span class="p">:</span> <span class="s1">&#39;Nope&#39;</span><span class="p">,</span>   <span class="c1"># &lt;997&gt; Not applicable</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span><span class="p">[</span><span class="s1">&#39;trip_mode_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trips_skims</span><span class="o">.</span><span class="n">TRPMODE</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mode_codes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span><span class="p">[</span><span class="s1">&#39;trip_mode_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Car     13952
+Walk      651
+Bike      289
+Bus       258
+Rail      215
+TNC        73
+Nope       53
+Taxi        3
+Name: trip_mode_name, dtype: int64
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mode_codes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Car&#39;</span><span class="p">,</span>     <span class="c1"># &lt;1&gt; “Car, truck, or van</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Car&#39;</span><span class="p">,</span>     <span class="c1"># &lt;2&gt; “Motorcycle/Moped”</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Bus&#39;</span><span class="p">,</span>     <span class="c1"># &lt;3&gt; “Local Bus (Breeze, Metrobus, Palm Tran)”</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Car&#39;</span><span class="p">,</span>     <span class="c1"># &lt;4&gt; “School Bus”</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Bus&#39;</span><span class="p">,</span>     <span class="c1"># &lt;5&gt; “Commuter Bus”</span>
+    <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Rail&#39;</span><span class="p">,</span>    <span class="c1"># &lt;6&gt; “Metrorail”</span>
+    <span class="mi">7</span><span class="p">:</span> <span class="s1">&#39;Rail&#39;</span><span class="p">,</span>    <span class="c1"># &lt;7&gt; “Metromover”</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="s1">&#39;Rail&#39;</span><span class="p">,</span>    <span class="c1"># &lt;8&gt; “Tri-Rail”</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="s1">&#39;Nope&#39;</span><span class="p">,</span>    <span class="c1"># &lt;9&gt; “Taxicab”</span>
+    <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;Nope&#39;</span><span class="p">,</span>   <span class="c1"># &lt;10&gt; “Shared-car services (Lyft, Uber, Zip Car)”</span>
+    <span class="mi">11</span><span class="p">:</span> <span class="s1">&#39;Bike&#39;</span><span class="p">,</span>   <span class="c1"># &lt;11&gt; “Bicycle”</span>
+    <span class="mi">12</span><span class="p">:</span> <span class="s1">&#39;Walk&#39;</span><span class="p">,</span>   <span class="c1"># &lt;12&gt; “Walked”</span>
+    <span class="mi">13</span><span class="p">:</span> <span class="s1">&#39;Nope&#39;</span><span class="p">,</span>   <span class="c1"># &lt;13&gt; “Other method&quot;</span>
+    <span class="mi">97</span><span class="p">:</span> <span class="s1">&#39;Nope&#39;</span><span class="p">,</span>   <span class="c1"># &lt;997&gt; Not applicable</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span><span class="p">[</span><span class="s1">&#39;trip_mode_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trips_skims</span><span class="o">.</span><span class="n">TRPMODE</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mode_codes</span><span class="p">)</span>
+<span class="n">trips_skims</span><span class="p">[</span><span class="s1">&#39;trip_mode_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Car     13952
+Walk      651
+Bike      289
+Bus       258
+Rail      215
+Nope      129
+Name: trip_mode_name, dtype: int64
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span> <span class="o">=</span> <span class="n">trips_skims</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;trip_mode_name != &#39;Nope&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">mode_recodes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Car&#39;</span><span class="p">:</span>  <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;Walk&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;Bike&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;Bus&#39;</span><span class="p">:</span>  <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;Rail&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span><span class="p">[</span><span class="s1">&#39;trip_chosen_mode_recode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trips_skims</span><span class="p">[</span><span class="s1">&#39;trip_mode_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mode_recodes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;ipython-input-49-9c87f1283fe3&gt;:1: SettingWithCopyWarning:
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  trips_skims[&#39;trip_chosen_mode_recode&#39;] = trips_skims[&#39;trip_mode_name&#39;].map(mode_recodes)
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">larch</span>
+<span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DataFrames</span><span class="p">(</span>
+    <span class="n">trips_skims</span><span class="p">,</span>
+    <span class="n">alt_names</span><span class="o">=</span><span class="n">mode_recodes</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
+    <span class="n">alt_codes</span><span class="o">=</span><span class="n">mode_recodes</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+    <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;trip_chosen_mode_recode&#39;</span><span class="p">,</span>
+    <span class="n">av</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">dfs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">time</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">auto_DA_TL_Time</span>
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_Walk</span> <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">time</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">auto_DA_NT_Dist</span> <span class="o">*</span> <span class="mi">20</span>
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_Bike</span> <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">time</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">auto_DA_NT_Dist</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_Bus</span> <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">time</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">wtw_lb_LB_ivt</span>
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_Rail</span> <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">time</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">wtw_lr_LRT_ivt</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+req_data does not request {choice_ca,choice_co,choice_co_code} but choice is set and being provided
+req_data does not request avail_ca or avail_co but it is set and being provided
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">loglike</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+-22121.108532059458
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">maximize_loglike</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<h3>Iteration 032 [Optimization terminated successfully.] </h3></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<p>LL = -6486.038508807775</p></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+      <th>initvalue</th>
+      <th>nullvalue</th>
+      <th>minimum</th>
+      <th>maximum</th>
+      <th>holdfast</th>
+      <th>note</th>
+      <th>best</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ASC_Bike</th>
+      <td>-3.900557</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-3.900557</td>
+    </tr>
+    <tr>
+      <th>ASC_Bus</th>
+      <td>-4.199790</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-4.199790</td>
+    </tr>
+    <tr>
+      <th>ASC_Rail</th>
+      <td>-4.756608</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-4.756608</td>
+    </tr>
+    <tr>
+      <th>ASC_Walk</th>
+      <td>-3.013423</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-3.013423</td>
+    </tr>
+    <tr>
+      <th>time</th>
+      <td>-0.000614</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.000614</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div><table style="margin-top:1px;"><tr><th>key</th><th style="text-align:left;">value</th></tr><tr><td>loglike</td><td style="text-align:left;">-6486.038508807775</td></tr><tr><td>x</td><td style="text-align:left;"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ASC_Bike</th>
+      <td>-3.900557</td>
+    </tr>
+    <tr>
+      <th>ASC_Bus</th>
+      <td>-4.199790</td>
+    </tr>
+    <tr>
+      <th>ASC_Rail</th>
+      <td>-4.756608</td>
+    </tr>
+    <tr>
+      <th>ASC_Walk</th>
+      <td>-3.013423</td>
+    </tr>
+    <tr>
+      <th>time</th>
+      <td>-0.000614</td>
+    </tr>
+  </tbody>
+</table></td></tr><tr><td>tolerance</td><td style="text-align:left;">6.785982252948087e-06</td></tr><tr><td>steps</td><td style="text-align:left;"><pre>array([1. , 1. , 1. , 1. , 1. , 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
+       0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
+       0.5, 0.5, 0.5, 0.5, 0.5, 0.5])</pre></td></tr><tr><td>message</td><td style="text-align:left;">'Optimization terminated successfully.'</td></tr><tr><td>elapsed_time</td><td style="text-align:left;">0:00:05.532796</td></tr><tr><td>method</td><td style="text-align:left;">'bhhh'</td></tr><tr><td>n_cases</td><td style="text-align:left;">15365</td></tr><tr><td>iteration_number</td><td style="text-align:left;">32</td></tr><tr><td>logloss</td><td style="text-align:left;">0.4221307197401741</td></tr></table></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">trips_skims</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 15365 entries, 6653 to 18672
+Data columns (total 353 columns):
+ #    Column               Dtype
+---   ------               -----
+ 0    HHPERSONID           int64
+ 1    HHID                 int64
+ 2    TRIPNO               int64
+ 3    TRIPID               int64
+ 4    HHSIZE               int64
+ 5    PROXY                int64
+ 6    ORIGIN               int64
+ 7    OTYPE                int64
+ 8    OCITY                object
+ 9    OSTATE               object
+ 10   OZIP                 int64
+ 11   OACT                 int64
+ 12   DESTINATION          int64
+ 13   DTYPE                int64
+ 14   DCITY                object
+ 15   DSTATE               object
+ 16   DZIP                 int64
+ 17   DACT                 int64
+ 18   TRPMODE              int64
+ 19   TRPMODEOTH           object
+ 20   TRPROST              int64
+ 21   DRVRPASS             int64
+ 22   TOLL                 int64
+ 23   TRIPDUR              int64
+ 24   ODATE                datetime64[ns]
+ 25   OTIME                object
+ 26   DDATE                datetime64[ns]
+ 27   DTIME                object
+ 28   STUDYDAY             int64
+ 29   STTRAVEL             int64
+ 30   DISTANCE             float64
+ 31   OTAZ                 int64
+ 32   DTAZ                 int64
+ 33   OLON_RANDOM          float64
+ 34   OLAT_RANDOM          float64
+ 35   DLON_RANDOM          float64
+ 36   DLAT_RANDOM          float64
+ 37   Unnamed: 38          float64
+ 38   Unnamed: 39          float64
+ 39   obOrigMgra           int64
+ 40   obDestMgra           int64
+ 41   obPeriod             int64
+ 42   auto_DA_NT_Time      float64
+ 43   auto_DA_NT_FFTime    float64
+ 44   auto_DA_NT_Dist      float64
+ 45   auto_DA_TL_Time      float64
+ 46   auto_DA_TL_FFTime    float64
+ 47   auto_DA_TL_Dist      float64
+ 48   auto_DA_TL_Value     float64
+ 49   auto_DA_TL_FacLen    float64
+ 50   auto_HOV_NT_Time     float64
+ 51   auto_HOV_NT_FFTime   float64
+ 52   auto_HOV_NT_Dist     float64
+ 53   auto_HOV_NT_FacLen   float64
+ 54   auto_S2TH_TIME       float64
+ 55   auto_S2TH_FFTIME     float64
+ 56   auto_S2TH_DIST       float64
+ 57   auto_S2TH_TOLLCOST   float64
+ 58   auto_S2TH_TOLLDIST   float64
+ 59   auto_S2TH_HOVDIST    float64
+ 60   auto_S3NH_TIME       float64
+ 61   auto_S3NH_FFTIME     float64
+ 62   auto_S3NH_DIST       float64
+ 63   auto_S3NH_HOVDIST    float64
+ 64   auto_S3TH_TIME       float64
+ 65   auto_S3TH_FFTIME     float64
+ 66   auto_S3TH_DIST       float64
+ 67   auto_S3TH_TOLLCOST   float64
+ 68   auto_S3TH_TOLLDIST   float64
+ 69   auto_S3TH_HOVDIST    float64
+ 70   nm_walkTime          float64
+ 71   nm_bikeTime          float64
+ 72   wtw_cr_AccTime       float64
+ 73   wtw_cr_EgrTime       float64
+ 74   wtw_cr_WalkAuxTime   float64
+ 75   wtw_cr_LB_ivt        float64
+ 76   wtw_cr_EB_ivt        float64
+ 77   wtw_cr_BRT_ivt       float64
+ 78   wtw_cr_LRT_ivt       float64
+ 79   wtw_cr_CR_ivt        float64
+ 80   wtw_cr_fwait         float64
+ 81   wtw_cr_xwait         float64
+ 82   wtw_cr_fare          int64
+ 83   wtw_cr_Main_Mode     int64
+ 84   wtw_cr_xfers         int64
+ 85   wtw_cr_AccDist       int64
+ 86   wtw_cr_EgrDist       int64
+ 87   wtw_lr_AccTime       float64
+ 88   wtw_lr_EgrTime       float64
+ 89   wtw_lr_WalkAuxTime   float64
+ 90   wtw_lr_LB_ivt        float64
+ 91   wtw_lr_EB_ivt        float64
+ 92   wtw_lr_BRT_ivt       float64
+ 93   wtw_lr_LRT_ivt       float64
+ 94   wtw_lr_CR_ivt        int64
+ 95   wtw_lr_fwait         float64
+ 96   wtw_lr_xwait         float64
+ 97   wtw_lr_fare          int64
+ 98   wtw_lr_Main_Mode     int64
+ 99   wtw_lr_xfers         int64
+ 100  wtw_lr_AccDist       int64
+ 101  wtw_lr_EgrDist       int64
+ 102  wtw_brt_AccTime      float64
+ 103  wtw_brt_EgrTime      float64
+ 104  wtw_brt_WalkAuxTime  float64
+ 105  wtw_brt_LB_ivt       float64
+ 106  wtw_brt_EB_ivt       float64
+ 107  wtw_brt_BRT_ivt      float64
+ 108  wtw_brt_LRT_ivt      int64
+ 109  wtw_brt_CR_ivt       int64
+ 110  wtw_brt_fwait        float64
+ 111  wtw_brt_xwait        float64
+ 112  wtw_brt_fare         int64
+ 113  wtw_brt_Main_Mode    int64
+ 114  wtw_brt_xfers        int64
+ 115  wtw_brt_AccDist      int64
+ 116  wtw_brt_EgrDist      int64
+ 117  wtw_eb_AccTime       float64
+ 118  wtw_eb_EgrTime       float64
+ 119  wtw_eb_WalkAuxTime   float64
+ 120  wtw_eb_LB_ivt        float64
+ 121  wtw_eb_EB_ivt        float64
+ 122  wtw_eb_BRT_ivt       int64
+ 123  wtw_eb_LRT_ivt       int64
+ 124  wtw_eb_CR_ivt        int64
+ 125  wtw_eb_fwait         float64
+ 126  wtw_eb_xwait         float64
+ 127  wtw_eb_fare          int64
+ 128  wtw_eb_Main_Mode     int64
+ 129  wtw_eb_xfers         int64
+ 130  wtw_eb_AccDist       int64
+ 131  wtw_eb_EgrDist       int64
+ 132  wtw_lb_AccTime       float64
+ 133  wtw_lb_EgrTime       float64
+ 134  wtw_lb_WalkAuxTime   float64
+ 135  wtw_lb_LB_ivt        float64
+ 136  wtw_lb_fwait         float64
+ 137  wtw_lb_xwait         float64
+ 138  wtw_lb_LB_fare       float64
+ 139  wtw_lb_xfers         int64
+ 140  wtw_lb_AccDist       int64
+ 141  wtw_lb_EgrDist       int64
+ 142  wtd_cr_AccTime       float64
+ 143  wtd_cr_EgrTime       float64
+ 144  wtd_cr_WalkAuxTime   float64
+ 145  wtd_cr_LB_ivt        float64
+ 146  wtd_cr_EB_ivt        float64
+ 147  wtd_cr_BRT_ivt       float64
+ 148  wtd_cr_LRT_ivt       float64
+ 149  wtd_cr_CR_ivt        float64
+ 150  wtd_cr_fwait         float64
+ 151  wtd_cr_xwait         float64
+ 152  wtd_cr_fare          float64
+ 153  wtd_cr_Main_Mode     int64
+ 154  wtd_cr_xfers         int64
+ 155  wtd_cr_AccDist       int64
+ 156  wtd_cr_EgrDist       float64
+ 157  wtd_lr_AccTime       float64
+ 158  wtd_lr_EgrTime       float64
+ 159  wtd_lr_WalkAuxTime   float64
+ 160  wtd_lr_LB_ivt        float64
+ 161  wtd_lr_EB_ivt        float64
+ 162  wtd_lr_BRT_ivt       float64
+ 163  wtd_lr_LRT_ivt       float64
+ 164  wtd_lr_CR_ivt        int64
+ 165  wtd_lr_fwait         float64
+ 166  wtd_lr_xwait         float64
+ 167  wtd_lr_fare          float64
+ 168  wtd_lr_Main_Mode     int64
+ 169  wtd_lr_xfers         int64
+ 170  wtd_lr_AccDist       int64
+ 171  wtd_lr_EgrDist       float64
+ 172  wtd_brt_AccTime      float64
+ 173  wtd_brt_EgrTime      float64
+ 174  wtd_brt_WalkAuxTime  float64
+ 175  wtd_brt_LB_ivt       float64
+ 176  wtd_brt_EB_ivt       float64
+ 177  wtd_brt_BRT_ivt      float64
+ 178  wtd_brt_LRT_ivt      int64
+ 179  wtd_brt_CR_ivt       int64
+ 180  wtd_brt_fwait        float64
+ 181  wtd_brt_xwait        float64
+ 182  wtd_brt_fare         float64
+ 183  wtd_brt_Main_Mode    int64
+ 184  wtd_brt_xfers        int64
+ 185  wtd_brt_AccDist      int64
+ 186  wtd_brt_EgrDist      float64
+ 187  wtd_eb_AccTime       float64
+ 188  wtd_eb_EgrTime       float64
+ 189  wtd_eb_WalkAuxTime   float64
+ 190  wtd_eb_LB_ivt        float64
+ 191  wtd_eb_EB_ivt        float64
+ 192  wtd_eb_BRT_ivt       int64
+ 193  wtd_eb_LRT_ivt       int64
+ 194  wtd_eb_CR_ivt        int64
+ 195  wtd_eb_fwait         float64
+ 196  wtd_eb_xwait         float64
+ 197  wtd_eb_fare          float64
+ 198  wtd_eb_Main_Mode     int64
+ 199  wtd_eb_xfers         int64
+ 200  wtd_eb_AccDist       int64
+ 201  wtd_eb_EgrDist       float64
+ 202  wtd_lb_AccTime       float64
+ 203  wtd_lb_EgrTime       float64
+ 204  wtd_lb_WalkAuxTime   float64
+ 205  wtd_lb_LB_ivt        float64
+ 206  wtd_lb_fwait         float64
+ 207  wtd_lb_xwait         float64
+ 208  wtd_lb_LB_fare       float64
+ 209  wtd_lb_xfers         int64
+ 210  wtd_lb_AccDist       int64
+ 211  wtd_lb_EgrDist       float64
+ 212  dtw_cr_AccTime       float64
+ 213  dtw_cr_EgrTime       float64
+ 214  dtw_cr_WalkAuxTime   float64
+ 215  dtw_cr_LB_ivt        float64
+ 216  dtw_cr_EB_ivt        float64
+ 217  dtw_cr_BRT_ivt       float64
+ 218  dtw_cr_LRT_ivt       float64
+ 219  dtw_cr_CR_ivt        float64
+ 220  dtw_cr_fwait         float64
+ 221  dtw_cr_xwait         float64
+ 222  dtw_cr_fare          float64
+ 223  dtw_cr_Main_Mode     int64
+ 224  dtw_cr_xfers         int64
+ 225  dtw_cr_AccDist       float64
+ 226  dtw_cr_EgrDist       int64
+ 227  dtw_lr_AccTime       float64
+ 228  dtw_lr_EgrTime       float64
+ 229  dtw_lr_WalkAuxTime   float64
+ 230  dtw_lr_LB_ivt        float64
+ 231  dtw_lr_EB_ivt        float64
+ 232  dtw_lr_BRT_ivt       float64
+ 233  dtw_lr_LRT_ivt       float64
+ 234  dtw_lr_CR_ivt        int64
+ 235  dtw_lr_fwait         float64
+ 236  dtw_lr_xwait         float64
+ 237  dtw_lr_fare          float64
+ 238  dtw_lr_Main_Mode     int64
+ 239  dtw_lr_xfers         int64
+ 240  dtw_lr_AccDist       float64
+ 241  dtw_lr_EgrDist       int64
+ 242  dtw_brt_AccTime      float64
+ 243  dtw_brt_EgrTime      float64
+ 244  dtw_brt_WalkAuxTime  float64
+ 245  dtw_brt_LB_ivt       float64
+ 246  dtw_brt_EB_ivt       float64
+ 247  dtw_brt_BRT_ivt      float64
+ 248  dtw_brt_LRT_ivt      int64
+ 249  dtw_brt_CR_ivt       int64
+ 250  dtw_brt_fwait        float64
+ 251  dtw_brt_xwait        float64
+ 252  dtw_brt_fare         float64
+ 253  dtw_brt_Main_Mode    int64
+ 254  dtw_brt_xfers        int64
+ 255  dtw_brt_AccDist      float64
+ 256  dtw_brt_EgrDist      int64
+ 257  dtw_eb_AccTime       float64
+ 258  dtw_eb_EgrTime       float64
+ 259  dtw_eb_WalkAuxTime   float64
+ 260  dtw_eb_LB_ivt        float64
+ 261  dtw_eb_EB_ivt        float64
+ 262  dtw_eb_BRT_ivt       int64
+ 263  dtw_eb_LRT_ivt       int64
+ 264  dtw_eb_CR_ivt        int64
+ 265  dtw_eb_fwait         float64
+ 266  dtw_eb_xwait         float64
+ 267  dtw_eb_fare          float64
+ 268  dtw_eb_Main_Mode     int64
+ 269  dtw_eb_xfers         int64
+ 270  dtw_eb_AccDist       float64
+ 271  dtw_eb_EgrDist       int64
+ 272  dtw_lb_AccTime       float64
+ 273  dtw_lb_EgrTime       float64
+ 274  dtw_lb_WalkAuxTime   float64
+ 275  dtw_lb_LB_ivt        float64
+ 276  dtw_lb_fwait         float64
+ 277  dtw_lb_xwait         float64
+ 278  dtw_lb_LB_fare       float64
+ 279  dtw_lb_xfers         int64
+ 280  dtw_lb_AccDist       float64
+ 281  dtw_lb_EgrDist       int64
+ 282  dtd_cr_AccTime       float64
+ 283  dtd_cr_EgrTime       float64
+ 284  dtd_cr_WalkAuxTime   float64
+ 285  dtd_cr_LB_ivt        float64
+ 286  dtd_cr_EB_ivt        float64
+ 287  dtd_cr_BRT_ivt       float64
+ 288  dtd_cr_LRT_ivt       float64
+ 289  dtd_cr_CR_ivt        float64
+ 290  dtd_cr_fwait         float64
+ 291  dtd_cr_xwait         float64
+ 292  dtd_cr_fare          float64
+ 293  dtd_cr_Main_Mode     int64
+ 294  dtd_cr_xfers         int64
+ 295  dtd_cr_AccDist       float64
+ 296  dtd_cr_EgrDist       float64
+ 297  dtd_lr_AccTime       float64
+ 298  dtd_lr_EgrTime       float64
+ 299  dtd_lr_WalkAuxTime   float64
+ 300  dtd_lr_LB_ivt        float64
+ 301  dtd_lr_EB_ivt        float64
+ 302  dtd_lr_BRT_ivt       float64
+ 303  dtd_lr_LRT_ivt       float64
+ 304  dtd_lr_CR_ivt        int64
+ 305  dtd_lr_fwait         float64
+ 306  dtd_lr_xwait         float64
+ 307  dtd_lr_fare          float64
+ 308  dtd_lr_Main_Mode     int64
+ 309  dtd_lr_xfers         int64
+ 310  dtd_lr_AccDist       float64
+ 311  dtd_lr_EgrDist       float64
+ 312  dtd_brt_AccTime      float64
+ 313  dtd_brt_EgrTime      float64
+ 314  dtd_brt_WalkAuxTime  float64
+ 315  dtd_brt_LB_ivt       float64
+ 316  dtd_brt_EB_ivt       float64
+ 317  dtd_brt_BRT_ivt      float64
+ 318  dtd_brt_LRT_ivt      int64
+ 319  dtd_brt_CR_ivt       int64
+ 320  dtd_brt_fwait        float64
+ 321  dtd_brt_xwait        float64
+ 322  dtd_brt_fare         float64
+ 323  dtd_brt_Main_Mode    int64
+ 324  dtd_brt_xfers        int64
+ 325  dtd_brt_AccDist      float64
+ 326  dtd_brt_EgrDist      float64
+ 327  dtd_eb_AccTime       float64
+ 328  dtd_eb_EgrTime       float64
+ 329  dtd_eb_WalkAuxTime   float64
+ 330  dtd_eb_LB_ivt        float64
+ 331  dtd_eb_EB_ivt        float64
+ 332  dtd_eb_BRT_ivt       int64
+ 333  dtd_eb_LRT_ivt       int64
+ 334  dtd_eb_CR_ivt        int64
+ 335  dtd_eb_fwait         float64
+ 336  dtd_eb_xwait         float64
+ 337  dtd_eb_fare          float64
+ 338  dtd_eb_Main_Mode     int64
+ 339  dtd_eb_xfers         int64
+ 340  dtd_eb_AccDist       float64
+ 341  dtd_eb_EgrDist       float64
+ 342  dtd_lb_AccTime       float64
+ 343  dtd_lb_EgrTime       float64
+ 344  dtd_lb_WalkAuxTime   float64
+ 345  dtd_lb_LB_ivt        float64
+ 346  dtd_lb_fwait         float64
+ 347  dtd_lb_xwait         float64
+ 348  dtd_lb_LB_fare       int64
+ 349  dtd_lb_xfers         int64
+ 350  dtd_lb_AccDist       float64
+ 351  dtd_lb_EgrDist       float64
+ 352  trip_mode_name       object
+dtypes: datetime64[ns](2), float64(232), int64(111), object(8)
+memory usage: 41.5+ MB
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

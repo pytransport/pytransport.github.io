@@ -1,0 +1,2471 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Exampville Mode Choice &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Exampville Mode Choice Logsums" href="102_exville_mc_logsums.html" />
+    <link rel="prev" title="Practical Mode Choice" href="004-mtc-modechoice-practical.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="_index.html">Discrete Choice Modeling</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="001-fundamentals.html">Discrete Choice Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002-estimating-parameters.html">Estimating Model Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html">Data for Discrete Choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="004-mtc-modechoice-practical.html">Practical Mode Choice</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Exampville Mode Choice</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Preprocessing">Preprocessing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Filtering">Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Merging">Merging</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Model-Definition">Model Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Model-Estimation">Model Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Save-and-Report-Model">Save and Report Model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="102_exville_mc_logsums.html">Exampville Mode Choice Logsums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="103_exville_dest.html">Exampville Destination Choice</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="_index.html">Discrete Choice Modeling</a> &raquo;</li>
+        
+      <li>Exampville Mode Choice</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/choice-modeling/101_exville_mode_choice.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="Exampville-Mode-Choice">
+<h1>Exampville Mode Choice<a class="headerlink" href="#Exampville-Mode-Choice" title="Permalink to this headline">¶</a></h1>
+<p>Discrete choice modeling is at the heart of many transportion planning models. In this example, we will examine the development of a mode choice model for Exampville, an entirely fictional town built for the express purpose of demostrating the use of discrete choice modeling tools for transportation planning.</p>
+<p>In this notebook, we will walk through the creation of a tour mode choice model. This example will assume the reader is familiar with the mathematical basics of discrete choice modeling generally, and will focus on the technical aspects of estimating the parameters of a discrete choice model in Python using <a class="reference external" href="https://larch.newman.me">Larch</a>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">larch</span><span class="o">,</span> <span class="nn">numpy</span><span class="o">,</span> <span class="nn">pandas</span><span class="o">,</span> <span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+<p>To begin, we’ll load some raw data. The Exampville data contains a set of files similar to what we might find for a real travel survey: network skims, and tables of households, persons, and tours.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">larch.exampville</span>
+</pre></div>
+</div>
+</div>
+<p>The skims data is a file in <a class="reference external" href="https://github.com/osPlanning/omx/wiki">openmatrix</a> format, which contains a series of two-dimensional arrays describing zone-to-zone transportation level-of-service attributes. We can see below that this file contains data on travel times and costs by auto, transit, biking, and walking, for travel to and from each of 40 travel analysis zones in Exampville. Ideally, these skim values represent the “observed” travel times and costs for trips between each pair of
+zones, but generally these matrixes are approximations of these real values generated by a base-case transportation model.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">skims</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">OMX</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">skims</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span> <span class="p">)</span>
+<span class="n">skims</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;larch.OMX&gt; ⋯/exampville_skims.omx
+ |  shape:(40, 40)
+ |  data:
+ |    AUTO_COST    (float64)
+ |    AUTO_DIST    (float64)
+ |    AUTO_TIME    (float64)
+ |    BIKE_TIME    (float64)
+ |    TRANSIT_FARE (float64)
+ |    TRANSIT_IVTT (float64)
+ |    TRANSIT_OVTT (float64)
+ |    WALK_DIST    (float64)
+ |    WALK_TIME    (float64)
+ |  lookup:
+ |    TAZ_AREA_TYPE (40 |S3)
+ |    TAZ_ID        (40 int64)
+</pre></div></div>
+</div>
+<p>The other files are simple <code class="docutils literal notranslate"><span class="pre">csv</span></code> text files, containing row-wise data about households, persons, and tours, as might be contained in survey results from a household travel survey conducted in Exampville.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">hh</span> <span class="p">)</span>
+<span class="n">pp</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">person</span> <span class="p">)</span>
+<span class="n">tour</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">tour</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s check out what’s in each table.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">hh</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 5000 entries, 0 to 4999
+Data columns (total 13 columns):
+ #   Column       Non-Null Count  Dtype
+---  ------       --------------  -----
+ 0   X            5000 non-null   float64
+ 1   Y            5000 non-null   float64
+ 2   INCOME       5000 non-null   float64
+ 3   N_VEHICLES   5000 non-null   int64
+ 4   HHSIZE       5000 non-null   int64
+ 5   geometry     5000 non-null   object
+ 6   HOMETAZ      5000 non-null   int64
+ 7   HHID         5000 non-null   int64
+ 8   N_TRIPS      5000 non-null   int64
+ 9   N_TRIPS_HBW  5000 non-null   int64
+ 10  N_TRIPS_HBO  5000 non-null   int64
+ 11  N_TRIPS_NHB  5000 non-null   int64
+ 12  N_WORKERS    5000 non-null   int64
+dtypes: float64(3), int64(9), object(1)
+memory usage: 507.9+ KB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 12349 entries, 0 to 12348
+Data columns (total 12 columns):
+ #   Column         Non-Null Count  Dtype
+---  ------         --------------  -----
+ 0   PERSONID       12349 non-null  int64
+ 1   HHID           12349 non-null  int64
+ 2   HHIDX          12349 non-null  int64
+ 3   AGE            12349 non-null  int64
+ 4   WORKS          12349 non-null  int64
+ 5   N_WORK_TOURS   12349 non-null  int64
+ 6   N_OTHER_TOURS  12349 non-null  int64
+ 7   N_TOURS        12349 non-null  int64
+ 8   N_TRIPS        12349 non-null  int64
+ 9   N_TRIPS_HBW    12349 non-null  int64
+ 10  N_TRIPS_HBO    12349 non-null  int64
+ 11  N_TRIPS_NHB    12349 non-null  int64
+dtypes: int64(12)
+memory usage: 1.1 MB
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tour</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 20739 entries, 0 to 20738
+Data columns (total 11 columns):
+ #   Column       Non-Null Count  Dtype
+---  ------       --------------  -----
+ 0   TOURID       20739 non-null  int64
+ 1   HHID         20739 non-null  int64
+ 2   PERSONID     20739 non-null  int64
+ 3   DTAZ         20739 non-null  int64
+ 4   TOURMODE     20739 non-null  int64
+ 5   TOURPURP     20739 non-null  int64
+ 6   N_STOPS      20739 non-null  int64
+ 7   N_TRIPS      20739 non-null  int64
+ 8   N_TRIPS_HBW  20739 non-null  int64
+ 9   N_TRIPS_HBO  20739 non-null  int64
+ 10  N_TRIPS_NHB  20739 non-null  int64
+dtypes: int64(11)
+memory usage: 1.7 MB
+</pre></div></div>
+</div>
+<div class="section" id="Preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#Preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>To use these data tables for mode choice modeling, we’ll need to filter them so they only include relevant rows, and merge them into a unified composite dataset.</p>
+<div class="section" id="Filtering">
+<h3>Filtering<a class="headerlink" href="#Filtering" title="Permalink to this headline">¶</a></h3>
+<p>Mode choice models are often created seperately for each tour purpose. We can review the purposes contained in our data by using the <code class="docutils literal notranslate"><span class="pre">statistics</span></code> method, which Larch adds to pandas.Series objects:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">tour</span><span class="o">.</span><span class="n">TOURPURP</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><table style="margin-top:1px;"><tr><th>key</th><th style="text-align:left;">value</th></tr><tr><td>n</td><td style="text-align:left;">20739</td></tr><tr><td>minimum</td><td style="text-align:left;">1</td></tr><tr><td>maximum</td><td style="text-align:left;">2</td></tr><tr><td>median</td><td style="text-align:left;">2.0</td></tr><tr><td>histogram</td><td style="text-align:left;"><div class="figure" metadata="gASVGQEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLAoWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQxCMHQAAAAAAAHczAAAAAAAAlHSUYowJYmluX2VkZ2VzlGgEaAdLAIWUaAmHlFKUKEsBSwOFlGgRiUMYAAAAAAAAAAABAAAAAAAAAAIAAAAAAAAAlHSUYowRemVyb3NfYXJlX2Ryb3BwZWSUiYwScmFuZ2VfaXNfdHJ1bmNhdGVklIl1Lg==" range_is_truncated="False" style="min-width:5in" zeros_are_dropped="False"><svg height="107.335268pt" version="1.1" viewBox="0 0 364.478125 107.335268" width="364.478125pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title>Histograms are purple if the data is represented as discrete values.</title><g id="patch_1">
+   <path d="M 0 107.335268  L 364.478125 107.335268  L 364.478125 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 20.878125 83.457143  L 357.278125 83.457143  L 357.278125 7.2  L 20.878125 7.2  z " style="fill:none;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#p129d2036b3)" d="M 36.169034 83.457143  L 172.088226 83.457143  L 172.088226 41.761361  L 36.169034 41.761361  z " style="fill:#6478ba;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#p129d2036b3)" d="M 206.068024 83.457143  L 341.987216 83.457143  L 341.987216 10.831293  L 206.068024 10.831293  z " style="fill:#6478ba;"></path>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path d="M 0 0  L 0 3.5  " id="m47f561d26e" style="stroke:#000000;stroke-width:0.8;"></path>
+      </defs>
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="104.12863" y="83.457143" xlink:href="#m47f561d26e"></use>
+      </g>
+     </g>
+     <g id="text_1">
+
+      <defs>
+       <path d="M 12.40625 8.296875  L 28.515625 8.296875  L 28.515625 63.921875  L 10.984375 60.40625  L 10.984375 69.390625  L 28.421875 72.90625  L 38.28125 72.90625  L 38.28125 8.296875  L 54.390625 8.296875  L 54.390625 0  L 12.40625 0  z " id="DejaVuSans-49"></path>
+      </defs>
+      <g transform="translate(100.94738 98.05558)scale(0.1 -0.1)">
+       <use xlink:href="#DejaVuSans-49"></use>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.8;" x="274.02762" y="83.457143" xlink:href="#m47f561d26e"></use>
+      </g>
+     </g>
+     <g id="text_2">
+
+      <defs>
+       <path d="M 19.1875 8.296875  L 53.609375 8.296875  L 53.609375 0  L 7.328125 0  L 7.328125 8.296875  Q 12.9375 14.109375 22.625 23.890625  Q 32.328125 33.6875 34.8125 36.53125  Q 39.546875 41.84375 41.421875 45.53125  Q 43.3125 49.21875 43.3125 52.78125  Q 43.3125 58.59375 39.234375 62.25  Q 35.15625 65.921875 28.609375 65.921875  Q 23.96875 65.921875 18.8125 64.3125  Q 13.671875 62.703125 7.8125 59.421875  L 7.8125 69.390625  Q 13.765625 71.78125 18.9375 73  Q 24.125 74.21875 28.421875 74.21875  Q 39.75 74.21875 46.484375 68.546875  Q 53.21875 62.890625 53.21875 53.421875  Q 53.21875 48.921875 51.53125 44.890625  Q 49.859375 40.875 45.40625 35.40625  Q 44.1875 33.984375 37.640625 27.21875  Q 31.109375 20.453125 19.1875 8.296875  z " id="DejaVuSans-50"></path>
+      </defs>
+      <g transform="translate(270.84637 98.05558)scale(0.1 -0.1)">
+       <use xlink:href="#DejaVuSans-50"></use>
+      </g>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="text_3">
+
+     <defs>
+      <path d="M 9.8125 72.90625  L 51.703125 72.90625  L 51.703125 64.59375  L 19.671875 64.59375  L 19.671875 43.109375  L 48.578125 43.109375  L 48.578125 34.8125  L 19.671875 34.8125  L 19.671875 0  L 9.8125 0  z " id="DejaVuSans-70"></path>
+      <path d="M 41.109375 46.296875  Q 39.59375 47.171875 37.8125 47.578125  Q 36.03125 48 33.890625 48  Q 26.265625 48 22.1875 43.046875  Q 18.109375 38.09375 18.109375 28.8125  L 18.109375 0  L 9.078125 0  L 9.078125 54.6875  L 18.109375 54.6875  L 18.109375 46.1875  Q 20.953125 51.171875 25.484375 53.578125  Q 30.03125 56 36.53125 56  Q 37.453125 56 38.578125 55.875  Q 39.703125 55.765625 41.0625 55.515625  z " id="DejaVuSans-114"></path>
+      <path d="M 56.203125 29.59375  L 56.203125 25.203125  L 14.890625 25.203125  Q 15.484375 15.921875 20.484375 11.0625  Q 25.484375 6.203125 34.421875 6.203125  Q 39.59375 6.203125 44.453125 7.46875  Q 49.3125 8.734375 54.109375 11.28125  L 54.109375 2.78125  Q 49.265625 0.734375 44.1875 -0.34375  Q 39.109375 -1.421875 33.890625 -1.421875  Q 20.796875 -1.421875 13.15625 6.1875  Q 5.515625 13.8125 5.515625 26.8125  Q 5.515625 40.234375 12.765625 48.109375  Q 20.015625 56 32.328125 56  Q 43.359375 56 49.78125 48.890625  Q 56.203125 41.796875 56.203125 29.59375  z M 47.21875 32.234375  Q 47.125 39.59375 43.09375 43.984375  Q 39.0625 48.390625 32.421875 48.390625  Q 24.90625 48.390625 20.390625 44.140625  Q 15.875 39.890625 15.1875 32.171875  z " id="DejaVuSans-101"></path>
+      <path d="M 14.796875 27.296875  Q 14.796875 17.390625 18.875 11.75  Q 22.953125 6.109375 30.078125 6.109375  Q 37.203125 6.109375 41.296875 11.75  Q 45.40625 17.390625 45.40625 27.296875  Q 45.40625 37.203125 41.296875 42.84375  Q 37.203125 48.484375 30.078125 48.484375  Q 22.953125 48.484375 18.875 42.84375  Q 14.796875 37.203125 14.796875 27.296875  z M 45.40625 8.203125  Q 42.578125 3.328125 38.25 0.953125  Q 33.9375 -1.421875 27.875 -1.421875  Q 17.96875 -1.421875 11.734375 6.484375  Q 5.515625 14.40625 5.515625 27.296875  Q 5.515625 40.1875 11.734375 48.09375  Q 17.96875 56 27.875 56  Q 33.9375 56 38.25 53.625  Q 42.578125 51.265625 45.40625 46.390625  L 45.40625 54.6875  L 54.390625 54.6875  L 54.390625 -20.796875  L 45.40625 -20.796875  z " id="DejaVuSans-113"></path>
+      <path d="M 8.5 21.578125  L 8.5 54.6875  L 17.484375 54.6875  L 17.484375 21.921875  Q 17.484375 14.15625 20.5 10.265625  Q 23.53125 6.390625 29.59375 6.390625  Q 36.859375 6.390625 41.078125 11.03125  Q 45.3125 15.671875 45.3125 23.6875  L 45.3125 54.6875  L 54.296875 54.6875  L 54.296875 0  L 45.3125 0  L 45.3125 8.40625  Q 42.046875 3.421875 37.71875 1  Q 33.40625 -1.421875 27.6875 -1.421875  Q 18.265625 -1.421875 13.375 4.4375  Q 8.5 10.296875 8.5 21.578125  z M 31.109375 56  z " id="DejaVuSans-117"></path>
+      <path d="M 54.890625 33.015625  L 54.890625 0  L 45.90625 0  L 45.90625 32.71875  Q 45.90625 40.484375 42.875 44.328125  Q 39.84375 48.1875 33.796875 48.1875  Q 26.515625 48.1875 22.3125 43.546875  Q 18.109375 38.921875 18.109375 30.90625  L 18.109375 0  L 9.078125 0  L 9.078125 54.6875  L 18.109375 54.6875  L 18.109375 46.1875  Q 21.34375 51.125 25.703125 53.5625  Q 30.078125 56 35.796875 56  Q 45.21875 56 50.046875 50.171875  Q 54.890625 44.34375 54.890625 33.015625  z " id="DejaVuSans-110"></path>
+      <path d="M 48.78125 52.59375  L 48.78125 44.1875  Q 44.96875 46.296875 41.140625 47.34375  Q 37.3125 48.390625 33.40625 48.390625  Q 24.65625 48.390625 19.8125 42.84375  Q 14.984375 37.3125 14.984375 27.296875  Q 14.984375 17.28125 19.8125 11.734375  Q 24.65625 6.203125 33.40625 6.203125  Q 37.3125 6.203125 41.140625 7.25  Q 44.96875 8.296875 48.78125 10.40625  L 48.78125 2.09375  Q 45.015625 0.34375 40.984375 -0.53125  Q 36.96875 -1.421875 32.421875 -1.421875  Q 20.0625 -1.421875 12.78125 6.34375  Q 5.515625 14.109375 5.515625 27.296875  Q 5.515625 40.671875 12.859375 48.328125  Q 20.21875 56 33.015625 56  Q 37.15625 56 41.109375 55.140625  Q 45.0625 54.296875 48.78125 52.59375  z " id="DejaVuSans-99"></path>
+      <path d="M 32.171875 -5.078125  Q 28.375 -14.84375 24.75 -17.8125  Q 21.140625 -20.796875 15.09375 -20.796875  L 7.90625 -20.796875  L 7.90625 -13.28125  L 13.1875 -13.28125  Q 16.890625 -13.28125 18.9375 -11.515625  Q 21 -9.765625 23.484375 -3.21875  L 25.09375 0.875  L 2.984375 54.6875  L 12.5 54.6875  L 29.59375 11.921875  L 46.6875 54.6875  L 56.203125 54.6875  z " id="DejaVuSans-121"></path>
+     </defs>
+     <g transform="translate(14.798438 71.626228)rotate(-90)scale(0.1 -0.1)">
+      <use xlink:href="#DejaVuSans-70"></use>
+      <use x="57.410156" xlink:href="#DejaVuSans-114"></use>
+      <use x="98.492188" xlink:href="#DejaVuSans-101"></use>
+      <use x="160.015625" xlink:href="#DejaVuSans-113"></use>
+      <use x="223.492188" xlink:href="#DejaVuSans-117"></use>
+      <use x="286.871094" xlink:href="#DejaVuSans-101"></use>
+      <use x="348.394531" xlink:href="#DejaVuSans-110"></use>
+      <use x="411.773438" xlink:href="#DejaVuSans-99"></use>
+      <use x="466.753906" xlink:href="#DejaVuSans-121"></use>
+     </g>
+    </g>
+   </g>
+   <g id="patch_5">
+    <path d="M 20.878125 83.457143  L 20.878125 7.2  " style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"></path>
+   </g>
+   <g id="patch_6">
+    <path d="M 357.278125 83.457143  L 357.278125 7.2  " style="fill:none;"></path>
+   </g>
+   <g id="patch_7">
+    <path d="M 20.878125 83.457143  L 357.278125 83.457143  " style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"></path>
+   </g>
+   <g id="patch_8">
+    <path d="M 20.878125 7.2  L 357.278125 7.2  " style="fill:none;"></path>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p129d2036b3">
+   <rect height="76.257143" width="336.4" x="20.878125" y="7.2"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td></tr><tr><td>mean</td><td style="text-align:left;">1.6352765321375187</td></tr><tr><td>stdev</td><td style="text-align:left;">0.48135253178190196</td></tr><tr><td>zeros</td><td style="text-align:left;">0</td></tr><tr><td>positives</td><td style="text-align:left;">20739</td></tr><tr><td>negatives</td><td style="text-align:left;">0</td></tr><tr><td>nonzero_minimum</td><td style="text-align:left;">1</td></tr><tr><td>nonzero_maximum</td><td style="text-align:left;">2</td></tr><tr><td>nonzero_mean</td><td style="text-align:left;">1.6352765321375187</td></tr><tr><td>nonzero_stdev</td><td style="text-align:left;">0.48135253178190196</td></tr></table></div></div>
+</div>
+<p>As we can see above, in Exampville, there are only two purposes for tours. These purposes are defined as:</p>
+<ul class="simple">
+<li><p>work (purpose=1) and</p></li>
+<li><p>non-work (purpose=2).</p></li>
+</ul>
+<p>We want to first estimate a mode choice model for work tours, so we’ll begin by creating a working dataframe, filtering the tours data to exclude non-work tours:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">tour</span><span class="p">[</span><span class="n">tour</span><span class="o">.</span><span class="n">TOURPURP</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 7564 entries, 0 to 20736
+Data columns (total 11 columns):
+ #   Column       Non-Null Count  Dtype
+---  ------       --------------  -----
+ 0   TOURID       7564 non-null   int64
+ 1   HHID         7564 non-null   int64
+ 2   PERSONID     7564 non-null   int64
+ 3   DTAZ         7564 non-null   int64
+ 4   TOURMODE     7564 non-null   int64
+ 5   TOURPURP     7564 non-null   int64
+ 6   N_STOPS      7564 non-null   int64
+ 7   N_TRIPS      7564 non-null   int64
+ 8   N_TRIPS_HBW  7564 non-null   int64
+ 9   N_TRIPS_HBO  7564 non-null   int64
+ 10  N_TRIPS_NHB  7564 non-null   int64
+dtypes: int64(11)
+memory usage: 709.1 KB
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Merging">
+<h3>Merging<a class="headerlink" href="#Merging" title="Permalink to this headline">¶</a></h3>
+<p>We can then merge data from the three survey tables using the usual <code class="docutils literal notranslate"><span class="pre">pandas</span></code> syntax for merging.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;HHID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;HHID&#39;</span><span class="p">,</span> <span class="s1">&#39;PERSONID&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>Merging the skims data is more complicated, as we want to select not only the correct row, but also the correct column for each observation. We could do this by transforming the skims data in such a way that every origin-destination pair is on its own row, but for very large zone systems this can be inefficient. Larch provides a more efficient method to directly extract a DataFrame with the right information, based on the two-dimensional structure of the skims.</p>
+<p>Our zone numbering system starts with zone 1, as is common for many TAZ numbering systems seen in practice. But, for looking up data in the skims matrix using Larch, we’ll need to use zero-based numbering that is standard in Python. So we’ll create two new TAZ-index columns to assist this process.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;HOMETAZi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;HOMETAZ&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;DTAZi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DTAZ&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<p>For this tour mode choice model, we can pick values out of the skims for the known O-D of the tour, so that we have access to the level-of-service data for each possible mode serving that O-D pair. We’ll use the <code class="docutils literal notranslate"><span class="pre">get_rc_dataframe</span></code> method of the <code class="docutils literal notranslate"><span class="pre">larch.OMX</span></code> object, which lets us give the a list of the index for the production and attraction (row and column) value we want to use.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">los_data</span> <span class="o">=</span> <span class="n">skims</span><span class="o">.</span><span class="n">get_rc_dataframe</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;HOMETAZi&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DTAZi&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">los_data</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AUTO_COST</th>
+      <th>AUTO_DIST</th>
+      <th>AUTO_TIME</th>
+      <th>BIKE_TIME</th>
+      <th>TRANSIT_FARE</th>
+      <th>TRANSIT_IVTT</th>
+      <th>TRANSIT_OVTT</th>
+      <th>WALK_DIST</th>
+      <th>WALK_TIME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.588461</td>
+      <td>1.681318</td>
+      <td>5.043955</td>
+      <td>8.406591</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>2.241758</td>
+      <td>1.681318</td>
+      <td>33.626365</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.925965</td>
+      <td>5.502758</td>
+      <td>16.508274</td>
+      <td>16.843315</td>
+      <td>2.5</td>
+      <td>1.535243</td>
+      <td>47.830632</td>
+      <td>3.368663</td>
+      <td>67.373260</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.621348</td>
+      <td>1.775280</td>
+      <td>5.325840</td>
+      <td>8.876400</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>35.505600</td>
+      <td>1.775280</td>
+      <td>35.505600</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.480560</td>
+      <td>1.373029</td>
+      <td>9.119086</td>
+      <td>6.865143</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>27.460572</td>
+      <td>1.373029</td>
+      <td>27.460572</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.480560</td>
+      <td>1.373029</td>
+      <td>9.119086</td>
+      <td>6.865143</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>27.460572</td>
+      <td>1.373029</td>
+      <td>27.460572</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>7559</th>
+      <td>0.990705</td>
+      <td>2.830584</td>
+      <td>4.842947</td>
+      <td>8.820128</td>
+      <td>2.5</td>
+      <td>1.652554</td>
+      <td>21.496711</td>
+      <td>1.764026</td>
+      <td>35.280512</td>
+    </tr>
+    <tr>
+      <th>7560</th>
+      <td>1.066707</td>
+      <td>3.047736</td>
+      <td>7.201386</td>
+      <td>15.238678</td>
+      <td>2.5</td>
+      <td>3.746109</td>
+      <td>11.138607</td>
+      <td>3.047736</td>
+      <td>60.954713</td>
+    </tr>
+    <tr>
+      <th>7561</th>
+      <td>1.294075</td>
+      <td>3.697356</td>
+      <td>7.290231</td>
+      <td>18.486780</td>
+      <td>2.5</td>
+      <td>10.514265</td>
+      <td>33.910995</td>
+      <td>3.697356</td>
+      <td>73.947121</td>
+    </tr>
+    <tr>
+      <th>7562</th>
+      <td>1.066707</td>
+      <td>3.047736</td>
+      <td>7.201386</td>
+      <td>15.238678</td>
+      <td>2.5</td>
+      <td>3.746109</td>
+      <td>11.138607</td>
+      <td>3.047736</td>
+      <td>60.954713</td>
+    </tr>
+    <tr>
+      <th>7563</th>
+      <td>0.608400</td>
+      <td>1.738284</td>
+      <td>5.214853</td>
+      <td>8.691422</td>
+      <td>2.5</td>
+      <td>1.652554</td>
+      <td>18.018871</td>
+      <td>1.738284</td>
+      <td>34.765688</td>
+    </tr>
+  </tbody>
+</table>
+<p>7564 rows × 9 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">los_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We can review the <code class="docutils literal notranslate"><span class="pre">df</span></code> frame to see what variables are now included.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Int64Index: 7564 entries, 0 to 7563
+Data columns (total 44 columns):
+ #   Column         Non-Null Count  Dtype
+---  ------         --------------  -----
+ 0   TOURID         7564 non-null   int64
+ 1   HHID           7564 non-null   int64
+ 2   PERSONID       7564 non-null   int64
+ 3   DTAZ           7564 non-null   int64
+ 4   TOURMODE       7564 non-null   int64
+ 5   TOURPURP       7564 non-null   int64
+ 6   N_STOPS        7564 non-null   int64
+ 7   N_TRIPS_x      7564 non-null   int64
+ 8   N_TRIPS_HBW_x  7564 non-null   int64
+ 9   N_TRIPS_HBO_x  7564 non-null   int64
+ 10  N_TRIPS_NHB_x  7564 non-null   int64
+ 11  X              7564 non-null   float64
+ 12  Y              7564 non-null   float64
+ 13  INCOME         7564 non-null   float64
+ 14  N_VEHICLES     7564 non-null   int64
+ 15  HHSIZE         7564 non-null   int64
+ 16  geometry       7564 non-null   object
+ 17  HOMETAZ        7564 non-null   int64
+ 18  N_TRIPS_y      7564 non-null   int64
+ 19  N_TRIPS_HBW_y  7564 non-null   int64
+ 20  N_TRIPS_HBO_y  7564 non-null   int64
+ 21  N_TRIPS_NHB_y  7564 non-null   int64
+ 22  N_WORKERS      7564 non-null   int64
+ 23  HHIDX          7564 non-null   int64
+ 24  AGE            7564 non-null   int64
+ 25  WORKS          7564 non-null   int64
+ 26  N_WORK_TOURS   7564 non-null   int64
+ 27  N_OTHER_TOURS  7564 non-null   int64
+ 28  N_TOURS        7564 non-null   int64
+ 29  N_TRIPS        7564 non-null   int64
+ 30  N_TRIPS_HBW    7564 non-null   int64
+ 31  N_TRIPS_HBO    7564 non-null   int64
+ 32  N_TRIPS_NHB    7564 non-null   int64
+ 33  HOMETAZi       7564 non-null   int64
+ 34  DTAZi          7564 non-null   int64
+ 35  AUTO_COST      7564 non-null   float64
+ 36  AUTO_DIST      7564 non-null   float64
+ 37  AUTO_TIME      7564 non-null   float64
+ 38  BIKE_TIME      7564 non-null   float64
+ 39  TRANSIT_FARE   7564 non-null   float64
+ 40  TRANSIT_IVTT   7564 non-null   float64
+ 41  TRANSIT_OVTT   7564 non-null   float64
+ 42  WALK_DIST      7564 non-null   float64
+ 43  WALK_TIME      7564 non-null   float64
+dtypes: float64(12), int64(31), object(1)
+memory usage: 2.9+ MB
+</pre></div></div>
+</div>
+<p>Now we can assemble this data, along with the definitions of the alternatives,
+into a <cite>larch.DataFrames</cite> object.  This object links information about the
+raw data and the choices into one data structure.  It can handle multiple data
+formats (including <a class="reference internal" href="data_shapes.html#idco"><span class="std std-ref">idco Format</span></a> and <a class="reference internal" href="data_shapes.html#idca"><span class="std std-ref">idca Format</span></a> data simultanously), but here we’ll only
+be using a single <a class="reference internal" href="data_shapes.html#idco"><span class="std std-ref">idco Format</span></a> format data table.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># For clarity, we can define numbers as names for modes</span>
+<span class="n">DA</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">SR</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Walk</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">Bike</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">Transit</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DataFrames</span><span class="p">(</span>
+    <span class="n">co</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">alt_codes</span><span class="o">=</span><span class="p">[</span><span class="n">DA</span><span class="p">,</span><span class="n">SR</span><span class="p">,</span><span class="n">Walk</span><span class="p">,</span><span class="n">Bike</span><span class="p">,</span><span class="n">Transit</span><span class="p">],</span>
+    <span class="n">alt_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DA&#39;</span><span class="p">,</span><span class="s1">&#39;SR&#39;</span><span class="p">,</span><span class="s1">&#39;Walk&#39;</span><span class="p">,</span><span class="s1">&#39;Bike&#39;</span><span class="p">,</span><span class="s1">&#39;Transit&#39;</span><span class="p">],</span>
+    <span class="n">ch_name</span><span class="o">=</span><span class="s1">&#39;TOURMODE&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Model-Definition">
+<h2>Model Definition<a class="headerlink" href="#Model-Definition" title="Permalink to this headline">¶</a></h2>
+<p>Now we are ready to create our model. We’ll create a <code class="docutils literal notranslate"><span class="pre">larch.Model</span></code> object to do so, and link it to the data we just created.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">dfs</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Exampville Work Tour Mode Choice v1&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>We will explicitly define the set of utility functions we want to use. Because the DataFrames we are using to serve data to this model contains exclusively <code class="docutils literal notranslate"><span class="pre">idco</span></code> format data, we’ll use the <code class="docutils literal notranslate"><span class="pre">utility_co</span></code> mapping, which allows us to define a unique utility function for each alternative.</p>
+<p>Each utility function must be expressed as a linear-in-parameters function to combine raw or pre-computed data values with named model parameters. To facilitate writing these functions, Larch provides two special classes: parameter references (<code class="docutils literal notranslate"><span class="pre">P</span></code>) and data references (<code class="docutils literal notranslate"><span class="pre">X</span></code>).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<p>Parameter and data references can be defined using either a function-like notation, or a attribute-like notation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">P</span><span class="p">(</span><span class="s1">&#39;NamedParameter&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+P.NamedParameter
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X</span><span class="o">.</span><span class="n">NamedDataValue</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+X.NamedDataValue
+</pre></div></div>
+</div>
+<p>In either case, if the named value contains any spaces or non-alphanumeric characters, it must be given in function-like notation only, as Python will not accept those characters in the attribute-like form.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">P</span><span class="p">(</span><span class="s1">&#39;Named Parameter&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+P(&#39;Named Parameter&#39;)
+</pre></div></div>
+</div>
+<p>Data references can name an exact column that appears in the <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code> as defined above, or can include simple transformations of that data, so long as these transformations can be done without regard to any estimated parameter. For example, we can use the log of income:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">X</span><span class="p">(</span><span class="s2">&quot;log(INCOME)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+X(&#39;log(INCOME)&#39;)
+</pre></div></div>
+</div>
+<p>To write a linear-in-parameters utility function, we simply multiply together a parameter reference and a data reference, and then optionally add that to one or more similar terms.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">P</span><span class="o">.</span><span class="n">InVehTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">AUTO_TIME</span> <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">Cost</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">AUTO_COST</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<pre class="LinearFunc"><span class="LinearFunc_Param">P.InVehTime</span> * <span class="LinearFunc_Data">X.AUTO_TIME</span> + <span class="LinearFunc_Param">P.Cost</span> * <span class="LinearFunc_Data">X.AUTO_COST</span></pre></div>
+</div>
+<p>It is permissible to omit the data reference on a term (in which case it is implicitly set to 1.0).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">P</span><span class="o">.</span><span class="n">ASC</span> <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">InVehTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">AUTO_TIME</span> <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">Cost</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">AUTO_COST</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<pre class="LinearFunc"><span class="LinearFunc_Param">P.ASC</span> + <span class="LinearFunc_Param">P.InVehTime</span> * <span class="LinearFunc_Data">X.AUTO_TIME</span> + <span class="LinearFunc_Param">P.Cost</span> * <span class="LinearFunc_Data">X.AUTO_COST</span></pre></div>
+</div>
+<p>We can then combine these to write utility functions for each alternative in the Exampville data:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">DA</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">InVehTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">AUTO_TIME</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">Cost</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">AUTO_COST</span> <span class="c1"># dollars per mile</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">SR</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_SR</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">InVehTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">AUTO_TIME</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">Cost</span> <span class="o">*</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">AUTO_COST</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1"># dollars per mile, half share</span>
+        <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;LogIncome:SR&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;log(INCOME)&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">Walk</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_Walk</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">NonMotorTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">WALK_TIME</span>
+        <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;LogIncome:Walk&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;log(INCOME)&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">Bike</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_Bike</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">NonMotorTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">BIKE_TIME</span>
+        <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;LogIncome:Bike&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;log(INCOME)&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">m</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">Transit</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">ASC_Transit</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">InVehTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">TRANSIT_IVTT</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">OutVehTime</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">TRANSIT_OVTT</span>
+        <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">Cost</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">TRANSIT_FARE</span>
+        <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;LogIncome:Transit&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;log(INCOME)&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>To write a nested logit model, we’ll attach some nesting nodes to the model’s <code class="docutils literal notranslate"><span class="pre">graph</span></code>. Each <code class="docutils literal notranslate"><span class="pre">new_node</span></code> allows us to define the set of codes for the child nodes (elemental alternatives, or lower level nests) as well as giving the new nest a name and assigning a logsum parameter. The return value of this method is the node code for the newly created nest, which then can potenially be used as a child code when creating a higher level nest. We do this below, adding the ‘Car’ nest into the
+‘Motor’ nest.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">Car</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">new_node</span><span class="p">(</span><span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;Mu:Car&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">DA</span><span class="p">,</span><span class="n">SR</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Car&#39;</span><span class="p">)</span>
+<span class="n">NonMotor</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">new_node</span><span class="p">(</span><span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;Mu:NonMotor&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">Walk</span><span class="p">,</span><span class="n">Bike</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;NonMotor&#39;</span><span class="p">)</span>
+<span class="n">Motor</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">new_node</span><span class="p">(</span><span class="n">parameter</span><span class="o">=</span><span class="s1">&#39;Mu:Motor&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">Car</span><span class="p">,</span><span class="n">Transit</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Motor&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s visually check on the nesting structure.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">graph</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div xmlns="http://www.w3.org/2000/svg"><svg height="276pt" viewBox="0.00 0.00 461.00 276.00" width="461pt">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 272)">
+<title>%3</title>
+<polygon fill="white" points="-4,4 -4,-272 457,-272 457,4 -4,4" stroke="transparent"></polygon>
+<g class="cluster" id="clust1">
+<title>cluster_elemental</title>
+<path d="M20,-8C20,-8 433,-8 433,-8 439,-8 445,-14 445,-20 445,-20 445,-48 445,-48 445,-54 439,-60 433,-60 433,-60 20,-60 20,-60 14,-60 8,-54 8,-48 8,-48 8,-20 8,-20 8,-14 14,-8 20,-8" fill="lightgrey" stroke="white"></path>
+</g>
+
+<g class="node" id="node1">
+<title>0</title>
+<polygon fill="none" points="162,-244.44 189,-232 216,-244.44 215.97,-264.56 162.03,-264.56 162,-244.44" stroke="black"></polygon>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="189" y="-245.8">0</text>
+</g>
+
+<g class="node" id="node8">
+<title>7</title>
+<path d="M171.85,-124C171.85,-124 108.15,-124 108.15,-124 102.15,-124 96.15,-118 96.15,-112 96.15,-112 96.15,-100 96.15,-100 96.15,-94 102.15,-88 108.15,-88 108.15,-88 171.85,-88 171.85,-88 177.85,-88 183.85,-94 183.85,-100 183.85,-100 183.85,-112 183.85,-112 183.85,-118 177.85,-124 171.85,-124" fill="none" stroke="black"></path>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="104.07" y="-107.3">(7) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="116.82" y="-107.3">NonMotor</text>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" font-style="italic" text-anchor="start" x="113.5" y="-97.3">Mu:NonMotor</text>
+</g>
+
+<g class="edge" id="edge1">
+<title>0-&gt;7</title>
+<path d="M183.85,-234.07C175.67,-210.38 159.6,-163.81 149.35,-134.1" fill="none" stroke="black"></path>
+<polygon fill="black" points="152.56,-132.68 145.99,-124.37 145.95,-134.96 152.56,-132.68" stroke="black"></polygon>
+</g>
+
+<g class="node" id="node9">
+<title>8</title>
+<path d="M257.74,-196C257.74,-196 218.26,-196 218.26,-196 212.26,-196 206.26,-190 206.26,-184 206.26,-184 206.26,-172 206.26,-172 206.26,-166 212.26,-160 218.26,-160 218.26,-160 257.74,-160 257.74,-160 263.74,-160 269.74,-166 269.74,-172 269.74,-172 269.74,-184 269.74,-184 269.74,-190 263.74,-196 257.74,-196" fill="none" stroke="black"></path>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="214.13" y="-179.3">(8) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="226.87" y="-179.3">Motor</text>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" font-style="italic" text-anchor="start" x="219.25" y="-169.3">Mu:Motor</text>
+</g>
+
+<g class="edge" id="edge2">
+<title>0-&gt;8</title>
+<path d="M198.22,-235.83C204.43,-226.96 212.82,-214.96 220.3,-204.28" fill="none" stroke="black"></path>
+<polygon fill="black" points="223.18,-206.28 226.04,-196.08 217.44,-202.27 223.18,-206.28" stroke="black"></polygon>
+</g>
+
+<g class="node" id="node2">
+<title>1</title>
+<ellipse cx="330" cy="-34" fill="white" rx="30.86" ry="18" stroke="black"></ellipse>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="313.52" y="-30.8">(1) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="326.26" y="-30.8">DA</text>
+</g>
+
+<g class="node" id="node3">
+<title>2</title>
+<ellipse cx="408" cy="-34" fill="white" rx="28.95" ry="18" stroke="black"></ellipse>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="393.07" y="-30.8">(2) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="405.81" y="-30.8">SR</text>
+</g>
+
+<g class="node" id="node4">
+<title>3</title>
+<ellipse cx="140" cy="-34" fill="white" rx="36.71" ry="18" stroke="black"></ellipse>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="119.03" y="-30.8">(3) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="131.77" y="-30.8">Walk</text>
+</g>
+
+<g class="node" id="node5">
+<title>4</title>
+<ellipse cx="51" cy="-34" fill="white" rx="34.72" ry="18" stroke="black"></ellipse>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="31.41" y="-30.8">(4) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="44.15" y="-30.8">Bike</text>
+</g>
+
+<g class="node" id="node6">
+<title>5</title>
+<ellipse cx="238" cy="-34" fill="white" rx="42.8" ry="18" stroke="black"></ellipse>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="212.04" y="-30.8">(5) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="224.79" y="-30.8">Transit</text>
+</g>
+
+<g class="node" id="node7">
+<title>6</title>
+<path d="M345,-124C345,-124 315,-124 315,-124 309,-124 303,-118 303,-112 303,-112 303,-100 303,-100 303,-94 309,-88 315,-88 315,-88 345,-88 345,-88 351,-88 357,-94 357,-100 357,-100 357,-112 357,-112 357,-118 351,-124 345,-124" fill="none" stroke="black"></path>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" text-anchor="start" x="313.52" y="-107.3">(6) </text>
+<text font-family="Times,serif" font-size="14.00" text-anchor="start" x="326.27" y="-107.3">Car</text>
+<text fill="#999999" font-family="Times,serif" font-size="9.00" font-style="italic" text-anchor="start" x="316" y="-97.3">Mu:Car</text>
+</g>
+
+<g class="edge" id="edge3">
+<title>6-&gt;1</title>
+<path d="M330,-87.7C330,-79.98 330,-70.71 330,-62.11" fill="none" stroke="black"></path>
+<polygon fill="black" points="333.5,-62.1 330,-52.1 326.5,-62.1 333.5,-62.1" stroke="black"></polygon>
+</g>
+
+<g class="edge" id="edge4">
+<title>6-&gt;2</title>
+<path d="M349.28,-87.7C359.88,-78.18 373.12,-66.3 384.34,-56.23" fill="none" stroke="black"></path>
+<polygon fill="black" points="386.98,-58.56 392.09,-49.28 382.31,-53.35 386.98,-58.56" stroke="black"></polygon>
+</g>
+
+<g class="edge" id="edge5">
+<title>7-&gt;3</title>
+<path d="M140,-87.7C140,-79.98 140,-70.71 140,-62.11" fill="none" stroke="black"></path>
+<polygon fill="black" points="143.5,-62.1 140,-52.1 136.5,-62.1 143.5,-62.1" stroke="black"></polygon>
+</g>
+
+<g class="edge" id="edge6">
+<title>7-&gt;4</title>
+<path d="M118,-87.7C105.75,-78.07 90.42,-66.01 77.52,-55.86" fill="none" stroke="black"></path>
+<polygon fill="black" points="79.47,-52.94 69.45,-49.51 75.14,-58.44 79.47,-52.94" stroke="black"></polygon>
+</g>
+
+<g class="edge" id="edge8">
+<title>8-&gt;5</title>
+<path d="M238,-159.87C238,-135.67 238,-91.21 238,-62.39" fill="none" stroke="black"></path>
+<polygon fill="black" points="241.5,-62.19 238,-52.19 234.5,-62.19 241.5,-62.19" stroke="black"></polygon>
+</g>
+
+<g class="edge" id="edge7">
+<title>8-&gt;6</title>
+<path d="M260.74,-159.7C272.44,-150.8 286.86,-139.82 299.51,-130.2" fill="none" stroke="black"></path>
+<polygon fill="black" points="301.68,-132.94 307.52,-124.1 297.44,-127.37 301.68,-132.94" stroke="black"></polygon>
+</g>
+</g>
+</svg></div></div>
+</div>
+<p>The tour mode choice model’s choice variable is indicated by the code value in ‘TOURMODE’, and this can be defined for the model using <code class="docutils literal notranslate"><span class="pre">choice_co_code</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">choice_co_code</span> <span class="o">=</span> <span class="s1">&#39;TOURMODE&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>We can also give a dictionary of availability conditions based on values in the <code class="docutils literal notranslate"><span class="pre">idco</span></code> data, using the <code class="docutils literal notranslate"><span class="pre">availability_co_vars</span></code> attribute. Alternatives that are always available can be indicated by setting the criterion to 1. For alternative that are only sometimes available, we can give an availability criteria in the same manner as for a data reference described above: either by giving the name of a variable in the data, or an expression that can be evaluated using the data alone. In the
+case of availability criteria, these will be tranformed to boolean (true/false) values, so data that evaluates as 0 will be unavailable, and data that evaluates as non-zero will be available (including, perhaps counterintuitively, negative numbers).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">availability_co_vars</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">DA</span><span class="p">:</span> <span class="s1">&#39;AGE &gt;= 16&#39;</span><span class="p">,</span>
+    <span class="n">SR</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">Walk</span><span class="p">:</span> <span class="s1">&#39;WALK_TIME &lt; 60&#39;</span><span class="p">,</span>
+    <span class="n">Bike</span><span class="p">:</span> <span class="s1">&#39;BIKE_TIME &lt; 60&#39;</span><span class="p">,</span>
+    <span class="n">Transit</span><span class="p">:</span> <span class="s1">&#39;TRANSIT_FARE&gt;0&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Then let’s prepare this data for estimation. Even though the data is already in memory, the <code class="docutils literal notranslate"><span class="pre">load_data</span></code> method is used to pre-process the data, extracting the required values, pre-computing the values of fixed expressions, and assembling the results into contiguous arrays suitable for computing the log likelihood values efficiently.</p>
+</div>
+<div class="section" id="Model-Estimation">
+<h2>Model Estimation<a class="headerlink" href="#Model-Estimation" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>We can check on some important statistics of this loaded and preprocessed data even before we estimate the model.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">choice_avail_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>chosen</th>
+      <th>available</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>DA</td>
+      <td>6052.0</td>
+      <td>7564</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>SR</td>
+      <td>810.0</td>
+      <td>7564</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Walk</td>
+      <td>196.0</td>
+      <td>4179</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Bike</td>
+      <td>72.0</td>
+      <td>7564</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Transit</td>
+      <td>434.0</td>
+      <td>4199</td>
+    </tr>
+    <tr>
+      <th>&lt; Total All Alternatives &gt;</th>
+      <td></td>
+      <td>7564.0</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">data_co</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div xmlns="http://www.w3.org/2000/svg"><table class="dataframe larch_dataframe"><thead><th></th><th>n</th><th>minimum</th><th>maximum</th><th>median</th><th>histogram</th><th>mean</th><th>stdev</th><th>zeros</th><th>positives</th><th>negatives</th><th>nonzero_minimum</th><th>nonzero_maximum</th><th>nonzero_mean</th><th>nonzero_stdev</th></thead><tbody><tr><th>AUTO_COST</th><td>7564</td><td>0.194926</td><td>4.30796</td><td>1.00945</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2gMBgAAAAAAAAYFAAAAAAAArwUAAAAAAABzAwAAAAAAANwCAAAAAAAATgIAAAAAAADJAQAAAAAAALcAAAAAAAAAFQEAAAAAAABhAAAAAAAAACAAAAAAAAAAFQAAAAAAAAADAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcCfSia1S88g/iwubY61c4D+MotMbhnzqP8YcBmovTvI/R2gixhte9z/Hsz4iCG78P6R/LT/6vgBAZKU7bfBGA0Aky0mb5s4FQOTwV8ncVghApBZm99LeCkBlPHQlyWYNQCViglO/7g9A80PIwFo7EUCUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSJjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title></title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#p49585f5c5e)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 0.979592  L 3.272727 0.979592  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#p49585f5c5e)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 4.295523  L 8.307692 4.295523  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#p49585f5c5e)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 2.156621  L 13.342657 2.156621  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#p49585f5c5e)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 9.395982  L 18.377622 9.395982  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#p49585f5c5e)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 11.307072  L 23.412587 11.307072  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#p49585f5c5e)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 13.104256  L 28.447552 13.104256  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#p49585f5c5e)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 14.787534  L 33.482517 14.787534  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#p49585f5c5e)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 18.255339  L 38.517483 18.255339  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#p49585f5c5e)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 17.065654  L 43.552448 17.065654  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#p49585f5c5e)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 19.343775  L 48.587413 19.343775  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#p49585f5c5e)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 20.166429  L 53.622378 20.166429  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#p49585f5c5e)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 20.305648  L 58.657343 20.305648  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#p49585f5c5e)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 20.53346  L 63.692308 20.53346  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p49585f5c5e">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>1.20601</td><td>0.754844</td><td>0</td><td>7564</td><td>0</td><td>0.194926</td><td>4.30796</td><td>1.20601</td><td>0.754844</td></tr><tr><th>AUTO_COST*(0.5)</th><td>7564</td><td>0.0974628</td><td>2.15398</td><td>0.504724</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2gMBgAAAAAAAAYFAAAAAAAArwUAAAAAAABzAwAAAAAAANwCAAAAAAAATgIAAAAAAADJAQAAAAAAALcAAAAAAAAAFQEAAAAAAABhAAAAAAAAACAAAAAAAAAAFQAAAAAAAAADAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcCfSia1S87g/iwubY61c0D+MotMbhnzaP8YcBmovTuI/R2gixhte5z/Hsz4iCG7sP6R/LT/6vvA/ZKU7bfBG8z8ky0mb5s71P+TwV8ncVvg/pBZm99Le+j9lPHQlyWb9PyViglO/7v8/80PIwFo7AUCUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSJjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title></title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#pa3a092391b)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 0.979592  L 3.272727 0.979592  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#pa3a092391b)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 4.295523  L 8.307692 4.295523  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#pa3a092391b)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 2.156621  L 13.342657 2.156621  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#pa3a092391b)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 9.395982  L 18.377622 9.395982  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#pa3a092391b)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 11.307072  L 23.412587 11.307072  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#pa3a092391b)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 13.104256  L 28.447552 13.104256  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#pa3a092391b)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 14.787534  L 33.482517 14.787534  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#pa3a092391b)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 18.255339  L 38.517483 18.255339  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#pa3a092391b)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 17.065654  L 43.552448 17.065654  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#pa3a092391b)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 19.343775  L 48.587413 19.343775  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#pa3a092391b)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 20.166429  L 53.622378 20.166429  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#pa3a092391b)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 20.305648  L 58.657343 20.305648  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#pa3a092391b)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 20.53346  L 63.692308 20.53346  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa3a092391b">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>0.603005</td><td>0.377422</td><td>0</td><td>7564</td><td>0</td><td>0.0974628</td><td>2.15398</td><td>0.603005</td><td>0.377422</td></tr><tr><th>AUTO_TIME</th><td>7564</td><td>0.930008</td><td>29.4415</td><td>7.61571</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2gxAwAAAAAAAKoFAAAAAAAAgwUAAAAAAAD3BQAAAAAAAGADAAAAAAAAagIAAAAAAABfAQAAAAAAACMBAAAAAAAAmwAAAAAAAAAyAAAAAAAAABYAAAAAAAAABgAAAAAAAAACAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcAjW8M2gwu0/O5faV1H8CEB6fBw+/UMVQFetS9DRCR5AGm89MdNnI0CIB1V6vconQPafbMOnLSxAMhxCBklIMEBp6M0qvnkyQKC0WU8zqzRA14Dlc6jcNkAOTXGYHQ45QEYZ/bySPztAfOWI4QdxPUCUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSJjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title></title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#p1f57e9d8da)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 10.08909  L 3.272727 10.08909  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#p1f57e9d8da)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 1.967523  L 8.307692 1.967523  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#p1f57e9d8da)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 2.467904  L 13.342657 2.467904  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#p1f57e9d8da)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 0.979592  L 18.377622 0.979592  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#p1f57e9d8da)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 9.486067  L 23.412587 9.486067  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#p1f57e9d8da)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 12.642316  L 28.447552 12.642316  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#p1f57e9d8da)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 16.068  L 33.482517 16.068  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#p1f57e9d8da)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 16.837817  L 38.517483 16.837817  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#p1f57e9d8da)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 18.582735  L 43.552448 18.582735  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#p1f57e9d8da)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 19.929915  L 48.587413 19.929915  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#p1f57e9d8da)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 20.289162  L 53.622378 20.289162  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#p1f57e9d8da)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 20.494447  L 58.657343 20.494447  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#p1f57e9d8da)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 20.545768  L 63.692308 20.545768  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1f57e9d8da">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>8.22287</td><td>4.58134</td><td>0</td><td>7564</td><td>0</td><td>0.930008</td><td>29.4415</td><td>8.22287</td><td>4.58134</td></tr><tr><th>BIKE_TIME</th><td>7564</td><td>2.78465</td><td>52.2321</td><td>13.5864</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2gbBAAAAAAAAJwFAAAAAAAAxgUAAAAAAABsAwAAAAAAAGoDAAAAAAAARwIAAAAAAAAQAgAAAAAAAEIBAAAAAAAAwwAAAAAAAAB/AAAAAAAAAD0AAAAAAAAAIAAAAAAAAAABAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcMjEqIj3RgZAPICxxGpaGkAKT4firMgkQPXdtWIkZCxAcDZy8c3/MUDmfYmxic01QFzFoHFFmzlA0gy4MQFpPUAkqud4XptAQN5N81g8gkJAmvH+OBppREBUlQoZ+E9GQBA5FvnVNkhAytwh2bMdSkCUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSJjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title></title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#pf5417cf04a)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 6.63975  L 3.272727 6.63975  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#pf5417cf04a)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 1.536329  L 8.307692 1.536329  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#pf5417cf04a)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 0.979592  L 13.342657 0.979592  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#pf5417cf04a)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 8.959487  L 18.377622 8.959487  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#pf5417cf04a)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 8.985999  L 23.412587 8.985999  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#pf5417cf04a)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 12.84339  L 28.447552 12.84339  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#pf5417cf04a)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 13.57245  L 33.482517 13.57245  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#pf5417cf04a)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 16.303112  L 38.517483 16.303112  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#pf5417cf04a)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 17.986579  L 43.552448 17.986579  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#pf5417cf04a)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 18.887962  L 48.587413 18.887962  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#pf5417cf04a)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 19.762834  L 53.622378 19.762834  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#pf5417cf04a)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 20.147248  L 58.657343 20.147248  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#pf5417cf04a)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 20.558173  L 63.692308 20.558173  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf5417cf04a">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>15.9827</td><td>9.29732</td><td>0</td><td>7564</td><td>0</td><td>2.78465</td><td>52.2321</td><td>15.9827</td><td>9.29732</td></tr><tr><th>TRANSIT_FARE</th><td>7564</td><td>0</td><td>2.5</td><td>2.5</td><td><div class="figure" metadata="gASVGQEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLAoWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQxAlDQAAAAAAAGcQAAAAAAAAlHSUYowJYmluX2VkZ2VzlGgEaAdLAIWUaAmHlFKUKEsBSwOFlGgRiUMYAAAAAAAAAAABAAAAAAAAAAIAAAAAAAAAlHSUYowRemVyb3NfYXJlX2Ryb3BwZWSUiYwScmFuZ2VfaXNfdHJ1bmNhdGVklIl1Lg==" range_is_truncated="False" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title>Histograms are purple if the data is represented as discrete values.</title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#p73b6231ee8)" d="M 3.272727 20.571429  L 32.363636 20.571429  L 32.363636 4.870897  L 3.272727 4.870897  z " style="fill:#6478ba;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#p73b6231ee8)" d="M 39.636364 20.571429  L 68.727273 20.571429  L 68.727273 0.979592  L 39.636364 0.979592  z " style="fill:#6478ba;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p73b6231ee8">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>1.38782</td><td>1.24238</td><td>3365</td><td>4199</td><td>0</td><td>2.5</td><td>2.5</td><td>2.5</td><td>0</td></tr><tr><th>TRANSIT_IVTT</th><td>7564</td><td>0</td><td>12.1668</td><td>1.44769</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2jpAwAAAAAAAEsBAAAAAAAAsAIAAAAAAAAQAQAAAAAAADkBAAAAAAAAnQEAAAAAAACTAAAAAAAAACABAAAAAAAAPgAAAAAAAAC/AAAAAAAAAE4AAAAAAAAAswAAAAAAAADsAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcO3qD0LDsu4/niMQ8Jok/T/iKIwf6ncFQPU/EMeGXQxAhStKt5GhEUAPNwwLYBQVQJhCzl4uhxhAIk6Qsvz5G0CsWVIGy2wfQJsyCq3MbyFAYDjr1jMpI0AlPswAm+IkQOlDrSoCnCZArkmOVGlVKECUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSIjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="True"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title>Histograms are orange if the zeros are numerous and have been excluded.</title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 0.979592  L 3.272727 0.979592  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 14.093009  L 8.307692 14.093009  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 7.105711  L 13.342657 7.105711  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 15.247773  L 18.377622 15.247773  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 14.44531  L 23.412587 14.44531  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 12.488083  L 28.447552 12.488083  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 17.694306  L 33.482517 17.694306  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 14.934616  L 38.517483 14.934616  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 19.357948  L 43.552448 19.357948  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 16.833126  L 48.587413 16.833126  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 19.044792  L 53.622378 19.044792  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 17.067993  L 58.657343 17.067993  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#pbb2f6a23fa)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 15.952374  L 63.692308 15.952374  z " style="fill:#f69300;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pbb2f6a23fa">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>2.62277</td><td>3.38088</td><td>3365</td><td>4199</td><td>0</td><td>0.959322</td><td>12.1668</td><td>4.72461</td><td>3.26497</td></tr><tr><th>TRANSIT_OVTT</th><td>7564</td><td>0.759059</td><td>128.652</td><td>37.0499</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2jTAwAAAAAAAC0DAAAAAAAANQUAAAAAAAD9AwAAAAAAAHUEAAAAAAAA8gMAAAAAAAA4AgAAAAAAAGwBAAAAAAAAuAAAAAAAAAB1AAAAAAAAAA8AAAAAAAAADAAAAAAAAAAHAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcJTvdic2Sug/UsQcwaMxJUDWDOEPUm80QIO3Mz/SRT5AFzFDNykOREBthuxOaflIQMTblWap5E1AjZgfv/RnUUA4Q/TKlN1TQOPtyNY0U1ZAjpid4tTIWEA5Q3LudD5bQOXtRvoUtF1ASMwNg9oUYECUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSJjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title></title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#p6142a913f4)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 6.182525  L 3.272727 6.182525  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#p6142a913f4)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 8.622319  L 8.307692 8.622319  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#p6142a913f4)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 0.979592  L 13.342657 0.979592  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#p6142a913f4)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 5.565228  L 18.377622 5.565228  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#p6142a913f4)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 3.801522  L 23.412587 3.801522  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#p6142a913f4)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 5.726901  L 28.447552 5.726901  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#p6142a913f4)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 12.223219  L 33.482517 12.223219  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#p6142a913f4)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 15.22152  L 38.517483 15.22152  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#p6142a913f4)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 17.867079  L 43.552448 17.867079  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#p6142a913f4)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 18.851815  L 48.587413 18.851815  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#p6142a913f4)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 20.350965  L 53.622378 20.350965  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#p6142a913f4)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 20.395058  L 58.657343 20.395058  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#p6142a913f4)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 20.468546  L 63.692308 20.468546  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6142a913f4">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>37.6614</td><td>23.2194</td><td>0</td><td>7564</td><td>0</td><td>0.759059</td><td>128.652</td><td>37.6614</td><td>23.2194</td></tr><tr><th>WALK_TIME</th><td>7564</td><td>11.1386</td><td>208.928</td><td>54.3454</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2gbBAAAAAAAAJwFAAAAAAAAxgUAAAAAAABsAwAAAAAAAGoDAAAAAAAARwIAAAAAAAAQAgAAAAAAAEIBAAAAAAAAwwAAAAAAAAB/AAAAAAAAAD0AAAAAAAAAIAAAAAAAAAABAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcMjEqIj3RiZAPICxxGpaOkAKT4firMhEQPXdtWIkZExAcDZy8c3/UUDmfYmxic1VQFzFoHFFm1lA0gy4MQFpXUAkqud4XptgQN5N81g8gmJAmvH+OBppZEBUlQoZ+E9mQBA5FvnVNmhAytwh2bMdakCUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSJjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title></title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#p66f6a39605)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 6.63975  L 3.272727 6.63975  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#p66f6a39605)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 1.536329  L 8.307692 1.536329  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#p66f6a39605)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 0.979592  L 13.342657 0.979592  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#p66f6a39605)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 8.959487  L 18.377622 8.959487  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#p66f6a39605)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 8.985999  L 23.412587 8.985999  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#p66f6a39605)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 12.84339  L 28.447552 12.84339  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#p66f6a39605)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 13.57245  L 33.482517 13.57245  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#p66f6a39605)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 16.303112  L 38.517483 16.303112  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#p66f6a39605)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 17.986579  L 43.552448 17.986579  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#p66f6a39605)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 18.887962  L 48.587413 18.887962  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#p66f6a39605)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 19.762834  L 53.622378 19.762834  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#p66f6a39605)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 20.147248  L 58.657343 20.147248  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#p66f6a39605)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 20.558173  L 63.692308 20.558173  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p66f6a39605">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>63.9308</td><td>37.1893</td><td>0</td><td>7564</td><td>0</td><td>11.1386</td><td>208.928</td><td>63.9308</td><td>37.1893</td></tr><tr><th>log(INCOME)</th><td>7564</td><td>7.59035</td><td>14.2181</td><td>10.6719</td><td><div class="figure" metadata="gASV7gEAAAAAAAB9lCiMC2Jpbl9oZWlnaHRzlIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLDYWUaAWMBWR0eXBllJOUjAJpOJRLAEsBh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKJQ2gFAAAAAAAAABAAAAAAAAAANQAAAAAAAADiAAAAAAAAAPsJAAAAAAAAWwMAAAAAAAAeBAAAAAAAAEkEAAAAAAAAMAMAAAAAAAAFAgAAAAAAANcAAAAAAAAAdAAAAAAAAAAjAAAAAAAAAJR0lGKMCWJpbl9lZGdlc5RoBGgHSwCFlGgJh5RSlChLAUsOhZRoDowCZjiUSwBLAYeUUpQoSwNoEk5OTkr/////Sv////9LAHSUYolDcESg4uiDXB5AquEki0kzIEAzc9ghUTghQLsEjLhYPSJAQ5Y/T2BCI0DMJ/PlZ0ckQFS5pnxvTCVA3EpaE3dRJkBk3A2qflYnQO1twUCGWyhAdf90141gKUD+kChulWUqQIYi3ASdaitADrSPm6RvLECUdJRijBF6ZXJvc19hcmVfZHJvcHBlZJSJjBJyYW5nZV9pc190cnVuY2F0ZWSUSwB1Lg==" range_is_truncated="0" style="min-width:Truein" zeros_are_dropped="False"><svg height="20.571429pt" version="1.1" viewBox="0 0 72 20.571429" width="72pt">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <title></title><g id="patch_1">
+   <path d="M 0 20.571429  L 72 20.571429  L 72 0  L 0 0  z " style="fill:none;"></path>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#p1955c15c31)" d="M 3.272727 20.571429  L 8.307692 20.571429  L 8.307692 20.533088  L 3.272727 20.533088  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#p1955c15c31)" d="M 8.307692 20.571429  L 13.342657 20.571429  L 13.342657 20.44874  L 8.307692 20.44874  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#p1955c15c31)" d="M 13.342657 20.571429  L 18.377622 20.571429  L 18.377622 20.165023  L 13.342657 20.165023  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#p1955c15c31)" d="M 18.377622 20.571429  L 23.412587 20.571429  L 23.412587 18.838452  L 18.377622 18.838452  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#p1955c15c31)" d="M 23.412587 20.571429  L 28.447552 20.571429  L 28.447552 0.979592  L 23.412587 0.979592  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#p1955c15c31)" d="M 28.447552 20.571429  L 33.482517 20.571429  L 33.482517 13.984584  L 28.447552 13.984584  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#p1955c15c31)" d="M 33.482517 20.571429  L 38.517483 20.571429  L 38.517483 12.489317  L 33.482517 12.489317  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#p1955c15c31)" d="M 38.517483 20.571429  L 43.552448 20.571429  L 43.552448 12.159591  L 38.517483 12.159591  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#p1955c15c31)" d="M 43.552448 20.571429  L 48.587413 20.571429  L 48.587413 14.31431  L 43.552448 14.31431  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#p1955c15c31)" d="M 48.587413 20.571429  L 53.622378 20.571429  L 53.622378 16.607053  L 48.587413 16.607053  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#p1955c15c31)" d="M 53.622378 20.571429  L 58.657343 20.571429  L 58.657343 18.9228  L 53.622378 18.9228  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#p1955c15c31)" d="M 58.657343 20.571429  L 63.692308 20.571429  L 63.692308 19.681936  L 58.657343 19.681936  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="patch_14">
+    <path clip-path="url(#p1955c15c31)" d="M 63.692308 20.571429  L 68.727273 20.571429  L 68.727273 20.303047  L 63.692308 20.303047  z " style="fill:#1d8bcc;"></path>
+   </g>
+   <g id="matplotlib.axis_1"></g>
+   <g id="matplotlib.axis_2"></g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1955c15c31">
+   <rect height="20.571429" width="72" x="0" y="-0"></rect>
+  </clipPath>
+ </defs>
+</svg></div></td><td>10.8414</td><td>1.01301</td><td>0</td><td>7564</td><td>0</td><td>7.59035</td><td>14.2181</td><td>10.8414</td><td>1.01301</td></tr></tbody></table></div></div>
+</div>
+<p>If we are satisfied with the statistics we see above, we can go ahead and estimate the model. Estimation is done using maximium likelihood techniques, relying on the <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> library for providing a variety of algorithms for solving this non-linear optimization problem. For nested logit models, the ‘SLSQP’ method often works well.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">result</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">maximize_loglike</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;slsqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<h3>Iteration 056 [Converged] </h3></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<p>LL = -3493.039730009142</p></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>value</th>
+      <th>initvalue</th>
+      <th>nullvalue</th>
+      <th>minimum</th>
+      <th>maximum</th>
+      <th>holdfast</th>
+      <th>note</th>
+      <th>best</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ASC_Bike</th>
+      <td>-0.257901</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.257901</td>
+    </tr>
+    <tr>
+      <th>ASC_SR</th>
+      <td>1.423159</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>1.423159</td>
+    </tr>
+    <tr>
+      <th>ASC_Transit</th>
+      <td>6.754794</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>6.754794</td>
+    </tr>
+    <tr>
+      <th>ASC_Walk</th>
+      <td>8.621893</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>8.621893</td>
+    </tr>
+    <tr>
+      <th>Cost</th>
+      <td>-0.175720</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.175720</td>
+    </tr>
+    <tr>
+      <th>InVehTime</th>
+      <td>-0.123723</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.123723</td>
+    </tr>
+    <tr>
+      <th>LogIncome:Bike</th>
+      <td>-0.196995</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.196995</td>
+    </tr>
+    <tr>
+      <th>LogIncome:SR</th>
+      <td>-0.193845</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.193845</td>
+    </tr>
+    <tr>
+      <th>LogIncome:Transit</th>
+      <td>-0.557177</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.557177</td>
+    </tr>
+    <tr>
+      <th>LogIncome:Walk</th>
+      <td>-0.522822</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.522822</td>
+    </tr>
+    <tr>
+      <th>Mu:Car</th>
+      <td>0.259347</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.001</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td></td>
+      <td>0.259347</td>
+    </tr>
+    <tr>
+      <th>Mu:Motor</th>
+      <td>0.801653</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.001</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td></td>
+      <td>0.801653</td>
+    </tr>
+    <tr>
+      <th>Mu:NonMotor</th>
+      <td>0.853782</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.001</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td></td>
+      <td>0.853782</td>
+    </tr>
+    <tr>
+      <th>NonMotorTime</th>
+      <td>-0.265586</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.265586</td>
+    </tr>
+    <tr>
+      <th>OutVehTime</th>
+      <td>-0.254809</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>-inf</td>
+      <td>inf</td>
+      <td>0</td>
+      <td></td>
+      <td>-0.254809</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>After we find the best fitting parameters, we can compute some variance-covariance statistics, incuding standard errors of the estimates and t statistics, using <code class="docutils literal notranslate"><span class="pre">calculate_parameter_covariance</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">calculate_parameter_covariance</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>Then we can review the results in a variety of report tables.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div><table><thead><tr><th colspan="2" style="text-align: left;">Parameter</th><th>Value</th><th>Std Err</th><th>t Stat</th><th>Null Value</th></tr></thead><tbody><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_Bike</th><td>-0.2579</td><td>1.34</td><td>-0.19</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_SR</th><td>1.423</td><td>1.00</td><td>1.42</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_Transit</th><td>6.755</td><td>2.06</td><td>3.27</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_Walk</th><td>8.622</td><td>1.14</td><td>7.57</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">Cost</th><td>-0.1757</td><td>0.120</td><td>-1.47</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">InVehTime</th><td>-0.1237</td><td>0.0292</td><td>-4.24</td><td>0.0</td></tr><tr><th rowspan="4" style="vertical-align: top; text-align: left;">LogIncome</th><th style="vertical-align: top; text-align: left;">Bike</th><td>-0.197</td><td>0.124</td><td>-1.59</td><td>0.0</td></tr><tr><th style="vertical-align: top; text-align: left;">SR</th><td>-0.1938</td><td>0.135</td><td>-1.43</td><td>0.0</td></tr><tr><th style="vertical-align: top; text-align: left;">Transit</th><td>-0.5572</td><td>0.169</td><td>-3.29</td><td>0.0</td></tr><tr><th style="vertical-align: top; text-align: left;">Walk</th><td>-0.5228</td><td>0.100</td><td>-5.21</td><td>0.0</td></tr><tr><th rowspan="3" style="vertical-align: top; text-align: left;">Mu</th><th style="vertical-align: top; text-align: left;">Car</th><td>0.2593</td><td>0.181</td><td>-4.10</td><td>1.0</td></tr><tr><th style="vertical-align: top; text-align: left;">Motor</th><td>0.8017</td><td>0.201</td><td>-0.99</td><td>1.0</td></tr><tr><th style="vertical-align: top; text-align: left;">NonMotor</th><td>0.8538</td><td>0.112</td><td>-1.30</td><td>1.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">NonMotorTime</th><td>-0.2656</td><td>0.0163</td><td>-16.29</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">OutVehTime</th><td>-0.2548</td><td>0.0646</td><td>-3.95</td><td>0.0</td></tr></tbody></table></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">m</span><span class="o">.</span><span class="n">estimation_statistics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div><table><thead><tr><th>Statistic</th><th>Aggregate</th><th>Per Case</th></tr><tr><td>Number of Cases</td><td colspan="2">7564</td></tr><tr><td>Log Likelihood at Convergence</td><td>-3493.04</td><td>-0.46</td></tr><tr><td>Log Likelihood at Null Parameters</td><td>-10644.66</td><td>-1.41</td></tr><tr><td>Rho Squared w.r.t. Null Parameters</td><td colspan="2">0.672</td></tr></thead><tbody></tbody></table></div></div>
+</div>
+</div>
+<div class="section" id="Save-and-Report-Model">
+<h2>Save and Report Model<a class="headerlink" href="#Save-and-Report-Model" title="Permalink to this headline">¶</a></h2>
+<p>If we are satisified with this model, or if we just want to record it as part of our workflow while exploring different model structures, we can write the model out to a report. To do so, we can instantiatie a <code class="docutils literal notranslate"><span class="pre">larch.Reporter</span></code> object.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">report</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Reporter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Then, we can push section headings and report pieces into the report using the “&lt;&lt;” operator.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">report</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;# Parameter Summary&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<h1><a class="toc" name="rx1" reftxt="Parameter Summary" toclevel="1"></a>Parameter Summary</h1><div><table><thead><tr><th colspan="2" style="text-align: left;">Parameter</th><th>Value</th><th>Std Err</th><th>t Stat</th><th>Null Value</th></tr></thead><tbody><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_Bike</th><td>-0.2579</td><td>1.34</td><td>-0.19</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_SR</th><td>1.423</td><td>1.00</td><td>1.42</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_Transit</th><td>6.755</td><td>2.06</td><td>3.27</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">ASC_Walk</th><td>8.622</td><td>1.14</td><td>7.57</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">Cost</th><td>-0.1757</td><td>0.120</td><td>-1.47</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">InVehTime</th><td>-0.1237</td><td>0.0292</td><td>-4.24</td><td>0.0</td></tr><tr><th rowspan="4" style="vertical-align: top; text-align: left;">LogIncome</th><th style="vertical-align: top; text-align: left;">Bike</th><td>-0.197</td><td>0.124</td><td>-1.59</td><td>0.0</td></tr><tr><th style="vertical-align: top; text-align: left;">SR</th><td>-0.1938</td><td>0.135</td><td>-1.43</td><td>0.0</td></tr><tr><th style="vertical-align: top; text-align: left;">Transit</th><td>-0.5572</td><td>0.169</td><td>-3.29</td><td>0.0</td></tr><tr><th style="vertical-align: top; text-align: left;">Walk</th><td>-0.5228</td><td>0.100</td><td>-5.21</td><td>0.0</td></tr><tr><th rowspan="3" style="vertical-align: top; text-align: left;">Mu</th><th style="vertical-align: top; text-align: left;">Car</th><td>0.2593</td><td>0.181</td><td>-4.10</td><td>1.0</td></tr><tr><th style="vertical-align: top; text-align: left;">Motor</th><td>0.8017</td><td>0.201</td><td>-0.99</td><td>1.0</td></tr><tr><th style="vertical-align: top; text-align: left;">NonMotor</th><td>0.8538</td><td>0.112</td><td>-1.30</td><td>1.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">NonMotorTime</th><td>-0.2656</td><td>0.0163</td><td>-16.29</td><td>0.0</td></tr><tr><th colspan="2" style="vertical-align: top; text-align: left;">OutVehTime</th><td>-0.2548</td><td>0.0646</td><td>-3.95</td><td>0.0</td></tr></tbody></table></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">report</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;# Estimation Statistics&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="o">.</span><span class="n">estimation_statistics</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<h1><a class="toc" name="rx2" reftxt="Estimation Statistics" toclevel="1"></a>Estimation Statistics</h1><div><table><thead><tr><th>Statistic</th><th>Aggregate</th><th>Per Case</th></tr><tr><td>Number of Cases</td><td colspan="2">7564</td></tr><tr><td>Log Likelihood at Convergence</td><td>-3493.04</td><td>-0.46</td></tr><tr><td>Log Likelihood at Null Parameters</td><td>-10644.66</td><td>-1.41</td></tr><tr><td>Rho Squared w.r.t. Null Parameters</td><td colspan="2">0.672</td></tr></thead><tbody></tbody></table></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">report</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;# Utility Functions&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span><span class="o">.</span><span class="n">utility_functions</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<h1><a class="toc" name="rx3" reftxt="Utility Functions" toclevel="1"></a>Utility Functions</h1><div><table class="floatinghead" style="margin-top:1px;"><thead><tr><th>alt</th><th style="text-align:left;">formula</th></tr></thead><tbody><tr><td>1</td><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.InVehTime</span> * <span class="LinearFunc_Data">X.AUTO_TIME</span><br> + <span class="LinearFunc_Param">P.Cost</span> * <span class="LinearFunc_Data">X.AUTO_COST</span></td></tr><tr><td>2</td><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.ASC_SR</span><br> + <span class="LinearFunc_Param">P.InVehTime</span> * <span class="LinearFunc_Data">X.AUTO_TIME</span><br> + <span class="LinearFunc_Param">P.Cost</span> * <span class="LinearFunc_Data">X('AUTO_COST*(0.5)')</span><br> + <span class="LinearFunc_Param">P('LogIncome:SR')</span> * <span class="LinearFunc_Data">X('log(INCOME)')</span></td></tr><tr><td>3</td><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.ASC_Walk</span><br> + <span class="LinearFunc_Param">P.NonMotorTime</span> * <span class="LinearFunc_Data">X.WALK_TIME</span><br> + <span class="LinearFunc_Param">P('LogIncome:Walk')</span> * <span class="LinearFunc_Data">X('log(INCOME)')</span></td></tr><tr><td>4</td><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.ASC_Bike</span><br> + <span class="LinearFunc_Param">P.NonMotorTime</span> * <span class="LinearFunc_Data">X.BIKE_TIME</span><br> + <span class="LinearFunc_Param">P('LogIncome:Bike')</span> * <span class="LinearFunc_Data">X('log(INCOME)')</span></td></tr><tr><td>5</td><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.ASC_Transit</span><br> + <span class="LinearFunc_Param">P.InVehTime</span> * <span class="LinearFunc_Data">X.TRANSIT_IVTT</span><br> + <span class="LinearFunc_Param">P.OutVehTime</span> * <span class="LinearFunc_Data">X.TRANSIT_OVTT</span><br> + <span class="LinearFunc_Param">P.Cost</span> * <span class="LinearFunc_Data">X.TRANSIT_FARE</span><br> + <span class="LinearFunc_Param">P('LogIncome:Transit')</span> * <span class="LinearFunc_Data">X('log(INCOME)')</span></td></tr></tbody></table></div></div>
+</div>
+<p>Once we have assembled the report, we can save the file to disk as an HTML report containing the content previously assembled. Attaching the model itself to the report as metadata can be done within the <code class="docutils literal notranslate"><span class="pre">save</span></code> method, which will allow us to directly reload the same model again later.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">report</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+    <span class="s1">&#39;/tmp/exampville_mode_choice.html&#39;</span><span class="p">,</span>
+    <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="n">m</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;/tmp/exampville_mode_choice.html&#39;
+</pre></div></div>
+</div>
+<p>Note: if you get a <code class="docutils literal notranslate"><span class="pre">FileNotFound</span></code> error when saving, make sure that you are saving the file into a directory that exists. The example here should work fine on macOS or Linux, but the <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> directory does not exist by default on Windows.</p>
+<p>You can also save a model as an Excel file, which will automatically include several worksheets summarizing the parameters, data, utility functions, and other features of the model.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">larch.util.excel</span>
+<span class="n">m</span><span class="o">.</span><span class="n">to_xlsx</span><span class="p">(</span><span class="s2">&quot;/tmp/exampville_mode_choice.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="102_exville_mc_logsums.html" class="btn btn-neutral float-right" title="Exampville Mode Choice Logsums" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="004-mtc-modechoice-practical.html" class="btn btn-neutral float-left" title="Practical Mode Choice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

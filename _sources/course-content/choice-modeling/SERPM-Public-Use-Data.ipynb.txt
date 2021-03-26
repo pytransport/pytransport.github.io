@@ -1,0 +1,1107 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "systematic-infrastructure",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T18:59:58.355474Z",
+     "start_time": "2021-02-19T18:59:58.353418Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import transportation_tutorials as tt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "checked-reality",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T18:59:41.820347Z",
+     "start_time": "2021-02-19T18:59:41.814630Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'../../example-package/transportation_tutorials/data/Masked_SEFL_HTS_Data.xlsx'"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "tt.data(\"Masked_SEFL_HTS_Data\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "corporate-booking",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:17:26.227056Z",
+     "start_time": "2021-02-19T19:17:13.779541Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "hhs = pd.read_excel(tt.data(\"Masked_SEFL_HTS_Data\"), sheet_name=\"Households\")\n",
+    "persons = pd.read_excel(tt.data(\"Masked_SEFL_HTS_Data\"), sheet_name=\"Persons\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "nervous-count",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:27:12.634022Z",
+     "start_time": "2021-02-19T19:27:03.892492Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "trips = pd.read_excel(tt.data(\"Masked_SEFL_HTS_Data\"), sheet_name=\"Trips\", index_col=\"ID\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "complicated-wrong",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:27:13.109924Z",
+     "start_time": "2021-02-19T19:27:12.635697Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "skims = pd.read_csv(tt.data(\"SEFlorida_HTS_Public_Use_Skims2\"), index_col=\"Id\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "instructional-rates",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:28:40.991921Z",
+     "start_time": "2021-02-19T19:28:40.732798Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "trips_skims = pd.merge(trips, skims, left_index=True, right_index=True, how='inner')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "asian-venture",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:29:58.249657Z",
+     "start_time": "2021-02-19T19:29:58.245172Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1     13738\n",
+       "12      651\n",
+       "11      289\n",
+       "3       186\n",
+       "4       165\n",
+       "6       121\n",
+       "8        75\n",
+       "10       73\n",
+       "5        72\n",
+       "13       53\n",
+       "2        49\n",
+       "7        19\n",
+       "9         3\n",
+       "Name: TRPMODE, dtype: int64"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "trips_skims.TRPMODE.value_counts()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "artificial-singer",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:33:52.144837Z",
+     "start_time": "2021-02-19T19:33:52.141740Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "mode_codes = {\n",
+    "    1: 'Car',     # <1> “Car, truck, or van \n",
+    "    2: 'Car',     # <2> “Motorcycle/Moped”\n",
+    "    3: 'Bus',     # <3> “Local Bus (Breeze, Metrobus, Palm Tran)”\n",
+    "    4: 'Car',     # <4> “School Bus”\n",
+    "    5: 'Bus',     # <5> “Commuter Bus”\n",
+    "    6: 'Rail',    # <6> “Metrorail”\n",
+    "    7: 'Rail',    # <7> “Metromover”\n",
+    "    8: 'Rail',    # <8> “Tri-Rail”\n",
+    "    9: 'Taxi',    # <9> “Taxicab”\n",
+    "    10: 'TNC',    # <10> “Shared-car services (Lyft, Uber, Zip Car)” \n",
+    "    11: 'Bike',   # <11> “Bicycle”\n",
+    "    12: 'Walk',   # <12> “Walked”\n",
+    "    13: 'Nope',   # <13> “Other method\"\n",
+    "    97: 'Nope',   # <997> Not applicable\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "focal-cassette",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:34:11.537514Z",
+     "start_time": "2021-02-19T19:34:11.533349Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "trips_skims['trip_mode_name'] = trips_skims.TRPMODE.map(mode_codes)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "objective-group",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:34:37.480911Z",
+     "start_time": "2021-02-19T19:34:37.475035Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Car     13952\n",
+       "Walk      651\n",
+       "Bike      289\n",
+       "Bus       258\n",
+       "Rail      215\n",
+       "TNC        73\n",
+       "Nope       53\n",
+       "Taxi        3\n",
+       "Name: trip_mode_name, dtype: int64"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "trips_skims['trip_mode_name'].value_counts()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "elect-mapping",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:35:35.070902Z",
+     "start_time": "2021-02-19T19:35:35.067791Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "mode_codes = {\n",
+    "    1: 'Car',     # <1> “Car, truck, or van \n",
+    "    2: 'Car',     # <2> “Motorcycle/Moped”\n",
+    "    3: 'Bus',     # <3> “Local Bus (Breeze, Metrobus, Palm Tran)”\n",
+    "    4: 'Car',     # <4> “School Bus”\n",
+    "    5: 'Bus',     # <5> “Commuter Bus”\n",
+    "    6: 'Rail',    # <6> “Metrorail”\n",
+    "    7: 'Rail',    # <7> “Metromover”\n",
+    "    8: 'Rail',    # <8> “Tri-Rail”\n",
+    "    9: 'Nope',    # <9> “Taxicab”\n",
+    "    10: 'Nope',   # <10> “Shared-car services (Lyft, Uber, Zip Car)” \n",
+    "    11: 'Bike',   # <11> “Bicycle”\n",
+    "    12: 'Walk',   # <12> “Walked”\n",
+    "    13: 'Nope',   # <13> “Other method\"\n",
+    "    97: 'Nope',   # <997> Not applicable\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "clear-amazon",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:36:00.349989Z",
+     "start_time": "2021-02-19T19:36:00.342335Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Car     13952\n",
+       "Walk      651\n",
+       "Bike      289\n",
+       "Bus       258\n",
+       "Rail      215\n",
+       "Nope      129\n",
+       "Name: trip_mode_name, dtype: int64"
+      ]
+     },
+     "execution_count": 34,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "trips_skims['trip_mode_name'] = trips_skims.TRPMODE.map(mode_codes)\n",
+    "trips_skims['trip_mode_name'].value_counts()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "circular-battle",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:36:30.411371Z",
+     "start_time": "2021-02-19T19:36:30.363477Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "trips_skims = trips_skims.query(\"trip_mode_name != 'Nope'\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "id": "received-spirit",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:38:52.527232Z",
+     "start_time": "2021-02-19T19:38:52.524265Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "mode_recodes = {\n",
+    "    'Car':  1,\n",
+    "    'Walk': 2,\n",
+    "    'Bike': 3,\n",
+    "    'Bus':  4,\n",
+    "    'Rail': 5,\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "adult-platform",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:46:30.168515Z",
+     "start_time": "2021-02-19T19:46:30.163503Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "<ipython-input-49-9c87f1283fe3>:1: SettingWithCopyWarning: \n",
+      "A value is trying to be set on a copy of a slice from a DataFrame.\n",
+      "Try using .loc[row_indexer,col_indexer] = value instead\n",
+      "\n",
+      "See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy\n",
+      "  trips_skims['trip_chosen_mode_recode'] = trips_skims['trip_mode_name'].map(mode_recodes)\n"
+     ]
+    }
+   ],
+   "source": [
+    "trips_skims['trip_chosen_mode_recode'] = trips_skims['trip_mode_name'].map(mode_recodes)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "nutritional-algorithm",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:41:28.918387Z",
+     "start_time": "2021-02-19T19:41:28.915927Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "import larch\n",
+    "from larch import P, X"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "id": "understanding-revolution",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:47:16.225675Z",
+     "start_time": "2021-02-19T19:47:16.215668Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "dfs = larch.DataFrames(\n",
+    "    trips_skims, \n",
+    "    alt_names=mode_recodes.keys(),\n",
+    "    alt_codes=mode_recodes.values(),\n",
+    "    ch='trip_chosen_mode_recode',\n",
+    "    av=1,\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "id": "collected-income",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:47:16.775611Z",
+     "start_time": "2021-02-19T19:47:16.770143Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "m = larch.Model(dataservice=dfs)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "id": "helpful-julian",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:47:50.950499Z",
+     "start_time": "2021-02-19T19:47:50.946080Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "m.utility_co[1] = P.time * X.auto_DA_TL_Time\n",
+    "m.utility_co[2] = P.ASC_Walk + P.time * X.auto_DA_NT_Dist * 20\n",
+    "m.utility_co[3] = P.ASC_Bike + P.time * X.auto_DA_NT_Dist * 4\n",
+    "m.utility_co[4] = P.ASC_Bus + P.time * X.wtw_lb_LB_ivt\n",
+    "m.utility_co[5] = P.ASC_Rail + P.time * X.wtw_lr_LRT_ivt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "id": "caring-chain",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:47:52.730571Z",
+     "start_time": "2021-02-19T19:47:52.719493Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "req_data does not request {choice_ca,choice_co,choice_co_code} but choice is set and being provided\n",
+      "req_data does not request avail_ca or avail_co but it is set and being provided\n"
+     ]
+    }
+   ],
+   "source": [
+    "m.load_data()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "id": "dressed-cargo",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:47:53.492619Z",
+     "start_time": "2021-02-19T19:47:53.323009Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "-22121.108532059458"
+      ]
+     },
+     "execution_count": 64,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "m.loglike()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "id": "psychological-brooks",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:48:00.073998Z",
+     "start_time": "2021-02-19T19:47:54.365726Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<h3>Iteration 032 [Optimization terminated successfully.] </h3>"
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<p>LL = -6486.038508807775</p>"
+      ],
+      "text/plain": [
+       "<IPython.core.display.HTML object>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>value</th>\n",
+       "      <th>initvalue</th>\n",
+       "      <th>nullvalue</th>\n",
+       "      <th>minimum</th>\n",
+       "      <th>maximum</th>\n",
+       "      <th>holdfast</th>\n",
+       "      <th>note</th>\n",
+       "      <th>best</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>ASC_Bike</th>\n",
+       "      <td>-3.900557</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>-inf</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>0</td>\n",
+       "      <td></td>\n",
+       "      <td>-3.900557</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ASC_Bus</th>\n",
+       "      <td>-4.199790</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>-inf</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>0</td>\n",
+       "      <td></td>\n",
+       "      <td>-4.199790</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ASC_Rail</th>\n",
+       "      <td>-4.756608</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>-inf</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>0</td>\n",
+       "      <td></td>\n",
+       "      <td>-4.756608</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ASC_Walk</th>\n",
+       "      <td>-3.013423</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>-inf</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>0</td>\n",
+       "      <td></td>\n",
+       "      <td>-3.013423</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>time</th>\n",
+       "      <td>-0.000614</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>0.0</td>\n",
+       "      <td>-inf</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>0</td>\n",
+       "      <td></td>\n",
+       "      <td>-0.000614</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "             value  initvalue  nullvalue  minimum  maximum  holdfast note  \\\n",
+       "ASC_Bike -3.900557        0.0        0.0     -inf      inf         0        \n",
+       "ASC_Bus  -4.199790        0.0        0.0     -inf      inf         0        \n",
+       "ASC_Rail -4.756608        0.0        0.0     -inf      inf         0        \n",
+       "ASC_Walk -3.013423        0.0        0.0     -inf      inf         0        \n",
+       "time     -0.000614        0.0        0.0     -inf      inf         0        \n",
+       "\n",
+       "              best  \n",
+       "ASC_Bike -3.900557  \n",
+       "ASC_Bus  -4.199790  \n",
+       "ASC_Rail -4.756608  \n",
+       "ASC_Walk -3.013423  \n",
+       "time     -0.000614  "
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div><table style=\"margin-top:1px;\"><tr><th>key</th><th style=\"text-align:left;\">value</th></tr><tr><td>loglike</td><td style=\"text-align:left;\">-6486.038508807775</td></tr><tr><td>x</td><td style=\"text-align:left;\"><table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>ASC_Bike</th>\n",
+       "      <td>-3.900557</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ASC_Bus</th>\n",
+       "      <td>-4.199790</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ASC_Rail</th>\n",
+       "      <td>-4.756608</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>ASC_Walk</th>\n",
+       "      <td>-3.013423</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>time</th>\n",
+       "      <td>-0.000614</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table></td></tr><tr><td>tolerance</td><td style=\"text-align:left;\">6.785982252948087e-06</td></tr><tr><td>steps</td><td style=\"text-align:left;\"><pre>array([1. , 1. , 1. , 1. , 1. , 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,\n",
+       "       0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,\n",
+       "       0.5, 0.5, 0.5, 0.5, 0.5, 0.5])</pre></td></tr><tr><td>message</td><td style=\"text-align:left;\">'Optimization terminated successfully.'</td></tr><tr><td>elapsed_time</td><td style=\"text-align:left;\">0:00:05.532796</td></tr><tr><td>method</td><td style=\"text-align:left;\">'bhhh'</td></tr><tr><td>n_cases</td><td style=\"text-align:left;\">15365</td></tr><tr><td>iteration_number</td><td style=\"text-align:left;\">32</td></tr><tr><td>logloss</td><td style=\"text-align:left;\">0.4221307197401741</td></tr></table></div>"
+      ],
+      "text/plain": [
+       "┣          loglike: -6486.038508807775\n",
+       "┣                x: ASC_Bike   -3.900557\n",
+       "┃                   ASC_Bus    -4.199790\n",
+       "┃                   ASC_Rail   -4.756608\n",
+       "┃                   ASC_Walk   -3.013423\n",
+       "┃                   time       -0.000614\n",
+       "┃                   dtype: float64\n",
+       "┣        tolerance: 6.785982252948087e-06\n",
+       "┣            steps: array([1. , 1. , 1. , 1. , 1. , 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,\n",
+       "┃                          0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,\n",
+       "┃                          0.5, 0.5, 0.5, 0.5, 0.5, 0.5])\n",
+       "┣          message: 'Optimization terminated successfully.'\n",
+       "┣     elapsed_time: datetime.timedelta(seconds=5, microseconds=532796)\n",
+       "┣           method: 'bhhh'\n",
+       "┣          n_cases: 15365\n",
+       "┣ iteration_number: 32\n",
+       "┣          logloss: 0.4221307197401741"
+      ]
+     },
+     "execution_count": 65,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "m.maximize_loglike()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "willing-captain",
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2021-02-19T19:41:56.091469Z",
+     "start_time": "2021-02-19T19:41:56.066158Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "Int64Index: 15365 entries, 6653 to 18672\n",
+      "Data columns (total 353 columns):\n",
+      " #    Column               Dtype         \n",
+      "---   ------               -----         \n",
+      " 0    HHPERSONID           int64         \n",
+      " 1    HHID                 int64         \n",
+      " 2    TRIPNO               int64         \n",
+      " 3    TRIPID               int64         \n",
+      " 4    HHSIZE               int64         \n",
+      " 5    PROXY                int64         \n",
+      " 6    ORIGIN               int64         \n",
+      " 7    OTYPE                int64         \n",
+      " 8    OCITY                object        \n",
+      " 9    OSTATE               object        \n",
+      " 10   OZIP                 int64         \n",
+      " 11   OACT                 int64         \n",
+      " 12   DESTINATION          int64         \n",
+      " 13   DTYPE                int64         \n",
+      " 14   DCITY                object        \n",
+      " 15   DSTATE               object        \n",
+      " 16   DZIP                 int64         \n",
+      " 17   DACT                 int64         \n",
+      " 18   TRPMODE              int64         \n",
+      " 19   TRPMODEOTH           object        \n",
+      " 20   TRPROST              int64         \n",
+      " 21   DRVRPASS             int64         \n",
+      " 22   TOLL                 int64         \n",
+      " 23   TRIPDUR              int64         \n",
+      " 24   ODATE                datetime64[ns]\n",
+      " 25   OTIME                object        \n",
+      " 26   DDATE                datetime64[ns]\n",
+      " 27   DTIME                object        \n",
+      " 28   STUDYDAY             int64         \n",
+      " 29   STTRAVEL             int64         \n",
+      " 30   DISTANCE             float64       \n",
+      " 31   OTAZ                 int64         \n",
+      " 32   DTAZ                 int64         \n",
+      " 33   OLON_RANDOM          float64       \n",
+      " 34   OLAT_RANDOM          float64       \n",
+      " 35   DLON_RANDOM          float64       \n",
+      " 36   DLAT_RANDOM          float64       \n",
+      " 37   Unnamed: 38          float64       \n",
+      " 38   Unnamed: 39          float64       \n",
+      " 39   obOrigMgra           int64         \n",
+      " 40   obDestMgra           int64         \n",
+      " 41   obPeriod             int64         \n",
+      " 42   auto_DA_NT_Time      float64       \n",
+      " 43   auto_DA_NT_FFTime    float64       \n",
+      " 44   auto_DA_NT_Dist      float64       \n",
+      " 45   auto_DA_TL_Time      float64       \n",
+      " 46   auto_DA_TL_FFTime    float64       \n",
+      " 47   auto_DA_TL_Dist      float64       \n",
+      " 48   auto_DA_TL_Value     float64       \n",
+      " 49   auto_DA_TL_FacLen    float64       \n",
+      " 50   auto_HOV_NT_Time     float64       \n",
+      " 51   auto_HOV_NT_FFTime   float64       \n",
+      " 52   auto_HOV_NT_Dist     float64       \n",
+      " 53   auto_HOV_NT_FacLen   float64       \n",
+      " 54   auto_S2TH_TIME       float64       \n",
+      " 55   auto_S2TH_FFTIME     float64       \n",
+      " 56   auto_S2TH_DIST       float64       \n",
+      " 57   auto_S2TH_TOLLCOST   float64       \n",
+      " 58   auto_S2TH_TOLLDIST   float64       \n",
+      " 59   auto_S2TH_HOVDIST    float64       \n",
+      " 60   auto_S3NH_TIME       float64       \n",
+      " 61   auto_S3NH_FFTIME     float64       \n",
+      " 62   auto_S3NH_DIST       float64       \n",
+      " 63   auto_S3NH_HOVDIST    float64       \n",
+      " 64   auto_S3TH_TIME       float64       \n",
+      " 65   auto_S3TH_FFTIME     float64       \n",
+      " 66   auto_S3TH_DIST       float64       \n",
+      " 67   auto_S3TH_TOLLCOST   float64       \n",
+      " 68   auto_S3TH_TOLLDIST   float64       \n",
+      " 69   auto_S3TH_HOVDIST    float64       \n",
+      " 70   nm_walkTime          float64       \n",
+      " 71   nm_bikeTime          float64       \n",
+      " 72   wtw_cr_AccTime       float64       \n",
+      " 73   wtw_cr_EgrTime       float64       \n",
+      " 74   wtw_cr_WalkAuxTime   float64       \n",
+      " 75   wtw_cr_LB_ivt        float64       \n",
+      " 76   wtw_cr_EB_ivt        float64       \n",
+      " 77   wtw_cr_BRT_ivt       float64       \n",
+      " 78   wtw_cr_LRT_ivt       float64       \n",
+      " 79   wtw_cr_CR_ivt        float64       \n",
+      " 80   wtw_cr_fwait         float64       \n",
+      " 81   wtw_cr_xwait         float64       \n",
+      " 82   wtw_cr_fare          int64         \n",
+      " 83   wtw_cr_Main_Mode     int64         \n",
+      " 84   wtw_cr_xfers         int64         \n",
+      " 85   wtw_cr_AccDist       int64         \n",
+      " 86   wtw_cr_EgrDist       int64         \n",
+      " 87   wtw_lr_AccTime       float64       \n",
+      " 88   wtw_lr_EgrTime       float64       \n",
+      " 89   wtw_lr_WalkAuxTime   float64       \n",
+      " 90   wtw_lr_LB_ivt        float64       \n",
+      " 91   wtw_lr_EB_ivt        float64       \n",
+      " 92   wtw_lr_BRT_ivt       float64       \n",
+      " 93   wtw_lr_LRT_ivt       float64       \n",
+      " 94   wtw_lr_CR_ivt        int64         \n",
+      " 95   wtw_lr_fwait         float64       \n",
+      " 96   wtw_lr_xwait         float64       \n",
+      " 97   wtw_lr_fare          int64         \n",
+      " 98   wtw_lr_Main_Mode     int64         \n",
+      " 99   wtw_lr_xfers         int64         \n",
+      " 100  wtw_lr_AccDist       int64         \n",
+      " 101  wtw_lr_EgrDist       int64         \n",
+      " 102  wtw_brt_AccTime      float64       \n",
+      " 103  wtw_brt_EgrTime      float64       \n",
+      " 104  wtw_brt_WalkAuxTime  float64       \n",
+      " 105  wtw_brt_LB_ivt       float64       \n",
+      " 106  wtw_brt_EB_ivt       float64       \n",
+      " 107  wtw_brt_BRT_ivt      float64       \n",
+      " 108  wtw_brt_LRT_ivt      int64         \n",
+      " 109  wtw_brt_CR_ivt       int64         \n",
+      " 110  wtw_brt_fwait        float64       \n",
+      " 111  wtw_brt_xwait        float64       \n",
+      " 112  wtw_brt_fare         int64         \n",
+      " 113  wtw_brt_Main_Mode    int64         \n",
+      " 114  wtw_brt_xfers        int64         \n",
+      " 115  wtw_brt_AccDist      int64         \n",
+      " 116  wtw_brt_EgrDist      int64         \n",
+      " 117  wtw_eb_AccTime       float64       \n",
+      " 118  wtw_eb_EgrTime       float64       \n",
+      " 119  wtw_eb_WalkAuxTime   float64       \n",
+      " 120  wtw_eb_LB_ivt        float64       \n",
+      " 121  wtw_eb_EB_ivt        float64       \n",
+      " 122  wtw_eb_BRT_ivt       int64         \n",
+      " 123  wtw_eb_LRT_ivt       int64         \n",
+      " 124  wtw_eb_CR_ivt        int64         \n",
+      " 125  wtw_eb_fwait         float64       \n",
+      " 126  wtw_eb_xwait         float64       \n",
+      " 127  wtw_eb_fare          int64         \n",
+      " 128  wtw_eb_Main_Mode     int64         \n",
+      " 129  wtw_eb_xfers         int64         \n",
+      " 130  wtw_eb_AccDist       int64         \n",
+      " 131  wtw_eb_EgrDist       int64         \n",
+      " 132  wtw_lb_AccTime       float64       \n",
+      " 133  wtw_lb_EgrTime       float64       \n",
+      " 134  wtw_lb_WalkAuxTime   float64       \n",
+      " 135  wtw_lb_LB_ivt        float64       \n",
+      " 136  wtw_lb_fwait         float64       \n",
+      " 137  wtw_lb_xwait         float64       \n",
+      " 138  wtw_lb_LB_fare       float64       \n",
+      " 139  wtw_lb_xfers         int64         \n",
+      " 140  wtw_lb_AccDist       int64         \n",
+      " 141  wtw_lb_EgrDist       int64         \n",
+      " 142  wtd_cr_AccTime       float64       \n",
+      " 143  wtd_cr_EgrTime       float64       \n",
+      " 144  wtd_cr_WalkAuxTime   float64       \n",
+      " 145  wtd_cr_LB_ivt        float64       \n",
+      " 146  wtd_cr_EB_ivt        float64       \n",
+      " 147  wtd_cr_BRT_ivt       float64       \n",
+      " 148  wtd_cr_LRT_ivt       float64       \n",
+      " 149  wtd_cr_CR_ivt        float64       \n",
+      " 150  wtd_cr_fwait         float64       \n",
+      " 151  wtd_cr_xwait         float64       \n",
+      " 152  wtd_cr_fare          float64       \n",
+      " 153  wtd_cr_Main_Mode     int64         \n",
+      " 154  wtd_cr_xfers         int64         \n",
+      " 155  wtd_cr_AccDist       int64         \n",
+      " 156  wtd_cr_EgrDist       float64       \n",
+      " 157  wtd_lr_AccTime       float64       \n",
+      " 158  wtd_lr_EgrTime       float64       \n",
+      " 159  wtd_lr_WalkAuxTime   float64       \n",
+      " 160  wtd_lr_LB_ivt        float64       \n",
+      " 161  wtd_lr_EB_ivt        float64       \n",
+      " 162  wtd_lr_BRT_ivt       float64       \n",
+      " 163  wtd_lr_LRT_ivt       float64       \n",
+      " 164  wtd_lr_CR_ivt        int64         \n",
+      " 165  wtd_lr_fwait         float64       \n",
+      " 166  wtd_lr_xwait         float64       \n",
+      " 167  wtd_lr_fare          float64       \n",
+      " 168  wtd_lr_Main_Mode     int64         \n",
+      " 169  wtd_lr_xfers         int64         \n",
+      " 170  wtd_lr_AccDist       int64         \n",
+      " 171  wtd_lr_EgrDist       float64       \n",
+      " 172  wtd_brt_AccTime      float64       \n",
+      " 173  wtd_brt_EgrTime      float64       \n",
+      " 174  wtd_brt_WalkAuxTime  float64       \n",
+      " 175  wtd_brt_LB_ivt       float64       \n",
+      " 176  wtd_brt_EB_ivt       float64       \n",
+      " 177  wtd_brt_BRT_ivt      float64       \n",
+      " 178  wtd_brt_LRT_ivt      int64         \n",
+      " 179  wtd_brt_CR_ivt       int64         \n",
+      " 180  wtd_brt_fwait        float64       \n",
+      " 181  wtd_brt_xwait        float64       \n",
+      " 182  wtd_brt_fare         float64       \n",
+      " 183  wtd_brt_Main_Mode    int64         \n",
+      " 184  wtd_brt_xfers        int64         \n",
+      " 185  wtd_brt_AccDist      int64         \n",
+      " 186  wtd_brt_EgrDist      float64       \n",
+      " 187  wtd_eb_AccTime       float64       \n",
+      " 188  wtd_eb_EgrTime       float64       \n",
+      " 189  wtd_eb_WalkAuxTime   float64       \n",
+      " 190  wtd_eb_LB_ivt        float64       \n",
+      " 191  wtd_eb_EB_ivt        float64       \n",
+      " 192  wtd_eb_BRT_ivt       int64         \n",
+      " 193  wtd_eb_LRT_ivt       int64         \n",
+      " 194  wtd_eb_CR_ivt        int64         \n",
+      " 195  wtd_eb_fwait         float64       \n",
+      " 196  wtd_eb_xwait         float64       \n",
+      " 197  wtd_eb_fare          float64       \n",
+      " 198  wtd_eb_Main_Mode     int64         \n",
+      " 199  wtd_eb_xfers         int64         \n",
+      " 200  wtd_eb_AccDist       int64         \n",
+      " 201  wtd_eb_EgrDist       float64       \n",
+      " 202  wtd_lb_AccTime       float64       \n",
+      " 203  wtd_lb_EgrTime       float64       \n",
+      " 204  wtd_lb_WalkAuxTime   float64       \n",
+      " 205  wtd_lb_LB_ivt        float64       \n",
+      " 206  wtd_lb_fwait         float64       \n",
+      " 207  wtd_lb_xwait         float64       \n",
+      " 208  wtd_lb_LB_fare       float64       \n",
+      " 209  wtd_lb_xfers         int64         \n",
+      " 210  wtd_lb_AccDist       int64         \n",
+      " 211  wtd_lb_EgrDist       float64       \n",
+      " 212  dtw_cr_AccTime       float64       \n",
+      " 213  dtw_cr_EgrTime       float64       \n",
+      " 214  dtw_cr_WalkAuxTime   float64       \n",
+      " 215  dtw_cr_LB_ivt        float64       \n",
+      " 216  dtw_cr_EB_ivt        float64       \n",
+      " 217  dtw_cr_BRT_ivt       float64       \n",
+      " 218  dtw_cr_LRT_ivt       float64       \n",
+      " 219  dtw_cr_CR_ivt        float64       \n",
+      " 220  dtw_cr_fwait         float64       \n",
+      " 221  dtw_cr_xwait         float64       \n",
+      " 222  dtw_cr_fare          float64       \n",
+      " 223  dtw_cr_Main_Mode     int64         \n",
+      " 224  dtw_cr_xfers         int64         \n",
+      " 225  dtw_cr_AccDist       float64       \n",
+      " 226  dtw_cr_EgrDist       int64         \n",
+      " 227  dtw_lr_AccTime       float64       \n",
+      " 228  dtw_lr_EgrTime       float64       \n",
+      " 229  dtw_lr_WalkAuxTime   float64       \n",
+      " 230  dtw_lr_LB_ivt        float64       \n",
+      " 231  dtw_lr_EB_ivt        float64       \n",
+      " 232  dtw_lr_BRT_ivt       float64       \n",
+      " 233  dtw_lr_LRT_ivt       float64       \n",
+      " 234  dtw_lr_CR_ivt        int64         \n",
+      " 235  dtw_lr_fwait         float64       \n",
+      " 236  dtw_lr_xwait         float64       \n",
+      " 237  dtw_lr_fare          float64       \n",
+      " 238  dtw_lr_Main_Mode     int64         \n",
+      " 239  dtw_lr_xfers         int64         \n",
+      " 240  dtw_lr_AccDist       float64       \n",
+      " 241  dtw_lr_EgrDist       int64         \n",
+      " 242  dtw_brt_AccTime      float64       \n",
+      " 243  dtw_brt_EgrTime      float64       \n",
+      " 244  dtw_brt_WalkAuxTime  float64       \n",
+      " 245  dtw_brt_LB_ivt       float64       \n",
+      " 246  dtw_brt_EB_ivt       float64       \n",
+      " 247  dtw_brt_BRT_ivt      float64       \n",
+      " 248  dtw_brt_LRT_ivt      int64         \n",
+      " 249  dtw_brt_CR_ivt       int64         \n",
+      " 250  dtw_brt_fwait        float64       \n",
+      " 251  dtw_brt_xwait        float64       \n",
+      " 252  dtw_brt_fare         float64       \n",
+      " 253  dtw_brt_Main_Mode    int64         \n",
+      " 254  dtw_brt_xfers        int64         \n",
+      " 255  dtw_brt_AccDist      float64       \n",
+      " 256  dtw_brt_EgrDist      int64         \n",
+      " 257  dtw_eb_AccTime       float64       \n",
+      " 258  dtw_eb_EgrTime       float64       \n",
+      " 259  dtw_eb_WalkAuxTime   float64       \n",
+      " 260  dtw_eb_LB_ivt        float64       \n",
+      " 261  dtw_eb_EB_ivt        float64       \n",
+      " 262  dtw_eb_BRT_ivt       int64         \n",
+      " 263  dtw_eb_LRT_ivt       int64         \n",
+      " 264  dtw_eb_CR_ivt        int64         \n",
+      " 265  dtw_eb_fwait         float64       \n",
+      " 266  dtw_eb_xwait         float64       \n",
+      " 267  dtw_eb_fare          float64       \n",
+      " 268  dtw_eb_Main_Mode     int64         \n",
+      " 269  dtw_eb_xfers         int64         \n",
+      " 270  dtw_eb_AccDist       float64       \n",
+      " 271  dtw_eb_EgrDist       int64         \n",
+      " 272  dtw_lb_AccTime       float64       \n",
+      " 273  dtw_lb_EgrTime       float64       \n",
+      " 274  dtw_lb_WalkAuxTime   float64       \n",
+      " 275  dtw_lb_LB_ivt        float64       \n",
+      " 276  dtw_lb_fwait         float64       \n",
+      " 277  dtw_lb_xwait         float64       \n",
+      " 278  dtw_lb_LB_fare       float64       \n",
+      " 279  dtw_lb_xfers         int64         \n",
+      " 280  dtw_lb_AccDist       float64       \n",
+      " 281  dtw_lb_EgrDist       int64         \n",
+      " 282  dtd_cr_AccTime       float64       \n",
+      " 283  dtd_cr_EgrTime       float64       \n",
+      " 284  dtd_cr_WalkAuxTime   float64       \n",
+      " 285  dtd_cr_LB_ivt        float64       \n",
+      " 286  dtd_cr_EB_ivt        float64       \n",
+      " 287  dtd_cr_BRT_ivt       float64       \n",
+      " 288  dtd_cr_LRT_ivt       float64       \n",
+      " 289  dtd_cr_CR_ivt        float64       \n",
+      " 290  dtd_cr_fwait         float64       \n",
+      " 291  dtd_cr_xwait         float64       \n",
+      " 292  dtd_cr_fare          float64       \n",
+      " 293  dtd_cr_Main_Mode     int64         \n",
+      " 294  dtd_cr_xfers         int64         \n",
+      " 295  dtd_cr_AccDist       float64       \n",
+      " 296  dtd_cr_EgrDist       float64       \n",
+      " 297  dtd_lr_AccTime       float64       \n",
+      " 298  dtd_lr_EgrTime       float64       \n",
+      " 299  dtd_lr_WalkAuxTime   float64       \n",
+      " 300  dtd_lr_LB_ivt        float64       \n",
+      " 301  dtd_lr_EB_ivt        float64       \n",
+      " 302  dtd_lr_BRT_ivt       float64       \n",
+      " 303  dtd_lr_LRT_ivt       float64       \n",
+      " 304  dtd_lr_CR_ivt        int64         \n",
+      " 305  dtd_lr_fwait         float64       \n",
+      " 306  dtd_lr_xwait         float64       \n",
+      " 307  dtd_lr_fare          float64       \n",
+      " 308  dtd_lr_Main_Mode     int64         \n",
+      " 309  dtd_lr_xfers         int64         \n",
+      " 310  dtd_lr_AccDist       float64       \n",
+      " 311  dtd_lr_EgrDist       float64       \n",
+      " 312  dtd_brt_AccTime      float64       \n",
+      " 313  dtd_brt_EgrTime      float64       \n",
+      " 314  dtd_brt_WalkAuxTime  float64       \n",
+      " 315  dtd_brt_LB_ivt       float64       \n",
+      " 316  dtd_brt_EB_ivt       float64       \n",
+      " 317  dtd_brt_BRT_ivt      float64       \n",
+      " 318  dtd_brt_LRT_ivt      int64         \n",
+      " 319  dtd_brt_CR_ivt       int64         \n",
+      " 320  dtd_brt_fwait        float64       \n",
+      " 321  dtd_brt_xwait        float64       \n",
+      " 322  dtd_brt_fare         float64       \n",
+      " 323  dtd_brt_Main_Mode    int64         \n",
+      " 324  dtd_brt_xfers        int64         \n",
+      " 325  dtd_brt_AccDist      float64       \n",
+      " 326  dtd_brt_EgrDist      float64       \n",
+      " 327  dtd_eb_AccTime       float64       \n",
+      " 328  dtd_eb_EgrTime       float64       \n",
+      " 329  dtd_eb_WalkAuxTime   float64       \n",
+      " 330  dtd_eb_LB_ivt        float64       \n",
+      " 331  dtd_eb_EB_ivt        float64       \n",
+      " 332  dtd_eb_BRT_ivt       int64         \n",
+      " 333  dtd_eb_LRT_ivt       int64         \n",
+      " 334  dtd_eb_CR_ivt        int64         \n",
+      " 335  dtd_eb_fwait         float64       \n",
+      " 336  dtd_eb_xwait         float64       \n",
+      " 337  dtd_eb_fare          float64       \n",
+      " 338  dtd_eb_Main_Mode     int64         \n",
+      " 339  dtd_eb_xfers         int64         \n",
+      " 340  dtd_eb_AccDist       float64       \n",
+      " 341  dtd_eb_EgrDist       float64       \n",
+      " 342  dtd_lb_AccTime       float64       \n",
+      " 343  dtd_lb_EgrTime       float64       \n",
+      " 344  dtd_lb_WalkAuxTime   float64       \n",
+      " 345  dtd_lb_LB_ivt        float64       \n",
+      " 346  dtd_lb_fwait         float64       \n",
+      " 347  dtd_lb_xwait         float64       \n",
+      " 348  dtd_lb_LB_fare       int64         \n",
+      " 349  dtd_lb_xfers         int64         \n",
+      " 350  dtd_lb_AccDist       float64       \n",
+      " 351  dtd_lb_EgrDist       float64       \n",
+      " 352  trip_mode_name       object        \n",
+      "dtypes: datetime64[ns](2), float64(232), int64(111), object(8)\n",
+      "memory usage: 41.5+ MB\n"
+     ]
+    }
+   ],
+   "source": [
+    "trips_skims.info(1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "international-hearing",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python [conda env:garage38] *",
+   "language": "python",
+   "name": "conda-env-garage38-py"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.6"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": true,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {},
+   "toc_section_display": true,
+   "toc_window_display": false
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

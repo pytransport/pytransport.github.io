@@ -1,0 +1,1955 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Discrete Choice Theory &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Python for Transportation
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../starting/_index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic-python/_index.html">Python Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tabular-analysis/_index.html">Tabular Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/_index.html">Data Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../geographic-analysis/_index.html">Geographic Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_index.html">Discrete Choice Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/_index.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data/example-data.html">Tutorial Data Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Python for Transportation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Discrete Choice Theory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/course-content/choice-modeling/modechoice-theory-notes.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 5ex;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">choice_theory_figures</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Discrete-Choice-Theory">
+<h1>Discrete Choice Theory<a class="headerlink" href="#Discrete-Choice-Theory" title="Permalink to this headline">¶</a></h1>
+<p>Discrete choice modeling is at the heart of many transportion planning models. This is because so many aspects of travel represent discrete choices: do I walk or drive? Buy a car or not? Take the freeway or side streets? Go to the store on the way to work? Which store?</p>
+<p>All of these choices share some common features:</p>
+<ul class="simple">
+<li><p>they are selections from a bunch of categorical options,</p></li>
+<li><p>the categories often lack a natural ordering (walking is not clearly “more” or “less” than driving, just different), and</p></li>
+<li><p>choosing one option means not choosing the other options.</p></li>
+</ul>
+<p>Beyond these factual aspects of the choices, we will also define some reasonable assumptions about these choices, namely:</p>
+<ul class="simple">
+<li><p>the decision makers (the people traveling, generally) make <strong>rational choices</strong> from among the options, choosing whichever option they think is best, and</p></li>
+<li><p>those judgements about which option is best are based on the <strong>attributes of the alternatives</strong>, and we as modelers can observe at least some of the relevant attributes that decision makers are considering.</p></li>
+</ul>
+<div class="section" id="Mathematical-Derivation">
+<h2>Mathematical Derivation<a class="headerlink" href="#Mathematical-Derivation" title="Permalink to this headline">¶</a></h2>
+<p>We can convert these reasonable assumptions, plus a few more assumptions that maybe are a little less reasonable, into a mathematical model to represent the choice process.</p>
+<p>Let’s suppose that each of the alternatives in a choice problem has some value associated with it, and that the decision maker makes their choice by selecting the alternative with the highest value. We’ll call that value <strong>“utility”</strong>, which then makes this decision making process <strong>“utility maximization”</strong>.</p>
+<p>Unfortunately, we can’t actually observe utility, instead we can only observe the actual or hypothetical choices that decision makers make.</p>
+<p>Mathematically, decision maker <span class="math notranslate nohighlight">\(t\)</span> chooses alternative <span class="math notranslate nohighlight">\(i\)</span> from choices <span class="math notranslate nohighlight">\(C_t\)</span> if and only if</p>
+<div class="math notranslate nohighlight">
+\[U_i \ge U_j \quad \forall j \in C_t.\]</div>
+<p>This is predicated on some formulation of utility</p>
+<div class="math notranslate nohighlight">
+\[U_i = V_i + \varepsilon_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_i\)</span> is a measured component, also called the <em>systematic utility</em>, and <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> is the the unobserved component, also called the <em>random utility</em>.</p>
+<p>Note that <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> isn’t random from the perspective of the decision maker, it is only random from the perspective of the modeler.</p>
+<p>We can identify the probability of <span class="math notranslate nohighlight">\(t\)</span> choosing alternative <span class="math notranslate nohighlight">\(i\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Pr_t(i | C_t) = \Pr(U_i \ge U_j, \forall j \in C_t) \\
+= \Pr(V_i + \varepsilon_i \ge V_j + \varepsilon_j, \forall j \in C_t) \\
+= \Pr(\varepsilon_j - \varepsilon_i \le V_i - V_j, \forall j \in C_t)\end{split}\]</div>
+<p>In this last form we’ve grouped all the random utility together, which can be helpful. If we can express these terms jointly, we have written this as a cumulative density function (CDF).</p>
+<p>Without making any particular assumption on the multivariate density function <span class="math notranslate nohighlight">\(f(\varepsilon)\)</span> we can write the probability as an integral, like this:</p>
+<div class="math notranslate nohighlight">
+\[\Pr_t(i | C_t) =
+\int_{\varepsilon_i = -\infty}^{\infty}
+\int_{\varepsilon_j = -\infty}^{V_i - V_j + \varepsilon_i}
+f(\varepsilon) d\varepsilon_J d\varepsilon_{i-1} d\varepsilon_{i}\]</div>
+<p>Particular assumptions about error distributions lead to particular model structures.</p>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\varepsilon\)</span> has a multivariate normal distribution, we get a <strong>Multinomial Probit</strong> model.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\varepsilon\)</span> has an IID Gumbel distribution, we get a <strong>Multinomial Logit</strong> model.</p></li>
+</ul>
+<p><strong>IID</strong> means independent and identically distributed: each dimension has the same mean and variance, and there is no correlation across dimensions.</p>
+</div>
+<div class="section" id="The-Gumbel-Distribution">
+<h2>The Gumbel Distribution<a class="headerlink" href="#The-Gumbel-Distribution" title="Permalink to this headline">¶</a></h2>
+<p>The normal distribution is (among other things) the distribution of the mean of a number of samples. You’ve likely heard of it before. It’s the default distribution for a lot of things, and for good reasons.</p>
+<p>The Gumbel distribution is much less well known. It is the (limit) distribution of the maximum (or the minimum) of a number of samples from a normal distribution.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># 5 thousand repetitions of samples taken from a normal distribution</span>
+<span class="n">draws</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5000</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5000</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">5000</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5000</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5000</span><span class="p">]),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">5000</span><span class="p">]),</span>
+<span class="c1">#     np.random.normal(size=[1000,5000]),</span>
+<span class="c1">#     np.random.normal(size=[10000,5000]),</span>
+<span class="c1">#     np.random.normal(size=[100000,5000]),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">draws</span><span class="p">,</span> <span class="n">axs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Samples of Size </span><span class="si">{d.shape[0]:,}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span> <span class="c1"># plot the distribution</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_10_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_10_0.png" />
+</div>
+</div>
+<p>The gumbel distribution is available in the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> package, under the name <code class="docutils literal notranslate"><span class="pre">gumbel_r</span></code> for the right-skewed version associated with the maximum, or the mirrored <code class="docutils literal notranslate"><span class="pre">gumbel_l</span></code> for the left-skewed version associated with the minimum.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gumbel_r</span><span class="p">,</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_tight_layout</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">draws</span><span class="p">,</span> <span class="n">axs</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Samples of Size </span><span class="si">{d.shape[0]:,}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">dmax</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">dmax</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span> <span class="c1"># plot the distribution</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">dmax</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">dmax</span><span class="o">.</span><span class="n">var</span><span class="p">())</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">dmax</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="n">dmax</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">v</span><span class="o">/</span><span class="mf">1.645</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="n">s</span><span class="o">*</span><span class="mf">0.577</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gumbel_r</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gumbel&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_13_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_13_0.png" />
+</div>
+</div>
+<p>The probability density function (pdf) for <code class="docutils literal notranslate"><span class="pre">gumbel_r</span></code> is:</p>
+<div class="math notranslate nohighlight">
+\[f(x; \mu, s) = \frac{1}{s} \exp\left(-\frac{x+\mu}{s}\right) \exp\left(-\exp\left(-\frac{x+\mu}{s}\right)\right)\]</div>
+<p>The cumulative density function (cdf) for <code class="docutils literal notranslate"><span class="pre">gumbel_r</span></code> is:</p>
+<div class="math notranslate nohighlight">
+\[F(x; \mu, s) = \exp\left(-\exp\left(-\frac{x-\mu}{s}\right)\right)\]</div>
+<p>The Gumbel distribution is sometimes referred to as a <em>type I Fisher-Tippett distribution</em>. It is a bell-shaped distribution but obviously not “the” bell curve, which is generally the normal distribution. It is assymetric, but as we’ll see below that is not important in the context of discrete choice analysis.</p>
+<p>We can plot the PDF and CDF functions to get a better idea of the differences.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gumbel_r</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gumbel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.577</span><span class="p">,</span> <span class="mf">1.282</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Probability Density Functions</span><span class="se">\n</span><span class="s2">(same mean and variance)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_15_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_15_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">gumbel_r</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gumbel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.577</span><span class="p">,</span> <span class="mf">1.282</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Density Functions</span><span class="se">\n</span><span class="s2">(same mean and variance)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_16_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_16_0.png" />
+</div>
+</div>
+<p>The mode (peak) of the standard Gumbel distribution is at zero, but the mean is <span class="math notranslate nohighlight">\(0.577\)</span>. The variance is <span class="math notranslate nohighlight">\(\frac{\pi^2}{6} = 1.645\)</span>.</p>
+<div class="section" id="Scale-and-Translation">
+<h3>Scale and Translation<a class="headerlink" href="#Scale-and-Translation" title="Permalink to this headline">¶</a></h3>
+<p>Some properties of the Gumbel distribution include the ability to scale and translate (shift) it.</p>
+<p>If <span class="math notranslate nohighlight">\(\varepsilon \sim G(\eta,\mu)\)</span>, then</p>
+<ul class="simple">
+<li><p>Scaling: <span class="math notranslate nohighlight">\(\alpha\varepsilon \sim Gumbel(\alpha\eta,\alpha\mu)\)</span></p>
+<ul>
+<li><p>mode (peak) = <span class="math notranslate nohighlight">\(\alpha\eta\)</span></p></li>
+<li><p>mean = <span class="math notranslate nohighlight">\(\alpha\eta + \alpha\mu 0.577\)</span></p></li>
+<li><p>variance = <span class="math notranslate nohighlight">\(\frac{\pi^2 \alpha^2 \mu^2}{6}\)</span></p></li>
+</ul>
+</li>
+<li><p>Translation: (<span class="math notranslate nohighlight">\(\varepsilon + V) \sim Gumbel(\eta + V,\mu)\)</span> where <span class="math notranslate nohighlight">\(V\)</span> is some non-random value</p>
+<ul>
+<li><p>mode (peak) = <span class="math notranslate nohighlight">\(\eta + V\)</span></p></li>
+<li><p>mean = <span class="math notranslate nohighlight">\(\eta + V + \mu 0.577\)</span></p></li>
+<li><p>variance = <span class="math notranslate nohighlight">\(\frac{\pi^2 \mu^2}{6}\)</span></p></li>
+<li><p>outcome: the distribution can be shifted left or right with no change in shape or variance</p></li>
+</ul>
+</li>
+</ul>
+<p>We can simplify the derivation of the Multinomial Logit model by assuming <span class="math notranslate nohighlight">\(\eta = 0\)</span> and <span class="math notranslate nohighlight">\(\mu = 1\)</span> (Standard Gumbel). We will examine effect of different values later.</p>
+</div>
+</div>
+<div class="section" id="The-Logistic-Distribution">
+<h2>The Logistic Distribution<a class="headerlink" href="#The-Logistic-Distribution" title="Permalink to this headline">¶</a></h2>
+<p>A handy property of the Gumbel distribution is that the difference between two independent Gumbel distributions (with same variance) is a <strong>logistic distribution</strong>.</p>
+<p>The probability density function is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+f(x; \mu,s)  &amp; = \frac{e^{-(x-\mu)/s}} {s\left(1+e^{-(x-\mu)/s}\right)^2} \\[4pt]
+\end{align}\end{split}\]</div>
+<p>The cumulative density function is:</p>
+<div class="math notranslate nohighlight">
+\[F(x; \mu, s) = \frac{1}{1+\exp({-(x-\mu)/s})}\]</div>
+<p>It looks like this:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">logistic</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Logistic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.8138</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Probability Density Functions</span><span class="se">\n</span><span class="s2">(same mean and variance)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_22_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_22_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Logistic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.8138</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Normal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Cumulative Density Functions</span><span class="se">\n</span><span class="s2">(same mean and variance)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_23_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_23_0.png" />
+</div>
+</div>
+<p>Unlike the Gumbel, the Logistic distribution is symmetric. Since it is also unimodal (one hump) the mean and mode (peak) are at the same value. When it is created by taking the difference between two IID Gumbels, this value is equal to the difference between the location parameters (peaks) of those two Gumbels.</p>
+<p><span class="math notranslate nohighlight">\(\varepsilon_1 \sim Gumbel(V_1, 1)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\varepsilon_2 \sim Gumbel(V_2, 1)\)</span></p>
+<p><span class="math notranslate nohighlight">\(\varepsilon_1 - \varepsilon_2 = \varepsilon_3 \sim Logistic(V_1-V_2, 1)\)</span></p>
+</div>
+<div class="section" id="Maximium-over-Multiple-Gumbels">
+<h2>Maximium over Multiple Gumbels<a class="headerlink" href="#Maximium-over-Multiple-Gumbels" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have two random variables, both with a Gumbel distribution, both with the same variance.</p>
+<div class="math notranslate nohighlight">
+\[\varepsilon_1 \sim G(V_1, 1)\]</div>
+<div class="math notranslate nohighlight">
+\[\varepsilon_2 \sim G(V_2, 1)\]</div>
+<p>Then, the distribution of the maximum, i.e. <span class="math notranslate nohighlight">\(\max(\varepsilon_1, \varepsilon_2)\)</span> is <em>also</em> a Gumbel distribution, and <em>also</em> with the same variance.</p>
+<div class="math notranslate nohighlight">
+\[\max(\varepsilon_1, \varepsilon_2) \sim G(V_\star, 1)\]</div>
+<p>with <span class="math notranslate nohighlight">\(V_\star = \log\left(\exp(V_1)+\exp(V_2)\right)\)</span>.</p>
+<p>By extension, the same holds for the maximum of any set of <span class="math notranslate nohighlight">\(N\)</span> Gumbel distributions:</p>
+<div class="math notranslate nohighlight">
+\[V_\star = \log\left(\sum_{j=1}^{N}\exp(V_j)\right)\]</div>
+<p>.</p>
+</div>
+<div class="section" id="Deriving-the-Binary-Logit-Choice-Model">
+<h2>Deriving the Binary Logit Choice Model<a class="headerlink" href="#Deriving-the-Binary-Logit-Choice-Model" title="Permalink to this headline">¶</a></h2>
+<p>Recall our utility formulation. The probability of a decision maker choosing a particular alternative <span class="math notranslate nohighlight">\(i\)</span> is equal to the probability that the utility <span class="math notranslate nohighlight">\(U_i\)</span> is greater than or equal to the utility <span class="math notranslate nohighlight">\(U_j\)</span> for all other possible choices <span class="math notranslate nohighlight">\(j\)</span>. This is equivalent to writing:</p>
+<div class="math notranslate nohighlight">
+\[\Pr\left(U_i \ge \max(U_j, \forall j \ne i)\right)\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[\Pr\left(V_i + \varepsilon_i \ge \max(V_j + \varepsilon_j, \forall j \ne i)\right)\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[\Pr\left(V_i \ge \max(V_j + \varepsilon_j, \forall j \ne i) - \varepsilon_i\right)\]</div>
+<p>Some important features of this way of writing the probabilities:</p>
+<ul class="simple">
+<li><p>On the left side of the inequality we have just <span class="math notranslate nohighlight">\(V_i\)</span> which is not a random variable.</p></li>
+<li><p>On the right side we have <span class="math notranslate nohighlight">\(\max(V_j + \varepsilon_j, \forall j \ne i)\)</span> which is a maximum of (shifted) Gumbel distributions, which then is itself a Gumbel distribution, let’s call it <span class="math notranslate nohighlight">\(\varepsilon_\star\)</span> which has a (shifted) location of <span class="math notranslate nohighlight">\(V_\star\)</span>.</p></li>
+<li><p>Then we take the difference of that Gumbel distribution and another (the one for <span class="math notranslate nohighlight">\(\varepsilon_i\)</span>), which makes one logistic distribution.</p></li>
+<li><p>That one logistic distribution is the only term on the right side of the inequality.</p></li>
+<li><p>We therefore reduced our multi-dimensional integral from before to a one-dimensional integral on a single logistic distribution … which conveniently has a closed form solution: the CDF:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\Pr\left(V_i \ge \max(V_j + \varepsilon_j, \forall j \ne i) - \varepsilon_i\right) =
+\frac{1}{1+\exp(V_\star - V_i)}\]</div>
+<p>We can reformat this a bit to make it more obviously symmetric and generalizable:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{1+\exp(V_k - V_i)}
+= \frac{1}{1+\exp(V_k)/\exp(V_i)} = \frac{\exp(V_i)}{\exp(V_i)+\exp(V_k)}\]</div>
+<p>And recall that <span class="math notranslate nohighlight">\(V^\star = \log\left(\sum_{j=1}^{N}\exp(V_j)\right)\)</span>, which leads to</p>
+<div class="math notranslate nohighlight">
+\[\Pr(i) = \frac{\exp(V_i)}{\sum_{j=1}^{N}\exp(V_j)}\]</div>
+</div>
+<div class="section" id="Arbitrary-Scale">
+<h2>Arbitrary Scale<a class="headerlink" href="#Arbitrary-Scale" title="Permalink to this headline">¶</a></h2>
+<p>Consider what happens if set the scale of the Gumbel distributions in our utility functions to some value other than 1:</p>
+<p>The utility function for alternative <span class="math notranslate nohighlight">\(j\)</span> is now</p>
+<div class="math notranslate nohighlight">
+\[U_j = V_j + \varepsilon_j,\quad \varepsilon_j \sim Gumbel(0,\mu)\]</div>
+<p>Let’s take this but define a different scaled measure of utility <span class="math notranslate nohighlight">\(U^\prime\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+U^\prime_j &amp;= \mu U_j \\
+&amp;= \mu (V_j + \varepsilon_j),\quad \varepsilon_j \sim Gumbel(0,1) \\
+&amp;=  \mu V_j + \mu\varepsilon_j,\quad \mu\varepsilon_j \sim Gumbel(0,\mu)
+\end{align}\end{split}\]</div>
+<p>You can see that the two different models are practically the same, except for the scale of the variance.</p>
+<p>However, because we will be choosing the functional form of <span class="math notranslate nohighlight">\(V\)</span> to best fit the data, we can scale the values we get for <span class="math notranslate nohighlight">\(V\)</span> and end up with an identical model with respect to the output probabilities.</p>
+<p>If we were able to observe the <em>utility</em> values directly, we could identify a unique scale of the <span class="math notranslate nohighlight">\(\varepsilon\)</span> terms that would fit best. But because we can only observe the choices, we cannot actually identify which scale is better, and we are free to choose any scale factor that is mathematically convenient (i.e., 1).</p>
+</div>
+<div class="section" id="Arbitrary-Location">
+<h2>Arbitrary Location<a class="headerlink" href="#Arbitrary-Location" title="Permalink to this headline">¶</a></h2>
+<p>Consider what happens if set the location (mode) of the Gumbel distributions in our utility functions to some value other than 0:</p>
+<p>The utility function for alternative <span class="math notranslate nohighlight">\(j\)</span> is now</p>
+<div class="math notranslate nohighlight">
+\[U_j = V_j + \varepsilon_j,\quad \varepsilon_j \sim Gumbel(\delta, 1)\]</div>
+<p>Let’s take this but define a different shifted measure of utility <span class="math notranslate nohighlight">\(U^\prime\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+U^\prime_j &amp;= V_j + \varepsilon_j,\quad \varepsilon_j \sim Gumbel(\delta, 1) \\
+&amp;= V_j + \delta + \varepsilon_j,\quad \varepsilon_j \sim Gumbel(0,1)
+\end{align}\end{split}\]</div>
+<p>As for the scale, we can push an arbitrary location adjustment from <span class="math notranslate nohighlight">\(\varepsilon\)</span> into <span class="math notranslate nohighlight">\(V\)</span>, and end up with the same model with respect to probabilities.</p>
+</div>
+<div class="section" id="Too-Much-Arbitrary-ness-in-Location">
+<h2>Too Much Arbitrary-ness in Location<a class="headerlink" href="#Too-Much-Arbitrary-ness-in-Location" title="Permalink to this headline">¶</a></h2>
+<p>Consider what happens if we introduce an arbitrary constant shift in utility for <em>every</em> alterantive.</p>
+<p>What happens to the differences in utilities between alternatives?</p>
+<div class="math notranslate nohighlight">
+\[V_i^\prime - V_j^\prime = (V_i + \delta) - (V_j + \delta) = V_i  - V_j\]</div>
+<p>What happens to the probabilities of alternatives?</p>
+<div class="math notranslate nohighlight">
+\[\Pr(i) = \frac{\exp(V_i + \delta)}{\sum_{j=1}^{N}\exp(V_j + \delta)}
+= \frac{\exp(V_i)\exp(\delta)}{\sum_{j=1}^{N}\exp(V_j)\exp(\delta)}
+= \frac{\exp(\delta)}{\exp(\delta)}\frac{\exp(V_i)}{\sum_{j=1}^{N}\exp(V_j)}
+= \frac{\exp(V_i)}{\sum_{j=1}^{N}\exp(V_j)}\]</div>
+<ul class="simple">
+<li><p>We can shift constants for all alternatives the same and get the same probability model.</p></li>
+<li><p>We pick any alternative arbitrarily and set the constant to zero and get the same probability model.</p></li>
+<li><p><strong>Only the differences in utility matter, not the absolute values.</strong></p></li>
+</ul>
+</div>
+<div class="section" id="Typical-Form-of-Systematic-Utility">
+<h2>Typical Form of Systematic Utility<a class="headerlink" href="#Typical-Form-of-Systematic-Utility" title="Permalink to this headline">¶</a></h2>
+<p>In most transportation planning applications, the systematic utility is given as a <strong>linear in parameters</strong> function.</p>
+<p>This means that the functional form of <span class="math notranslate nohighlight">\(V_{ti}\)</span> for decision maker <span class="math notranslate nohighlight">\(t\)</span> and alternative <span class="math notranslate nohighlight">\(i\)</span> looks like</p>
+<div class="math notranslate nohighlight">
+\[V_{ti} = X_{ti} \beta_{i} = \sum_{k=1}^{K} X_{tik} \beta_{ik}\]</div>
+<p>You may recall from the <code class="docutils literal notranslate"><span class="pre">statsmodel</span></code> package that in order to include a y-intercept or constant term in the model, it was necessary to explicitly add a column of all 1’s to the dataframe. The same is generally true when expressing the utility function for a discrete choice model like this.</p>
+<p>One important feature to keep track of here that is different from an ordinary least squares linear regression model: <strong>only the differences in utility matter</strong>.</p>
+<p>This means that <em>something</em> needs to induce some differences in the systematic utility between alternatives. That <em>something</em> can be:</p>
+<ul class="simple">
+<li><p>differences in the observed <span class="math notranslate nohighlight">\(X\)</span> data values (e.g. the travel time is different for different modes), or</p></li>
+<li><p>differences in the <span class="math notranslate nohighlight">\(\beta\)</span> parameter values across modes, or</p></li>
+<li><p>both.</p></li>
+</ul>
+<p>It is important to pay attention to instances where observed data values do <em>not</em> vary across modes, and ensure that the parameters <em>do</em> vary in those instances. These are sometimes called alternative-specific variables.</p>
+<p>(Yes, this is ironic, because the variables themselves are in fact not specific to the alternative.)</p>
+</div>
+<div class="section" id="Independence-of-Irrelevant-Alternatives-(IIA)">
+<h2>Independence of Irrelevant Alternatives (IIA)<a class="headerlink" href="#Independence-of-Irrelevant-Alternatives-(IIA)" title="Permalink to this headline">¶</a></h2>
+<p>One important property of the MNL model is “Independence of Irrelevant Alternatives”.</p>
+<p>This refers to the fact that the ratio of choice probabilities between pairs of alternatives is independent of the availability or attributes of other alternatives.</p>
+<div class="math notranslate nohighlight">
+\[\frac{\Pr(i)}{\Pr(k)} = \frac{\exp(V_i)}{\sum_j \exp(V_j)}\frac{\sum_j \exp(V_j)}{\exp(V_k)}
+=\frac{\exp(V_i)}{\exp(V_k)} = \exp(V_i - V_k)\]</div>
+<p>How reasonable is this outcome?</p>
+<p>Consider the selection of a birthday present for a child.</p>
+<ul class="simple">
+<li><p>Each child is offered two options to choose from: a red bicycle, or a pony.</p></li>
+<li><p>We observe across a sample of children that 75% choose the pony and 25% choose the bicycle.</p></li>
+<li><p>We then offer up a new set of choices: a red bicycle, a green bicycle, or a pony.</p></li>
+<li><p>As it turns out, these children are all colorblind (it runs in the family) and they can’t see any difference between the two bicycles.</p></li>
+<li><p>What do we expect the choice probabilities to be?</p></li>
+<li><p>What does the MNL model predict the choice probabilities will be?</p></li>
+<li><p>What causes this?</p></li>
+</ul>
+</div>
+<div class="section" id="Elasticities-of-the-MNL-Model">
+<h2>Elasticities of the MNL Model<a class="headerlink" href="#Elasticities-of-the-MNL-Model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Direct-Effects">
+<h3>Direct Effects<a class="headerlink" href="#Direct-Effects" title="Permalink to this headline">¶</a></h3>
+<p>The <em>direct elasticity</em> is the relative change in the probability of selection of an alternative with respect to a marginal change in one of the attributes of that alternative. So, if you make an option a little bit better, how many more people would you expect to choose it? Mathematically,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial P_i}{\partial X_{ik}} = P_i (1-P_i) \beta_k\]</div>
+<div class="math notranslate nohighlight">
+\[\eta ^{P_i} _{X_{ik}} =  \frac{\partial P_i}{\partial X_{ik}} \frac{X_{ik}}{P_i}
+= (1-P_i) X_{ik} \beta_k\]</div>
+<p>We can see the direct elasticity of an alternative is related to its probability:</p>
+<ul class="simple">
+<li><p>When the probability is high and it is chosen a lot, the elasticity is lower. Making a very popular choice a little bit better will not make very many more people choose it, as most people are already choosing it. Thus, changing the attributes of the alternative won’t impact demand too much.</p></li>
+<li><p>When it is chosen infrequently, the elasticity is higher, and changing attributes of the alternative might impact demand more (all else equal). If it’s not very popular currently, then the potential market share gains, especially as a percentage of the existing market share, can be much bigger.</p></li>
+</ul>
+</div>
+<div class="section" id="Cross-Effects">
+<h3>Cross Effects<a class="headerlink" href="#Cross-Effects" title="Permalink to this headline">¶</a></h3>
+<p>The cross elasticity is the relative change in the probability of selection of one alternative with respect to a marginal change in one of the attributes of a <em>different</em> alternative. Mathematically,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial P_j}{\partial X_{ik}} = - P_i P_j \beta_k\]</div>
+<div class="math notranslate nohighlight">
+\[\eta ^{P_j} _{X_{ik}} =  \frac{\partial P_j}{\partial X_{ik}} \frac{X_{ik}}{P_j}
+= P_i X_{ik} \beta_k\]</div>
+<p>Notice that the cross elasticity is not a function of the attributes of probability of <span class="math notranslate nohighlight">\(j\)</span>! This is another manifestation of the IIA property.</p>
+<p>When changing the attributes of any one alternative, the percentage change in the probabilities for all other alternatives is the same regardless of the alternative.</p>
+</div>
+</div>
+<div class="section" id="Estimating-Model-Parameters">
+<h2>Estimating Model Parameters<a class="headerlink" href="#Estimating-Model-Parameters" title="Permalink to this headline">¶</a></h2>
+<p>Let us suppose we have some observations of trips taken by Car or Bus. We will represent the utility only with travel time and travel cost. Here we have a couple of observations:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">data2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>obs</th>
+      <th>mode</th>
+      <th>time</th>
+      <th>cost</th>
+      <th>chosen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>bus</td>
+      <td>20</td>
+      <td>10</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>car</td>
+      <td>10</td>
+      <td>20</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>car</td>
+      <td>12</td>
+      <td>16</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>bus</td>
+      <td>21</td>
+      <td>14</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>We can plot each observation seperately, showing the chosen and unchosen alternatives. Since there are only two alternatives for each observation, the graph is quite simple.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">figure_two_observations</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_68_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_68_0.png" />
+</div>
+</div>
+<p>In addition to the observations, these figures also include some notes about the implied utility of the two alternatives. To create a model for this, we need to find a set of parameters that will allow us predict the choices: the utility of each choice should be better than that for each non-choice. If we map a utility function onto these figures, both “better” arrows should be pointing uphill.</p>
+<p>Let’s visualize some different fields of utility functions.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">figure_four_fields</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_70_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_70_0.png" />
+</div>
+</div>
+<p>The contour lines on these fields are “iso-utility” lines, defined as a series of parallel lines where the value of time (i.e. the ratio between the parameters on time and cost) are represented by the inverse of the slope.</p>
+<p>We want to pick an set of parameters that define a field where the actually chosen alternatives are all uphill from the non-chosen alternatives.</p>
+<p>Does this work?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">figure_two_observations_on_field</span><span class="p">(</span><span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.18</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_72_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_72_0.png" />
+</div>
+</div>
+<p>How about this?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">figure_two_observations_on_field</span><span class="p">(</span><span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.06</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_74_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_74_0.png" />
+</div>
+</div>
+<p>How about this?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">figure_two_observations_on_field</span><span class="p">(</span><span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_76_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_76_0.png" />
+</div>
+</div>
+<p>With both arrows pointing uphill, we found a set of parameters that works to explain these observations.</p>
+<p>This visualization is kind of busy. We can simplify it by reducing each observation to a single point, by mapping the differences in time and cost, instead of the raw values. (Hey, remember “only the differences matter”?)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">diffs2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>obs</th>
+      <th>choice</th>
+      <th>timediff</th>
+      <th>costdiff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>bus</td>
+      <td>10</td>
+      <td>-10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>car</td>
+      <td>9</td>
+      <td>-2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">figure_two_differences_on_field</span><span class="p">(</span><span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/course-content_choice-modeling_modechoice-theory-notes_80_0.png" src="../../_images/course-content_choice-modeling_modechoice-theory-notes_80_0.png" />
+</div>
+</div>
+<p>This figure makes it easier to explore a variety of different beta parameters.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">interactive_two_differences_on_field</span><span class="p">(</span><span class="n">diffs2</span><span class="p">,</span> <span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6440810d9aa64e178a290a12e517f4c0", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>The color scale on this chart is “Net Utility of Car” but we’re not really interested in utility per se. What we’re more interested in is the choices – are we correctly predicting the usage of car and bus? So let’s apply the MNL transformation to change utility into probability.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">interactive_two_differences_with_probability</span><span class="p">(</span><span class="n">diffs2</span><span class="p">,</span> <span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "cfbb9bf8dcc34284b3856d422dc213f6", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>Now it’s a bit clearer how we can manipulate our parameters to keep the choices correctly segregated.</p>
+<p>What about if we have a few more data points?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">diffs9</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>obs</th>
+      <th>choice</th>
+      <th>timediff</th>
+      <th>costdiff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>car</td>
+      <td>9</td>
+      <td>-7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>bus</td>
+      <td>-8</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>bus</td>
+      <td>4</td>
+      <td>-6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>bus</td>
+      <td>-7</td>
+      <td>-2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>car</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>bus</td>
+      <td>1</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>car</td>
+      <td>-3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>bus</td>
+      <td>-2</td>
+      <td>-7</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>car</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Can we find a solution that correctly predicts all the data points? This interactive figure marks observations that are unambiguously incorrect (less than 50% probability assigned to the actually chosen alternative) with an “X” and observations that are definitely correct (greater than 95% probability assigned to the actually chosen alternative) with a dot.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">interactive_two_differences_with_probability</span><span class="p">(</span><span class="n">diffs9</span><span class="p">,</span> <span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">correct</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "37568b9bd5f54ca9ba48a7a3e00be13a", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>What if there’s some mixing of the data, so you can’t neatly divide it with a clean line?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">diffs19</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>obs</th>
+      <th>choice</th>
+      <th>timediff</th>
+      <th>costdiff</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>car</td>
+      <td>9</td>
+      <td>-7</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>bus</td>
+      <td>-8</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>bus</td>
+      <td>4</td>
+      <td>-6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>bus</td>
+      <td>-7</td>
+      <td>-2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>bus</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>bus</td>
+      <td>1</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>car</td>
+      <td>-3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>car</td>
+      <td>-2</td>
+      <td>-7</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>car</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>car</td>
+      <td>7</td>
+      <td>-6</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>11</td>
+      <td>car</td>
+      <td>8</td>
+      <td>-7</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>12</td>
+      <td>car</td>
+      <td>-5</td>
+      <td>-3</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>13</td>
+      <td>car</td>
+      <td>3</td>
+      <td>-8</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>14</td>
+      <td>bus</td>
+      <td>-9</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>15</td>
+      <td>car</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>16</td>
+      <td>bus</td>
+      <td>0</td>
+      <td>-9</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>17</td>
+      <td>car</td>
+      <td>-5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>car</td>
+      <td>-5</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>19</td>
+      <td>car</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">interactive_two_differences_with_probability</span><span class="p">(</span><span class="n">diffs19</span><span class="p">,</span> <span class="n">beta_time</span><span class="o">=-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">beta_cost</span><span class="o">=-</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">correct</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e1a976175a0541e295a1d22cd2556667", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>If our goal is to get everything right, it’s hopeless. We could change our goal, and just try to maximize the total number of correct predictions. That tends to be problematic when the choices are very lopsided, with most observations choosing one alternative. This happens a lot in transportation planning and especially in mode choices. So we’ll need something to get at more subtly that just “correct” and “incorrect”.</p>
+<p>That something is called “likelihood”. We can assign a likelihood to each observation, which is the modeled probability that the choice is the actually observed choice. So, first we compute the probability of choosing each alternative.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">beta_time</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.1</span>
+<span class="n">beta_cost</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span>
+
+<span class="n">pr_car</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">diffs19</span><span class="o">.</span><span class="n">timediff</span> <span class="o">*</span> <span class="n">beta_time</span> <span class="o">+</span> <span class="n">diffs19</span><span class="o">.</span><span class="n">costdiff</span> <span class="o">*</span> <span class="n">beta_cost</span><span class="p">))</span>
+<span class="n">pr_car</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0     0.377541
+1     0.141851
+2     0.310026
+3     0.249740
+4     0.549834
+5     0.289050
+6     0.622459
+7     0.167982
+8     0.622459
+9     0.377541
+10    0.354344
+11    0.249740
+12    0.214165
+13    0.249740
+14    0.524979
+15    0.141851
+16    0.622459
+17    0.182426
+18    0.710950
+dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">pr_bus</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pr_car</span>
+<span class="n">pr_bus</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0     0.622459
+1     0.858149
+2     0.689974
+3     0.750260
+4     0.450166
+5     0.710950
+6     0.377541
+7     0.832018
+8     0.377541
+9     0.622459
+10    0.645656
+11    0.750260
+12    0.785835
+13    0.750260
+14    0.475021
+15    0.858149
+16    0.377541
+17    0.817574
+18    0.289050
+dtype: float64
+</pre></div></div>
+</div>
+<p>Then we pick for each row the probability of the actually chosen alternative.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">likelihood</span> <span class="o">=</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span><span class="o">*</span> <span class="n">pr_car</span> <span class="o">+</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;bus&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">pr_bus</span>
+</pre></div>
+</div>
+</div>
+<p>Then we want to find the joint likelihood of getting all these observations.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">likelihood</span><span class="o">.</span><span class="n">prod</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>That’s a tiny number. Let’s take the log of it.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">likelihood</span><span class="o">.</span><span class="n">prod</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<p>Or instead of taking the product then the log, we can take the log first:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">likelihood</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>You might notice there’s a teeny tiny difference in the two results, that arises because of the computer’s numerical precision. That tiny error isn’t a big deal for this tiny data set, but as the data set gets bigger the errors compound.</p>
+<p>We want to find the maximum likelihood, or log likelihood. To do so, we can turn the likelihood into a function instead of a one-time computation. Also, we’ll return the <em>negative</em> of the log likelihood, as the default optimization tools in the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> package do minimization instead of maximization.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">likely</span><span class="p">(</span><span class="n">betas</span><span class="p">):</span>
+    <span class="n">pr_car</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">diffsX</span><span class="o">.</span><span class="n">timediff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">diffsX</span><span class="o">.</span><span class="n">costdiff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">pr_bus</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">pr_car</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span><span class="o">*</span> <span class="n">pr_car</span> <span class="o">+</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;bus&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">pr_bus</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">likelihood</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">likely</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Then we can use an optimization tool to find the best values.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">fmin</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">fmin</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">best</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">likely</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">])</span>
+<span class="n">best</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">likely</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">likely_all</span><span class="p">(</span><span class="n">betas</span><span class="p">):</span>
+    <span class="n">pr_car</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">diffsX</span><span class="o">.</span><span class="n">timediff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">diffsX</span><span class="o">.</span><span class="n">costdiff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">pr_bus</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">pr_car</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span><span class="o">*</span> <span class="n">pr_car</span> <span class="o">+</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;bus&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">pr_bus</span>
+    <span class="k">return</span> <span class="n">likelihood</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">likely_all</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s see what the result looks like.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">beta_time</span><span class="p">,</span> <span class="n">beta_cost</span> <span class="o">=</span> <span class="n">best</span>
+<span class="n">field</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta_time</span> <span class="o">+</span> <span class="n">grid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta_cost</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">cf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cf</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of Car&#39;</span><span class="p">)</span>
+<span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;likely&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">likely_all</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ch</span><span class="p">,</span><span class="n">gg</span> <span class="ow">in</span> <span class="n">diffsX</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;choice&#39;</span><span class="p">]):</span>
+    <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span> <span class="k">if</span> <span class="n">ch</span><span class="o">==</span><span class="s1">&#39;bus&#39;</span> <span class="k">else</span> <span class="s1">&#39;s&#39;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">ch</span><span class="o">==</span><span class="s1">&#39;bus&#39;</span> <span class="k">else</span> <span class="s1">&#39;b&#39;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">gg</span><span class="o">.</span><span class="n">timediff</span><span class="p">,</span> <span class="n">gg</span><span class="o">.</span><span class="n">costdiff</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ch</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">gg</span><span class="o">.</span><span class="n">likely</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Car Time Advantage&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Car Cost Advantage&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Chosen&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>One interesting feature of the model is that the 50% iso-probability contour passes exactly through the origin at (0,0). This isn’t coincidental, it’s a definite outcome from the fact that there’s no alternative specific constants in the model. Let’s add one.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">likely_2</span><span class="p">(</span><span class="n">betas</span><span class="p">):</span>
+    <span class="n">pr_car</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">diffsX</span><span class="o">.</span><span class="n">timediff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">diffsX</span><span class="o">.</span><span class="n">costdiff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">pr_bus</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">pr_car</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span><span class="o">*</span> <span class="n">pr_car</span> <span class="o">+</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;bus&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">pr_bus</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">likelihood</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">likely_2_all</span><span class="p">(</span><span class="n">betas</span><span class="p">):</span>
+    <span class="n">pr_car</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">diffsX</span><span class="o">.</span><span class="n">timediff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">diffsX</span><span class="o">.</span><span class="n">costdiff</span> <span class="o">*</span> <span class="n">betas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">betas</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+    <span class="n">pr_bus</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">pr_car</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;car&#39;</span><span class="p">)</span><span class="o">*</span> <span class="n">pr_car</span> <span class="o">+</span> <span class="p">(</span><span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;choice&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;bus&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">pr_bus</span>
+    <span class="k">return</span> <span class="n">likelihood</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">best_2</span> <span class="o">=</span> <span class="n">fmin</span><span class="p">(</span><span class="n">likely_2</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">best_2</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">beta_time</span><span class="p">,</span> <span class="n">beta_cost</span><span class="p">,</span> <span class="n">beta_0</span> <span class="o">=</span> <span class="n">best_2</span>
+<span class="n">field</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta_time</span> <span class="o">+</span> <span class="n">grid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">beta_cost</span> <span class="o">+</span> <span class="n">beta_0</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">cf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">))</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cf</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Probability of Car&#39;</span><span class="p">)</span>
+<span class="n">diffsX</span><span class="p">[</span><span class="s1">&#39;likely2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">likely_2_all</span><span class="p">(</span><span class="n">best_2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ch</span><span class="p">,</span><span class="n">gg</span> <span class="ow">in</span> <span class="n">diffsX</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;choice&#39;</span><span class="p">]):</span>
+    <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span> <span class="k">if</span> <span class="n">ch</span><span class="o">==</span><span class="s1">&#39;bus&#39;</span> <span class="k">else</span> <span class="s1">&#39;s&#39;</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="k">if</span> <span class="n">ch</span><span class="o">==</span><span class="s1">&#39;bus&#39;</span> <span class="k">else</span> <span class="s1">&#39;b&#39;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">gg</span><span class="o">.</span><span class="n">timediff</span><span class="p">,</span> <span class="n">gg</span><span class="o">.</span><span class="n">costdiff</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ch</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">gg</span><span class="o">.</span><span class="n">likely2</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Car Time Advantage&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Car Cost Advantage&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Chosen&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Understanding-Maximum-Likelihood">
+<h2>Understanding Maximum Likelihood<a class="headerlink" href="#Understanding-Maximum-Likelihood" title="Permalink to this headline">¶</a></h2>
+<p>Recall we identified that the likelihood was different from the probability:</p>
+<ul class="simple">
+<li><p>Probability is the chance of getting an outcome as a function of the data, given a model and its parameters: <span class="math notranslate nohighlight">\(P_i(X | \beta)\)</span></p></li>
+<li><p>Likelihood is the chance of getting an outcome as a function of the model parameters, given the data: <span class="math notranslate nohighlight">\(L_i(\beta | X)\)</span></p></li>
+</ul>
+<p>Finding the maximum likelihood is finding the parameters that maximize the chance that the model would create the observed data. Equivalently, finding the maximum of the log of likelihood, as the logarithm is a monotonic transformation of positive values: if <span class="math notranslate nohighlight">\(a &gt; b &gt; 0\)</span> then <span class="math notranslate nohighlight">\(\log(a) &gt; \log(b)\)</span>.</p>
+<p>For our two dimensional example above, we can visualize the log likelihood by plotting it on a figure:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">beta_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">beta_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">beta_space</span><span class="p">,</span> <span class="n">beta_space</span><span class="p">)</span>
+<span class="n">beta_LL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">beta_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">beta_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">beta_grid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">())):</span>
+    <span class="n">beta_LL</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">likely</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">cf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">beta_space</span><span class="p">,</span> <span class="n">beta_space</span><span class="p">,</span> <span class="n">beta_LL</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cf</span><span class="p">)</span>
+<span class="n">cbar</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Log Likelihood&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The maximum likelihood is found at the peak of this hill. Finding that peak by brute force (i.e. plotting this whole figure) is a wildly inefficient way of finding the maximum likelihood, so we don’t generally do this. Instead, some algorithm is used to systematically converge to this point. The result is sometimes labeled as the “log likelihood at convergence”.</p>
+<p>But, it is useful to see this visually in this simple two dimensional example to conceptualize the process. And it highlights another convenient mathematical features of using the MNL model with a linear-in-parameters utility function: the log likelihood function can be proven to be globally concave, meaning that there is always one and only one set of parameters that will maximize it, and they can be found by moving uphill from any point until the the top is found.</p>
+<p>We can also use the shape of this likelihood function at the peak to describe the standard error of the estimate.</p>
+<ul class="simple">
+<li><p>If the shape of the hill is very pointy, and likelihood drops very quickly as we move away from the maximum, that tells us that the standard error of the estimate is small – we are very confident that the true value of the estimator is very close to that peak.</p></li>
+<li><p>If, on the other hand, the top of the hill is relatively flat, and likelihood drops very slowly as we move away from the maximum, that tells us that the standard error of the estimate is large – we are not confident that the true value of the estimator is very close to that peak.</p></li>
+</ul>
+<p>In mathematical terms, the standard error of the estimate is the inverse of the 2nd derivative of the log likelihood with respect to the parameters.</p>
+</div>
+<div class="section" id="Goodness-of-Fit">
+<h2>Goodness of Fit<a class="headerlink" href="#Goodness-of-Fit" title="Permalink to this headline">¶</a></h2>
+<p>The log likelihood achieved at the converged values, <span class="math notranslate nohighlight">\(LL(\hat\beta)\)</span> can be used to generate an overall measure of the “goodness of fit” of a discrete choice model. We can compare the log likelihood against better and worse models to create the measure.</p>
+<p>The “best” possible model in this case is clearly well defined, as it would accurately predict every observation with certainty every time, yielding a likelihood of 1.0, and a log likelihood of zero.</p>
+<p>The “worst” model is tricky, as we cannot simply take a model that never predicts the correct choice. Such a model would have a likelihood of zero, and a log likelihood of negative infinity. But, to create such a model, we would need to have some information about the process and use that information to intentionally “get it wrong” with certainty. Instead, we can contemplate a model that predicts every alternative as equally probable for every decision maker, using no information whatsoever to
+improve our predictions. This model would have non-zero probability for every chosen alternative, and has a well defined and finite log likelihood. We’ll call this model the “Null” model, and write the log likelihood of this model as <span class="math notranslate nohighlight">\(LL(\emptyset)\)</span>.</p>
+<div class="section" id="Rho-Squared">
+<h3>Rho Squared<a class="headerlink" href="#Rho-Squared" title="Permalink to this headline">¶</a></h3>
+<p>Because we use data to <em>maximize</em> the log likelihood, we are guaranteed to achive a log likelihood for a model that uses data somewhere in between these two extremes. The goodness of fit measure <span class="math notranslate nohighlight">\(\rho^2_\emptyset\)</span> (rho squared with respect to the null model) represents the fraction of the distance moved from the null model to the perfect model.</p>
+<div class="math notranslate nohighlight">
+\[\rho^2_\emptyset = 1-\frac{LL(\hat\beta)}{LL(\emptyset)}\]</div>
+<p>However, especially for mode choice models, there is very often a massive imbalance between the mode choices. You may find that the “drive alone” alternative is observed on well over half of all trips (at least in western countries) and representing it as “equally likely” against a variety of other alternatives results in an epicly poor model. We can counteract this by defining a different “bad” reference point: a model that consists only of alternative specific constants. This model will use no
+information other than the global market shares for each alternative, assigning the same relative probability for each alterantive to all decision makers.</p>
+<p>The goodness of fit measure <span class="math notranslate nohighlight">\(\rho^2_c\)</span> (rho squared with respect to the constants only model) represents the fraction of the distance moved from the constants only model to the perfect model.</p>
+<div class="math notranslate nohighlight">
+\[\rho^2_c = 1-\frac{LL(\hat\beta)}{LL(c)}\]</div>
+</div>
+<div class="section" id="Adjusted-Rho-Squared">
+<h3>Adjusted Rho Squared<a class="headerlink" href="#Adjusted-Rho-Squared" title="Permalink to this headline">¶</a></h3>
+<p>A problem with the rho squared measures is that they always improve when adding variables to the model, regardless of whether the variable is relevant or not.</p>
+<p>To counter this, we can adjust the value to penalize models that add parameters without improving the log likelihood enough to be worth the extra degree of freedom.</p>
+<p>This adjusted rho-squared is given by:</p>
+<div class="math notranslate nohighlight">
+\[\bar\rho^2_\star = 1-\frac{LL(\hat\beta) - K_{\hat\beta}}{LL(\star) - K_{\star}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(K_{\star}\)</span> is the number of parameters in the model <span class="math notranslate nohighlight">\(\star\)</span>. For the null model, this is zero, and for the constants only model, it is the number of constants in the model (i.e. the number of alteratives minus one). Similarly, in the numerator <span class="math notranslate nohighlight">\(K\)</span> represents the number of parameters in the relevant model.</p>
+<p>For this adjusted rho squared, the addition of parameters does not necessarily improve the goodness of fit.</p>
+</div>
+</div>
+<div class="section" id="Hypothesis-Testing">
+<h2>Hypothesis Testing<a class="headerlink" href="#Hypothesis-Testing" title="Permalink to this headline">¶</a></h2>
+<p>Just as for linear regression models, discrete choice models offer a number of hypothesis tests to compare models against each other.</p>
+<div class="section" id="Single-Parameter-Tests">
+<h3>Single Parameter Tests<a class="headerlink" href="#Single-Parameter-Tests" title="Permalink to this headline">¶</a></h3>
+<p>To test if a single parameter is significantly different from zero, we can use the <span class="math notranslate nohighlight">\(t\)</span> statistic, similar to as it is used in simple linear regression. For a parameter <span class="math notranslate nohighlight">\(\beta_i\)</span>, which has an estimate <span class="math notranslate nohighlight">\(\hat\beta_i\)</span> with standard error of the estimate <span class="math notranslate nohighlight">\(s_i\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\hat\beta_i}{s_i} \sim t\]</div>
+<p>The degrees of freedom are formally the number of observations in the sample minus the number of parameters in the model, but in practice this isn’t important, as the sample size used for any transportation planning model is generally large enough that the <span class="math notranslate nohighlight">\(t\)</span> distribution will converge to the normal distribution. This the critical value of <span class="math notranslate nohighlight">\(t\)</span> for 95% confidence is about 1.96, and for 99% confidence it is about 2.58.</p>
+</div>
+<div class="section" id="Parameter-Equality-Tests">
+<h3>Parameter Equality Tests<a class="headerlink" href="#Parameter-Equality-Tests" title="Permalink to this headline">¶</a></h3>
+<p>It is often interesting to determine if two parameters are statistically different from one another. This test is also based on the t-statistic, but it needs to account not only for the variance in the two estimators individually but also for the covariance (correlation) between them. If we define a null hypothesis</p>
+<div class="math notranslate nohighlight">
+\[H_0 : \beta_i = \beta_j\]</div>
+<p>then we can derive</p>
+<div class="math notranslate nohighlight">
+\[\frac{\hat\beta_i - \hat\beta_j}{\sqrt{s_i^2 + s_j^2 - 2s_{ij}}} \sim t\]</div>
+<p>A sufficiently large value of this <span class="math notranslate nohighlight">\(t\)</span> statistic will allow us to reject the null hypothesis with high confidence. In this case, that allows us to say that we are confident the true values of the two parameters are not the same.</p>
+</div>
+<div class="section" id="Parameter-Ratio-Tests">
+<h3>Parameter Ratio Tests<a class="headerlink" href="#Parameter-Ratio-Tests" title="Permalink to this headline">¶</a></h3>
+<p>We can use the same approach to check the ratio between two parameters. In this case, we define a null hypothesis</p>
+<div class="math notranslate nohighlight">
+\[H_0 : \frac{\beta_i}{\beta_j} = K\]</div>
+<p>with the value <span class="math notranslate nohighlight">\(K\)</span> being some fixed value. Or, equivalently</p>
+<div class="math notranslate nohighlight">
+\[H_0 : \beta_i = K\beta_j\]</div>
+<p>then we can derive</p>
+<div class="math notranslate nohighlight">
+\[\frac{\hat\beta_i - K\hat\beta_j}{\sqrt{s_i^2 + K^2 s_j^2 - 2Ks_{ij}}} \sim t\]</div>
+<p>A sufficiently large value of this <span class="math notranslate nohighlight">\(t\)</span> statistic will allow us to reject the null hypothesis with high confidence. In this case, that allows us to say that we are confident the ratio of the true values of the two parameters is not <span class="math notranslate nohighlight">\(K\)</span>.</p>
+</div>
+<div class="section" id="Full-Model-Likelihood-Ratio-Test">
+<h3>Full Model Likelihood Ratio Test<a class="headerlink" href="#Full-Model-Likelihood-Ratio-Test" title="Permalink to this headline">¶</a></h3>
+<p>Instead of looking at the parameters individually, we can evaluate the performance of the entire model. To do this we will us a likelihood ratio test. This test is valid when we can construct two distinct models that share the same structure, except one model has some restrictions placed on the parameter values and the other does not. These restrictions can take the form of fixing individual parameters to specific values (commonly, to zero) or fixing pairs of parameters to have particular ratios
+(commonly, one, which implies equality).</p>
+<p>If the restricted model is the “true” model (our null hypothesis), then we would expect that the increase in likelihood found for the unrestricted model would be small. If that increase in likelihood turns out to be sufficiently large, then we can reject the null hypothesis, and state with confidence that the restrictions are not valid.</p>
+<p>Using the likelihood ratio test involves evaluating the test statistic:</p>
+<div class="math notranslate nohighlight">
+\[2\left( LL(U) - LL(R) \right) \sim \chi^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(LL(U)\)</span> is the log likelihood of the unrestricted model and <span class="math notranslate nohighlight">\(LL(R)\)</span> is the log likelihood of the restricted model. The <span class="math notranslate nohighlight">\(\chi^2\)</span> (chi squared) distribution is characterized by a degrees of freedom, which is equal to the number of restrictions imposed.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">degfree</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">chi2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">degfree</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;deg freedom=</span><span class="si">{degfree}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Chi Squared Probability Density Function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>To find the level of significance for rejecting a restricted model using a chi squared test (i.e. the probability that the likelihood ratio would be at least so big), use the <code class="docutils literal notranslate"><span class="pre">sf</span></code> method of the <code class="docutils literal notranslate"><span class="pre">chi2</span></code> distribution.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Full-Model-Non-Nested-Hypothesis-Test">
+<h3>Full Model Non-Nested Hypothesis Test<a class="headerlink" href="#Full-Model-Non-Nested-Hypothesis-Test" title="Permalink to this headline">¶</a></h3>
+<p>Comparing two statistical models where one model is a restricted form of the other (i.e., by fixing some of the estimated parameters of the other model to some exogenously determined values, the resulting model is identical to the first model) is relatively straightforward, using the <span class="math notranslate nohighlight">\(\chi^{2}\)</span> test. The approach when the models do not have this relationship (i.e., they are non-nested) is more complicated.</p>
+<p>One approach to evaluating non-nested models is to specify a joint model, which is a relaxation of both models under consideration; the joint model contains all the data and parameters of both component models. This can potentially create a cumbersome non-parsimonious model, and the allows for four different results instead of merely two: the joint model can statistically reject, or fail to reject, each of the component models independently. It is generally more desirable, if possible, to employ
+a hypothesis test that allows the direct comparison of the two models in question. Various methodologies for doing so have been introduced in the literature; we review them here.</p>
+<p>Horowitz (1983) offers a modified likelihood ratio index with respect to a null model, <span class="math notranslate nohighlight">\(\bar{\rho}_{H}^{2}\)</span>, for a given model as</p>
+<div class="math notranslate nohighlight">
+\[\bar{\rho}_{H}^{2}=1-\frac{LL(\hat{\beta})-{K_{\hat\beta}}/{2}}{LL(\emptyset)}\]</div>
+<p>Later in the same work, Horowitz shows that an upper bound on the probability of a Type I error in Eq. 52 can be written as</p>
+<div class="math notranslate nohighlight">
+\[\Pr\left(\bar{\rho}_{P}^{2}-\bar{\rho}_{Q}^{2}&gt;z\right)\leq\Phi\left[-\left(2zLL(\emptyset)\right)^{\frac{1}{2}}\right],\]</div>
+<p>with <span class="math notranslate nohighlight">\(Q\)</span> as the hypothesized correct model, <span class="math notranslate nohighlight">\(P\)</span> as an incorrect but apparently superior model, and <span class="math notranslate nohighlight">\(z\)</span> as an arbitrary value greater than zero. A Type I error as considered here is an incorrect rejection of the null hypothesis; here, it is the rejection of the inferior model when that model actually represents true underlying process.</p>
+<p>This bound depends on the fact that the models are non-nested, and does not apply otherwise.</p>
+<p>Unlike other more traditional hypothesis tests, we control only the bounded critical value, and the actual critical value may be higher. As a result, we are left with the probability of a Type II error being potentially much larger than it would be otherwise.</p>
+<p>A Type II error is an incorrect failure to reject the null hypothesis when it is indeed false; here, it is the failure to reject the inferior model when the alternative model actually more closely represents the true underlying process.</p>
+<p>In their popular textbook, Ben-Akiva and Lerman (1985) offer an alternative <span class="math notranslate nohighlight">\(\bar{\rho}^{2}\)</span> formulation based on the Akaike information criterion (AIC), which is the version shown earlier. This version penalizes models even more strongly for having extra parameters, resulting in a preference for even more parsimonious models. But it results in a slightly different hypothesis test:</p>
+<div class="math notranslate nohighlight">
+\[\Pr\left(\bar{\rho}_{P}^{2}-\bar{\rho}_{Q}^{2}&gt;z\right)\leq\Phi\left[-\left(-2zLL(0)+K_{P}-K_{Q}\right)^{\frac{1}{2}}\right],\]</div>
+<p>Importantly, the Horowitz bound only makes sense when <span class="math notranslate nohighlight">\(z&gt;0\)</span>, therefore as noted subsequently by Ben-Akiva and Swait (1986), the Akaike bound only applies where $z&gt;:nbsphinx-math:<cite>max</cite><span class="math">\left`{ 0,:nbsphinx-math:</span>frac{K_{P}-K_{Q}}{2LL(emptyset)}`:nbsphinx-math:<cite>right</cite>} $. Thus, when the inferior model (as judged by the AIC) has more estimated parameters than the superior model, this hypothesis test given can be applied at any level of significance desired. However, in the
+more common scenario when the inferior model has fewer parameters than the superior model, the applicability of this second test is limited.</p>
+</div>
+</div>
+<div class="section" id="Informal-Tests">
+<h2>Informal Tests<a class="headerlink" href="#Informal-Tests" title="Permalink to this headline">¶</a></h2>
+<p>In addition to rigorous statistical testing backed up by the underlying theory, mode choice models should also be evaluated from a practical standpoint: Do the results make sense?</p>
+<ul class="simple">
+<li><p>Check the signs on parameters</p>
+<ul>
+<li><p>Certain features, such as travel time and travel cost, should generally have negative coefficients. More travel time is less desirable.</p></li>
+<li><p>Other features, especially ASC’s, might have positive or negative values, and either might be OK.</p></li>
+</ul>
+</li>
+<li><p>Check the relative values (ratios) of parameters</p>
+<ul>
+<li><p>OVTT should be more negative than IVTT as a minute of OVTT creates more disutility than a minute of IVTT</p></li>
+<li><p>Check groups of alternative-specific variables together. Does a change in the variable have the right relative impact on various modes?</p></li>
+<li><p>Check the implied trade offs: especially the implied value of travel time</p></li>
+</ul>
+</li>
+</ul>
+<p>Determining what is “good” is a judgement you as the modeler needs to make. Higher values of <span class="math notranslate nohighlight">\(\rho^2\)</span>, sometimes even fairly large jumps, do not always result in a “better” model.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
