@@ -99,46 +99,19 @@
 <li class="toctree-l2"><a class="reference internal" href="003-data-for-discrete-choice.html">Data for Discrete Choice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="004-mtc-modechoice-practical.html">Practical Mode Choice</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Nested Logit</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Theory-Review">Theory Review</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Statistical-Testing-of-Nested-Logit-Structures">Statistical Testing of Nested Logit Structures</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Full-Nesting-Structure-Test">Full Nesting Structure Test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Single-Nest-Test">Single Nest Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Theory-Review">Theory Review</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Statistical-Testing-of-Nested-Logit-Structures">Statistical Testing of Nested Logit Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Multiple-Nests">Multiple Nests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Different-Nested-Logit-Models">Different Nested Logit Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Optimization-Considerations">Optimization Considerations</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#Multiple-Nests">Multiple Nests</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Hierarchical-Nests">Hierarchical Nests</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Different-Nested-Logit-Models">Different Nested Logit Models</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Optimization-Considerations">Optimization Considerations</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#Practical-Nested-Logit">Practical Nested Logit</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Some-Simple-Single-Nests">Some Simple Single Nests</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Nesting-Tree-Figures">Nesting Tree Figures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Table-of-Results">Table of Results</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Hypothesis-Testing">Hypothesis Testing</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Two-Nests-for-Different-Groups">Two Nests for Different Groups</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Nesting Tree Figures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Table of Results</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Hypothesis Testing</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Hierarchical Nests</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id5">Nesting Tree Figures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">Table of Results</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">Hypothesis Testing</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#More-Complex-Nests">More Complex Nests</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id8">Nesting Tree Figures</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">Table of Results</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Fixing-Some-Issues">Fixing Some Issues</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id10">Table of Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Practical-Nested-Logit">Practical Nested Logit</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Some-Simple-Single-Nests">Some Simple Single Nests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Two-Nests-for-Different-Groups">Two Nests for Different Groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Hierarchical Nests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#More-Complex-Nests">More Complex Nests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Fixing-Some-Issues">Fixing Some Issues</a></li>
 </ul>
 </li>
 </ul>
@@ -643,17 +616,16 @@ P(PT)=\frac{{\exp\left({\mu_{PT}{\Gamma_{PT}}}\right)}}{\begin{array}{l}
 \exp({V_{DA}})+\exp({V_{SR}})+\exp\left({\mu_{PT}{\Gamma_{PT}}}\right)\end{array}}
 \end{array}\end{split}\]</div>
 <p>Estimation of the conditional choice model includes estimation of <span class="math notranslate nohighlight">\({\mu_{PT}}\)</span>. Consistent estimates for the parameters in the conditional, Bus vs LTR, model can be obtained by multiplying the conditional estimates by the scale parameter, <span class="math notranslate nohighlight">\({\mu_{PT}}\)</span>, estimated in the marginal model.</p>
-</div>
 <div class="section" id="Statistical-Testing-of-Nested-Logit-Structures">
-<h2>Statistical Testing of Nested Logit Structures<a class="headerlink" href="#Statistical-Testing-of-Nested-Logit-Structures" title="Permalink to this headline">¶</a></h2>
+<h3>Statistical Testing of Nested Logit Structures<a class="headerlink" href="#Statistical-Testing-of-Nested-Logit-Structures" title="Permalink to this headline">¶</a></h3>
 <p>Adopting a nested logit model implies rejection of the MNL. Tests can also be made between any NL and a simpler NL that is a reduced form of the initial model.</p>
 <div class="section" id="Full-Nesting-Structure-Test">
-<h3>Full Nesting Structure Test<a class="headerlink" href="#Full-Nesting-Structure-Test" title="Permalink to this headline">¶</a></h3>
+<h4>Full Nesting Structure Test<a class="headerlink" href="#Full-Nesting-Structure-Test" title="Permalink to this headline">¶</a></h4>
 <p>We can use standard statistical tests of the hypothesis that the MNL model is the true model since the nested logit model is a generalization of the MNL model. In the case of multiple nests, the hypothesis that the MNL is the true model is equivalent to the hypothesis that all the logsum parameters are equal to one.</p>
 <p>Use the <strong>likelihood ratio test</strong> (Chi Squared or <span class="math notranslate nohighlight">\(\chi^2\)</span>) to compare a nested logit model against the equivalent MNL model, with degrees of freedom equal to the number of logsum parameters.</p>
 </div>
 <div class="section" id="Single-Nest-Test">
-<h3>Single Nest Test<a class="headerlink" href="#Single-Nest-Test" title="Permalink to this headline">¶</a></h3>
+<h4>Single Nest Test<a class="headerlink" href="#Single-Nest-Test" title="Permalink to this headline">¶</a></h4>
 <p>To test whether a single logsum parameter is significant, use the <span class="math notranslate nohighlight">\(t\)</span> statistic.</p>
 <p>Unlike for <span class="math notranslate nohighlight">\(\beta\)</span> parameters in the utility function, the default “null” value for logsum parameters is 1.0. For nests just under the root node, we can compare directly against 1.</p>
 <div class="math notranslate nohighlight">
@@ -674,7 +646,7 @@ P(PT)=\frac{{\exp\left({\mu_{PT}{\Gamma_{PT}}}\right)}}{\begin{array}{l}
 </div>
 </div>
 <div class="section" id="Multiple-Nests">
-<h2>Multiple Nests<a class="headerlink" href="#Multiple-Nests" title="Permalink to this headline">¶</a></h2>
+<h3>Multiple Nests<a class="headerlink" href="#Multiple-Nests" title="Permalink to this headline">¶</a></h3>
 <p>Extension of above results is that the structural effect for alternatives which are not in any common nest is the same as for the MNL. Note: it is not necessary for the logsum parameters to be equal for different nests.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
@@ -794,7 +766,7 @@ P(PT)=\frac{{\exp\left({\mu_{PT}{\Gamma_{PT}}}\right)}}{\begin{array}{l}
 </div>
 <p>Note that it is not necessary for the logsum parameters <span class="math notranslate nohighlight">\(\mu_{Transit}\)</span> and <span class="math notranslate nohighlight">\(\mu_{Car}\)</span> to be the same for the Transit and Car nests. However, both must meet the same original requirements: values greater than 0 and less than or equal to 1.</p>
 <div class="section" id="Hierarchical-Nests">
-<h3>Hierarchical Nests<a class="headerlink" href="#Hierarchical-Nests" title="Permalink to this headline">¶</a></h3>
+<h4>Hierarchical Nests<a class="headerlink" href="#Hierarchical-Nests" title="Permalink to this headline">¶</a></h4>
 <p>We can also write the NL model with one nest inside another nest.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -945,7 +917,7 @@ P(PT)=\frac{{\exp\left({\mu_{PT}{\Gamma_{PT}}}\right)}}{\begin{array}{l}
 </div>
 </div>
 <div class="section" id="Different-Nested-Logit-Models">
-<h2>Different Nested Logit Models<a class="headerlink" href="#Different-Nested-Logit-Models" title="Permalink to this headline">¶</a></h2>
+<h3>Different Nested Logit Models<a class="headerlink" href="#Different-Nested-Logit-Models" title="Permalink to this headline">¶</a></h3>
 <p>The literature includes reference to and description of two different logit models which appear to similar but are different in important ways. It is important to be aware of these different models to avoid confusion and errors.</p>
 <p>The first of these is the <em>McFadden</em> model described above which is referred to as the <em>Utility Maximization Nested Logit</em> (UMNL) model.</p>
 <div class="math notranslate nohighlight">
@@ -1161,13 +1133,13 @@ P(PT)&amp;=\frac{{\exp\left({\mu_{PT}{\Gamma_{PT}}}\right)}}{
 </div>
 </div>
 <div class="section" id="Optimization-Considerations">
-<h2>Optimization Considerations<a class="headerlink" href="#Optimization-Considerations" title="Permalink to this headline">¶</a></h2>
+<h3>Optimization Considerations<a class="headerlink" href="#Optimization-Considerations" title="Permalink to this headline">¶</a></h3>
 <p>An additional important distinction between the MNL and NL models is that the log likelihood of NL models is not guaranteed to be globally concave. In the abstract, this makes finding a global maximum of the log likelihood function “hard”. Fortunately, for any fixed set of values for all of the <span class="math notranslate nohighlight">\(\mu\)</span> logsum parameters, the log likelihood as a function of the linear-in-parameters utility function <em>is</em> still globally concave. The dimensionality of the multiple-optima problem can therefore be
 reduced to only the number of logsum parameters. Still, it can be important to check multiple different set of values for the logsum parameters to ensure that you are converging truely to the global maximum likelihood, and not a local optimum.</p>
 </div>
 </div>
 <div class="section" id="Practical-Nested-Logit">
-<h1>Practical Nested Logit<a class="headerlink" href="#Practical-Nested-Logit" title="Permalink to this headline">¶</a></h1>
+<h2>Practical Nested Logit<a class="headerlink" href="#Practical-Nested-Logit" title="Permalink to this headline">¶</a></h2>
 <p>Given the right tools, the practical application of nested logit models is pretty much a simple extension of MNL models. Most of the hard work in creating and estimating these models can be done efficiently with these tools.</p>
 <p>To demonstrate the estimation of nested logit models, we’ll use the same MTC sample dataset used in the previous module, and in the <a class="reference external" href="http://www.caee.utexas.edu/prof/bhat/courses/lm_draft_060131final-060630.pdf">Self Instructing Course in Mode Choice Modeling: Multinomial and Nested Logit Models</a>:</p>
 <blockquote>
@@ -1379,7 +1351,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 </div></div>
 </div>
 <div class="section" id="Some-Simple-Single-Nests">
-<h2>Some Simple Single Nests<a class="headerlink" href="#Some-Simple-Single-Nests" title="Permalink to this headline">¶</a></h2>
+<h3>Some Simple Single Nests<a class="headerlink" href="#Some-Simple-Single-Nests" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Begin by adding some simple nests to the model.</p>
 <ul>
@@ -2112,7 +2084,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
       <td>-0.315704</td>
     </tr>
   </tbody>
-</table></td></tr><tr><td>nit</td><td style="text-align:left;">51</td></tr><tr><td>nfev</td><td style="text-align:left;">135</td></tr><tr><td>njev</td><td style="text-align:left;">51</td></tr><tr><td>status</td><td style="text-align:left;">0</td></tr><tr><td>message</td><td style="text-align:left;">'Optimization terminated successfully'</td></tr><tr><td>success</td><td style="text-align:left;">True</td></tr><tr><td>elapsed_time</td><td style="text-align:left;">0:00:10.180768</td></tr><tr><td>method</td><td style="text-align:left;">'slsqp'</td></tr><tr><td>n_cases</td><td style="text-align:left;">5029</td></tr><tr><td>iteration_number</td><td style="text-align:left;">51</td></tr><tr><td>logloss</td><td style="text-align:left;">0.684484143081794</td></tr></table></div></div>
+</table></td></tr><tr><td>nit</td><td style="text-align:left;">51</td></tr><tr><td>nfev</td><td style="text-align:left;">135</td></tr><tr><td>njev</td><td style="text-align:left;">51</td></tr><tr><td>status</td><td style="text-align:left;">0</td></tr><tr><td>message</td><td style="text-align:left;">'Optimization terminated successfully'</td></tr><tr><td>success</td><td style="text-align:left;">True</td></tr><tr><td>elapsed_time</td><td style="text-align:left;">0:00:10.326799</td></tr><tr><td>method</td><td style="text-align:left;">'slsqp'</td></tr><tr><td>n_cases</td><td style="text-align:left;">5029</td></tr><tr><td>iteration_number</td><td style="text-align:left;">51</td></tr><tr><td>logloss</td><td style="text-align:left;">0.684484143081794</td></tr></table></div></div>
 </div>
 <p>Inside a Jupyter notebook, the nesting graph object is shown not as a text version of itself but as a graphic, which is helpful to be able to see the shape of the nesting network:</p>
 <div class="nbinput docutils container">
@@ -2408,7 +2380,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="Nesting-Tree-Figures">
-<h3>Nesting Tree Figures<a class="headerlink" href="#Nesting-Tree-Figures" title="Permalink to this headline">¶</a></h3>
+<h4>Nesting Tree Figures<a class="headerlink" href="#Nesting-Tree-Figures" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
@@ -2430,7 +2402,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="Table-of-Results">
-<h3>Table of Results<a class="headerlink" href="#Table-of-Results" title="Permalink to this headline">¶</a></h3>
+<h4>Table of Results<a class="headerlink" href="#Table-of-Results" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
@@ -3205,7 +3177,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="Hypothesis-Testing">
-<h3>Hypothesis Testing<a class="headerlink" href="#Hypothesis-Testing" title="Permalink to this headline">¶</a></h3>
+<h4>Hypothesis Testing<a class="headerlink" href="#Hypothesis-Testing" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
@@ -3244,7 +3216,7 @@ Model 21 vs Model 17 : Chi-Sq= 1.261, p=0.261, df=1
 </div>
 </div>
 <div class="section" id="Two-Nests-for-Different-Groups">
-<h2>Two Nests for Different Groups<a class="headerlink" href="#Two-Nests-for-Different-Groups" title="Permalink to this headline">¶</a></h2>
+<h3>Two Nests for Different Groups<a class="headerlink" href="#Two-Nests-for-Different-Groups" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
@@ -3324,7 +3296,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </pre></div></div>
 </div>
 <div class="section" id="id1">
-<h3>Nesting Tree Figures<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h4>Nesting Tree Figures<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
@@ -3343,7 +3315,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="id2">
-<h3>Table of Results<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h4>Table of Results<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
@@ -3992,7 +3964,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="id3">
-<h3>Hypothesis Testing<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h4>Hypothesis Testing<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
@@ -4016,7 +3988,7 @@ Model 24 vs Model 17 : Chi-Sq= 4.848, p=0.028, df=1
 </div>
 </div>
 <div class="section" id="id4">
-<h2>Hierarchical Nests<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h3>Hierarchical Nests<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
@@ -4124,7 +4096,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </pre></div></div>
 </div>
 <div class="section" id="id5">
-<h3>Nesting Tree Figures<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<h4>Nesting Tree Figures<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
@@ -4143,7 +4115,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="id6">
-<h3>Table of Results<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<h4>Table of Results<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
@@ -4781,7 +4753,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="id7">
-<h3>Hypothesis Testing<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<h4>Hypothesis Testing<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
@@ -4814,7 +4786,7 @@ Model 26 vs Model 20 : Chi-Sq= 3.631, p=0.057, df=1
 </div>
 </div>
 <div class="section" id="More-Complex-Nests">
-<h2>More Complex Nests<a class="headerlink" href="#More-Complex-Nests" title="Permalink to this headline">¶</a></h2>
+<h3>More Complex Nests<a class="headerlink" href="#More-Complex-Nests" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
@@ -4870,7 +4842,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </pre></div></div>
 </div>
 <div class="section" id="id8">
-<h3>Nesting Tree Figures<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h4>Nesting Tree Figures<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
@@ -4889,7 +4861,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="id9">
-<h3>Table of Results<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<h4>Table of Results<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
@@ -5445,7 +5417,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </div>
 </div>
 <div class="section" id="Fixing-Some-Issues">
-<h2>Fixing Some Issues<a class="headerlink" href="#Fixing-Some-Issues" title="Permalink to this headline">¶</a></h2>
+<h3>Fixing Some Issues<a class="headerlink" href="#Fixing-Some-Issues" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
@@ -6007,7 +5979,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 </pre></div></div>
 </div>
 <div class="section" id="id10">
-<h3>Table of Results<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<h4>Table of Results<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
@@ -6580,6 +6552,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
   </tbody>
 </table>
 </div></div>
+</div>
 </div>
 </div>
 </div>
