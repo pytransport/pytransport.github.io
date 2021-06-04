@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Exampville Mode Choice Logsums &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
+  <title>Exampville Mode Choice Logsums &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
@@ -28,6 +28,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -63,7 +64,7 @@
             
             
               <div class="version">
-                1.0.3
+                1.1.0
               </div>
             
           
@@ -603,123 +604,123 @@ div.rendered_html tbody tr:hover {
   <tbody>
     <tr>
       <th>0</th>
-      <td>-2.935713</td>
-      <td>-2.660536</td>
-      <td>-1.745670</td>
-      <td>-2.229338</td>
-      <td>-2.403182</td>
-      <td>-1.624226</td>
-      <td>-2.689859</td>
-      <td>-2.704618</td>
-      <td>-3.258728</td>
-      <td>-2.718739</td>
+      <td>-2.935611</td>
+      <td>-2.660436</td>
+      <td>-1.745654</td>
+      <td>-2.229281</td>
+      <td>-2.403117</td>
+      <td>-1.624193</td>
+      <td>-2.689783</td>
+      <td>-2.704533</td>
+      <td>-3.258630</td>
+      <td>-2.718634</td>
       <td>...</td>
-      <td>-1.702316</td>
-      <td>-1.717786</td>
-      <td>-2.340960</td>
-      <td>-2.760617</td>
-      <td>-1.029280</td>
-      <td>-2.249790</td>
-      <td>-2.048407</td>
-      <td>-2.160306</td>
-      <td>-2.286868</td>
-      <td>-1.959773</td>
+      <td>-1.702280</td>
+      <td>-1.717749</td>
+      <td>-2.340898</td>
+      <td>-2.760539</td>
+      <td>-1.029270</td>
+      <td>-2.249755</td>
+      <td>-2.048357</td>
+      <td>-2.160251</td>
+      <td>-2.286809</td>
+      <td>-1.959727</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-2.935713</td>
-      <td>-2.660536</td>
-      <td>-1.745670</td>
-      <td>-2.229338</td>
-      <td>-2.403182</td>
-      <td>-1.624226</td>
-      <td>-2.689859</td>
-      <td>-2.704618</td>
-      <td>-3.258728</td>
-      <td>-2.718739</td>
+      <td>-2.935611</td>
+      <td>-2.660436</td>
+      <td>-1.745654</td>
+      <td>-2.229281</td>
+      <td>-2.403117</td>
+      <td>-1.624193</td>
+      <td>-2.689783</td>
+      <td>-2.704533</td>
+      <td>-3.258630</td>
+      <td>-2.718634</td>
       <td>...</td>
-      <td>-1.702316</td>
-      <td>-1.717786</td>
-      <td>-2.340960</td>
-      <td>-2.760617</td>
-      <td>-1.029280</td>
-      <td>-2.249790</td>
-      <td>-2.048407</td>
-      <td>-2.160306</td>
-      <td>-2.286868</td>
-      <td>-1.959773</td>
+      <td>-1.702280</td>
+      <td>-1.717749</td>
+      <td>-2.340898</td>
+      <td>-2.760539</td>
+      <td>-1.029270</td>
+      <td>-2.249755</td>
+      <td>-2.048357</td>
+      <td>-2.160251</td>
+      <td>-2.286809</td>
+      <td>-1.959727</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-2.935713</td>
-      <td>-2.660536</td>
-      <td>-1.745670</td>
-      <td>-2.229338</td>
-      <td>-2.403182</td>
-      <td>-1.624226</td>
-      <td>-2.689859</td>
-      <td>-2.704618</td>
-      <td>-3.258728</td>
-      <td>-2.718739</td>
+      <td>-2.935611</td>
+      <td>-2.660436</td>
+      <td>-1.745654</td>
+      <td>-2.229281</td>
+      <td>-2.403117</td>
+      <td>-1.624193</td>
+      <td>-2.689783</td>
+      <td>-2.704533</td>
+      <td>-3.258630</td>
+      <td>-2.718634</td>
       <td>...</td>
-      <td>-1.702316</td>
-      <td>-1.717786</td>
-      <td>-2.340960</td>
-      <td>-2.760617</td>
-      <td>-1.029280</td>
-      <td>-2.249790</td>
-      <td>-2.048407</td>
-      <td>-2.160306</td>
-      <td>-2.286868</td>
-      <td>-1.959773</td>
+      <td>-1.702280</td>
+      <td>-1.717749</td>
+      <td>-2.340898</td>
+      <td>-2.760539</td>
+      <td>-1.029270</td>
+      <td>-2.249755</td>
+      <td>-2.048357</td>
+      <td>-2.160251</td>
+      <td>-2.286809</td>
+      <td>-1.959727</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>-3.046216</td>
-      <td>-2.770092</td>
-      <td>-1.823420</td>
-      <td>-2.320433</td>
-      <td>-2.494165</td>
-      <td>-1.705379</td>
-      <td>-2.785956</td>
-      <td>-2.806232</td>
-      <td>-3.365641</td>
-      <td>-2.831113</td>
+      <td>-3.046071</td>
+      <td>-2.769949</td>
+      <td>-1.823372</td>
+      <td>-2.320338</td>
+      <td>-2.494063</td>
+      <td>-1.705313</td>
+      <td>-2.785841</td>
+      <td>-2.806107</td>
+      <td>-3.365500</td>
+      <td>-2.830964</td>
       <td>...</td>
-      <td>-1.784256</td>
-      <td>-1.797553</td>
-      <td>-2.430906</td>
-      <td>-2.863390</td>
-      <td>-1.100512</td>
-      <td>-2.343775</td>
-      <td>-2.133362</td>
-      <td>-2.247115</td>
-      <td>-2.380724</td>
-      <td>-2.047770</td>
+      <td>-1.784186</td>
+      <td>-1.797482</td>
+      <td>-2.430807</td>
+      <td>-2.863272</td>
+      <td>-1.100473</td>
+      <td>-2.343703</td>
+      <td>-2.133276</td>
+      <td>-2.247024</td>
+      <td>-2.380627</td>
+      <td>-2.047688</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>-3.051758</td>
-      <td>-2.775558</td>
-      <td>-1.827227</td>
-      <td>-2.324878</td>
-      <td>-2.498529</td>
-      <td>-1.709190</td>
-      <td>-2.790614</td>
-      <td>-2.811234</td>
-      <td>-3.370947</td>
-      <td>-2.836754</td>
+      <td>-3.051611</td>
+      <td>-2.775413</td>
+      <td>-1.827178</td>
+      <td>-2.324782</td>
+      <td>-2.498425</td>
+      <td>-1.709122</td>
+      <td>-2.790498</td>
+      <td>-2.811107</td>
+      <td>-3.370804</td>
+      <td>-2.836603</td>
       <td>...</td>
-      <td>-1.788103</td>
-      <td>-1.801300</td>
-      <td>-2.435210</td>
-      <td>-2.868381</td>
-      <td>-1.103854</td>
-      <td>-2.348454</td>
-      <td>-2.137388</td>
-      <td>-2.251244</td>
-      <td>-2.385223</td>
-      <td>-2.052071</td>
+      <td>-1.788032</td>
+      <td>-1.801228</td>
+      <td>-2.435109</td>
+      <td>-2.868261</td>
+      <td>-1.103813</td>
+      <td>-2.348381</td>
+      <td>-2.137301</td>
+      <td>-2.251151</td>
+      <td>-2.385124</td>
+      <td>-2.051987</td>
     </tr>
   </tbody>
 </table>

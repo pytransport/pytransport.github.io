@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Creating Static Maps &mdash; Python for Transportation 1.0.3, April 2020 documentation</title>
+  <title>Creating Static Maps &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
@@ -28,6 +28,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -63,7 +64,7 @@
             
             
               <div class="version">
-                1.0.3
+                1.1.0
               </div>
             
           
@@ -742,7 +743,7 @@ memory usage: 7.0 MB
 <span></span><span class="k">def</span> <span class="nf">annotate_map</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">gdf</span><span class="p">,</span> <span class="n">annot</span><span class="p">,</span> <span class="n">row_slice</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">gdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_slice</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-            <span class="n">s</span><span class="o">=</span><span class="n">annot</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">x</span><span class="p">),</span>
+            <span class="n">text</span><span class="o">=</span><span class="n">annot</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">x</span><span class="p">),</span>
             <span class="n">xy</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
             <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
@@ -775,9 +776,9 @@ memory usage: 7.0 MB
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
 
-<span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://tile.stamen.com/terrain/tileZ/tileX/tileY.png&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s1">&#39;http://tile.stamen.com/terrain/tileZ/tileX/tileY.png&#39;</span><span class="p">):</span>
     <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
-    <span class="n">basemap</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">bounds2img</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">basemap</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">bounds2img</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="n">zoom</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">)</span>
     <span class="c1"># restore original x/y limits</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">((</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">))</span>
@@ -816,7 +817,7 @@ memory usage: 7.0 MB
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span> <span class="c1"># don&#39;t show axis</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Population Density&quot;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">maz2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;PopDen&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">ST_TONER_LITE</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">TonerLite</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1044,7 +1045,7 @@ memory usage: 7.0 MB
             <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
            <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">ST_TONER_LITE</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">TonerLite</span><span class="p">)</span>
 
 </pre></div>
 </div>
@@ -1095,7 +1096,7 @@ memory usage: 7.0 MB
             <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span>
            <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
            <span class="n">fontstyle</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">sources</span><span class="o">.</span><span class="n">ST_TONER_LITE</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Stamen</span><span class="o">.</span><span class="n">TonerLite</span><span class="p">)</span>
 
 </pre></div>
 </div>
@@ -1165,35 +1166,66 @@ memory usage: 7.0 MB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>u</th>
-      <th>v</th>
-      <th>key</th>
+      <th></th>
+      <th></th>
       <th>osmid</th>
-      <th>highway</th>
       <th>oneway</th>
+      <th>name</th>
+      <th>highway</th>
       <th>length</th>
       <th>geometry</th>
       <th>lanes</th>
-      <th>name</th>
-      <th>junction</th>
-      <th>service</th>
       <th>ref</th>
+      <th>service</th>
+      <th>junction</th>
       <th>bridge</th>
       <th>access</th>
+    </tr>
+    <tr>
+      <th>u</th>
+      <th>v</th>
+      <th>key</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <th rowspan="3" valign="top">99569446</th>
+      <th>3627598396</th>
       <th>0</th>
-      <td>6654312479</td>
-      <td>6654367094</td>
-      <td>0</td>
-      <td>708170971</td>
-      <td>footway</td>
+      <td>11199200</td>
+      <td>True</td>
+      <td>Indian Crossing Circle</td>
+      <td>residential</td>
+      <td>28.204</td>
+      <td>LINESTRING (-80.11097 26.88928, -80.11095 26.8...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1395523685</th>
+      <th>0</th>
+      <td>11201055</td>
       <td>False</td>
-      <td>10.601</td>
-      <td>LINESTRING (-80.11866 26.88009, -80.11866 26.8...</td>
-      <td>NaN</td>
+      <td>Osceola Lane</td>
+      <td>residential</td>
+      <td>25.170</td>
+      <td>LINESTRING (-80.11097 26.88928, -80.11122 26.8...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1202,70 +1234,47 @@ memory usage: 7.0 MB
       <td>NaN</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>1395523619</td>
-      <td>1395523685</td>
-      <td>0</td>
-      <td>125704242</td>
-      <td>tertiary</td>
-      <td>True</td>
-      <td>133.511</td>
-      <td>LINESTRING (-80.11114 26.88809, -80.11119 26.8...</td>
-      <td>2</td>
-      <td>Central Boulevard</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1395523619</td>
-      <td>1395523622</td>
-      <td>0</td>
-      <td>682181038</td>
-      <td>tertiary</td>
-      <td>True</td>
-      <td>93.879</td>
-      <td>LINESTRING (-80.11114 26.88809, -80.11120 26.8...</td>
-      <td>2</td>
-      <td>NaN</td>
-      <td>roundabout</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1395523622</td>
-      <td>5817784099</td>
-      <td>0</td>
-      <td>11207454</td>
-      <td>tertiary</td>
-      <td>True</td>
-      <td>36.891</td>
-      <td>LINESTRING (-80.11199 26.88818, -80.11205 26.8...</td>
-      <td>2</td>
-      <td>NaN</td>
-      <td>roundabout</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5690294318</td>
-      <td>1502469402</td>
-      <td>0</td>
-      <td>136957668</td>
-      <td>service</td>
+      <th>6944023757</th>
+      <th>0</th>
+      <td>11201055</td>
       <td>False</td>
-      <td>21.310</td>
-      <td>LINESTRING (-80.10483 26.89099, -80.10482 26.8...</td>
+      <td>Osceola Lane</td>
+      <td>residential</td>
+      <td>83.385</td>
+      <td>LINESTRING (-80.11097 26.88928, -80.11012 26.8...</td>
       <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">99569449</th>
+      <th>99569446</th>
+      <th>0</th>
+      <td>11189913</td>
+      <td>True</td>
+      <td>West Indian Crossing Circle</td>
+      <td>residential</td>
+      <td>57.420</td>
+      <td>LINESTRING (-80.11098 26.88877, -80.11097 26.8...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>99584812</th>
+      <th>0</th>
+      <td>337533285</td>
+      <td>True</td>
+      <td>Jegas Path</td>
+      <td>residential</td>
+      <td>196.993</td>
+      <td>LINESTRING (-80.11098 26.88877, -80.11100 26.8...</td>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -1297,35 +1306,6 @@ memory usage: 7.0 MB
 <img alt="../../_images/course-content_geographic-analysis_static-maps_53_0.png" src="../../_images/course-content_geographic-analysis_static-maps_53_0.png" />
 </div>
 </div>
-<p>We can add labels to certain map elements using the <code class="docutils literal notranslate"><span class="pre">annotate</span></code> method of the <code class="docutils literal notranslate"><span class="pre">Axes</span></code> object. As an example, let’s add a label indicating the link length for each “primary” link in the plot. We’ll use the <code class="docutils literal notranslate"><span class="pre">apply</span></code> method of the <code class="docutils literal notranslate"><span class="pre">street_edges</span></code> GeoDataFrame to apply the annotate to each relevant row, formatting a label to give the length value to one decimal place, and placing the label at the link centroid.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">street_edges</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
-<span class="n">street_edges</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">street_edges</span><span class="p">[</span><span class="s1">&#39;highway&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;primary&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
-        <span class="n">s</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{length:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">x</span><span class="p">),</span>
-        <span class="n">xy</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
-    <span class="p">),</span>
-    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_static-maps_55_0.png" src="../../_images/course-content_geographic-analysis_static-maps_55_0.png" />
-</div>
-</div>
-<p>Unfortunately, because these links are small, the labels end up overlapping each other. This is challenging to overcome in an automatic manner using just matplotlib, but some other tools may help alleviate this issue (examples coming soon).</p>
 </div>
 </div>
 
