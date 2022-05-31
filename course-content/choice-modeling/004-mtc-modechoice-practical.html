@@ -1,42 +1,48 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Practical Mode Choice &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Nested Logit" href="005-nested-logit.html" />
@@ -81,6 +87,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -133,6 +140,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -167,11 +175,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="_index.html">Discrete Choice Modeling</a> &raquo;</li>
         
@@ -180,7 +190,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/course-content/choice-modeling/004-mtc-modechoice-practical.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -199,21 +209,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -260,20 +284,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -301,7 +338,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -366,7 +403,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -376,7 +414,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -440,8 +478,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">larch</span>
@@ -464,8 +501,7 @@ instead on how to execute this modeling workflow using Python and Larch.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/MTCwork.csv.gz&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;casenum&#39;</span><span class="p">,</span><span class="s1">&#39;altnum&#39;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/MTCwork.csv.gz&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;casenum&#39;</span><span class="p">,</span><span class="s1">&#39;altnum&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -843,8 +879,7 @@ instead on how to execute this modeling workflow using Python and Larch.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -903,8 +938,7 @@ memory usage: 6.3 MB
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -1257,8 +1291,7 @@ memory usage: 6.3 MB
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DataFrames</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DataFrames</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
     <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;chose&#39;</span><span class="p">,</span>
     <span class="n">crack</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -1290,8 +1323,7 @@ relatively expensive operation, and it is not actually required for most model s
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1350,8 +1382,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">data_ch</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">data_ch</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1450,8 +1481,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">data_av</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">data_av</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1550,8 +1580,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">data_co</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">data_co</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1804,8 +1833,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">data_co</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">data_co</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3494,8 +3522,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3717,8 +3744,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3742,8 +3768,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span>
 
 
 <span class="n">m1</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR2&quot;</span><span class="p">)</span>  <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;hhinc#2&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;log(hhinc)&quot;</span><span class="p">)</span>
@@ -3760,8 +3785,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">PX</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">PX</span>
 
 <span class="n">m1</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="n">PX</span><span class="p">(</span><span class="s2">&quot;tottime&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">PX</span><span class="p">(</span><span class="s2">&quot;totcost&quot;</span><span class="p">)</span>
 <span class="n">m1</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;tottime&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;tottime&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;totcost&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;totcost&quot;</span><span class="p">)</span> <span class="c1"># same!</span>
@@ -3772,8 +3796,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">data_ce</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;tottime * 4.34 / totcost&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">data_ce</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;tottime * 4.34 / totcost&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3803,8 +3826,7 @@ Length: 22033, dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m1</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 1&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 1&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -3813,8 +3835,7 @@ Length: 22033, dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m1</span><span class="o">.</span><span class="n">estimate</span><span class="p">();</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="o">.</span><span class="n">estimate</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -4013,8 +4034,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m1</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -4136,8 +4156,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m1</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -4155,8 +4174,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="mi">5029</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">5029</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4175,8 +4193,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m_c</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_c</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
 <span class="n">m_c</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR2&quot;</span><span class="p">)</span>
 <span class="n">m_c</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR3P&quot;</span><span class="p">)</span>
 <span class="n">m_c</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_TRAN&quot;</span><span class="p">)</span>
@@ -4304,8 +4321,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m_c</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m_c</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -4370,8 +4386,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">larch.util.summary</span> <span class="kn">import</span> <span class="n">joint_parameter_summary</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">larch.util.summary</span> <span class="kn">import</span> <span class="n">joint_parameter_summary</span>
 <span class="kn">from</span> <span class="nn">larch.util.excel</span> <span class="kn">import</span> <span class="n">ExcelWriter</span>
 </pre></div>
 </div>
@@ -4380,8 +4395,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span> <span class="o">=</span> <span class="n">ExcelWriter</span><span class="p">(</span><span class="s1">&#39;/tmp/mode-choice.xlsx&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span> <span class="o">=</span> <span class="n">ExcelWriter</span><span class="p">(</span><span class="s1">&#39;/tmp/mode-choice.xlsx&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4389,8 +4403,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m1</span><span class="p">,</span> <span class="n">m_c</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s1">&#39;Step 1&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -4598,8 +4611,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Make them the same parameter</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make them the same parameter</span>
 <span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m2</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 2&quot;</span>
 <span class="n">m2</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR2&quot;</span><span class="p">)</span>  <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;hhinc#23&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;hhinc&quot;</span><span class="p">)</span>
@@ -4623,8 +4635,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Impose a constraint directly</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Impose a constraint directly</span>
 <span class="n">m2a</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m2a</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 2.1&quot;</span>
 <span class="n">m2a</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;hhinc#3 &lt;= hhinc#2&quot;</span><span class="p">)</span>
@@ -4648,8 +4659,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m2</span><span class="p">,</span> <span class="n">m2a</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m2</span><span class="p">,</span> <span class="n">m2a</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -4833,8 +4843,7 @@ if you get poor results, consider setting global bounds with model.set_cap()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m3</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m3</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m3</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 3&quot;</span>
 <span class="n">m3</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR2&quot;</span><span class="p">)</span>  <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;hhinc#234&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;hhinc&quot;</span><span class="p">)</span>
 <span class="n">m3</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR3P&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;hhinc#234&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;hhinc&quot;</span><span class="p">)</span>
@@ -4858,8 +4867,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m4</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m4</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m4</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 4&quot;</span>
 <span class="n">m4</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR2&quot;</span><span class="p">)</span>
 <span class="n">m4</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="s2">&quot;ASC_SR3P&quot;</span><span class="p">)</span>
@@ -4882,8 +4890,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">m3</span><span class="p">,</span> <span class="n">m4</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s1">&#39;Step 2&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -5182,13 +5189,12 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
 
 <span class="k">def</span> <span class="nf">LRT</span><span class="p">(</span><span class="n">model_u</span><span class="p">,</span> <span class="n">model_r</span><span class="p">,</span> <span class="n">deg_free</span><span class="p">):</span>
     <span class="n">stat</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">model_u</span><span class="o">.</span><span class="n">loglike</span><span class="p">()</span> <span class="o">-</span> <span class="n">model_r</span><span class="o">.</span><span class="n">loglike</span><span class="p">())</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">deg_free</span><span class="p">)</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">stat</span><span class="p">)</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{stat:.3f}</span><span class="s2">, p=</span><span class="si">{p:.3f}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p=</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -5196,8 +5202,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5214,8 +5219,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5232,8 +5236,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5250,8 +5253,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m2</span><span class="p">,</span><span class="n">m4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m2</span><span class="p">,</span><span class="n">m4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5297,8 +5299,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m5</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m5</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m5</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 5&quot;</span>
 <span class="n">m5</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="p">(</span>
     <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s1">&#39;motor_time&#39;</span>   <span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;tottime&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;_altid_ in (1,2,3,4)&#39;</span><span class="p">)</span>
@@ -5325,8 +5326,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m6</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m6</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m6</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 6&quot;</span>
 <span class="n">m6</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="p">(</span>
     <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s1">&#39;ivtt&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;ivtt&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;_altid_ in (1,2,3,4)&#39;</span><span class="p">)</span>
@@ -5353,8 +5353,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m2</span><span class="p">,</span> <span class="n">m5</span><span class="p">,</span> <span class="n">m6</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s1">&#39;Step 3&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -5616,8 +5615,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m5</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m5</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5634,8 +5632,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m6</span><span class="p">,</span><span class="n">m5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m6</span><span class="p">,</span><span class="n">m5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5652,8 +5649,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m6</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m6</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5671,8 +5667,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -5702,8 +5697,7 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ovtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ovtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
 </div>
@@ -5736,9 +5730,8 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 minute of ivtt is worth </span><span class="si">{m6[&#39;ivtt&#39;].value:.5f}</span><span class="s2"> utils&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 cent of cost is worth </span><span class="si">{m6[&#39;totcost&#39;].value:.5f}</span><span class="s2"> utils&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 minute of ivtt is worth </span><span class="si">{</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> utils&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 cent of cost is worth </span><span class="si">{</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> utils&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5755,10 +5748,9 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 cent of cost is worth {(P.totcost/P.ivtt).value(m6):.2f} minutes of ivtt&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 dollar of cost is worth {(P.totcost/P.ivtt*100).value(m6):.0f} minutes of ivtt&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 dollar of cost is worth {(P.totcost/P.ivtt*100/60).value(m6):.2f} hours of ivtt&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 cent of cost is worth </span><span class="si">{</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">totcost</span><span class="o">/</span><span class="n">P</span><span class="o">.</span><span class="n">ivtt</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">m6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> minutes of ivtt&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 dollar of cost is worth </span><span class="si">{</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">totcost</span><span class="o">/</span><span class="n">P</span><span class="o">.</span><span class="n">ivtt</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">m6</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> minutes of ivtt&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 dollar of cost is worth </span><span class="si">{</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">totcost</span><span class="o">/</span><span class="n">P</span><span class="o">.</span><span class="n">ivtt</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">m6</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> hours of ivtt&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5776,10 +5768,9 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 minute of ivtt is worth {m6[&#39;ivtt&#39;].value/m6[&#39;totcost&#39;].value:.5f} cents&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 hour of ivtt is worth {m6[&#39;ivtt&#39;].value/m6[&#39;totcost&#39;].value*60:.5f} cents&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 hour of ivtt is worth {m6[&#39;ivtt&#39;].value/m6[&#39;totcost&#39;].value*60/100:.5f} dollars&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 minute of ivtt is worth </span><span class="si">{</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> cents&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 hour of ivtt is worth </span><span class="si">{</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> cents&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 hour of ivtt is worth </span><span class="si">{</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> dollars&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5797,8 +5788,7 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 hour of ovtt is worth {m6[&#39;ovtt&#39;].value/m6[&#39;totcost&#39;].value*60/100:.5f} dollars&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1 hour of ovtt is worth </span><span class="si">{</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;ovtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m6</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> dollars&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5820,8 +5810,7 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ovtt_effect</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">distance</span>
 <span class="n">ivtt_effect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">ovtt_effect</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">ovtt_effect</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ovtt&#39;</span><span class="p">)</span>
@@ -5843,8 +5832,7 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ivtt_effect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
 <span class="n">ovtt_effect</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">distance</span> <span class="o">+</span> <span class="n">ivtt_effect</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">ovtt_effect</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ovtt&#39;</span><span class="p">)</span>
@@ -5866,8 +5854,7 @@ Name: ivtt, dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m7</span> <span class="o">=</span> <span class="n">m6</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m7</span> <span class="o">=</span> <span class="n">m6</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m7</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 7&quot;</span>
 <span class="n">m7</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="p">(</span>
     <span class="o">+</span> <span class="n">P</span><span class="p">(</span><span class="s1">&#39;motor_time&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;ivtt+ovtt&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;_altid_ in (1,2,3,4)&#39;</span><span class="p">)</span>
@@ -5894,8 +5881,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">d</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -5954,8 +5940,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m8</span> <span class="o">=</span> <span class="n">m6</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m8</span> <span class="o">=</span> <span class="n">m6</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m8</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 8&quot;</span>
 <span class="n">m8</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="p">(</span>
     <span class="o">+</span> <span class="n">PX</span><span class="p">(</span><span class="s1">&#39;ivtt&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;_altid_ in (1,2,3,4)&#39;</span><span class="p">)</span>
@@ -5982,8 +5967,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m9</span>  <span class="o">=</span> <span class="n">m6</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m9</span>  <span class="o">=</span> <span class="n">m6</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m9</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 9&quot;</span>
 <span class="n">m9</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="p">(</span>
     <span class="o">+</span> <span class="n">PX</span><span class="p">(</span><span class="s1">&#39;ivtt&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;_altid_ in (1,2,3,4)&#39;</span><span class="p">)</span>
@@ -6010,8 +5994,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m6</span><span class="p">,</span> <span class="n">m7</span><span class="p">,</span> <span class="n">m8</span><span class="p">,</span> <span class="n">m9</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s2">&quot;Step 4&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -6321,13 +6304,12 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model 7&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth {m7[&#39;nonmotor_time&#39;].value/m7[&#39;totcost&#39;].value*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth {m7[&#39;motor_time&#39;].value/m7[&#39;totcost&#39;].value*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m7[&#39;ovtt/dist&#39;].value+m7[&#39;motor_time&#39;].value)/m7[&#39;totcost&#39;].value*60/100:.5f} $/hr at 1 mile&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m7[&#39;ovtt/dist&#39;].value/5+m7[&#39;motor_time&#39;].value)/m7[&#39;totcost&#39;].value*60/100:.5f} $/hr at 5 mile&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m7[&#39;ovtt/dist&#39;].value/10+m7[&#39;motor_time&#39;].value)/m7[&#39;totcost&#39;].value*60/100:.5f} $/hr at 10 miles&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model 7&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth </span><span class="si">{</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth </span><span class="si">{</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">+</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 1 mile&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 5 mile&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">10</span><span class="o">+</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">m7</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 10 miles&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6348,11 +6330,10 @@ OVTT is worth 8.69427 $/hr at 10 miles
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">m_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m6</span><span class="p">,</span><span class="n">m8</span><span class="p">,</span><span class="n">m9</span><span class="p">]:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">m_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m6</span><span class="p">,</span><span class="n">m8</span><span class="p">,</span><span class="n">m9</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">m_</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth {m_[&#39;nonmotor_time&#39;].value/m_[&#39;totcost&#39;].value*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth {m_[&#39;ivtt&#39;].value/m_[&#39;totcost&#39;].value*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth </span><span class="si">{</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth </span><span class="si">{</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ivtt&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -6380,6 +6361,8 @@ IVTT is worth 2.14149 $/hr
 <li><p>The values of in-vehicle time implied by Models 6, 8, and 9 are very low and the values of out of vehicle time and non-motorized time are somewhat low relative to wage rate ($21.20 per hour) for the San Francisco Bay Area.</p></li>
 <li><p>Model 7 produces higher, but still low, values of time.</p></li>
 <li><p>The ratios of OVT to IVT for motorized modes in Model 5 is clearly unacceptable. Those for Models 6, 7 and 8 are somewhat more reasonable.</p></li>
+</ul>
+<ul class="simple">
 <li><p>Model 7 outperforms the other models in all important respects: best goodness-of-fit, most intuitive relationship between the IVT and OVT variables and the most acceptable values of time.</p></li>
 </ul>
 </div>
@@ -6392,11 +6375,10 @@ IVTT is worth 2.14149 $/hr
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m10</span>  <span class="o">=</span> <span class="n">m7</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m10</span>  <span class="o">=</span> <span class="n">m7</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m10</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 10&quot;</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">m10</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;numveh&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;numveh#</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">m10</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;numveh&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;numveh#</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">m10</span><span class="o">.</span><span class="n">remove_unused_parameters</span><span class="p">()</span>
 <span class="n">m10</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
@@ -6416,11 +6398,10 @@ converting data_co to &lt;class &#39;numpy.float64&#39;&gt;
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m11</span>  <span class="o">=</span> <span class="n">m7</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m11</span>  <span class="o">=</span> <span class="n">m7</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m11</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 11&quot;</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">m11</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;numveh/numemphh&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;numveh#</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">m11</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;numveh/numemphh&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;numveh#</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">m11</span><span class="o">.</span><span class="n">remove_unused_parameters</span><span class="p">()</span>
 <span class="n">m11</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
@@ -6439,11 +6420,10 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m12</span>  <span class="o">=</span> <span class="n">m7</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m12</span>  <span class="o">=</span> <span class="n">m7</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m12</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 12&quot;</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">m12</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;numveh/numadlt&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;numveh#</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">m12</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;numveh/numadlt&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;numveh#</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">m12</span><span class="o">.</span><span class="n">remove_unused_parameters</span><span class="p">()</span>
 <span class="n">m12</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
@@ -6462,8 +6442,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m7</span><span class="p">,</span> <span class="n">m10</span><span class="p">,</span> <span class="n">m11</span><span class="p">,</span> <span class="n">m12</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s2">&quot;Step 5&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -6805,8 +6784,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m10</span><span class="p">,</span><span class="n">m7</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m10</span><span class="p">,</span><span class="n">m7</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6823,8 +6801,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m11</span><span class="p">,</span><span class="n">m7</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m11</span><span class="p">,</span><span class="n">m7</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6841,8 +6818,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m12</span><span class="p">,</span><span class="n">m7</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m12</span><span class="p">,</span><span class="n">m7</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6859,14 +6835,13 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">m_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m10</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="n">m12</span><span class="p">]:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">m_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m10</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="n">m12</span><span class="p">]:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">m_</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth {m_[&#39;nonmotor_time&#39;].value/m_[&#39;totcost&#39;].value*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth {m_[&#39;motor_time&#39;].value/m_[&#39;totcost&#39;].value*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m_[&#39;ovtt/dist&#39;].value+m_[&#39;motor_time&#39;].value)/m_[&#39;totcost&#39;].value*60/100:.5f} $/hr at 1 mile&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m_[&#39;ovtt/dist&#39;].value/5+m_[&#39;motor_time&#39;].value)/m_[&#39;totcost&#39;].value*60/100:.5f} $/hr at 5 mile&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m_[&#39;ovtt/dist&#39;].value/10+m_[&#39;motor_time&#39;].value)/m_[&#39;totcost&#39;].value*60/100:.5f} $/hr at 10 miles&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth </span><span class="si">{</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth </span><span class="si">{</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 1 mile&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 5 mile&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">10</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 10 miles&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -6917,11 +6892,10 @@ OVTT is worth 8.11446 $/hr at 10 miles
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m13</span>  <span class="o">=</span> <span class="n">m11</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m13</span>  <span class="o">=</span> <span class="n">m11</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m13</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 13&quot;</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">m13</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkccbd + wknccbd&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkccbd#</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">m13</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkccbd + wknccbd&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkccbd#</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">m13</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -6939,11 +6913,10 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m14</span>  <span class="o">=</span> <span class="n">m11</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m14</span>  <span class="o">=</span> <span class="n">m11</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m14</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 14&quot;</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">m14</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkempden&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkempden#</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">m14</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkempden&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkempden#</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">m14</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -6961,11 +6934,10 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m15</span>  <span class="o">=</span> <span class="n">m11</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m15</span>  <span class="o">=</span> <span class="n">m11</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m15</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 15&quot;</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]:</span>
-    <span class="n">m15</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkempden&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkempden#</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkccbd + wknccbd&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkccbd#</span><span class="si">{a}</span><span class="s1">&#39;</span><span class="p">))</span>
+    <span class="n">m15</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkempden&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkempden#</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;wkccbd + wknccbd&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">P</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;wkccbd#</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">))</span>
 <span class="n">m15</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -6983,8 +6955,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m11</span><span class="p">,</span> <span class="n">m13</span><span class="p">,</span> <span class="n">m14</span><span class="p">,</span> <span class="n">m15</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s2">&quot;Step 6&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -7436,8 +7407,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m13</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m13</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7454,8 +7424,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m14</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m14</span><span class="p">,</span><span class="n">m11</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7472,8 +7441,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m15</span><span class="p">,</span><span class="n">m13</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m15</span><span class="p">,</span><span class="n">m13</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7490,8 +7458,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m15</span><span class="p">,</span><span class="n">m14</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m15</span><span class="p">,</span><span class="n">m14</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7508,15 +7475,14 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">m_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m13</span><span class="p">,</span><span class="n">m14</span><span class="p">,</span><span class="n">m15</span><span class="p">]:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">m_</span> <span class="ow">in</span> <span class="p">[</span><span class="n">m13</span><span class="p">,</span><span class="n">m14</span><span class="p">,</span><span class="n">m15</span><span class="p">]:</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">m_</span><span class="p">[</span><span class="s1">&#39;totcost&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">m_</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth {m_[&#39;nonmotor_time&#39;].value/c*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth {m_[&#39;motor_time&#39;].value/c*60/100:.5f} $/hr&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m_[&#39;ovtt/dist&#39;].value+m_[&#39;motor_time&#39;].value)/c*60/100:.5f} $/hr at 1 mile&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m_[&#39;ovtt/dist&#39;].value/5+m_[&#39;motor_time&#39;].value)/c*60/100:.5f} $/hr at 5 mile&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth {(m_[&#39;ovtt/dist&#39;].value/10+m_[&#39;motor_time&#39;].value)/c*60/100:.5f} $/hr at 10 miles&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Non-motorized Time is worth </span><span class="si">{</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IVTT is worth </span><span class="si">{</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 1 mile&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">5</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 5 mile&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OVTT is worth </span><span class="si">{</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="mi">10</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">100</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2"> $/hr at 10 miles&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -7566,8 +7532,7 @@ OVTT is worth 9.24857 $/hr at 10 miles
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m16</span>  <span class="o">=</span> <span class="n">m15</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m16</span>  <span class="o">=</span> <span class="n">m15</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m16</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 16&quot;</span>
 </pre></div>
 </div>
@@ -7577,8 +7542,7 @@ OVTT is worth 9.24857 $/hr at 10 miles
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m16</span><span class="o">.</span><span class="n">utility_ca</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m16</span><span class="o">.</span><span class="n">utility_ca</span>
 </pre></div>
 </div>
 </div>
@@ -7593,8 +7557,7 @@ OVTT is worth 9.24857 $/hr at 10 miles
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">list</span><span class="p">(</span><span class="n">m16</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">m16</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -7615,8 +7578,7 @@ OVTT is worth 9.24857 $/hr at 10 miles
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m16</span><span class="o">.</span><span class="n">utility_ca</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">PX</span><span class="p">(</span><span class="s2">&quot;totcost/hhinc&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m16</span><span class="o">.</span><span class="n">utility_ca</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">PX</span><span class="p">(</span><span class="s2">&quot;totcost/hhinc&quot;</span><span class="p">)</span>
 <span class="n">m16</span><span class="o">.</span><span class="n">utility_ca</span>
 </pre></div>
 </div>
@@ -7632,8 +7594,7 @@ OVTT is worth 9.24857 $/hr at 10 miles
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m16</span><span class="o">.</span><span class="n">remove_unused_parameters</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m16</span><span class="o">.</span><span class="n">remove_unused_parameters</span><span class="p">()</span>
 <span class="n">m16</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -7652,8 +7613,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m16b</span>  <span class="o">=</span> <span class="n">m15</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m16b</span>  <span class="o">=</span> <span class="n">m15</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m16b</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 16b&quot;</span>
 <span class="n">m16b</span><span class="o">.</span><span class="n">utility_ca</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">PX</span><span class="p">(</span><span class="s2">&quot;totcost/log(hhinc)&quot;</span><span class="p">)</span>
 <span class="n">m16b</span><span class="o">.</span><span class="n">remove_unused_parameters</span><span class="p">()</span>
@@ -7675,8 +7635,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m15</span><span class="p">,</span> <span class="n">m16</span><span class="p">,</span> <span class="n">m16b</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s1">&#39;Step 7&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -8094,8 +8053,7 @@ V_m &amp;= \cdots +&amp; \beta_{IVT}         &amp; IVT_m   + &amp; \beta_{Cost/I
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">c</span> <span class="o">=</span> <span class="n">m16</span><span class="p">[</span><span class="s1">&#39;totcost/hhinc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mf">1.2</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">m16</span><span class="p">[</span><span class="s1">&#39;totcost/hhinc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="mf">1.2</span>
 <span class="n">m_</span> <span class="o">=</span> <span class="n">m16</span>
 
 <span class="n">VoT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
@@ -8106,14 +8064,14 @@ V_m &amp;= \cdots +&amp; \beta_{IVT}         &amp; IVT_m   + &amp; \beta_{Cost/I
 <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Non-Motor&#39;</span><span class="p">,</span> <span class="s1">&#39;% Wage Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
 <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;IVTT&#39;</span><span class="p">,</span> <span class="s1">&#39;% Wage Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">dist</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]:</span>
-    <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;OVTT @ </span><span class="si">{dist}</span><span class="s1"> mile&#39;</span><span class="p">,</span> <span class="s1">&#39;% Wage Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">dist</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;OVTT @ </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s1"> mile&#39;</span><span class="p">,</span> <span class="s1">&#39;% Wage Rate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:.2%}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">dist</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
 
 
 <span class="k">for</span> <span class="n">wage</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">]:</span>
-    <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Non-Motor&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{wage}</span><span class="s1">/hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wage</span><span class="o">*</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
-    <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;IVTT&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{wage}</span><span class="s1">/hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wage</span><span class="o">*</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Non-Motor&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">wage</span><span class="si">}</span><span class="s1">/hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wage</span><span class="o">*</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
+    <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;IVTT&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">wage</span><span class="si">}</span><span class="s1">/hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wage</span><span class="o">*</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">dist</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]:</span>
-        <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;OVTT @ </span><span class="si">{dist}</span><span class="s1"> mile&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{wage}</span><span class="s1">/hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wage</span><span class="o">*</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">dist</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">VoT</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;OVTT @ </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s1"> mile&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">wage</span><span class="si">}</span><span class="s1">/hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wage</span><span class="o">*</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">dist</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="p">)</span>
 <span class="n">VoT</span>
 </pre></div>
 </div>
@@ -8191,8 +8149,7 @@ V_m &amp;= \cdots +&amp; \beta_{IVT}         &amp; IVT_m   + &amp; \beta_{Cost/I
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[83]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">VoT16b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VoT16b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;$20K/yr&#39;</span><span class="p">,</span> <span class="s1">&#39;$50K/yr&#39;</span><span class="p">,</span> <span class="s1">&#39;$100K/yr&#39;</span><span class="p">],</span>
     <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Non-Motor&#39;</span><span class="p">,</span><span class="s1">&#39;IVTT&#39;</span><span class="p">,</span><span class="s1">&#39;OVTT @ 1 mile&#39;</span><span class="p">,</span><span class="s1">&#39;OVTT @ 5 mile&#39;</span><span class="p">,</span><span class="s1">&#39;OVTT @ 10 mile&#39;</span><span class="p">]</span>
 <span class="p">)</span>
@@ -8203,10 +8160,10 @@ V_m &amp;= \cdots +&amp; \beta_{IVT}         &amp; IVT_m   + &amp; \beta_{Cost/I
 <span class="k">for</span> <span class="n">income</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">]:</span>
     <span class="n">li</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">income</span><span class="p">)</span>
     <span class="n">cli</span> <span class="o">=</span> <span class="n">c</span><span class="o">/</span><span class="n">li</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="mi">60</span>
-    <span class="n">VoT16b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Non-Motor&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{income}</span><span class="s1">K/yr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">cli</span><span class="p">)</span>
-    <span class="n">VoT16b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;IVTT&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{income}</span><span class="s1">K/yr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">cli</span><span class="p">)</span>
+    <span class="n">VoT16b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Non-Motor&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">income</span><span class="si">}</span><span class="s1">K/yr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;nonmotor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">cli</span><span class="p">)</span>
+    <span class="n">VoT16b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;IVTT&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">income</span><span class="si">}</span><span class="s1">K/yr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">cli</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">dist</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">]:</span>
-        <span class="n">VoT16b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;OVTT @ </span><span class="si">{dist}</span><span class="s1"> mile&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{income}</span><span class="s1">K/yr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">dist</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">cli</span><span class="p">)</span>
+        <span class="n">VoT16b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;OVTT @ </span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s1"> mile&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">income</span><span class="si">}</span><span class="s1">K/yr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;$</span><span class="si">{:.2f}</span><span class="s2">/hr&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">/</span><span class="n">dist</span><span class="o">+</span><span class="n">m_</span><span class="p">[</span><span class="s1">&#39;motor_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">/</span><span class="n">cli</span><span class="p">)</span>
 <span class="n">VoT16b</span>
 </pre></div>
 </div>
@@ -8289,8 +8246,7 @@ V_m &amp;= \cdots +&amp; \beta_{IVT}         &amp; IVT_m   + &amp; \beta_{Cost/I
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[84]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17</span> <span class="o">=</span> <span class="n">m16</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17</span> <span class="o">=</span> <span class="n">m16</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m17</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model 17&quot;</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
     <span class="n">m17</span><span class="o">.</span><span class="n">utility_co</span><span class="p">[</span><span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">remove_data</span><span class="p">(</span><span class="s2">&quot;hhinc&quot;</span><span class="p">)</span>
@@ -8316,8 +8272,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m16</span><span class="p">,</span> <span class="n">m17</span><span class="p">],</span> <span class="n">bases</span><span class="o">=</span><span class="p">[</span><span class="n">m_c</span><span class="p">]),</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s1">&#39;Step 8&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -8630,8 +8585,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[86]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m16</span><span class="p">,</span><span class="n">m17</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT</span><span class="p">(</span><span class="n">m16</span><span class="p">,</span><span class="n">m17</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8654,8 +8608,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">x17</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">to_xlsx</span><span class="p">(</span><span class="s1">&#39;/tmp/m17.xlsx&#39;</span><span class="p">,</span> <span class="n">save_now</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x17</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">to_xlsx</span><span class="p">(</span><span class="s1">&#39;/tmp/m17.xlsx&#39;</span><span class="p">,</span> <span class="n">save_now</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">x17</span><span class="o">.</span><span class="n">add_content_tab</span><span class="p">(</span>
     <span class="n">VoT</span><span class="p">,</span>
     <span class="n">sheetname</span><span class="o">=</span><span class="s2">&quot;VoT&quot;</span><span class="p">,</span>
@@ -8669,8 +8622,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -8703,8 +8655,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[88]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17a</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17a</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m17a</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Model 17A&#39;</span>
 <span class="n">m17a</span><span class="o">.</span><span class="n">dataservice</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">dataservice</span><span class="o">.</span><span class="n">selector_co</span><span class="p">(</span><span class="s2">&quot;numveh &lt;= 1&quot;</span><span class="p">)</span>
 <span class="n">m17a</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -8725,8 +8676,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[89]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17b</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17b</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m17b</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Model 17B&#39;</span>
 <span class="n">m17b</span><span class="o">.</span><span class="n">dataservice</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">dataservice</span><span class="o">.</span><span class="n">selector_co</span><span class="p">(</span><span class="s2">&quot;numveh &gt; 1&quot;</span><span class="p">)</span>
 <span class="n">m17b</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -8747,8 +8697,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17b</span><span class="o">.</span><span class="n">dataservice</span><span class="o">.</span><span class="n">data_co</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17b</span><span class="o">.</span><span class="n">dataservice</span><span class="o">.</span><span class="n">data_co</span><span class="o">.</span><span class="n">statistics</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10412,8 +10361,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[91]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m17</span><span class="p">,</span> <span class="n">m17a</span><span class="p">,</span> <span class="n">m17b</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m17</span><span class="p">,</span> <span class="n">m17a</span><span class="p">,</span> <span class="n">m17b</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -10754,8 +10702,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17a</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">()</span> <span class="o">+</span> <span class="n">m17b</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17a</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">()</span> <span class="o">+</span> <span class="n">m17b</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10773,8 +10720,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[93]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17a</span><span class="o">.</span><span class="n">loglike</span><span class="p">()</span> <span class="o">+</span> <span class="n">m17b</span><span class="o">.</span><span class="n">loglike</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17a</span><span class="o">.</span><span class="n">loglike</span><span class="p">()</span> <span class="o">+</span> <span class="n">m17b</span><span class="o">.</span><span class="n">loglike</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -10792,11 +10738,10 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">LRT_2</span><span class="p">(</span><span class="n">models_u</span><span class="p">,</span> <span class="n">model_r</span><span class="p">,</span> <span class="n">deg_free</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">LRT_2</span><span class="p">(</span><span class="n">models_u</span><span class="p">,</span> <span class="n">model_r</span><span class="p">,</span> <span class="n">deg_free</span><span class="p">):</span>
     <span class="n">stat</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">loglike</span><span class="p">()</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models_u</span><span class="p">)</span> <span class="o">-</span> <span class="n">model_r</span><span class="o">.</span><span class="n">loglike</span><span class="p">())</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">chi2</span><span class="p">(</span><span class="n">df</span><span class="o">=</span><span class="n">deg_free</span><span class="p">)</span><span class="o">.</span><span class="n">sf</span><span class="p">(</span><span class="n">stat</span><span class="p">)</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{stat:.3f}</span><span class="s2">, p=</span><span class="si">{p:.3f}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">stat</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p=</span><span class="si">{</span><span class="n">p</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -10804,8 +10749,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">m17</span><span class="o">.</span><span class="n">pf</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">m17</span><span class="o">.</span><span class="n">pf</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -10822,8 +10766,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT_2</span><span class="p">([</span><span class="n">m17a</span><span class="p">,</span><span class="n">m17b</span><span class="p">],</span> <span class="n">m17</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">m17</span><span class="o">.</span><span class="n">pf</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT_2</span><span class="p">([</span><span class="n">m17a</span><span class="p">,</span><span class="n">m17b</span><span class="p">],</span> <span class="n">m17</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">m17</span><span class="o">.</span><span class="n">pf</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -10852,8 +10795,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17c</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17c</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m17c</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Model 17C&#39;</span>
 <span class="n">m17c</span><span class="o">.</span><span class="n">dataservice</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">dataservice</span><span class="o">.</span><span class="n">selector_co</span><span class="p">(</span><span class="s2">&quot;femdum == 0&quot;</span><span class="p">)</span>
 <span class="n">m17c</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -10874,8 +10816,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17d</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17d</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m17d</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Model 17D&#39;</span>
 <span class="n">m17d</span><span class="o">.</span><span class="n">dataservice</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">dataservice</span><span class="o">.</span><span class="n">selector_co</span><span class="p">(</span><span class="s2">&quot;femdum == 1&quot;</span><span class="p">)</span>
 <span class="n">m17d</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -10896,8 +10837,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m17</span><span class="p">,</span> <span class="n">m17c</span><span class="p">,</span> <span class="n">m17d</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m17</span><span class="p">,</span> <span class="n">m17c</span><span class="p">,</span> <span class="n">m17d</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -11237,8 +11177,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[100]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">LRT_2</span><span class="p">([</span><span class="n">m17c</span><span class="p">,</span><span class="n">m17d</span><span class="p">],</span> <span class="n">m17</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">m17</span><span class="o">.</span><span class="n">pf</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LRT_2</span><span class="p">([</span><span class="n">m17c</span><span class="p">,</span><span class="n">m17d</span><span class="p">],</span> <span class="n">m17</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">m17</span><span class="o">.</span><span class="n">pf</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -11272,8 +11211,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[101]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17e</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17e</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m17e</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Model 17E&#39;</span>
 </pre></div>
 </div>
@@ -11282,8 +11220,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[102]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">m17e</span><span class="o">.</span><span class="n">utility_ca</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">m17e</span><span class="o">.</span><span class="n">utility_ca</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -11303,8 +11240,7 @@ P(&#39;totcost/hhinc&#39;) * X(&#39;totcost/hhinc&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">util_temp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">util_temp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span>
     <span class="n">P</span><span class="o">.</span><span class="n">motor_time</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;tottime*(_altid_ in (1,2,3,4))&#39;</span><span class="p">),</span>
     <span class="n">P</span><span class="p">(</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;(ovtt/dist)*(_altid_ in (1,2,3,4))&#39;</span><span class="p">),</span>
     <span class="n">P</span><span class="o">.</span><span class="n">nonmotor_time</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;tottime*(_altid_ in (5,6))&#39;</span><span class="p">),</span>
@@ -11317,8 +11253,7 @@ P(&#39;totcost/hhinc&#39;) * X(&#39;totcost/hhinc&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">util_temp</span><span class="o">.</span><span class="n">reformat_param</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_M&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;femdum == 0&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">util_temp</span><span class="o">.</span><span class="n">reformat_param</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_M&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;femdum == 0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11333,8 +11268,7 @@ P(&#39;totcost/hhinc&#39;) * X(&#39;totcost/hhinc&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[105]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">util_temp_m</span> <span class="o">=</span> <span class="n">util_temp</span><span class="o">.</span><span class="n">reformat_param</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_M&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;femdum == 0&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">util_temp_m</span> <span class="o">=</span> <span class="n">util_temp</span><span class="o">.</span><span class="n">reformat_param</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_M&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;femdum == 0&quot;</span><span class="p">)</span>
 <span class="n">util_temp_f</span> <span class="o">=</span> <span class="n">util_temp</span><span class="o">.</span><span class="n">reformat_param</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_F&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;femdum == 1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -11343,8 +11277,7 @@ P(&#39;totcost/hhinc&#39;) * X(&#39;totcost/hhinc&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[106]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17e</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="n">util_temp_m</span> <span class="o">+</span> <span class="n">util_temp_f</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17e</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="n">util_temp_m</span> <span class="o">+</span> <span class="n">util_temp_f</span>
 <span class="n">m17e</span><span class="o">.</span><span class="n">remove_unused_parameters</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -11361,8 +11294,7 @@ dropped 4 parameters including: motor_time, nonmotor_time, ovtt/dist
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[107]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17e</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17e</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">m17e</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">(</span><span class="n">use_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -11381,8 +11313,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[108]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17f</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17f</span> <span class="o">=</span> <span class="n">m17</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">m17f</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Model 17F&#39;</span>
 </pre></div>
 </div>
@@ -11391,8 +11322,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[109]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">util_temp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">util_temp</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span>
     <span class="n">P</span><span class="o">.</span><span class="n">motor_time</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;tottime*(_altid_ in (1,2,3,4))&#39;</span><span class="p">),</span>
     <span class="n">P</span><span class="p">(</span><span class="s1">&#39;ovtt/dist&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;(ovtt/dist)*(_altid_ in (1,2,3,4))&#39;</span><span class="p">),</span>
     <span class="n">P</span><span class="o">.</span><span class="n">nonmotor_time</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;tottime*(_altid_ in (5,6))&#39;</span><span class="p">),</span>
@@ -11405,8 +11335,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[110]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">util_temp</span> <span class="o">=</span> <span class="n">util_temp</span><span class="o">.</span><span class="n">reformat_param</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_F&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;femdum == 1&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">util_temp</span> <span class="o">=</span> <span class="n">util_temp</span><span class="o">.</span><span class="n">reformat_param</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_F&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;femdum == 1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -11414,8 +11343,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[111]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">util_temp</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">util_temp</span>
 </pre></div>
 </div>
 </div>
@@ -11430,8 +11358,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[112]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17f</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">+=</span> <span class="n">util_temp</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17f</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">+=</span> <span class="n">util_temp</span>
 </pre></div>
 </div>
 </div>
@@ -11439,8 +11366,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[113]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m17f</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m17f</span><span class="o">.</span><span class="n">estimate</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">m17f</span><span class="o">.</span><span class="n">loglike_null</span><span class="p">(</span><span class="n">use_cache</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -11458,8 +11384,7 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[114]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m17</span><span class="p">,</span> <span class="n">m17e</span><span class="p">,</span> <span class="n">m17f</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">joint_parameter_summary</span><span class="p">([</span><span class="n">m17</span><span class="p">,</span> <span class="n">m17e</span><span class="p">,</span> <span class="n">m17f</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -11879,8 +11804,7 @@ judgments, describe the basis for the judgments made, and be prepared to demonst
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[115]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xl</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xl</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -11894,16 +11818,10 @@ judgments, describe the basis for the judgments made, and be prepared to demonst
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="005-nested-logit.html" class="btn btn-neutral float-right" title="Nested Logit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="003-data-for-discrete-choice.html" class="btn btn-neutral float-left" title="Data for Discrete Choice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="005-nested-logit.html" class="btn btn-neutral float-right" title="Nested Logit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="003-data-for-discrete-choice.html" class="btn btn-neutral float-left" title="Data for Discrete Choice" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -11912,10 +11830,16 @@ judgments, describe the basis for the judgments made, and be prepared to demonst
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -11923,7 +11847,6 @@ judgments, describe the basis for the judgments made, and be prepared to demonst
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

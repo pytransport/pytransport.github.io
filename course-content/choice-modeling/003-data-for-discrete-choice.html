@@ -1,42 +1,48 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Data for Discrete Choice &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Practical Mode Choice" href="004-mtc-modechoice-practical.html" />
@@ -81,6 +87,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -132,6 +139,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -166,11 +174,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="_index.html">Discrete Choice Modeling</a> &raquo;</li>
         
@@ -179,7 +189,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/course-content/choice-modeling/003-data-for-discrete-choice.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -198,21 +208,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -259,20 +283,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -300,7 +337,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -365,7 +402,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -375,7 +413,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -439,8 +477,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">larch</span> <span class="k">as</span> <span class="nn">larch</span>
 <span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
@@ -459,8 +496,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data_co</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/tiny_idco.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;caseid&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_co</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/tiny_idco.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;caseid&#39;</span><span class="p">)</span>
 <span class="n">data_co</span>
 </pre></div>
 </div>
@@ -560,8 +596,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data_ca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/tiny_idca.csv&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_ca</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/tiny_idca.csv&quot;</span><span class="p">)</span>
 <span class="n">data_ca</span>
 </pre></div>
 </div>
@@ -714,8 +749,7 @@ much more computationally efficient to simply store and work with the dense arra
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">data_ca</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;caseid&#39;</span><span class="p">,</span> <span class="s1">&#39;altid&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_ca</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;caseid&#39;</span><span class="p">,</span> <span class="s1">&#39;altid&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -852,8 +886,7 @@ much more computationally efficient to simply store and work with the dense arra
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">forced_ca</span> <span class="o">=</span> <span class="n">data_co</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">forced_ca</span> <span class="o">=</span> <span class="n">data_co</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([</span>
     <span class="p">[</span><span class="s1">&#39;Car&#39;</span><span class="p">,</span> <span class="s1">&#39;Income&#39;</span><span class="p">],</span>
     <span class="p">[</span><span class="s1">&#39;Car&#39;</span><span class="p">,</span><span class="s1">&#39;Time&#39;</span><span class="p">],</span>
@@ -1024,8 +1057,7 @@ super fast, as long as all the data and all the parameters are queued up in memo
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">choices</span> <span class="o">=</span> <span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;Chosen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">choices</span> <span class="o">=</span> <span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;Chosen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
 <span class="n">choices</span>
 </pre></div>
 </div>
@@ -1050,8 +1082,7 @@ Categories (3, object): [&#39;Bus&#39;, &#39;Car&#39;, &#39;Walk&#39;]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">choices</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">choices</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
 </pre></div>
 </div>
 </div>
@@ -1074,8 +1105,7 @@ dtype: int8
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">choices</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">choices</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span>
 </pre></div>
 </div>
 </div>
@@ -1094,8 +1124,7 @@ dummy placeholder for zero.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">choices1</span> <span class="o">=</span> <span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;Chosen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">([</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39;Car&#39;</span><span class="p">,</span><span class="s1">&#39;Bus&#39;</span><span class="p">,</span><span class="s1">&#39;Walk&#39;</span><span class="p">]))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">choices1</span> <span class="o">=</span> <span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;Chosen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">([</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39;Car&#39;</span><span class="p">,</span><span class="s1">&#39;Bus&#39;</span><span class="p">,</span><span class="s1">&#39;Walk&#39;</span><span class="p">]))</span>
 <span class="n">choices1</span>
 </pre></div>
 </div>
@@ -1119,8 +1148,7 @@ Categories (4, object): [&#39;_&#39;, &#39;Car&#39;, &#39;Bus&#39;, &#39;Walk&#3
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">choices1</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">choices1</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
 </pre></div>
 </div>
 </div>
@@ -1143,8 +1171,7 @@ dtype: int8
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">([</span><span class="s1">&#39;NoCars&#39;</span><span class="p">,</span><span class="s1">&#39;1Car&#39;</span><span class="p">,</span><span class="s1">&#39;2Cars&#39;</span><span class="p">,</span><span class="s1">&#39;3+Cars&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">([</span><span class="s1">&#39;NoCars&#39;</span><span class="p">,</span><span class="s1">&#39;1Car&#39;</span><span class="p">,</span><span class="s1">&#39;2Cars&#39;</span><span class="p">,</span><span class="s1">&#39;3+Cars&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1165,8 +1192,7 @@ CategoricalDtype(categories=[&#39;NoCars&#39;, &#39;1Car&#39;, &#39;2Cars&#39;, 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1238,8 +1264,7 @@ CategoricalDtype(categories=[&#39;NoCars&#39;, &#39;1Car&#39;, &#39;2Cars&#39;, 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;Chosen&#39;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data_co</span><span class="p">[</span><span class="s1">&#39;Chosen&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1319,8 +1344,7 @@ minutes and cost \$3.50 in gas and tolls), we also need counter-factual data (I 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">trips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/tiny_points.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;caseid&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;example-data/tiny_points.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;caseid&#39;</span><span class="p">)</span>
 <span class="n">trips</span>
 </pre></div>
 </div>
@@ -1399,8 +1423,7 @@ minutes and cost \$3.50 in gas and tolls), we also need counter-factual data (I 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="n">taz_shp</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s2">&quot;SERPM8-TAZSHAPE&quot;</span><span class="p">))</span>
 <span class="n">taz_shp</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -1546,8 +1569,7 @@ minutes and cost \$3.50 in gas and tolls), we also need counter-factual data (I 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">trips_orig_points_array</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trips_orig_points_array</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
     <span class="n">trips</span><span class="o">.</span><span class="n">orig_x</span><span class="p">,</span> <span class="n">trips</span><span class="o">.</span><span class="n">orig_y</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">taz_shp</span><span class="o">.</span><span class="n">crs</span>
 <span class="p">)</span>
 <span class="n">trips_orig_points_array</span>
@@ -1573,8 +1595,7 @@ Length: 4, dtype: geometry
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">trips_orig_points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trips_orig_points</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
     <span class="n">geometry</span><span class="o">=</span><span class="n">trips_orig_points_array</span><span class="p">,</span>
     <span class="n">index</span><span class="o">=</span><span class="n">trips</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1638,8 +1659,7 @@ Length: 4, dtype: geometry
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">trips</span><span class="p">[</span><span class="s1">&#39;otaz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trips</span><span class="p">[</span><span class="s1">&#39;otaz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span>
     <span class="n">trips_orig_points</span><span class="p">,</span> <span class="n">taz_shp</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="s1">&#39;within&#39;</span><span class="p">,</span>
 <span class="p">)</span><span class="o">.</span><span class="n">TAZ_MPO</span>
 <span class="n">trips</span>
@@ -1726,8 +1746,7 @@ Length: 4, dtype: geometry
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">trips</span><span class="p">[</span><span class="s1">&#39;dtaz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trips</span><span class="p">[</span><span class="s1">&#39;dtaz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span>
     <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
         <span class="n">geometry</span><span class="o">=</span><span class="n">gpd</span><span class="o">.</span><span class="n">points_from_xy</span><span class="p">(</span>
             <span class="n">trips</span><span class="o">.</span><span class="n">dest_x</span><span class="p">,</span> <span class="n">trips</span><span class="o">.</span><span class="n">dest_y</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">taz_shp</span><span class="o">.</span><span class="n">crs</span>
@@ -1831,8 +1850,7 @@ To read OMX files in Python, we can use the <code class="docutils literal notran
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">skims</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">OMX</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-JUPITER-AMHSKIMS&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skims</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">OMX</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-JUPITER-AMHSKIMS&#39;</span><span class="p">))</span>
 <span class="n">skims</span>
 </pre></div>
 </div>
@@ -1873,8 +1891,7 @@ To read OMX files in Python, we can use the <code class="docutils literal notran
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">skims</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skims</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1897,8 +1914,7 @@ To read OMX files in Python, we can use the <code class="docutils literal notran
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">skims</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">][:]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skims</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">][:]</span>
 </pre></div>
 </div>
 </div>
@@ -1935,8 +1951,7 @@ array([   1,    2,    3,    4,    5,    6,    7,    8,    9,   10,   11,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_idx_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">skims</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">])}</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_idx_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">skims</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">])}</span>
 <span class="n">trips</span><span class="p">[</span><span class="s1">&#39;otaz_ix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trips</span><span class="p">[</span><span class="s1">&#39;otaz&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">taz_idx_map</span><span class="p">)</span>
 <span class="n">trips</span><span class="p">[</span><span class="s1">&#39;dtaz_ix&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">trips</span><span class="p">[</span><span class="s1">&#39;dtaz&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">taz_idx_map</span><span class="p">)</span>
 <span class="n">trips</span>
@@ -2041,8 +2056,7 @@ array([   1,    2,    3,    4,    5,    6,    7,    8,    9,   10,   11,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">skims</span><span class="p">[</span><span class="s2">&quot;AM_GP_TIME&quot;</span><span class="p">][:]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skims</span><span class="p">[</span><span class="s2">&quot;AM_GP_TIME&quot;</span><span class="p">][:]</span>
 </pre></div>
 </div>
 </div>
@@ -2066,8 +2080,7 @@ array([[ 1.992, 12.103,  8.116, ..., 11.371, 10.829, 11.093],
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">skims</span><span class="p">[</span><span class="s2">&quot;AM_GP_TIME&quot;</span><span class="p">][</span><span class="n">trips</span><span class="o">.</span><span class="n">otaz_ix</span><span class="p">,</span> <span class="n">trips</span><span class="o">.</span><span class="n">dtaz_ix</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skims</span><span class="p">[</span><span class="s2">&quot;AM_GP_TIME&quot;</span><span class="p">][</span><span class="n">trips</span><span class="o">.</span><span class="n">otaz_ix</span><span class="p">,</span> <span class="n">trips</span><span class="o">.</span><span class="n">dtaz_ix</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2085,8 +2098,7 @@ array([15.411,  6.582,  6.038,  7.752])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">skims_for_trips</span> <span class="o">=</span> <span class="n">skims</span><span class="o">.</span><span class="n">get_rc_dataframe</span><span class="p">(</span><span class="n">trips</span><span class="o">.</span><span class="n">otaz_ix</span><span class="p">,</span> <span class="n">trips</span><span class="o">.</span><span class="n">dtaz_ix</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skims_for_trips</span> <span class="o">=</span> <span class="n">skims</span><span class="o">.</span><span class="n">get_rc_dataframe</span><span class="p">(</span><span class="n">trips</span><span class="o">.</span><span class="n">otaz_ix</span><span class="p">,</span> <span class="n">trips</span><span class="o">.</span><span class="n">dtaz_ix</span><span class="p">)</span>
 <span class="n">skims_for_trips</span>
 </pre></div>
 </div>
@@ -2249,8 +2261,7 @@ array([15.411,  6.582,  6.038,  7.752])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">trips</span><span class="p">,</span> <span class="n">skims_for_trips</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">trips</span><span class="p">,</span> <span class="n">skims_for_trips</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2435,8 +2446,7 @@ array([15.411,  6.582,  6.038,  7.752])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">DataFrames</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">DataFrames</span>
 </pre></div>
 </div>
 </div>
@@ -2445,8 +2455,7 @@ array([15.411,  6.582,  6.038,  7.752])
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">DataFrames</span><span class="p">(</span><span class="n">data_co</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DataFrames</span><span class="p">(</span><span class="n">data_co</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2474,8 +2483,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span>
     <span class="n">data_co</span><span class="p">,</span>
     <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;Chosen&#39;</span><span class="p">,</span>
     <span class="n">alt_codes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>
@@ -2517,8 +2525,7 @@ If we ignore this, and just put our single-level index DataFrame into the contru
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">data_ca</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">data_ca</span><span class="p">)</span>
 <span class="n">dfs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2546,8 +2553,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">data_ca</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;caseid&#39;</span><span class="p">,</span><span class="s1">&#39;altid&#39;</span><span class="p">]))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">data_ca</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;caseid&#39;</span><span class="p">,</span><span class="s1">&#39;altid&#39;</span><span class="p">]))</span>
 <span class="n">dfs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2574,8 +2580,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span><span class="o">.</span><span class="n">alternative_names</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span><span class="o">.</span><span class="n">alternative_names</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2593,8 +2598,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">forced_ca</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">forced_ca</span><span class="p">)</span>
 <span class="n">dfs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2620,8 +2624,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">forced_ca</span><span class="p">,</span> <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;Chosen&#39;</span><span class="p">,</span> <span class="n">av</span><span class="o">=</span><span class="s1">&#39;Time&gt;0&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">forced_ca</span><span class="p">,</span> <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;Chosen&#39;</span><span class="p">,</span> <span class="n">av</span><span class="o">=</span><span class="s1">&#39;Time&gt;0&#39;</span><span class="p">)</span>
 <span class="n">dfs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2649,8 +2652,7 @@ larch.DataFrames:  (not computation-ready)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">forced_ca</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span> <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;Chosen&#39;</span><span class="p">,</span> <span class="n">av</span><span class="o">=</span><span class="s1">&#39;Time&gt;0&#39;</span><span class="p">,</span> <span class="n">crack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">DataFrames</span><span class="p">(</span><span class="n">forced_ca</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span> <span class="n">ch</span><span class="o">=</span><span class="s1">&#39;Chosen&#39;</span><span class="p">,</span> <span class="n">av</span><span class="o">=</span><span class="s1">&#39;Time&gt;0&#39;</span><span class="p">,</span> <span class="n">crack</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">dfs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2684,8 +2686,7 @@ estimate a model.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs1</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">.</span><span class="n">selector_co</span><span class="p">(</span><span class="s2">&quot;Income &gt; 35_000&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs1</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">.</span><span class="n">selector_co</span><span class="p">(</span><span class="s2">&quot;Income &gt; 35_000&quot;</span><span class="p">)</span>
 <span class="n">dfs1</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2716,16 +2717,10 @@ larch.DataFrames:
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="004-mtc-modechoice-practical.html" class="btn btn-neutral float-right" title="Practical Mode Choice" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="002-estimating-parameters.html" class="btn btn-neutral float-left" title="Estimating Model Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="004-mtc-modechoice-practical.html" class="btn btn-neutral float-right" title="Practical Mode Choice" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="002-estimating-parameters.html" class="btn btn-neutral float-left" title="Estimating Model Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -2734,10 +2729,16 @@ larch.DataFrames:
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -2745,7 +2746,6 @@ larch.DataFrames:
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

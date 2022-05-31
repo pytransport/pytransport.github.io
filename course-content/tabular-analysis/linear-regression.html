@@ -1,42 +1,47 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Linear Regression &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Data Visualization" href="../visualization/_index.html" />
@@ -81,6 +86,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -111,6 +117,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -145,11 +152,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="_index.html">Tabular Data Analysis</a> &raquo;</li>
         
@@ -158,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/course-content/tabular-analysis/linear-regression.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -177,21 +186,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -238,20 +261,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -279,7 +315,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -344,7 +380,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -354,7 +391,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -414,28 +451,37 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
+<div class="section" id="Linear-Regression">
+<h1>Linear Regression<a class="headerlink" href="#Linear-Regression" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/jpn--/python-for-transportation-modeling/blob/master/course-content/tabular-analysis/linear-regression.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="Linear-Regression">
-<h1>Linear Regression<a class="headerlink" href="#Linear-Regression" title="Permalink to this headline">¶</a></h1>
 <p>A popular package for developing linear regression models in Python is <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code>. This packages includes an extensive set of tools for statisitical modeling, but in this tutorial we will focus on linear regression models.</p>
 <p>Generally, linear regression models will be developed using a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> containing both independent (explanatory) and dependent (target) variables. We’ll work with data in the households and trips table from the Jupiter study area.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-HOUSEHOLDS&#39;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">data_url</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/jpn--/python-for-transportation-modeling/raw/master/example-package/transportation_tutorials/data/&quot;</span>
+    <span class="k">return</span> <span class="n">url</span> <span class="o">+</span> <span class="n">filename</span>
+
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">urllib.request</span>
+        <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">data_url</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filename</span>
+
+<span class="n">hh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-HOUSEHOLDS.csv.gz&#39;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">hh</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;hh_id&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -444,8 +490,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">trips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TRIPS&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;SERPM8-BASE2015-TRIPS.csv.gz&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -454,8 +499,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
     <span class="n">trips</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;hh_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;n_trips&#39;</span><span class="p">),</span>
     <span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hh_id&#39;</span><span class="p">],</span>
     <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -468,8 +512,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hh</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -481,15 +524,17 @@ div.rendered_html tbody tr:hover {
 &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 Int64Index: 17260 entries, 1690841 to 1726370
 Data columns (total 9 columns):
-home_mgra       17260 non-null int64
-income          17260 non-null int64
-autos           17260 non-null int64
-transponder     17260 non-null int64
-cdap_pattern    17260 non-null object
-jtf_choice      17260 non-null int64
-autotech        17260 non-null int64
-tncmemb         17260 non-null int64
-n_trips         17260 non-null int64
+ #   Column        Non-Null Count  Dtype
+---  ------        --------------  -----
+ 0   home_mgra     17260 non-null  int64
+ 1   income        17260 non-null  int64
+ 2   autos         17260 non-null  int64
+ 3   transponder   17260 non-null  int64
+ 4   cdap_pattern  17260 non-null  object
+ 5   jtf_choice    17260 non-null  int64
+ 6   autotech      17260 non-null  int64
+ 7   tncmemb       17260 non-null  int64
+ 8   n_trips       17260 non-null  int64
 dtypes: int64(8), object(1)
 memory usage: 1.3+ MB
 </pre></div></div>
@@ -499,8 +544,7 @@ memory usage: 1.3+ MB
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
     <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income&#39;</span><span class="p">]])</span>
 <span class="p">)</span>
@@ -509,7 +553,7 @@ memory usage: 1.3+ MB
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -519,8 +563,8 @@ memory usage: 1.3+ MB
 Dep. Variable:                n_trips   R-squared:                       0.229
 Model:                            OLS   Adj. R-squared:                  0.229
 Method:                 Least Squares   F-statistic:                     2563.
-Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
-Time:                        13:45:17   Log-Likelihood:                -48167.
+Date:                Tue, 31 May 2022   Prob (F-statistic):               0.00
+Time:                        14:05:59   Log-Likelihood:                -48167.
 No. Observations:               17260   AIC:                         9.634e+04
 Df Residuals:                   17257   BIC:                         9.636e+04
 Df Model:                           2
@@ -538,19 +582,10 @@ Skew:                           1.273   Prob(JB):                         0.00
 Kurtosis:                       6.011   Cond. No.                     4.14e+05
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 [2] The condition number is large, 4.14e+05. This might indicate that there are
 strong multicollinearity or other numerical problems.
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/jpn/anaconda/envs/tt/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
-  return ptp(axis=axis, out=out, **kwargs)
 </pre></div></div>
 </div>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">hh</span></code> dataframes contains a variety of other columns of data, but since we’re not interested in using them for this model, they can be implicitly omitted by creating a dataframe view that includes only the variables we do want.</p>
@@ -564,8 +599,7 @@ strong multicollinearity or other numerical problems.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -586,8 +620,7 @@ dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hh</span><span class="p">[</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="n">income</span> <span class="o">/</span> <span class="mi">100_000</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span><span class="p">[</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="o">.</span><span class="n">income</span> <span class="o">/</span> <span class="mi">100_000</span>
 </pre></div>
 </div>
 </div>
@@ -595,8 +628,7 @@ dtype: float64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
     <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]])</span>
 <span class="p">)</span>
@@ -615,8 +647,8 @@ dtype: float64
 Dep. Variable:                n_trips   R-squared:                       0.229
 Model:                            OLS   Adj. R-squared:                  0.229
 Method:                 Least Squares   F-statistic:                     2563.
-Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
-Time:                        13:45:17   Log-Likelihood:                -48167.
+Date:                Tue, 31 May 2022   Prob (F-statistic):               0.00
+Time:                        14:05:59   Log-Likelihood:                -48167.
 No. Observations:               17260   AIC:                         9.634e+04
 Df Residuals:                   17257   BIC:                         9.636e+04
 Df Model:                           2
@@ -634,35 +666,29 @@ Skew:                           1.273   Prob(JB):                         0.00
 Kurtosis:                       6.011   Cond. No.                         6.60
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div></div>
 </div>
 <p>The R-squared and t-statistics of this model are the same as before, as this is in effect the same model as above. But in this revised model, the magnitude of the income coefficient is now much closer to that of the other coefficients, and the “condition number” warning is not present in the summary.</p>
 <div class="section" id="Piecewise-Linear-Functions">
 <h2>Piecewise Linear Functions<a class="headerlink" href="#Piecewise-Linear-Functions" title="Permalink to this headline">¶</a></h2>
-<p>OLS linear regression models are by design written as linear-in-parameters models, but that does not mean that the explanitory data cannot be first transformed, for example by using a piece-wise linear expansion. The <code class="docutils literal notranslate"><span class="pre">larch</span></code> package includes a <code class="docutils literal notranslate"><span class="pre">piecewise_expansion</span></code> function that can expand a single column of data in a pandas.DataFrame into multiple columns based on defined breakpoints.</p>
-<div class="nbinput nblast docutils container">
+<p>OLS linear regression models are by design written as linear-in-parameters models, but that does not mean that the explanitory data cannot be first transformed, for example by using a piece-wise linear expansion. We can expand a single column of data in a pandas.DataFrame into multiple columns based on defined breakpoints, for example like this:</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">larch.util.data_expansion</span> <span class="kn">import</span> <span class="n">piecewise_expansion</span>
-</pre></div>
-</div>
-</div>
-<p>For example, to create a piecewise linear version of household income, with break points at $25 and $75 thouand, we could write:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">piecewise_expansion</span><span class="p">(</span><span class="n">hh</span><span class="o">.</span><span class="n">income</span><span class="p">,</span> <span class="p">[</span><span class="mi">25_000</span><span class="p">,</span> <span class="mi">75_000</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">piecewise_income</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;income_to_25k&#39;</span><span class="p">:</span> <span class="n">hh</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">25_000</span><span class="p">),</span>
+    <span class="s1">&#39;income_25k_to_75k&#39;</span><span class="p">:</span> <span class="n">hh</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">25_000</span><span class="p">,</span> <span class="mi">75_000</span><span class="p">)</span> <span class="o">-</span> <span class="mi">25_000</span><span class="p">,</span>
+    <span class="s1">&#39;income_75k_and_up&#39;</span><span class="p">:</span> <span class="n">hh</span><span class="o">.</span><span class="n">income</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="mi">75_000</span><span class="p">)</span> <span class="o">-</span> <span class="mi">75_000</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="n">piecewise_income</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -684,9 +710,9 @@ Warnings:
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>piece(income,None,25000)</th>
-      <th>piece(income,25000,75000)</th>
-      <th>piece(income,75000,None)</th>
+      <th>income_to_25k</th>
+      <th>income_25k_to_75k</th>
+      <th>income_75k_and_up</th>
     </tr>
     <tr>
       <th>hh_id</th>
@@ -733,13 +759,12 @@ Warnings:
 <p>The result is three columns of data instead of one, with the first giving income up to the lower breakpoint, the next giving income between the two breakpoints, and the last giving the amount of income above the top breakpoint.</p>
 <p>We can readily concatenate this expanded data with any other explanatory variables by using <code class="docutils literal notranslate"><span class="pre">pandas.concat</span></code>. Note that by default this function concatenates dataframes vertically (combining columns and stacking rows), but in this case we want to concatenate horizontally (combining rows and stacking columns). We can achieve this by also passing <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> to the function in addition to the list of dataframes to concatenate.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hh_edited</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh_edited</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
     <span class="n">hh</span><span class="o">.</span><span class="n">autos</span><span class="p">,</span>
-    <span class="n">piecewise_expansion</span><span class="p">(</span><span class="n">hh</span><span class="o">.</span><span class="n">income_100k</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="mi">25</span><span class="p">,</span> <span class="o">.</span><span class="mi">75</span><span class="p">]),</span>
+    <span class="n">piecewise_income</span> <span class="o">/</span> <span class="mi">100_000</span><span class="p">,</span>
 <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">hh_edited</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -747,7 +772,7 @@ Warnings:
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -770,9 +795,9 @@ Warnings:
     <tr style="text-align: right;">
       <th></th>
       <th>autos</th>
-      <th>piece(income_100k,None,0.25)</th>
-      <th>piece(income_100k,0.25,0.75)</th>
-      <th>piece(income_100k,0.75,None)</th>
+      <th>income_to_25k</th>
+      <th>income_25k_to_75k</th>
+      <th>income_75k_and_up</th>
     </tr>
     <tr>
       <th>hh_id</th>
@@ -824,11 +849,10 @@ Warnings:
 </div>
 <p>Then we can use this modified dataframe to construct a piecewise linear OLS regression model. Because the original and modified dataframes have the same index (i.e. number and order of rows) we can mix them in the OLS defintion, using the <code class="docutils literal notranslate"><span class="pre">n_trips</span></code> column from the original as the dependent variable and the explanatory data from the modified dataframe.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
     <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh_edited</span><span class="p">)</span>
 <span class="p">)</span>
@@ -837,7 +861,7 @@ Warnings:
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -847,20 +871,20 @@ Warnings:
 Dep. Variable:                n_trips   R-squared:                       0.231
 Model:                            OLS   Adj. R-squared:                  0.231
 Method:                 Least Squares   F-statistic:                     1297.
-Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
-Time:                        13:45:17   Log-Likelihood:                -48143.
+Date:                Tue, 31 May 2022   Prob (F-statistic):               0.00
+Time:                        14:05:59   Log-Likelihood:                -48143.
 No. Observations:               17260   AIC:                         9.630e+04
 Df Residuals:                   17255   BIC:                         9.633e+04
 Df Model:                           4
 Covariance Type:            nonrobust
-================================================================================================
-                                   coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------------------------
-const                            1.9177      0.153     12.542      0.000       1.618       2.217
-autos                            2.4769      0.042     58.560      0.000       2.394       2.560
-piece(income_100k,None,0.25)     2.2983      0.722      3.181      0.001       0.882       3.714
-piece(income_100k,0.25,0.75)     1.0124      0.204      4.972      0.000       0.613       1.412
-piece(income_100k,0.75,None)     0.0977      0.033      3.002      0.003       0.034       0.162
+=====================================================================================
+                        coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------
+const                 1.9177      0.153     12.542      0.000       1.618       2.217
+autos                 2.4769      0.042     58.560      0.000       2.394       2.560
+income_to_25k         2.2983      0.722      3.181      0.001       0.882       3.714
+income_25k_to_75k     1.0124      0.204      4.972      0.000       0.613       1.412
+income_75k_and_up     0.0977      0.033      3.002      0.003       0.034       0.162
 ==============================================================================
 Omnibus:                     4132.769   Durbin-Watson:                   1.925
 Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11235.615
@@ -868,17 +892,8 @@ Skew:                           1.278   Prob(JB):                         0.00
 Kurtosis:                       6.015   Cond. No.                         56.0
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/jpn/anaconda/envs/tt/lib/python3.7/site-packages/numpy/core/fromnumeric.py:2389: FutureWarning: Method .ptp is deprecated and will be removed in a future version. Use numpy.ptp instead.
-  return ptp(axis=axis, out=out, **kwargs)
 </pre></div></div>
 </div>
 </div>
@@ -886,21 +901,19 @@ Warnings:
 <h2>Polynomial Functions<a class="headerlink" href="#Polynomial-Functions" title="Permalink to this headline">¶</a></h2>
 <p>In addition to piecewise linear terms in the regression equation, standard OLS allows for any arbitrary non-linear transformation. Students of statistics will be familiar with fitting a polynomial function with OLS coefficients, and this can be done using <code class="docutils literal notranslate"><span class="pre">statsmodels</span></code> for example by explicitly computing the desired polynomial terms before estimating model parameter.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hh</span><span class="p">[</span><span class="s1">&#39;autos^2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="p">[</span><span class="s1">&#39;autos&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh</span><span class="p">[</span><span class="s1">&#39;autos^2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="p">[</span><span class="s1">&#39;autos&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
 <span class="n">hh</span><span class="p">[</span><span class="s1">&#39;income^2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hh</span><span class="p">[</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
     <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
     <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income_100k&#39;</span><span class="p">,</span> <span class="s1">&#39;autos^2&#39;</span><span class="p">,</span> <span class="s1">&#39;income^2&#39;</span><span class="p">]])</span>
 <span class="p">)</span>
@@ -919,8 +932,8 @@ Warnings:
 Dep. Variable:                n_trips   R-squared:                       0.230
 Model:                            OLS   Adj. R-squared:                  0.229
 Method:                 Least Squares   F-statistic:                     1286.
-Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
-Time:                        13:45:17   Log-Likelihood:                -48160.
+Date:                Tue, 31 May 2022   Prob (F-statistic):               0.00
+Time:                        14:05:59   Log-Likelihood:                -48160.
 No. Observations:               17260   AIC:                         9.633e+04
 Df Residuals:                   17255   BIC:                         9.637e+04
 Df Model:                           4
@@ -940,37 +953,35 @@ Skew:                           1.268   Prob(JB):                         0.00
 Kurtosis:                       6.009   Cond. No.                         46.6
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div></div>
 </div>
 <p>Alternatively, polynomial terms can be created automatically for every column in the source data, as well as for interactions, using the <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code> preprocessor from the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> package. This tool doesn’t automatically maintain the DataFrame formatting when applied (instead it outputs a simple array of values), but it is simple to write a small function that will do so.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">polynomial</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polynomial</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
     <span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">arr</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">poly</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">poly</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Then we can use the function to calculate polynomial terms automatically. In this example, by setting the <code class="docutils literal notranslate"><span class="pre">degree</span></code> to 3, we not only get squared and cubed versions of the two parameters, but also all the interactions of these parameters up to degree 3.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">hh_poly</span> <span class="o">=</span> <span class="n">polynomial</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]],</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hh_poly</span> <span class="o">=</span> <span class="n">polynomial</span><span class="p">(</span><span class="n">hh</span><span class="p">[[</span><span class="s1">&#39;autos&#39;</span><span class="p">,</span><span class="s1">&#39;income_100k&#39;</span><span class="p">]],</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">hh_poly</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1089,11 +1100,10 @@ Warnings:
 </div>
 <p>Great care should be used with this automatic polynomial expansion of the data, as it is easy to end up with an overfitted model, especially when using a tool like OLS that does not attempt to self-correct to limit overfitting.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span>
     <span class="n">hh</span><span class="o">.</span><span class="n">n_trips</span><span class="p">,</span>
     <span class="n">hh_poly</span>
 <span class="p">)</span>
@@ -1112,8 +1122,8 @@ Warnings:
 Dep. Variable:                n_trips   R-squared:                       0.236
 Model:                            OLS   Adj. R-squared:                  0.235
 Method:                 Least Squares   F-statistic:                     590.5
-Date:                Thu, 08 Aug 2019   Prob (F-statistic):               0.00
-Time:                        13:45:17   Log-Likelihood:                -48093.
+Date:                Tue, 31 May 2022   Prob (F-statistic):               0.00
+Time:                        14:05:59   Log-Likelihood:                -48093.
 No. Observations:               17260   AIC:                         9.621e+04
 Df Residuals:                   17250   BIC:                         9.628e+04
 Df Model:                           9
@@ -1138,7 +1148,7 @@ Skew:                           1.257   Prob(JB):                         0.00
 Kurtosis:                       5.987   Cond. No.                         659.
 ==============================================================================
 
-Warnings:
+Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </pre></div></div>
 </div>
@@ -1150,16 +1160,10 @@ Warnings:
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../visualization/_index.html" class="btn btn-neutral float-right" title="Data Visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="pivot-tables.html" class="btn btn-neutral float-left" title="Crosstab and Pivot Tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../visualization/_index.html" class="btn btn-neutral float-right" title="Data Visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pivot-tables.html" class="btn btn-neutral float-left" title="Crosstab and Pivot Tables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -1168,10 +1172,16 @@ Warnings:
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -1179,7 +1189,6 @@ Warnings:
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

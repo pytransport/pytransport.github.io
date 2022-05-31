@@ -1,25 +1,31 @@
 {
  "cells": [
   {
-   "cell_type": "code",
-   "execution_count": 1,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import os\n",
-    "import gzip\n",
-    "import numpy as np\n",
-    "import pandas as pd\n",
-    "import transportation_tutorials as tt"
-   ]
-  },
-  {
    "cell_type": "markdown",
    "metadata": {
     "toc-hr-collapsed": false
    },
    "source": [
-    "# Basic Data Analysis with Pandas"
+    "# Basic Data Analysis with Pandas\n",
+    "\n",
+    "[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jpn--/python-for-transportation-modeling/blob/master/course-content/tabular-analysis/basic-analysis-with-pandas.ipynb)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.714315Z",
+     "start_time": "2022-05-31T18:53:52.708063Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "import gzip\n",
+    "import numpy as np\n",
+    "import pandas as pd"
    ]
   },
   {
@@ -38,7 +44,12 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.729201Z",
+     "start_time": "2022-05-31T18:53:52.716671Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -127,7 +138,12 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.736530Z",
+     "start_time": "2022-05-31T18:53:52.730677Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -198,7 +214,12 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.741796Z",
+     "start_time": "2022-05-31T18:53:52.738670Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -218,7 +239,12 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.746073Z",
+     "start_time": "2022-05-31T18:53:52.743147Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -246,7 +272,12 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.752891Z",
+     "start_time": "2022-05-31T18:53:52.747314Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -321,7 +352,12 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.759693Z",
+     "start_time": "2022-05-31T18:53:52.754491Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -405,7 +441,12 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.766776Z",
+     "start_time": "2022-05-31T18:53:52.761072Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -491,7 +532,12 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.773355Z",
+     "start_time": "2022-05-31T18:53:52.769903Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -541,7 +587,12 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.779984Z",
+     "start_time": "2022-05-31T18:53:52.774724Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -611,7 +662,12 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.785522Z",
+     "start_time": "2022-05-31T18:53:52.781489Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -645,7 +701,12 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.792783Z",
+     "start_time": "2022-05-31T18:53:52.786902Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -723,7 +784,12 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.797944Z",
+     "start_time": "2022-05-31T18:53:52.794118Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -760,7 +826,12 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.803174Z",
+     "start_time": "2022-05-31T18:53:52.799560Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -790,7 +861,12 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.810592Z",
+     "start_time": "2022-05-31T18:53:52.804589Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -863,7 +939,12 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.817240Z",
+     "start_time": "2022-05-31T18:53:52.811911Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -941,7 +1022,12 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.824119Z",
+     "start_time": "2022-05-31T18:53:52.818650Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -1052,51 +1138,64 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "A very small example csv data file is included in the transportation_tutorials package:"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 18,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "'FL-COUNTY.csv.gz'"
-      ]
-     },
-     "execution_count": 18,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "os.path.basename(tt.data('FL-COUNTY'))"
+    "A very small example csv data file is included in the transportation_tutorials package."
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "For most csv files, you can just pass the name of the file to the read_csv function, and \n",
-    "pandas will figure out the rest.  This includes, as shown here, when a csv file is gzipped\n",
-    "on disk, in which case it is transparently decompressed while reading."
+    "For most csv files, you can just pass the name of the file to the read_csv function,\n",
+    "either on your local file system or with an address on the web, and \n",
+    "pandas will figure out the rest.  This includes, as shown here, when a csv file is gzipped, \n",
+    "in which case it is transparently decompressed while reading."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:52.828680Z",
+     "start_time": "2022-05-31T18:53:52.825624Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "def data_url(filename):\n",
+    "    url = \"https://github.com/jpn--/python-for-transportation-modeling/raw/master/example-package/transportation_tutorials/data/\"\n",
+    "    return url + filename\n",
+    "    \n",
+    "def get_data(filename):\n",
+    "    if not os.path.isfile(filename):\n",
+    "        import urllib.request\n",
+    "        urllib.request.urlretrieve(data_url(filename), filename)\n",
+    "    return filename"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 19,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.196906Z",
+     "start_time": "2022-05-31T18:53:52.830091Z"
+    }
+   },
    "outputs": [],
    "source": [
-    "fl = pd.read_csv(tt.data('FL-COUNTY'))"
+    "fl = pd.read_csv(data_url(\"FL-COUNTY.csv.gz\"))"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 20,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.207208Z",
+     "start_time": "2022-05-31T18:53:53.198543Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -1249,7 +1348,12 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "metadata": {},
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.218302Z",
+     "start_time": "2022-05-31T18:53:53.212028Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -1346,43 +1450,36 @@
     "`geopandas`.  Geopandas includes just one main reading function: `read_file`.\n",
     "When you read a DBF file with `geopandas.read_file`, you'll get a `GeoDataFrame`\n",
     "object instead of a regular pandas.DataFrame -- but don't worry, everything\n",
-    "you can do with a DataFrame you can also do with a GeoDataFrame. "
+    "you can do with a DataFrame you can also do with a GeoDataFrame.  The only \n",
+    "catch here is that `read_file` sometimes has trouble reading DBF files directly\n",
+    "from a URL, so you might need to download the file to your loal file system first."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:43:49.399186Z",
+     "start_time": "2022-05-31T18:43:49.396548Z"
+    },
+    "nbsphinx": "hidden"
+   },
+   "outputs": [],
+   "source": [
+    "# when running in colab, you may need to install geopandas first\n",
+    "!pip install geopandas"
    ]
   },
   {
    "cell_type": "code",
    "execution_count": 22,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import os\n",
-    "import geopandas as gpd"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 23,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "'US-STATES.dbf'"
-      ]
-     },
-     "execution_count": 23,
-     "metadata": {},
-     "output_type": "execute_result"
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.365077Z",
+     "start_time": "2022-05-31T18:53:53.219898Z"
     }
-   ],
-   "source": [
-    "os.path.basename(tt.data('US-STATES'))"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 24,
-   "metadata": {},
+   },
    "outputs": [
     {
      "data": {
@@ -1409,183 +1506,15 @@
        "      <th>STATENS</th>\n",
        "      <th>AFFGEOID</th>\n",
        "      <th>GEOID</th>\n",
-       "      <th>STUSPS</th>\n",
        "      <th>NAME</th>\n",
        "      <th>LSAD</th>\n",
        "      <th>ALAND</th>\n",
        "      <th>AWATER</th>\n",
        "      <th>geometry</th>\n",
        "    </tr>\n",
-       "  </thead>\n",
-       "  <tbody>\n",
-       "    <tr>\n",
-       "      <th>0</th>\n",
-       "      <td>01</td>\n",
-       "      <td>01779775</td>\n",
-       "      <td>0400000US01</td>\n",
-       "      <td>01</td>\n",
-       "      <td>AL</td>\n",
-       "      <td>Alabama</td>\n",
-       "      <td>00</td>\n",
-       "      <td>131173688951</td>\n",
-       "      <td>4593686489</td>\n",
-       "      <td>None</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>1</th>\n",
-       "      <td>02</td>\n",
-       "      <td>01785533</td>\n",
-       "      <td>0400000US02</td>\n",
-       "      <td>02</td>\n",
-       "      <td>AK</td>\n",
-       "      <td>Alaska</td>\n",
-       "      <td>00</td>\n",
-       "      <td>1477946266785</td>\n",
-       "      <td>245390495931</td>\n",
-       "      <td>None</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>2</th>\n",
-       "      <td>04</td>\n",
-       "      <td>01779777</td>\n",
-       "      <td>0400000US04</td>\n",
-       "      <td>04</td>\n",
-       "      <td>AZ</td>\n",
-       "      <td>Arizona</td>\n",
-       "      <td>00</td>\n",
-       "      <td>294198560125</td>\n",
-       "      <td>1027346486</td>\n",
-       "      <td>None</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>3</th>\n",
-       "      <td>05</td>\n",
-       "      <td>00068085</td>\n",
-       "      <td>0400000US05</td>\n",
-       "      <td>05</td>\n",
-       "      <td>AR</td>\n",
-       "      <td>Arkansas</td>\n",
-       "      <td>00</td>\n",
-       "      <td>134771517596</td>\n",
-       "      <td>2960191698</td>\n",
-       "      <td>None</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>4</th>\n",
-       "      <td>06</td>\n",
-       "      <td>01779778</td>\n",
-       "      <td>0400000US06</td>\n",
-       "      <td>06</td>\n",
-       "      <td>CA</td>\n",
-       "      <td>California</td>\n",
-       "      <td>00</td>\n",
-       "      <td>403501101370</td>\n",
-       "      <td>20466718403</td>\n",
-       "      <td>None</td>\n",
-       "    </tr>\n",
-       "  </tbody>\n",
-       "</table>\n",
-       "</div>"
-      ],
-      "text/plain": [
-       "  STATEFP   STATENS     AFFGEOID GEOID STUSPS        NAME LSAD          ALAND  \\\n",
-       "0      01  01779775  0400000US01    01     AL     Alabama   00   131173688951   \n",
-       "1      02  01785533  0400000US02    02     AK      Alaska   00  1477946266785   \n",
-       "2      04  01779777  0400000US04    04     AZ     Arizona   00   294198560125   \n",
-       "3      05  00068085  0400000US05    05     AR    Arkansas   00   134771517596   \n",
-       "4      06  01779778  0400000US06    06     CA  California   00   403501101370   \n",
-       "\n",
-       "         AWATER geometry  \n",
-       "0    4593686489     None  \n",
-       "1  245390495931     None  \n",
-       "2    1027346486     None  \n",
-       "3    2960191698     None  \n",
-       "4   20466718403     None  "
-      ]
-     },
-     "execution_count": 24,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "states = gpd.read_file(tt.data('US-STATES'))\n",
-    "states.head()"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 25,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import larch"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "An alternate DBF reading implementation is included in Larch.  This optimized DBF reader\n",
-    "can currently only handle text and numeric datatyped (i.e., types 'C', 'F', and 'N'; no dates,\n",
-    "memos, or logical fields).  However, it can read data quite fast even for large files,\n",
-    "and will extract the basic contents of the file (headers, number of rows) even without\n",
-    "actually reading the data."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 26,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "f = larch.DBF(tt.data('US-STATES'))"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "To actually load the data into a DataFrame, use the `load_dataframe` method."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 27,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/html": [
-       "<div>\n",
-       "<style scoped>\n",
-       "    .dataframe tbody tr th:only-of-type {\n",
-       "        vertical-align: middle;\n",
-       "    }\n",
-       "\n",
-       "    .dataframe tbody tr th {\n",
-       "        vertical-align: top;\n",
-       "    }\n",
-       "\n",
-       "    .dataframe thead th {\n",
-       "        text-align: right;\n",
-       "    }\n",
-       "</style>\n",
-       "<table border=\"1\" class=\"dataframe\">\n",
-       "  <thead>\n",
-       "    <tr style=\"text-align: right;\">\n",
-       "      <th></th>\n",
-       "      <th>STATEFP</th>\n",
-       "      <th>STATENS</th>\n",
-       "      <th>AFFGEOID</th>\n",
-       "      <th>GEOID</th>\n",
-       "      <th>NAME</th>\n",
-       "      <th>LSAD</th>\n",
-       "      <th>ALAND</th>\n",
-       "      <th>AWATER</th>\n",
-       "    </tr>\n",
        "    <tr>\n",
        "      <th>STUSPS</th>\n",
+       "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
@@ -1607,6 +1536,7 @@
        "      <td>00</td>\n",
        "      <td>131173688951</td>\n",
        "      <td>4593686489</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AK</th>\n",
@@ -1618,6 +1548,7 @@
        "      <td>00</td>\n",
        "      <td>1477946266785</td>\n",
        "      <td>245390495931</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AZ</th>\n",
@@ -1629,6 +1560,7 @@
        "      <td>00</td>\n",
        "      <td>294198560125</td>\n",
        "      <td>1027346486</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AR</th>\n",
@@ -1640,6 +1572,7 @@
        "      <td>00</td>\n",
        "      <td>134771517596</td>\n",
        "      <td>2960191698</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>CA</th>\n",
@@ -1651,6 +1584,7 @@
        "      <td>00</td>\n",
        "      <td>403501101370</td>\n",
        "      <td>20466718403</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
@@ -1665,23 +1599,24 @@
        "AR          05  00068085  0400000US05    05    Arkansas   00   134771517596   \n",
        "CA          06  01779778  0400000US06    06  California   00   403501101370   \n",
        "\n",
-       "              AWATER  \n",
-       "STUSPS                \n",
-       "AL        4593686489  \n",
-       "AK      245390495931  \n",
-       "AZ        1027346486  \n",
-       "AR        2960191698  \n",
-       "CA       20466718403  "
+       "              AWATER geometry  \n",
+       "STUSPS                         \n",
+       "AL        4593686489     None  \n",
+       "AK      245390495931     None  \n",
+       "AZ        1027346486     None  \n",
+       "AR        2960191698     None  \n",
+       "CA       20466718403     None  "
       ]
      },
-     "execution_count": 27,
+     "execution_count": 22,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "states = f.load_dataframe()\n",
-    "states.set_index('STUSPS', inplace=True)\n",
+    "import geopandas as gpd\n",
+    "\n",
+    "states = gpd.read_file(get_data(\"US-STATES.dbf\")).set_index('STUSPS')\n",
     "states.head()"
    ]
   },
@@ -1698,8 +1633,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
-   "metadata": {},
+   "execution_count": 23,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.370840Z",
+     "start_time": "2022-05-31T18:53:53.367026Z"
+    }
+   },
    "outputs": [
     {
      "name": "stdout",
@@ -1716,7 +1656,7 @@
     }
    ],
    "source": [
-    "with gzip.open(tt.data('FL-BRIDGES'), 'rt') as previewfile:\n",
+    "with gzip.open(get_data(\"FL-BRIDGES.csv.gz\"), 'rt') as previewfile:\n",
     "    print(*(next(previewfile) for x in range(6)))"
    ]
   },
@@ -1729,11 +1669,16 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 29,
-   "metadata": {},
+   "execution_count": 24,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.377964Z",
+     "start_time": "2022-05-31T18:53:53.372925Z"
+    }
+   },
    "outputs": [],
    "source": [
-    "bridges = pd.read_csv(tt.data('FL-BRIDGES'))"
+    "bridges = pd.read_csv(get_data(\"FL-BRIDGES.csv.gz\"))"
    ]
   },
   {
@@ -1745,8 +1690,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
-   "metadata": {},
+   "execution_count": 25,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.383256Z",
+     "start_time": "2022-05-31T18:53:53.379547Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -1754,7 +1704,7 @@
        "'-8112-711-324152218128--6-1--22913622-286111-136313-3-7-3331352-13917696256'"
       ]
      },
-     "execution_count": 30,
+     "execution_count": 25,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1776,8 +1726,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 31,
-   "metadata": {},
+   "execution_count": 26,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.393297Z",
+     "start_time": "2022-05-31T18:53:53.384666Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -1904,7 +1859,7 @@
        "4     159959        NaN      NaN  "
       ]
      },
-     "execution_count": 31,
+     "execution_count": 26,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1925,8 +1880,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 32,
-   "metadata": {},
+   "execution_count": 27,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.402856Z",
+     "start_time": "2022-05-31T18:53:53.395043Z"
+    }
+   },
    "outputs": [
     {
      "name": "stdout",
@@ -1968,8 +1928,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 33,
-   "metadata": {},
+   "execution_count": 28,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.408509Z",
+     "start_time": "2022-05-31T18:53:53.404313Z"
+    }
+   },
    "outputs": [],
    "source": [
     "bridges = bridges.replace('-', 0)\n",
@@ -1986,8 +1951,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 34,
-   "metadata": {},
+   "execution_count": 29,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.413377Z",
+     "start_time": "2022-05-31T18:53:53.410072Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -1995,7 +1965,7 @@
        "512"
       ]
      },
-     "execution_count": 34,
+     "execution_count": 29,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2015,8 +1985,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 35,
-   "metadata": {},
+   "execution_count": 30,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.424114Z",
+     "start_time": "2022-05-31T18:53:53.414833Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2143,7 +2118,7 @@
        "45      77988     171330    19993.0   19993.0  "
       ]
      },
-     "execution_count": 35,
+     "execution_count": 30,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2163,8 +2138,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 36,
-   "metadata": {},
+   "execution_count": 31,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.429848Z",
+     "start_time": "2022-05-31T18:53:53.425661Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2172,7 +2152,7 @@
        "256"
       ]
      },
-     "execution_count": 36,
+     "execution_count": 31,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2201,8 +2181,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 37,
-   "metadata": {},
+   "execution_count": 32,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.434571Z",
+     "start_time": "2022-05-31T18:53:53.431306Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2210,7 +2195,7 @@
        "8379.208333333334"
       ]
      },
-     "execution_count": 37,
+     "execution_count": 32,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2229,8 +2214,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 38,
-   "metadata": {},
+   "execution_count": 33,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.439200Z",
+     "start_time": "2022-05-31T18:53:53.435994Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2238,7 +2228,7 @@
        "6003.014925373134"
       ]
      },
-     "execution_count": 38,
+     "execution_count": 33,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2257,8 +2247,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 39,
-   "metadata": {},
+   "execution_count": 34,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.444173Z",
+     "start_time": "2022-05-31T18:53:53.440669Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2266,7 +2261,7 @@
        "6003.014925373134"
       ]
      },
-     "execution_count": 39,
+     "execution_count": 34,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2290,8 +2285,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 40,
-   "metadata": {},
+   "execution_count": 35,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.448180Z",
+     "start_time": "2022-05-31T18:53:53.445537Z"
+    }
+   },
    "outputs": [],
    "source": [
     "fl['Population Density'] = fl['2019 Population'] / fl['Land Area']"
@@ -2299,8 +2299,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 41,
-   "metadata": {},
+   "execution_count": 36,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.456246Z",
+     "start_time": "2022-05-31T18:53:53.449586Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2391,7 +2396,7 @@
        "4         1493.170473  "
       ]
      },
-     "execution_count": 41,
+     "execution_count": 36,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2411,8 +2416,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 42,
-   "metadata": {},
+   "execution_count": 37,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.478919Z",
+     "start_time": "2022-05-31T18:53:53.457844Z"
+    }
+   },
    "outputs": [],
    "source": [
     "fl.loc[999,['Name', '2019 Population']] = ('Dry Tortugas', 0)"
@@ -2420,8 +2430,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 43,
-   "metadata": {},
+   "execution_count": 38,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.487274Z",
+     "start_time": "2022-05-31T18:53:53.480235Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2512,7 +2527,7 @@
        "999                 NaN  "
       ]
      },
-     "execution_count": 43,
+     "execution_count": 38,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2552,8 +2567,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 44,
-   "metadata": {},
+   "execution_count": 39,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.495394Z",
+     "start_time": "2022-05-31T18:53:53.488798Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2614,7 +2634,7 @@
        "2          746.867639  "
       ]
      },
-     "execution_count": 44,
+     "execution_count": 39,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2633,8 +2653,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 45,
-   "metadata": {},
+   "execution_count": 40,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.503035Z",
+     "start_time": "2022-05-31T18:53:53.496920Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2692,7 +2717,7 @@
        "AZ      0400000US04    04  Arizona"
       ]
      },
-     "execution_count": 45,
+     "execution_count": 40,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2728,8 +2753,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 46,
-   "metadata": {},
+   "execution_count": 41,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.515038Z",
+     "start_time": "2022-05-31T18:53:53.504494Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2760,9 +2790,11 @@
        "      <th>LSAD</th>\n",
        "      <th>ALAND</th>\n",
        "      <th>AWATER</th>\n",
+       "      <th>geometry</th>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>STUSPS</th>\n",
+       "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
@@ -2784,6 +2816,7 @@
        "      <td>00</td>\n",
        "      <td>1477946266785</td>\n",
        "      <td>245390495931</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AZ</th>\n",
@@ -2795,6 +2828,7 @@
        "      <td>00</td>\n",
        "      <td>294198560125</td>\n",
        "      <td>1027346486</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AR</th>\n",
@@ -2806,6 +2840,7 @@
        "      <td>00</td>\n",
        "      <td>134771517596</td>\n",
        "      <td>2960191698</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>CA</th>\n",
@@ -2817,6 +2852,7 @@
        "      <td>00</td>\n",
        "      <td>403501101370</td>\n",
        "      <td>20466718403</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
@@ -2830,15 +2866,15 @@
        "AR          05  00068085  0400000US05    05    Arkansas   00   134771517596   \n",
        "CA          06  01779778  0400000US06    06  California   00   403501101370   \n",
        "\n",
-       "              AWATER  \n",
-       "STUSPS                \n",
-       "AK      245390495931  \n",
-       "AZ        1027346486  \n",
-       "AR        2960191698  \n",
-       "CA       20466718403  "
+       "              AWATER geometry  \n",
+       "STUSPS                         \n",
+       "AK      245390495931     None  \n",
+       "AZ        1027346486     None  \n",
+       "AR        2960191698     None  \n",
+       "CA       20466718403     None  "
       ]
      },
-     "execution_count": 46,
+     "execution_count": 41,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2869,8 +2905,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 47,
-   "metadata": {},
+   "execution_count": 42,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.523456Z",
+     "start_time": "2022-05-31T18:53:53.516520Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -2941,7 +2982,7 @@
        "3         1380.662805  "
       ]
      },
-     "execution_count": 47,
+     "execution_count": 42,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -2952,8 +2993,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 48,
-   "metadata": {},
+   "execution_count": 43,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.531544Z",
+     "start_time": "2022-05-31T18:53:53.524932Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3014,7 +3060,7 @@
        "2          746.867639  "
       ]
      },
-     "execution_count": 48,
+     "execution_count": 43,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3047,8 +3093,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 49,
-   "metadata": {},
+   "execution_count": 44,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.542704Z",
+     "start_time": "2022-05-31T18:53:53.533034Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3079,9 +3130,11 @@
        "      <th>LSAD</th>\n",
        "      <th>ALAND</th>\n",
        "      <th>AWATER</th>\n",
+       "      <th>geometry</th>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>STUSPS</th>\n",
+       "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
@@ -3103,6 +3156,7 @@
        "      <td>00</td>\n",
        "      <td>1477946266785</td>\n",
        "      <td>245390495931</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AL</th>\n",
@@ -3114,6 +3168,7 @@
        "      <td>00</td>\n",
        "      <td>131173688951</td>\n",
        "      <td>4593686489</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AR</th>\n",
@@ -3125,6 +3180,7 @@
        "      <td>00</td>\n",
        "      <td>134771517596</td>\n",
        "      <td>2960191698</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AS</th>\n",
@@ -3136,6 +3192,7 @@
        "      <td>00</td>\n",
        "      <td>197759069</td>\n",
        "      <td>1307243753</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AZ</th>\n",
@@ -3147,6 +3204,7 @@
        "      <td>00</td>\n",
        "      <td>294198560125</td>\n",
        "      <td>1027346486</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
@@ -3161,16 +3219,16 @@
        "AS          60  01802701  0400000US60    60  American Samoa   00   \n",
        "AZ          04  01779777  0400000US04    04         Arizona   00   \n",
        "\n",
-       "                ALAND        AWATER  \n",
-       "STUSPS                               \n",
-       "AK      1477946266785  245390495931  \n",
-       "AL       131173688951    4593686489  \n",
-       "AR       134771517596    2960191698  \n",
-       "AS          197759069    1307243753  \n",
-       "AZ       294198560125    1027346486  "
+       "                ALAND        AWATER geometry  \n",
+       "STUSPS                                        \n",
+       "AK      1477946266785  245390495931     None  \n",
+       "AL       131173688951    4593686489     None  \n",
+       "AR       134771517596    2960191698     None  \n",
+       "AS          197759069    1307243753     None  \n",
+       "AZ       294198560125    1027346486     None  "
       ]
      },
-     "execution_count": 49,
+     "execution_count": 44,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3181,8 +3239,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 50,
-   "metadata": {},
+   "execution_count": 45,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.553593Z",
+     "start_time": "2022-05-31T18:53:53.544087Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3213,9 +3276,11 @@
        "      <th>LSAD</th>\n",
        "      <th>ALAND</th>\n",
        "      <th>AWATER</th>\n",
+       "      <th>geometry</th>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>STUSPS</th>\n",
+       "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
        "      <th></th>\n",
@@ -3237,6 +3302,7 @@
        "      <td>00</td>\n",
        "      <td>131173688951</td>\n",
        "      <td>4593686489</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AK</th>\n",
@@ -3248,6 +3314,7 @@
        "      <td>00</td>\n",
        "      <td>1477946266785</td>\n",
        "      <td>245390495931</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AS</th>\n",
@@ -3259,6 +3326,7 @@
        "      <td>00</td>\n",
        "      <td>197759069</td>\n",
        "      <td>1307243753</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AZ</th>\n",
@@ -3270,6 +3338,7 @@
        "      <td>00</td>\n",
        "      <td>294198560125</td>\n",
        "      <td>1027346486</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>AR</th>\n",
@@ -3281,6 +3350,7 @@
        "      <td>00</td>\n",
        "      <td>134771517596</td>\n",
        "      <td>2960191698</td>\n",
+       "      <td>None</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
@@ -3295,16 +3365,16 @@
        "AZ          04  01779777  0400000US04    04         Arizona   00   \n",
        "AR          05  00068085  0400000US05    05        Arkansas   00   \n",
        "\n",
-       "                ALAND        AWATER  \n",
-       "STUSPS                               \n",
-       "AL       131173688951    4593686489  \n",
-       "AK      1477946266785  245390495931  \n",
-       "AS          197759069    1307243753  \n",
-       "AZ       294198560125    1027346486  \n",
-       "AR       134771517596    2960191698  "
+       "                ALAND        AWATER geometry  \n",
+       "STUSPS                                        \n",
+       "AL       131173688951    4593686489     None  \n",
+       "AK      1477946266785  245390495931     None  \n",
+       "AS          197759069    1307243753     None  \n",
+       "AZ       294198560125    1027346486     None  \n",
+       "AR       134771517596    2960191698     None  "
       ]
      },
-     "execution_count": 50,
+     "execution_count": 45,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3328,8 +3398,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 51,
-   "metadata": {},
+   "execution_count": 46,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.561856Z",
+     "start_time": "2022-05-31T18:53:53.555103Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3395,13 +3470,13 @@
        "4     Hardee         1"
       ]
      },
-     "execution_count": 51,
+     "execution_count": 46,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "districts = pd.read_csv(tt.data('FL-COUNTY-BY-DISTRICT'))\n",
+    "districts = pd.read_csv(get_data('FL-COUNTY-BY-DISTRICT.csv.gz'))\n",
     "districts.head()"
    ]
   },
@@ -3475,8 +3550,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 52,
-   "metadata": {},
+   "execution_count": 47,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.570079Z",
+     "start_time": "2022-05-31T18:53:53.563412Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3519,7 +3599,7 @@
        "Index: []"
       ]
      },
-     "execution_count": 52,
+     "execution_count": 47,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3540,8 +3620,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 53,
-   "metadata": {},
+   "execution_count": 48,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.578961Z",
+     "start_time": "2022-05-31T18:53:53.571586Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3632,7 +3717,7 @@
        "4         1493.170473  "
       ]
      },
-     "execution_count": 53,
+     "execution_count": 48,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3643,8 +3728,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 54,
-   "metadata": {},
+   "execution_count": 49,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.585100Z",
+     "start_time": "2022-05-31T18:53:53.580294Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3710,7 +3800,7 @@
        "4     Hardee         1"
       ]
      },
-     "execution_count": 54,
+     "execution_count": 49,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3733,8 +3823,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 55,
-   "metadata": {},
+   "execution_count": 50,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.589679Z",
+     "start_time": "2022-05-31T18:53:53.586528Z"
+    }
+   },
    "outputs": [],
    "source": [
     "fl['County'] = fl['Name'].str.replace(' County', '')"
@@ -3750,8 +3845,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 56,
-   "metadata": {},
+   "execution_count": 51,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.601181Z",
+     "start_time": "2022-05-31T18:53:53.591296Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3854,7 +3954,7 @@
        "4         1493.170473        Orange         5  "
       ]
      },
-     "execution_count": 56,
+     "execution_count": 51,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -3881,8 +3981,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 57,
-   "metadata": {},
+   "execution_count": 52,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.609782Z",
+     "start_time": "2022-05-31T18:53:53.602457Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -3966,13 +4071,13 @@
        "7         West Central Florida            Tampa"
       ]
      },
-     "execution_count": 57,
+     "execution_count": 52,
      "metadata": {},
      "output_type": "execute_result"
     }
    ],
    "source": [
-    "district_info = pd.read_csv(tt.data('FL-DISTRICTS'), index_col='District')\n",
+    "district_info = pd.read_csv(get_data('FL-DISTRICTS.csv.gz'), index_col='District')\n",
     "district_info"
    ]
   },
@@ -3987,8 +4092,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 58,
-   "metadata": {},
+   "execution_count": 53,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.621679Z",
+     "start_time": "2022-05-31T18:53:53.611265Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -4110,7 +4220,7 @@
        "4  Fort Lauderdale  "
       ]
      },
-     "execution_count": 58,
+     "execution_count": 53,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4134,8 +4244,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 59,
-   "metadata": {},
+   "execution_count": 54,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.633364Z",
+     "start_time": "2022-05-31T18:53:53.622952Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -4244,7 +4359,7 @@
        "4          548.154494   St. Lucie         4  Southeast Florida  "
       ]
      },
-     "execution_count": 59,
+     "execution_count": 54,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4270,8 +4385,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 60,
-   "metadata": {},
+   "execution_count": 55,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.637514Z",
+     "start_time": "2022-05-31T18:53:53.635025Z"
+    }
+   },
    "outputs": [],
    "source": [
     "bridges2 = bridges.set_index('County')"
@@ -4286,8 +4406,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 61,
-   "metadata": {},
+   "execution_count": 56,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.649642Z",
+     "start_time": "2022-05-31T18:53:53.646300Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -4297,7 +4422,7 @@
        "      dtype='object')"
       ]
      },
-     "execution_count": 61,
+     "execution_count": 56,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4318,8 +4443,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 62,
-   "metadata": {},
+   "execution_count": 57,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.654837Z",
+     "start_time": "2022-05-31T18:53:53.651141Z"
+    }
+   },
    "outputs": [],
    "source": [
     "bridges2.columns = pd.MultiIndex.from_tuples(\n",
@@ -4331,8 +4461,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 63,
-   "metadata": {},
+   "execution_count": 58,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.666440Z",
+     "start_time": "2022-05-31T18:53:53.656263Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -4479,7 +4614,7 @@
        "BREVARD (009)       0.0  "
       ]
      },
-     "execution_count": 63,
+     "execution_count": 58,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4511,8 +4646,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 64,
-   "metadata": {},
+   "execution_count": 59,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.679598Z",
+     "start_time": "2022-05-31T18:53:53.667739Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -4631,7 +4771,7 @@
        "              Good        98834.0     49"
       ]
      },
-     "execution_count": 64,
+     "execution_count": 59,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4653,8 +4793,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 65,
-   "metadata": {},
+   "execution_count": 60,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.695532Z",
+     "start_time": "2022-05-31T18:53:53.680950Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -4773,7 +4918,7 @@
        "              Good        98834.0     49"
       ]
      },
-     "execution_count": 65,
+     "execution_count": 60,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4784,7 +4929,7 @@
     "    ordered=True, \n",
     "    categories=['Total', 'Good', 'Fair', 'Poor', 'SD'],\n",
     ")\n",
-    "bridges2.columns.set_levels(conditions, 1, inplace=True)\n",
+    "bridges2.columns = bridges2.columns.set_levels(conditions, level=1)\n",
     "bridges2.stack().head(12)"
    ]
   },
@@ -4805,8 +4950,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 66,
-   "metadata": {},
+   "execution_count": 61,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.704828Z",
+     "start_time": "2022-05-31T18:53:53.696825Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -4939,7 +5089,7 @@
        "              Good        98834.0     49  2017.020408"
       ]
      },
-     "execution_count": 66,
+     "execution_count": 61,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -4959,8 +5109,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 67,
-   "metadata": {},
+   "execution_count": 62,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.722342Z",
+     "start_time": "2022-05-31T18:53:53.706302Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5152,7 +5307,7 @@
        "BREVARD (009)   1510.946058  "
       ]
      },
-     "execution_count": 67,
+     "execution_count": 62,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5172,8 +5327,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 68,
-   "metadata": {},
+   "execution_count": 63,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.730131Z",
+     "start_time": "2022-05-31T18:53:53.723583Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5193,7 +5353,7 @@
        "Length: 1005, dtype: float64"
       ]
      },
-     "execution_count": 68,
+     "execution_count": 63,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5242,8 +5402,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 69,
-   "metadata": {},
+   "execution_count": 64,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.739490Z",
+     "start_time": "2022-05-31T18:53:53.731558Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5346,7 +5511,7 @@
        "4         1493.170473        Orange         5  "
       ]
      },
-     "execution_count": 69,
+     "execution_count": 64,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5357,8 +5522,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 70,
-   "metadata": {},
+   "execution_count": 65,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.747427Z",
+     "start_time": "2022-05-31T18:53:53.740860Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5433,7 +5603,7 @@
        "7               3237046.0"
       ]
      },
-     "execution_count": 70,
+     "execution_count": 65,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5484,8 +5654,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 71,
-   "metadata": {},
+   "execution_count": 66,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.754964Z",
+     "start_time": "2022-05-31T18:53:53.748683Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5496,10 +5671,10 @@
        "3    (1105663.6, 1654374.4]\n",
        "4    (1105663.6, 1654374.4]\n",
        "Name: 2019 Population, dtype: category\n",
-       "Categories (5, interval[float64]): [(5498.446, 556952.8] < (556952.8, 1105663.6] < (1105663.6, 1654374.4] < (1654374.4, 2203085.2] < (2203085.2, 2751796.0]]"
+       "Categories (5, interval[float64, right]): [(5498.446, 556952.8] < (556952.8, 1105663.6] < (1105663.6, 1654374.4] < (1654374.4, 2203085.2] < (2203085.2, 2751796.0]]"
       ]
      },
-     "execution_count": 71,
+     "execution_count": 66,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5511,8 +5686,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 72,
-   "metadata": {},
+   "execution_count": 67,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.761043Z",
+     "start_time": "2022-05-31T18:53:53.756194Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5529,10 +5709,10 @@
        "65      (5498.446, 556952.8]\n",
        "66      (5498.446, 556952.8]\n",
        "Name: 2019 Population, Length: 67, dtype: category\n",
-       "Categories (5, interval[float64]): [(5498.446, 556952.8] < (556952.8, 1105663.6] < (1105663.6, 1654374.4] < (1654374.4, 2203085.2] < (2203085.2, 2751796.0]]"
+       "Categories (5, interval[float64, right]): [(5498.446, 556952.8] < (556952.8, 1105663.6] < (1105663.6, 1654374.4] < (1654374.4, 2203085.2] < (2203085.2, 2751796.0]]"
       ]
      },
-     "execution_count": 72,
+     "execution_count": 67,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5553,8 +5733,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 73,
-   "metadata": {},
+   "execution_count": 68,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.768753Z",
+     "start_time": "2022-05-31T18:53:53.762575Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5565,10 +5750,10 @@
        "3    (1000000, 1500000]\n",
        "4    (1000000, 1500000]\n",
        "Name: 2019 Population, dtype: category\n",
-       "Categories (5, interval[int64]): [(5000, 500000] < (500000, 1000000] < (1000000, 1500000] < (1500000, 2000000] < (2000000, 3000000]]"
+       "Categories (5, interval[int64, right]): [(5000, 500000] < (500000, 1000000] < (1000000, 1500000] < (1500000, 2000000] < (2000000, 3000000]]"
       ]
      },
-     "execution_count": 73,
+     "execution_count": 68,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5590,8 +5775,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 74,
-   "metadata": {},
+   "execution_count": 69,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.778641Z",
+     "start_time": "2022-05-31T18:53:53.770195Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5656,7 +5846,7 @@
        "(2000000, 3000000]        2751796.0"
       ]
      },
-     "execution_count": 74,
+     "execution_count": 69,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5695,8 +5885,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 75,
-   "metadata": {},
+   "execution_count": 70,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.793994Z",
+     "start_time": "2022-05-31T18:53:53.780193Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5743,48 +5938,48 @@
        "      <th>(5000, 500000]</th>\n",
        "      <td>1.287320e+05</td>\n",
        "      <td>130660.887798</td>\n",
-       "      <td>55.0</td>\n",
+       "      <td>55</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>(500000, 1000000]</th>\n",
        "      <td>7.125393e+05</td>\n",
        "      <td>182201.018266</td>\n",
-       "      <td>7.0</td>\n",
+       "      <td>7</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>(1000000, 1500000]</th>\n",
        "      <td>1.409564e+06</td>\n",
        "      <td>61093.609816</td>\n",
-       "      <td>3.0</td>\n",
+       "      <td>3</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>(1500000, 2000000]</th>\n",
        "      <td>1.935878e+06</td>\n",
        "      <td>NaN</td>\n",
-       "      <td>1.0</td>\n",
+       "      <td>1</td>\n",
        "    </tr>\n",
        "    <tr>\n",
        "      <th>(2000000, 3000000]</th>\n",
        "      <td>2.751796e+06</td>\n",
        "      <td>NaN</td>\n",
-       "      <td>1.0</td>\n",
+       "      <td>1</td>\n",
        "    </tr>\n",
        "  </tbody>\n",
        "</table>\n",
        "</div>"
       ],
       "text/plain": [
-       "                   2019 Population                     \n",
-       "                              mean            std  size\n",
-       "2019 Population                                        \n",
-       "(5000, 500000]        1.287320e+05  130660.887798  55.0\n",
-       "(500000, 1000000]     7.125393e+05  182201.018266   7.0\n",
-       "(1000000, 1500000]    1.409564e+06   61093.609816   3.0\n",
-       "(1500000, 2000000]    1.935878e+06            NaN   1.0\n",
-       "(2000000, 3000000]    2.751796e+06            NaN   1.0"
+       "                   2019 Population                    \n",
+       "                              mean            std size\n",
+       "2019 Population                                       \n",
+       "(5000, 500000]        1.287320e+05  130660.887798   55\n",
+       "(500000, 1000000]     7.125393e+05  182201.018266    7\n",
+       "(1000000, 1500000]    1.409564e+06   61093.609816    3\n",
+       "(1500000, 2000000]    1.935878e+06            NaN    1\n",
+       "(2000000, 3000000]    2.751796e+06            NaN    1"
       ]
      },
-     "execution_count": 75,
+     "execution_count": 70,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5815,8 +6010,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 76,
-   "metadata": {},
+   "execution_count": 71,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.800457Z",
+     "start_time": "2022-05-31T18:53:53.795768Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5829,7 +6029,7 @@
        "Name: 2019 Population, dtype: float64"
       ]
      },
-     "execution_count": 76,
+     "execution_count": 71,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5841,8 +6041,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 77,
-   "metadata": {},
+   "execution_count": 72,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.810153Z",
+     "start_time": "2022-05-31T18:53:53.801817Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -5945,7 +6150,7 @@
        "4         1493.170473        Orange         5  "
       ]
      },
-     "execution_count": 77,
+     "execution_count": 72,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -5966,8 +6171,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 78,
-   "metadata": {},
+   "execution_count": 73,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.814834Z",
+     "start_time": "2022-05-31T18:53:53.811629Z"
+    }
+   },
    "outputs": [],
    "source": [
     "fl_2['District Population'] = fl_2.groupby('District')['2019 Population'].transform(sum)"
@@ -5975,8 +6185,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 79,
-   "metadata": {},
+   "execution_count": 74,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.825358Z",
+     "start_time": "2022-05-31T18:53:53.816276Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -6085,7 +6300,7 @@
        "4         1493.170473        Orange         5            4227713.0  "
       ]
      },
-     "execution_count": 79,
+     "execution_count": 74,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -6108,8 +6323,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 80,
-   "metadata": {},
+   "execution_count": 75,
+   "metadata": {
+    "ExecuteTime": {
+     "end_time": "2022-05-31T18:53:53.839819Z",
+     "start_time": "2022-05-31T18:53:53.826910Z"
+    }
+   },
    "outputs": [
     {
      "data": {
@@ -6231,7 +6451,7 @@
        "4         0.319079  "
       ]
      },
-     "execution_count": 80,
+     "execution_count": 75,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -6243,8 +6463,9 @@
   }
  ],
  "metadata": {
+  "celltoolbar": "Edit Metadata",
   "kernelspec": {
-   "display_name": "Python 3",
+   "display_name": "Python 3 (ipykernel)",
    "language": "python",
    "name": "python3"
   },
@@ -6258,7 +6479,20 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.7.6"
+   "version": "3.9.10"
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": false,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {},
+   "toc_section_display": true,
+   "toc_window_display": false
   },
   "widgets": {
    "application/vnd.jupyter.widget-state+json": {

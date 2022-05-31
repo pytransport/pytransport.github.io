@@ -1,42 +1,48 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Manipulating Geographic Data &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Accessing OpenStreetMap Data" href="accessing-openstreetmap.html" />
@@ -81,6 +87,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -123,6 +130,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -157,11 +165,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="_index.html">Geographic Analysis</a> &raquo;</li>
         
@@ -170,7 +180,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/course-content/geographic-analysis/working-with-geodata.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -189,21 +199,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -250,20 +274,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -291,7 +328,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -356,7 +393,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -366,7 +404,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -426,25 +464,25 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
+<div class="section" id="Manipulating-Geographic-Data">
+<h1>Manipulating Geographic Data<a class="headerlink" href="#Manipulating-Geographic-Data" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/jpn--/python-for-transportation-modeling/blob/master/course-content/geographic-analysis/working-with-geodata.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Shapefile">shapefile</a> is a data format that is actually a set of files containing geospatial information. All of the related files have the same filename (except for the file extension) and must reside in the same directory. Generally, there will be files with the <code class="docutils literal notranslate"><span class="pre">shp</span></code> extension containing geographic data, the <code class="docutils literal notranslate"><span class="pre">dbf</span></code> extension containing tabular data, and a few others. The files can be read into python as a group and manipulated using the
+<a class="reference external" href="http://geopandas.org">GeoPandas</a> package.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!python -m pip install &quot;git+https://github.com/jpn--/python-for-transportation-modeling.git#egg=transportation-tutorials&amp;subdirectory=example-package&quot;</span>
+</pre></div>
+</div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="Manipulating-Geographic-Data">
-<h1>Manipulating Geographic Data<a class="headerlink" href="#Manipulating-Geographic-Data" title="Permalink to this headline">¶</a></h1>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Shapefile">shapefile</a> is a data format that is actually a set of files containing geospatial information. All of the related files have the same filename (except for the file extension) and must reside in the same directory. Generally, there will be files with the <code class="docutils literal notranslate"><span class="pre">shp</span></code> extension containing geographic data, the <code class="docutils literal notranslate"><span class="pre">dbf</span></code> extension containing tabular data, and a few others. The files can be read into python as a group and manipulated using the
-<a class="reference external" href="http://geopandas.org">GeoPandas</a> package.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 </pre></div>
 </div>
 </div>
@@ -452,27 +490,25 @@ div.rendered_html tbody tr:hover {
 <h2>Loading a Shapefile<a class="headerlink" href="#Loading-a-Shapefile" title="Permalink to this headline">¶</a></h2>
 <p>Let’s load the SERPM8 TAZ shapefile. This shapefile (actually a set of files) is included in the data of the tuturials package and can be accessed as shown. Loading a shapefile into Python using geopandas is a simple task using the <a class="reference external" href="http://geopandas.org/reference/geopandas.read_file.html">read_file</a> function.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">shapefile_filename</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-TAZSHAPE&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shapefile_filename</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-TAZSHAPE&#39;</span><span class="p">)</span>
 <span class="n">taz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">shapefile_filename</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>This will load the shapefile into a <a class="reference external" href="http://geopandas.org/reference.html#geodataframe">GeoDataFrame</a> object, which is similar to a pandas DataFrame, but with a special <em>geometry</em> column that contains, as you might guess, geometric shape data contained in the <em>shp</em> part of the shapefile. It also includes all the other various tabular data contained in the <em>dbf</em> part of the shapefile. We can inspect the first few lines of the GeoDataFrame to see the contents, just like a regular DataFrame:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -608,11 +644,10 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>Because this is the TAZ shapefile, we expect that the geometry column includes a set of <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#polygons">Polygon</a> values, as we can observe in the first few rows. We can also easily check how many zones are included in the file by checking the length of the GeoDataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -647,11 +682,10 @@ memory usage: 496.5+ KB
 </div>
 <p>Displaying the shapefile in a jupyter notebook can be accomplished by calling the <a class="reference external" href="http://geopandas.org/reference.html?highlight=plot#geopandas.GeoDataFrame.plot">plot</a> method of the GeoDataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -667,21 +701,20 @@ memory usage: 496.5+ KB
 <h2>Coordinate Reference Systems<a class="headerlink" href="#Coordinate-Reference-Systems" title="Permalink to this headline">¶</a></h2>
 <p>You might notice that the axis labels don’t show latitude and longitude. That’s because the TAZ file uses a different coordinate reference system (<em>crs</em>) for map projection. We can find what crs is being used by accessing the <a class="reference external" href="http://geopandas.org/projections.html#coordinate-reference-systems">crs</a> attribute.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz</span><span class="o">.</span><span class="n">crs</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;Projected CRS: PROJCS[&#34;NAD83 / Florida East (ftUS)&#34;,GEOGCS[&#34;NAD83 ...&gt;
+&lt;Derived Projected CRS: PROJCS[&#34;NAD83 / Florida East (ftUS)&#34;,GEOGCS[&#34;NAD83 ...&gt;
 Name: NAD83 / Florida East (ftUS)
 Axis Info [cartesian]:
 - [east]: Easting (US survey foot)
@@ -698,20 +731,18 @@ Datum: North American Datum 1983
 </div>
 <p>Drop that code into <a class="reference external" href="http://www.google.com/search?q=epsg%3A2236">Google</a> and you’ll find that it’s a special coordinate system for <a class="reference external" href="https://spatialreference.org/ref/epsg/nad83-florida-east-ftus/">mapping and engineering in eastern Florida</a>, which for this application may be perfectly reasonable. However, suppose we want to generate maps using plain old latitude and longitude. We can convert between CRS systems easily, like this:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz1</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz1</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz1</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz1</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -731,11 +762,10 @@ Datum: North American Datum 1983
 <h3>Selection by Rectangular Envelope<a class="headerlink" href="#Selection-by-Rectangular-Envelope" title="Permalink to this headline">¶</a></h3>
 <p>We can explicitly define some bounds for our study area:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">xmin</span> <span class="o">=</span> <span class="mf">905712.145924</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="mf">905712.145924</span>
 <span class="n">ymin</span> <span class="o">=</span> <span class="mf">905343.94408855</span>
 <span class="n">xmax</span> <span class="o">=</span> <span class="mf">983346.68922847</span>
 <span class="n">ymax</span> <span class="o">=</span> <span class="mf">981695.93140023</span>
@@ -744,26 +774,24 @@ Datum: North American Datum 1983
 </div>
 <p>Then, to select only the TAZ’s that are (at least partially) contained in the study area, we can use the <code class="docutils literal notranslate"><span class="pre">cx</span></code> indexer on GeoDataFrames. This indexer works similarly to the <code class="docutils literal notranslate"><span class="pre">loc</span></code> and <code class="docutils literal notranslate"><span class="pre">iloc</span></code> indexers on regular DataFrames, but selects not based on labels or tabular position, but instead selects based on geographic position.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <p>The result of the selection is another GeoDataFrame, just as slicing using the <code class="docutils literal notranslate"><span class="pre">loc</span></code>and <code class="docutils literal notranslate"><span class="pre">iloc</span></code> indexers on regular DataFrames creates a new DataFrame. Thus, we can review how many TAZ’s are in the selection in the same manner as we checked the number of TAZ’s in the original shapefile.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -773,11 +801,10 @@ Datum: North American Datum 1983
 </div>
 <p>And we can plot a map of the selected area, just as we did with the original data. Here, we’ll draw the borders of the TAZ’s in white for better contrast.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -790,17 +817,16 @@ Datum: North American Datum 1983
 </div>
 <p>Because Jupiter is in the northwest corner of the SERPM region, only the south and west boundaries of the study area are relevant in the selection definition. Convenietly, just like other DataFrame indexers, the <code class="docutils literal notranslate"><span class="pre">cx</span></code> indexer allows for one-sided slices.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter2</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="n">xmin</span><span class="p">:,</span> <span class="n">ymin</span><span class="p">:]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter2</span> <span class="o">=</span> <span class="n">taz</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="n">xmin</span><span class="p">:,</span> <span class="n">ymin</span><span class="p">:]</span>
 <span class="n">taz_jupiter2</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">taz_jupiter</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -810,27 +836,25 @@ True
 </div>
 <p>One important note regarding the <code class="docutils literal notranslate"><span class="pre">cx</span></code> indexer is that it will select all features that are contained fully <em>or partially</em> in the selection area. To illustrate, we can construct a GeoDataFrame consisting of the study area box, and draw it on a map of the selected zones.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">box</span>
 <span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span>
 <span class="n">study_area</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="p">[</span><span class="n">box</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">)],</span> <span class="n">crs</span><span class="o">=</span><span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">2236</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">study_area</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">study_area</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -865,11 +889,10 @@ True
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">transparent</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">study_area</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">)</span>
 </pre></div>
@@ -887,11 +910,10 @@ True
 <h3>Selection by Polygon<a class="headerlink" href="#Selection-by-Polygon" title="Permalink to this headline">¶</a></h3>
 <p>If the study area is not neatly defined by a rectangle but instead by some defined irregular polygon, it is still possible to filter the GeoDataFrame, but slightly more complicated. We’ll demonstrate by first constructing an irregular polygon.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
 <span class="n">irregular_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([</span>
     <span class="p">(</span><span class="mi">973346</span><span class="p">,</span> <span class="mi">935343</span><span class="p">),</span>
     <span class="p">(</span><span class="mi">973346</span><span class="p">,</span> <span class="mi">971695</span><span class="p">),</span>
@@ -914,16 +936,15 @@ True
 </div>
 <p>To indentify those TAZ polygons that touch the polygon, we can use the <code class="docutils literal notranslate"><span class="pre">intersects</span></code> method of GeoDataFrames.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -943,16 +964,15 @@ Length: 220, dtype: bool
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1197,25 +1217,23 @@ Length: 220, dtype: bool
 </div>
 <p>This gives us a series that matches the GeoDataFrame, and identifies whether each row’s geometry intersects the the polygon. We can use that to filter the rows, to retain only those TAZ’s of interest.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter_irregular</span> <span class="o">=</span> <span class="n">taz_jupiter</span><span class="p">[</span><span class="n">taz_jupiter</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter_irregular</span> <span class="o">=</span> <span class="n">taz_jupiter</span><span class="p">[</span><span class="n">taz_jupiter</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter_irregular</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter_irregular</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1225,20 +1243,18 @@ Length: 220, dtype: bool
 </div>
 <p>This gives us a new GeoDataFrame that is potentially just a filtered view of the original, which can potentially lead to problems later (<a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy">see here</a>). To ensure we have a bonafide new GeoDataFrame, we can make sure it is a copy.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter_irregular</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter_irregular</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">irregular_polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1257,21 +1273,19 @@ Length: 220, dtype: bool
 <h2>Clipping by Geography<a class="headerlink" href="#Clipping-by-Geography" title="Permalink to this headline">¶</a></h2>
 <p>If instead we want to actually clip the geographic data at the study area frame, we can use the <code class="docutils literal notranslate"><span class="pre">overlay</span></code> function to get the intersection of the TAZ’s and the study area.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter_clip</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">taz</span><span class="p">,</span> <span class="n">study_area</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">taz</span><span class="o">.</span><span class="n">crs</span><span class="p">),</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;intersection&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter_clip</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">taz</span><span class="p">,</span> <span class="n">study_area</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">taz</span><span class="o">.</span><span class="n">crs</span><span class="p">),</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;intersection&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>By taking the intersection, we discard portions of the zone shapes that are outside the study area, as is illustrated when we map the results with the study area box.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">transparent</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">study_area</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">)</span>
 </pre></div>
@@ -1286,25 +1300,23 @@ Length: 220, dtype: bool
 </div>
 <p>Alternatively, if we have a polygon, we can use <code class="docutils literal notranslate"><span class="pre">intersection</span></code> to trim the GeoDataFrame geometry to only the overlapping areas.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter_irregular</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter_irregular</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1548,11 +1560,10 @@ Length: 220, dtype: bool
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter_irregular</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">transparent</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">irregular_polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1567,11 +1578,10 @@ Length: 220, dtype: bool
 </div>
 <p>An important feature to consider if using this method is that the operation does not actually change the set of rows or any other data included in the GeoDataFrame. If, for example, we apply it to the set of TAZ’s from the square clipped region, we can get a map that looks identical, but the GeoDataFrame will still retain all the data rows from the previous version, just with some geometry values set as empty.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">irregular_polygon</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter_clip</span><span class="p">[</span><span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">area</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="n">transparent</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">irregular_polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -1586,16 +1596,15 @@ Length: 220, dtype: bool
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter_irregular</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter_clip</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter_irregular</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">taz_jupiter_clip</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1604,16 +1613,15 @@ Length: 220, dtype: bool
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">sum</span><span class="p">(</span><span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">taz_jupiter_clip</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1628,26 +1636,24 @@ Length: 220, dtype: bool
 <p>As a more sophisticated example, let’s consider the micro-area zone (MAZ) system from SERPM8. The MAZ are smaller zones nested inside TAZ’s, used to provide a higher resolution of data, particularly for transit travel. Using the TAZ system is sometimes too coarse for this purpose, as it may be convenient to walk to a bus stop located on a TAZ boundary only for some parts of the zone, while the walking from the far side of the same TAZ to the bus stop might be unreasonably far.</p>
 <p>Like the TAZ system, the MAZ system for SERPM8 is given by a shape file, and is included in the tutorial data, so we can load it in the same way.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">mazshape_filename</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZSHAPE&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mazshape_filename</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;SERPM8-MAZSHAPE&#39;</span><span class="p">)</span>
 <span class="n">maz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">mazshape_filename</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1656,16 +1662,15 @@ Length: 220, dtype: bool
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1758,16 +1763,15 @@ Length: 220, dtype: bool
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1784,25 +1788,23 @@ Length: 220, dtype: bool
 </div>
 <p>We can select only MAZ’s in the study area in the same manner as we did for TAZ’s.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_jupiter</span> <span class="o">=</span> <span class="n">maz</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_jupiter</span> <span class="o">=</span> <span class="n">maz</span><span class="o">.</span><span class="n">cx</span><span class="p">[</span><span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz_jupiter</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz_jupiter</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1811,27 +1813,34 @@ Length: 220, dtype: bool
 </pre></div></div>
 </div>
 <p>To create a joined GeoDataFrame, we can use the same <code class="docutils literal notranslate"><span class="pre">`overlay</span></code> &lt;<a class="reference external" href="http://geopandas.org/reference/geopandas.overlay.html">http://geopandas.org/reference/geopandas.overlay.html</a>&gt;`__ function we used to clip the TAZ’s, although we will intersect the TAZ and MAZ geometries.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_taz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">maz_jupiter</span><span class="p">,</span> <span class="n">taz_jupiter</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;intersection&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>The joined GeoDataFrame has all the columns from both the MAZ and TAZ source data. In cases where both source tables have an identically named column (for example, “OBJECTID”) then both columns are retained, and they are labeled with “_1” and “_2” suffixes.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_taz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_taz</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span><span class="n">maz_jupiter</span><span class="p">,</span> <span class="n">taz_jupiter</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;intersection&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/var/folders/js/bk_dt9015j79_f6bxnc44dsr0000gp/T/ipykernel_17811/2244847169.py:1: UserWarning: `keep_geom_type=True` in overlay resulted in 1521 dropped geometries of different geometry types than df1 has. Set `keep_geom_type=False` to retain all geometries
+  maz_taz = gpd.overlay(maz_jupiter, taz_jupiter, how=&#39;intersection&#39;)
+</pre></div></div>
+</div>
+<p>The joined GeoDataFrame has all the columns from both the MAZ and TAZ source data. In cases where both source tables have an identically named column (for example, “OBJECTID”) then both columns are retained, and they are labeled with “_1” and “_2” suffixes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_taz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1903,6 +1912,30 @@ Length: 220, dtype: bool
     </tr>
     <tr>
       <th>1</th>
+      <td>2390</td>
+      <td>7737</td>
+      <td>17396.297932</td>
+      <td>1.568938e+07</td>
+      <td>360</td>
+      <td>940102</td>
+      <td>950911</td>
+      <td>3</td>
+      <td>1123.0</td>
+      <td>1123</td>
+      <td>...</td>
+      <td>None</td>
+      <td>0</td>
+      <td>0</td>
+      <td>17396100.0</td>
+      <td>0.8663</td>
+      <td>0</td>
+      <td>0</td>
+      <td>23585.421941</td>
+      <td>1.739613e+07</td>
+      <td>POLYGON ((938309.917 952656.485, 938308.351 95...</td>
+    </tr>
+    <tr>
+      <th>2</th>
       <td>2391</td>
       <td>7738</td>
       <td>18511.806088</td>
@@ -1926,7 +1959,7 @@ Length: 220, dtype: bool
       <td>POLYGON ((938072.285 952651.635, 937929.056 95...</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>3</th>
       <td>6329</td>
       <td>11676</td>
       <td>10422.047410</td>
@@ -1950,7 +1983,7 @@ Length: 220, dtype: bool
       <td>POLYGON ((938316.202 951630.563, 938211.071 95...</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>3052</td>
       <td>8399</td>
       <td>23965.014606</td>
@@ -1973,30 +2006,6 @@ Length: 220, dtype: bool
       <td>3.096111e+07</td>
       <td>POLYGON ((938616.375 961787.437, 938675.000 96...</td>
     </tr>
-    <tr>
-      <th>4</th>
-      <td>3053</td>
-      <td>8400</td>
-      <td>21094.345933</td>
-      <td>2.778533e+07</td>
-      <td>638</td>
-      <td>933039</td>
-      <td>956882</td>
-      <td>665</td>
-      <td>1106.0</td>
-      <td>1106</td>
-      <td>...</td>
-      <td>None</td>
-      <td>0</td>
-      <td>0</td>
-      <td>27785300.0</td>
-      <td>0.9483</td>
-      <td>0</td>
-      <td>0</td>
-      <td>21094.345933</td>
-      <td>2.778533e+07</td>
-      <td>POLYGON ((935662.121 956689.687, 935660.751 95...</td>
-    </tr>
   </tbody>
 </table>
 <p>5 rows × 22 columns</p>
@@ -2004,21 +2013,20 @@ Length: 220, dtype: bool
 </div>
 <p>Because we know that the MAZ’s are supposed to be nested within the TAZ’s, we would normally expect that the joined data would have exactly one row for each of the 361 MAZ’s, and that some TAZ’s would be duplicated. However, that’s not what has happened.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz_taz</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz_taz</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-437
+564
 </pre></div></div>
 </div>
 <div class="section" id="Managing-Errors-in-Joining-Spatial-Data">
@@ -2026,35 +2034,33 @@ Length: 220, dtype: bool
 <p>The joined data has 564 new zones, 203 more than we expected. There are two reasons for this discrepancy, although both are a result of the two zone systems being misaligned.</p>
 <p>The first reason is related to the limits computer precision: some of the new zones are merely slivers of space that arise due to rounding errors on the computer placement of vertices. If we evaluate the area of the first 5 zones in the joined data table, we see that one of the zones is only 1.878×10-3 square feet, or about a quarter of a square inch. Clearly, this isn’t a real zone!</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_taz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">area</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_taz</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">area</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 0    4.442490e+06
-1    1.405994e+07
-2    3.336191e+06
-3    3.096111e+07
-4    2.778533e+07
+1    1.878210e-03
+2    1.405994e+07
+3    3.336191e+06
+4    3.096111e+07
 dtype: float64
 </pre></div></div>
 </div>
 <p>The seconds reason that extra zones are found in this join is because the two zone systems are not always carefully aligned by the analysts who originally drew the zones, particularly in areas that are not functionally important. For example, here are the boundaries for the TAZ and MAZ systems, superimposed over a map of the The Loxahatchee Club golf course in Jupiter.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">make_basemap</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">938500</span><span class="p">,</span><span class="mi">945500</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">937500</span><span class="p">,</span><span class="mi">944500</span><span class="p">),</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">make_basemap</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">938500</span><span class="p">,</span><span class="mi">945500</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">937500</span><span class="p">,</span><span class="mi">944500</span><span class="p">),</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
                              <span class="n">tiles</span><span class="o">=</span><span class="n">tt</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">2236</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">taz_jupiter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span> <span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">maz_jupiter</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span> <span class="p">)</span>
@@ -2075,35 +2081,32 @@ dtype: float64
 <p>One possible solution is to take the joined data we already have, and remove all the extra pieces of zones that were created, retaining only the largest main section of each MAZ. To do this, we can sort zones in the joined GeoDataFrame by area, and retain only the largest zone from each group of duplicated MAZ codes.</p>
 <p>First, we’ll use the argsort method, to get the order of the joined zones, if ordered by area. Then we feed that into the <code class="docutils literal notranslate"><span class="pre">iloc</span></code> indexer to actually sort the rows as indicated. The argsort returns values in ascending order by default, so all the small slivers and bits of zones we want to discard will appear first.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_taz</span> <span class="o">=</span> <span class="n">maz_taz</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">maz_taz</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">argsort</span><span class="p">()]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_taz</span> <span class="o">=</span> <span class="n">maz_taz</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">maz_taz</span><span class="o">.</span><span class="n">area</span><span class="o">.</span><span class="n">argsort</span><span class="p">()]</span>
 </pre></div>
 </div>
 </div>
 <p>Then, we can drop duplicate MAZ values from the table, keeping only the last instance of each MAZ, which is the one we want. In theory, if the two zones systems are very poorly aligned, this process could drop the wrong part of the zones, although in almost all cases it will work fine.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_taz</span> <span class="o">=</span> <span class="n">maz_taz</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">&#39;MAZ&#39;</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_taz</span> <span class="o">=</span> <span class="n">maz_taz</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">&#39;MAZ&#39;</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz_taz</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">maz_taz</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2116,11 +2119,10 @@ dtype: float64
 <div class="line">This may or may not be problematic, depending on the application.</div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">make_basemap</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">938500</span><span class="p">,</span><span class="mi">945500</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">937500</span><span class="p">,</span><span class="mi">944500</span><span class="p">),</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">make_basemap</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">938500</span><span class="p">,</span><span class="mi">945500</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">937500</span><span class="p">,</span><span class="mi">944500</span><span class="p">),</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
                              <span class="n">tiles</span><span class="o">=</span><span class="n">tt</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">OpenStreetMap</span><span class="o">.</span><span class="n">Mapnik</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">2236</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">maz_taz</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span> <span class="p">)</span>
 </pre></div>
@@ -2139,13 +2141,40 @@ dtype: float64
 <p>An alternate solution is to join the TAZ and MAZ data in a entirely different manner. Rather than joining the two GeoDataFrames based on the area polygons in each, we can join based on the area polygons for TAZ’s and centroids for MAZ’s. To do this, we’ll use the <a class="reference external" href="http://geopandas.org/reference/geopandas.sjoin.html">sjoin</a> method.</p>
 <p>First, we’ll need a version of the MAZ GeoDataFrame that has only centroid points in the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> column, instead of polygons. To create this, start by making a copy of the original data (assuming we want to save it for later).</p>
 <div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_points</span> <span class="o">=</span> <span class="n">maz_jupiter</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_points</span> <span class="o">=</span> <span class="n">maz_jupiter</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_points</span><span class="o">.</span><span class="n">geometry</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2388    POLYGON ((936374.674 959539.568, 936373.444 95...
+2389    POLYGON ((942254.500 952920.937, 942255.812 95...
+2390    POLYGON ((938309.917 952656.485, 938072.285 95...
+2391    POLYGON ((953119.000 951985.375, 953045.807 95...
+2392    POLYGON ((934328.283 951600.585, 934327.451 94...
+                              ...
+6343    POLYGON ((954175.937 952913.625, 954102.625 95...
+6344    POLYGON ((950882.187 955225.125, 950885.630 95...
+6345    POLYGON ((950885.630 954249.305, 950895.654 95...
+6346    POLYGON ((952450.875 955006.750, 952471.625 95...
+6674    POLYGON ((943433.201 943375.933, 943433.188 94...
+Name: geometry, Length: 361, dtype: geometry
+</pre></div></div>
 </div>
 <p>Then we want to change the geometry to be points instead of polygons. (Both <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#points">Point</a> and <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#polygons">Polygon</a> are specific object types in the shapely package that is used by GeoPandas.) We could simply use the ‘centroid’ attribute of the geometry column to find new centroid for each zone, but in this data we already have X and Y values for a centroid, so we’ll prefer to use
 those. We can uses the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html">apply</a> method of DataFrames to create Point values, and assign those values into the geometry column.</p>
@@ -2153,9 +2182,8 @@ those. We can uses the <a class="reference external" href="https://pandas.pydata
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
-<span class="n">maz_points</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">maz_points</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">POINT_X</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">POINT_Y</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="n">maz_points</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="o">.</span><span class="n">from_xy</span><span class="p">(</span><span class="n">maz_points</span><span class="o">.</span><span class="n">POINT_X</span><span class="p">,</span> <span class="n">maz_points</span><span class="o">.</span><span class="n">POINT_Y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2167,8 +2195,7 @@ those. We can uses the <a class="reference external" href="https://pandas.pydata
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sjoined</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">maz_points</span><span class="p">,</span> <span class="n">taz_jupiter</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="s1">&#39;within&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sjoined</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span><span class="n">maz_points</span><span class="p">,</span> <span class="n">taz_jupiter</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">predicate</span><span class="o">=</span><span class="s1">&#39;within&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2176,8 +2203,7 @@ those. We can uses the <a class="reference external" href="https://pandas.pydata
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">sjoined</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">sjoined</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2194,8 +2220,7 @@ those. We can uses the <a class="reference external" href="https://pandas.pydata
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2376,8 +2401,7 @@ those. We can uses the <a class="reference external" href="https://pandas.pydata
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sjoined</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sjoined</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2385,7 +2409,7 @@ those. We can uses the <a class="reference external" href="https://pandas.pydata
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_working-with-geodata_97_0.png" src="../../_images/course-content_geographic-analysis_working-with-geodata_97_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_working-with-geodata_98_0.png" src="../../_images/course-content_geographic-analysis_working-with-geodata_98_0.png" />
 </div>
 </div>
 <p>If we want to re-attach the polygon zones, we can do so easily if we didn’t overwrite the original MAZ data, because this joined data is in the same order as the original.</p>
@@ -2393,8 +2417,7 @@ those. We can uses the <a class="reference external" href="https://pandas.pydata
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">MAZ</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">maz_jupiter</span><span class="o">.</span><span class="n">MAZ</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">MAZ</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">maz_jupiter</span><span class="o">.</span><span class="n">MAZ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2411,8 +2434,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">maz_jupiter</span><span class="o">.</span><span class="n">geometry</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">geometry</span> <span class="o">=</span> <span class="n">maz_jupiter</span><span class="o">.</span><span class="n">geometry</span>
 </pre></div>
 </div>
 </div>
@@ -2420,8 +2442,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sjoined</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sjoined</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2429,7 +2450,7 @@ True
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_working-with-geodata_101_0.png" src="../../_images/course-content_geographic-analysis_working-with-geodata_101_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_working-with-geodata_102_0.png" src="../../_images/course-content_geographic-analysis_working-with-geodata_102_0.png" />
 </div>
 </div>
 </div>
@@ -2441,8 +2462,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">sjoined</span><span class="o">.</span><span class="n">MAZ</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sjoined</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">sjoined</span><span class="o">.</span><span class="n">MAZ</span>
 </pre></div>
 </div>
 </div>
@@ -2450,8 +2470,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_taz_crosswalk</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">sjoined</span><span class="o">.</span><span class="n">TAZ_MPO</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_taz_crosswalk</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">sjoined</span><span class="o">.</span><span class="n">TAZ_MPO</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2459,8 +2478,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_taz_crosswalk</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_taz_crosswalk</span>
 </pre></div>
 </div>
 </div>
@@ -2838,8 +2856,7 @@ True
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">maz_number</span> <span class="o">=</span> <span class="mi">7755</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maz_number</span> <span class="o">=</span> <span class="mi">7755</span>
 <span class="n">taz_number</span> <span class="o">=</span> <span class="n">maz_taz_crosswalk</span><span class="p">[</span><span class="n">maz_number</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -2853,16 +2870,10 @@ True
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="accessing-openstreetmap.html" class="btn btn-neutral float-right" title="Accessing OpenStreetMap Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="_index.html" class="btn btn-neutral float-left" title="Geographic Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="accessing-openstreetmap.html" class="btn btn-neutral float-right" title="Accessing OpenStreetMap Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="_index.html" class="btn btn-neutral float-left" title="Geographic Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -2871,10 +2882,16 @@ True
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -2882,7 +2899,6 @@ True
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

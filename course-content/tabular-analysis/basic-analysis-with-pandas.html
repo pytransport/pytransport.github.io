@@ -1,42 +1,48 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Basic Data Analysis with Pandas &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Crosstab and Pivot Tables" href="pivot-tables.html" />
@@ -81,6 +87,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -133,6 +140,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -167,11 +175,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="_index.html">Tabular Data Analysis</a> &raquo;</li>
         
@@ -180,7 +190,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/course-content/tabular-analysis/basic-analysis-with-pandas.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -199,21 +209,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -260,20 +284,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -301,7 +338,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -366,7 +403,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -376,7 +414,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -436,21 +474,20 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
+<div class="section" id="Basic-Data-Analysis-with-Pandas">
+<h1>Basic Data Analysis with Pandas<a class="headerlink" href="#Basic-Data-Analysis-with-Pandas" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/jpn--/python-for-transportation-modeling/blob/master/course-content/tabular-analysis/basic-analysis-with-pandas.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">gzip</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="Basic-Data-Analysis-with-Pandas">
-<h1>Basic Data Analysis with Pandas<a class="headerlink" href="#Basic-Data-Analysis-with-Pandas" title="Permalink to this headline">¶</a></h1>
 <p>Pandas is the <em>de facto</em> standard for statistical analysis of tabular data using Python.</p>
 <p>The basic data structure in pandas is a DataFrame. A DataFrame is a two dimensional table of data, with optional row and column labels.</p>
 <p>You can construct a DataFrame from raw data in a few different ways. One simple way is to pass a dictionary, as here:</p>
@@ -458,8 +495,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">raw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.1</span><span class="p">,</span><span class="mf">5.2</span><span class="p">,</span><span class="mf">6.3</span><span class="p">]}</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.1</span><span class="p">,</span><span class="mf">5.2</span><span class="p">,</span><span class="mf">6.3</span><span class="p">]}</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
@@ -524,8 +560,7 @@ the DataFrame constructor so that it can see what the row labels should be, then
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">raw_los</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">raw_los</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;Speed&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Car&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;Bus&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;Walk&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">},</span>
     <span class="s1">&#39;Cost&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Car&#39;</span><span class="p">:</span> <span class="mf">3.25</span><span class="p">,</span> <span class="s1">&#39;Bus&#39;</span><span class="p">:</span> <span class="mf">1.75</span><span class="p">,</span> <span class="s1">&#39;Walk&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span>
 <span class="p">}</span>
@@ -585,8 +620,7 @@ the DataFrame constructor so that it can see what the row labels should be, then
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 </div>
@@ -603,8 +637,7 @@ Index([&#39;Car&#39;, &#39;Bus&#39;, &#39;Walk&#39;], dtype=&#39;object&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">los</span><span class="o">.</span><span class="n">columns</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">los</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
@@ -622,8 +655,7 @@ Index([&#39;Speed&#39;, &#39;Cost&#39;], dtype=&#39;object&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 <span class="n">los</span>
 </pre></div>
 </div>
@@ -680,8 +712,7 @@ Index([&#39;Speed&#39;, &#39;Cost&#39;], dtype=&#39;object&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">los</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Speed&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">los</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Speed&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -738,8 +769,7 @@ Index([&#39;Speed&#39;, &#39;Cost&#39;], dtype=&#39;object&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span><span class="s1">&#39;value&#39;</span><span class="p">},</span><span class="nb">set</span><span class="p">([</span><span class="kc">None</span><span class="p">]),</span><span class="nb">bytes</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">los</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span><span class="s1">&#39;value&#39;</span><span class="p">},</span><span class="nb">set</span><span class="p">([</span><span class="kc">None</span><span class="p">]),</span><span class="nb">bytes</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
 <span class="n">los</span>
 </pre></div>
 </div>
@@ -797,8 +827,7 @@ Index([&#39;Speed&#39;, &#39;Cost&#39;], dtype=&#39;object&#39;)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 </div>
@@ -820,8 +849,7 @@ RangeIndex(start=0, stop=3, step=1)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -880,8 +908,7 @@ RangeIndex(start=0, stop=3, step=1)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 </div>
 </div>
@@ -902,8 +929,7 @@ dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">T</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
@@ -963,8 +989,7 @@ dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dtypes</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
 </div>
 </div>
@@ -988,8 +1013,7 @@ dtype: object
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1010,8 +1034,7 @@ Name: A, dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">]]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -1067,8 +1090,7 @@ Name: A, dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1129,8 +1151,7 @@ Name: A, dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1206,32 +1227,29 @@ Name: A, dtype: int64
 <li><p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_table.html">read_table</a></p></li>
 </ul>
 <p>You can click through to the documentation for each of these. In this tutorial, we’ll cover the most basic reading function in the pandas library, which is <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>. Despite the name, this function isn’t just for reading comma seperated values, but also pretty much any delimited text file, including tab and space delimited files.</p>
-<p>A very small example csv data file is included in the transportation_tutorials package:</p>
-<div class="nbinput docutils container">
+<p>A very small example csv data file is included in the transportation_tutorials package.</p>
+<p>For most csv files, you can just pass the name of the file to the read_csv function, either on your local file system or with an address on the web, and pandas will figure out the rest. This includes, as shown here, when a csv file is gzipped, in which case it is transparently decompressed while reading.</p>
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">data_url</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/jpn--/python-for-transportation-modeling/raw/master/example-package/transportation_tutorials/data/&quot;</span>
+    <span class="k">return</span> <span class="n">url</span> <span class="o">+</span> <span class="n">filename</span>
+
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">urllib.request</span>
+        <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">data_url</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filename</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;FL-COUNTY.csv.gz&#39;
-</pre></div></div>
-</div>
-<p>For most csv files, you can just pass the name of the file to the read_csv function, and pandas will figure out the rest. This includes, as shown here, when a csv file is gzipped on disk, in which case it is transparently decompressed while reading.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">(</span><span class="s2">&quot;FL-COUNTY.csv.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1239,8 +1257,7 @@ Name: A, dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span>
 </pre></div>
 </div>
 </div>
@@ -1361,8 +1378,7 @@ Name: A, dtype: int64
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1436,47 +1452,20 @@ Name: A, dtype: int64
 </div></div>
 </div>
 <p>One notable tabular file format you may encounter in transportation planning that is <em>not</em> directly readable by pandas is the <code class="docutils literal notranslate"><span class="pre">DBF</span></code> file. Fortunately, there are other related tools that can read this kind of file, including <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>. Geopandas includes just one main reading function: <code class="docutils literal notranslate"><span class="pre">read_file</span></code>. When you read a DBF file with <code class="docutils literal notranslate"><span class="pre">geopandas.read_file</span></code>, you’ll get a <code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code> object instead of a regular pandas.DataFrame – but don’t worry, everything you can do with a DataFrame you
-can also do with a GeoDataFrame.</p>
-<div class="nbinput nblast docutils container">
+can also do with a GeoDataFrame. The only catch here is that <code class="docutils literal notranslate"><span class="pre">read_file</span></code> sometimes has trouble reading DBF files directly from a URL, so you might need to download the file to your loal file system first.</p>
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;US-STATES&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&#39;US-STATES.dbf&#39;
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">states</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;US-STATES&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="n">states</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;US-STATES.dbf&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;STUSPS&#39;</span><span class="p">)</span>
 <span class="n">states</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1502,149 +1491,15 @@ can also do with a GeoDataFrame.</p>
       <th>STATENS</th>
       <th>AFFGEOID</th>
       <th>GEOID</th>
-      <th>STUSPS</th>
       <th>NAME</th>
       <th>LSAD</th>
       <th>ALAND</th>
       <th>AWATER</th>
       <th>geometry</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>01</td>
-      <td>01779775</td>
-      <td>0400000US01</td>
-      <td>01</td>
-      <td>AL</td>
-      <td>Alabama</td>
-      <td>00</td>
-      <td>131173688951</td>
-      <td>4593686489</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>02</td>
-      <td>01785533</td>
-      <td>0400000US02</td>
-      <td>02</td>
-      <td>AK</td>
-      <td>Alaska</td>
-      <td>00</td>
-      <td>1477946266785</td>
-      <td>245390495931</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>04</td>
-      <td>01779777</td>
-      <td>0400000US04</td>
-      <td>04</td>
-      <td>AZ</td>
-      <td>Arizona</td>
-      <td>00</td>
-      <td>294198560125</td>
-      <td>1027346486</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>05</td>
-      <td>00068085</td>
-      <td>0400000US05</td>
-      <td>05</td>
-      <td>AR</td>
-      <td>Arkansas</td>
-      <td>00</td>
-      <td>134771517596</td>
-      <td>2960191698</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>06</td>
-      <td>01779778</td>
-      <td>0400000US06</td>
-      <td>06</td>
-      <td>CA</td>
-      <td>California</td>
-      <td>00</td>
-      <td>403501101370</td>
-      <td>20466718403</td>
-      <td>None</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">larch</span>
-</pre></div>
-</div>
-</div>
-<p>An alternate DBF reading implementation is included in Larch. This optimized DBF reader can currently only handle text and numeric datatyped (i.e., types ‘C’, ‘F’, and ‘N’; no dates, memos, or logical fields). However, it can read data quite fast even for large files, and will extract the basic contents of the file (headers, number of rows) even without actually reading the data.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">f</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DBF</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;US-STATES&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<p>To actually load the data into a DataFrame, use the <code class="docutils literal notranslate"><span class="pre">load_dataframe</span></code> method.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">states</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">load_dataframe</span><span class="p">()</span>
-<span class="n">states</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;STUSPS&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">states</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>STATEFP</th>
-      <th>STATENS</th>
-      <th>AFFGEOID</th>
-      <th>GEOID</th>
-      <th>NAME</th>
-      <th>LSAD</th>
-      <th>ALAND</th>
-      <th>AWATER</th>
-    </tr>
     <tr>
       <th>STUSPS</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -1666,6 +1521,7 @@ can also do with a GeoDataFrame.</p>
       <td>00</td>
       <td>131173688951</td>
       <td>4593686489</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AK</th>
@@ -1677,6 +1533,7 @@ can also do with a GeoDataFrame.</p>
       <td>00</td>
       <td>1477946266785</td>
       <td>245390495931</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AZ</th>
@@ -1688,6 +1545,7 @@ can also do with a GeoDataFrame.</p>
       <td>00</td>
       <td>294198560125</td>
       <td>1027346486</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AR</th>
@@ -1699,6 +1557,7 @@ can also do with a GeoDataFrame.</p>
       <td>00</td>
       <td>134771517596</td>
       <td>2960191698</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>CA</th>
@@ -1710,6 +1569,7 @@ can also do with a GeoDataFrame.</p>
       <td>00</td>
       <td>403501101370</td>
       <td>20466718403</td>
+      <td>None</td>
     </tr>
   </tbody>
 </table>
@@ -1719,11 +1579,10 @@ can also do with a GeoDataFrame.</p>
 <h3>Data Cleaning<a class="headerlink" href="#Data-Cleaning" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes, data that is read in from raw files will require some cleaning to be usable. Consider this example of data on bridges in Florida:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-BRIDGES&#39;</span><span class="p">),</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">previewfile</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;FL-BRIDGES.csv.gz&quot;</span><span class="p">),</span> <span class="s1">&#39;rt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">previewfile</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">previewfile</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)))</span>
 </pre></div>
 </div>
@@ -1744,26 +1603,24 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>The data is loaded by pandas in the usual way without errors.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-BRIDGES&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;FL-BRIDGES.csv.gz&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <p>However, not all is well, and problems will appear during analysis.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1773,16 +1630,15 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>That is clearly not the number of structurally deficient bridges in Florida. And it’s not even a number at all, it’s a string. If you look carefully and compare against the first few rows of the DataFrame shown below, you may figure out that the string is actually a concatenation of the numbers in the column, not the sum.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1894,11 +1750,10 @@ can also do with a GeoDataFrame.</p>
 </div>
 <p>This is happening because the values in that columns are read by pandas as strings, not numbers, because the zero values are given as ‘-’ instead of 0. We can see the problem clearly if we look at the <code class="docutils literal notranslate"><span class="pre">info</span></code> for the bridges DataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1929,27 +1784,25 @@ memory usage: 6.0+ KB
 </div>
 <p>To fix this, we can use the <code class="docutils literal notranslate"><span class="pre">replace</span></code> method to fill all the ‘-’ values with zeros, and then change the dtype of the affected columns back to integer.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span> <span class="o">=</span> <span class="n">bridges</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span> <span class="o">=</span> <span class="n">bridges</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">bridges</span><span class="p">[[</span><span class="s1">&#39;Poor #&#39;</span><span class="p">,</span> <span class="s1">&#39;SD #&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">bridges</span><span class="p">[[</span><span class="s1">&#39;Poor #&#39;</span><span class="p">,</span> <span class="s1">&#39;SD #&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Then we are able to compute the total number of structurally deficient bridges in Florida.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1959,16 +1812,15 @@ memory usage: 6.0+ KB
 </div>
 <p>Whoa, that seems high. Let’s check on the values in the table and see where all those structurally deficient bridges are. We can sort on the ‘SD #’ column and take a look at the highest few rows:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;SD #&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;SD #&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2080,17 +1932,16 @@ memory usage: 6.0+ KB
 </div>
 <p>Oops! The data we loaded includes a ‘TOTALS’ row, but we don’t want that row included in our DataFrame for analysis. We can drop it (using the index for that row, 67), to fix the problem:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">67</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">67</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD #&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2101,16 +1952,15 @@ memory usage: 6.0+ KB
 <p>A slightly different problem occurs in the data for ‘SD Area’. In this column, the zero values were not given by ‘-’ values, but instead were actually omitted. When read in by pandas, omitted values are valid input and are different from zero values.</p>
 <p>If the intention is that missing values are indeed missing, this behavior is expected and useful. If, however, the missing values should be interpreted as zeros, then that instruction needs to be applied to the DataFrame explicitly, or problems may arise. For example, missing values don’t count in the denominator when computing the mean for a column:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2120,16 +1970,15 @@ memory usage: 6.0+ KB
 </div>
 <p>If we compute the mean manually using the actual number of counties, we get a different value:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2139,17 +1988,16 @@ memory usage: 6.0+ KB
 </div>
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">fillna</span></code> method to set all the missing values to zero, and then we get the correct answer:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">bridges</span><span class="p">[</span><span class="s1">&#39;SD Area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -2163,25 +2011,23 @@ memory usage: 6.0+ KB
 <h2>Expanding<a class="headerlink" href="#Expanding" title="Permalink to this headline">¶</a></h2>
 <p>New columns can be added to an existing DataFrame simply by assiging a value to a new column label, using plain square bracket notation. This makes it easy to create and derived values to a DataFrame.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Population Density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Land Area&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Population Density&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Land Area&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2257,25 +2103,23 @@ memory usage: 6.0+ KB
 </div>
 <p>Adding rows to a DataFrame can be done as well, using the <code class="docutils literal notranslate"><span class="pre">loc</span></code> indexer (see the next section on slicing for more about <code class="docutils literal notranslate"><span class="pre">loc</span></code>).</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">999</span><span class="p">,[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Dry Tortugas&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">999</span><span class="p">,[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Dry Tortugas&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2358,16 +2202,15 @@ memory usage: 6.0+ KB
 <p>Slicing by index is done using the <code class="docutils literal notranslate"><span class="pre">iloc</span></code>. This makes the DataFrame operate in a manner similar to a numpy array.</p>
 <p>Giving only one index or set of indexes selects from the rows only.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2419,16 +2262,15 @@ memory usage: 6.0+ KB
 </div>
 <p>Giving two sets of of indexes selects from the rows and columns.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">states</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2484,16 +2326,15 @@ memory usage: 6.0+ KB
 <h3>Slicing by Label<a class="headerlink" href="#Slicing-by-Label" title="Permalink to this headline">¶</a></h3>
 <p>Slicing by label is done using the <code class="docutils literal notranslate"><span class="pre">loc</span></code>. Instead of finding rows or columns based on the raw position in the DataFrame, the <code class="docutils literal notranslate"><span class="pre">loc</span></code> indexer finds rows or columns based upon the values in the <code class="docutils literal notranslate"><span class="pre">index</span></code> or <code class="docutils literal notranslate"><span class="pre">columns</span></code> attributes of the DataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">states</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;AK&#39;</span><span class="p">:</span><span class="s1">&#39;CA&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;AK&#39;</span><span class="p">:</span><span class="s1">&#39;CA&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2523,9 +2364,11 @@ memory usage: 6.0+ KB
       <th>LSAD</th>
       <th>ALAND</th>
       <th>AWATER</th>
+      <th>geometry</th>
     </tr>
     <tr>
       <th>STUSPS</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -2547,6 +2390,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>1477946266785</td>
       <td>245390495931</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AZ</th>
@@ -2558,6 +2402,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>294198560125</td>
       <td>1027346486</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AR</th>
@@ -2569,6 +2414,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>134771517596</td>
       <td>2960191698</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>CA</th>
@@ -2580,6 +2426,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>403501101370</td>
       <td>20466718403</td>
+      <td>None</td>
     </tr>
   </tbody>
 </table>
@@ -2588,16 +2435,15 @@ memory usage: 6.0+ KB
 <p>An important feature of the <code class="docutils literal notranslate"><span class="pre">loc</span></code> selector is that the resulting selection includes both the starting <em>and</em> the ending label. This is different from the usual Python slicing process, where the slice runs from the starting position up to but not including the ending position.</p>
 <p>It can also be confusing to use the <code class="docutils literal notranslate"><span class="pre">loc</span></code> selector when the <code class="docutils literal notranslate"><span class="pre">index</span></code> being used has integer values. Case must be taken to select the rows you want, even when the <code class="docutils literal notranslate"><span class="pre">index</span></code> is a RangeIndex starting from zero. Consider these two selections, which are very similar but yield different results:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2656,16 +2502,15 @@ memory usage: 6.0+ KB
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2722,16 +2567,15 @@ memory usage: 6.0+ KB
 <h2>Sorting<a class="headerlink" href="#Sorting" title="Permalink to this headline">¶</a></h2>
 <p>Sorting must be done explictly using the index, or one or more columns of values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">states</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2761,9 +2605,11 @@ memory usage: 6.0+ KB
       <th>LSAD</th>
       <th>ALAND</th>
       <th>AWATER</th>
+      <th>geometry</th>
     </tr>
     <tr>
       <th>STUSPS</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -2785,6 +2631,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>1477946266785</td>
       <td>245390495931</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AL</th>
@@ -2796,6 +2643,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>131173688951</td>
       <td>4593686489</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AR</th>
@@ -2807,6 +2655,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>134771517596</td>
       <td>2960191698</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AS</th>
@@ -2818,6 +2667,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>197759069</td>
       <td>1307243753</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AZ</th>
@@ -2829,22 +2679,22 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>294198560125</td>
       <td>1027346486</td>
+      <td>None</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">states</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;NAME&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2874,9 +2724,11 @@ memory usage: 6.0+ KB
       <th>LSAD</th>
       <th>ALAND</th>
       <th>AWATER</th>
+      <th>geometry</th>
     </tr>
     <tr>
       <th>STUSPS</th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -2898,6 +2750,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>131173688951</td>
       <td>4593686489</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AK</th>
@@ -2909,6 +2762,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>1477946266785</td>
       <td>245390495931</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AS</th>
@@ -2920,6 +2774,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>197759069</td>
       <td>1307243753</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AZ</th>
@@ -2931,6 +2786,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>294198560125</td>
       <td>1027346486</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>AR</th>
@@ -2942,6 +2798,7 @@ memory usage: 6.0+ KB
       <td>00</td>
       <td>134771517596</td>
       <td>2960191698</td>
+      <td>None</td>
     </tr>
   </tbody>
 </table>
@@ -2952,17 +2809,16 @@ memory usage: 6.0+ KB
 <h2>Merging<a class="headerlink" href="#Merging" title="Permalink to this headline">¶</a></h2>
 <p>If we have two DataFrames that contain related data, we may want to merge the contents into a single DataFrame for some kinds of analysis. For example, suppose we have a DataFrame that gives enumerates counties in Florida by FDOT District, like this one:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">districts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY-BY-DISTRICT&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">districts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;FL-COUNTY-BY-DISTRICT.csv.gz&#39;</span><span class="p">))</span>
 <span class="n">districts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3041,16 +2897,15 @@ memory usage: 6.0+ KB
 <p>Advanced users will find details on a variety of other <code class="docutils literal notranslate"><span class="pre">merge</span></code> arguments in the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.merge.html#pandas.merge">function documentation</a>. There are also <code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">join</span></code> shorthand methods available as methods on a DataFrame, although each represents an application of the more general <code class="docutils literal notranslate"><span class="pre">merge</span></code> method illustrated here.</p>
 <p>To merge the county data with the District numbers, we can merge the two datasets using the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function. In the population data file we previously loaded, the county names are given in a column named ‘Name’, while in the district mbmership table, the county names are given in a column named ‘County’, we we’ll use the <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> arguments to identify that the merge keys have different names.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">districts</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">districts</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3088,16 +2943,15 @@ memory usage: 6.0+ KB
 </div>
 <p>In this instance, the ‘inner’ merge resulted in a new DataFrame, but with zero rows of data. This is because, as it turns out, the merge keys are not actually the same:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3172,16 +3026,15 @@ memory usage: 6.0+ KB
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">districts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">districts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3239,27 +3092,25 @@ memory usage: 6.0+ KB
 </div>
 <p>The names of the counties in the first table are given with the appelation “Name County”, while in the second table, they are identified merely as “Name”. In order to use the <code class="docutils literal notranslate"><span class="pre">merge</span></code> function, the keys must match exactly across the two tables. To make this work, we’ll need to strip the ‘County’ from the names in the first table. We can do so with the <code class="docutils literal notranslate"><span class="pre">str.replace</span></code> method, like this:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; County&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl</span><span class="p">[</span><span class="s1">&#39;County&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; County&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Then, if we attempt the merge again, we’ll get the results we expect.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">districts</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl</span><span class="p">,</span> <span class="n">districts</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
 <span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3348,17 +3199,16 @@ memory usage: 6.0+ KB
 <p>The merge here, adding the FDOT district to the County table, is a one-to-one merge (i.e., every row in the left table matches one and only one row in the right table). However, that one-to-one is <em>not</em> required to undertake a merge. We can also merge data that has one-to-many and many-to-one relationships, and even many-to-many, although that merge type is less common in most transportation applications.</p>
 <p>As an example, consider this table that gives the FDOT District name and headquarters location for each district:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">district_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="s1">&#39;FL-DISTRICTS&#39;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">district_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;FL-DISTRICTS.csv.gz&#39;</span><span class="p">),</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span>
 <span class="n">district_info</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3431,16 +3281,15 @@ memory usage: 6.0+ KB
 </div>
 <p>If we want to add a column that gives the district name to the counties table we already have, we can use a many-to-one merge. This is actually just detected automatically, so there is no extra argument to give.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl_2</span><span class="p">,</span> <span class="n">district_info</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl_2</span><span class="p">,</span> <span class="n">district_info</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3541,16 +3390,15 @@ memory usage: 6.0+ KB
 <p>Because both the left and right DataFrames have a column named ‘Name’, in the merged result the column from the left DataFrame has a ‘_x’ appended, while the column from the right DataFrame has a ‘_y’ appended. This is configurable using the <em>suffixes</em> argument, or by just changing the column names before merging. In fact, many merge details can be controlled easily by manipulating the left and right arguments before merging. For example, if we only want to get the district name, not the
 headquarters, we can slice the right DataFrame to only include what we want:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl_2</span><span class="p">,</span> <span class="n">district_info</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">add_prefix</span><span class="p">(</span><span class="s1">&#39;District_&#39;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">fl_2</span><span class="p">,</span> <span class="n">district_info</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">add_prefix</span><span class="p">(</span><span class="s1">&#39;District_&#39;</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;District&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3648,26 +3496,24 @@ headquarters, we can slice the right DataFrame to only include what we want:</p>
 <p>Often data we are working with has multiple categories of columns. For example, the bridge data we worked with above has two data types: the number of bridges by condition, and the deck area by condition. We can explicitly gather together those groups of columns using a multi-level index.</p>
 <p>To demonstate this, we’ll make a copy of the <code class="docutils literal notranslate"><span class="pre">bridges</span></code> DataFrame with the county name as the index.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges2</span> <span class="o">=</span> <span class="n">bridges</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges2</span> <span class="o">=</span> <span class="n">bridges</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;County&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>There are ten columns of this dataframe now, five counts and five areas.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -3679,11 +3525,10 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>We can use a list of tuples to create a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> that gives both the column’s category and a name. Notice that we can duplicate the condition names without trouble, because the duplicate values have different categories.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
     <span class="p">[(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Total&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Good&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Fair&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;Poor&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span><span class="s1">&#39;SD&#39;</span><span class="p">),</span>
      <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Total&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Good&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Fair&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;Poor&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Area&#39;</span><span class="p">,</span><span class="s1">&#39;SD&#39;</span><span class="p">),</span>     <span class="p">],</span>
     <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;measure&#39;</span><span class="p">,</span> <span class="s1">&#39;condition&#39;</span><span class="p">],</span>
@@ -3692,16 +3537,15 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3832,17 +3676,16 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 <h3>Stacking and Unstacking<a class="headerlink" href="#Stacking-and-Unstacking" title="Permalink to this headline">¶</a></h3>
 <p>One advantage of using this multi-index approach to grouping similar data is that it makes it much easier to reshape the DataFrame for different types of analysis. For example, we can transform the bridges dataframe to have a for for each county and condition, and just two columns (count and area), by <code class="docutils literal notranslate"><span class="pre">stack</span></code> ing the data.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges3</span> <span class="o">=</span> <span class="n">bridges2</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges3</span> <span class="o">=</span> <span class="n">bridges2</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
 <span class="n">bridges3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -3945,22 +3788,21 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>One thing you might notice here is that the conditions have been reordered. The new order isn’t consistent with the categorical meanings, but instead is simply alphabetic. We can preserve the ordering by converting these values into ordered categorical values like this:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">conditions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">CategoricalIndex</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conditions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">CategoricalIndex</span><span class="p">(</span>
     <span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
     <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="s1">&#39;Good&#39;</span><span class="p">,</span> <span class="s1">&#39;Fair&#39;</span><span class="p">,</span> <span class="s1">&#39;Poor&#39;</span><span class="p">,</span> <span class="s1">&#39;SD&#39;</span><span class="p">],</span>
 <span class="p">)</span>
-<span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">set_levels</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">bridges2</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">set_levels</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">bridges2</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[60]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4064,17 +3906,16 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 <p>Although obviously that’s a bit complicated and it may be easier to simply rename the conditions in a way that the alphabetic sorting works for us.</p>
 <p>Now, for example, we can easily get the average deck area of bridges by condition.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;AvgArea&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;Count&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;AvgArea&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;Area&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">bridges3</span><span class="p">[</span><span class="s1">&#39;Count&#39;</span><span class="p">]</span>
 <span class="n">bridges3</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[61]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4191,17 +4032,16 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>We can also reverse this transformation, returning to a wider format, with the <code class="docutils literal notranslate"><span class="pre">unstack</span></code> method.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges4</span> <span class="o">=</span> <span class="n">bridges3</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges4</span> <span class="o">=</span> <span class="n">bridges3</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 <span class="n">bridges4</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[62]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4365,16 +4205,15 @@ Index([&#39;Total #&#39;, &#39;Good #&#39;, &#39;Fair #&#39;, &#39;Poor #&#39;, 
 </div>
 <p>If you <code class="docutils literal notranslate"><span class="pre">unstack</span></code> a DataFrame that doesn’t have a MultiIndex index with at least two levels, you’ll get a one dimensional Series instead of a DataFrame.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bridges4</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bridges4</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[63]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4395,24 +4234,23 @@ Length: 1005, dtype: float64
 </pre></div></div>
 </div>
 <p>The pandas documentation includes a lot more detail about <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html#reshaping-by-stacking-and-unstacking">reshaping</a> data, including a variety of other tools for reshaping in other ways.</p>
-</div>
+<span class="target" id="pandas-grouping"></span></div>
 </div>
 <div class="section" id="Grouping">
-<span id="pandas-grouping"></span><h2>Grouping<a class="headerlink" href="#Grouping" title="Permalink to this headline">¶</a></h2>
+<h2>Grouping<a class="headerlink" href="#Grouping" title="Permalink to this headline">¶</a></h2>
 <p>A common task in data analysis is to conduct group-wise analysis. This involves splitting a DataFrame into groups of related rows, then computing some sort of measure on each group. The results are then usually combined into a final coherent data structure, generally having one row for each original row (a transformation), or one row for each group (an aggregation). It is possible to introduce some <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#filtration">filtering</a> in
 the process so the results do not conform to one of these patterns, but that is a more advanced topic that will not be discussed here.</p>
 <p>For example, we might group counties by district, and then total the population values, to get to total population by district:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4499,16 +4337,15 @@ the process so the results do not conform to one of these patterns, but that is 
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4581,17 +4418,16 @@ or <a class="reference external" href="https://pandas.pydata.org/pandas-docs/sta
 </ul>
 <p>Let’s use <code class="docutils literal notranslate"><span class="pre">cut</span></code> to create five categorical values of county population:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">population_binned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population_binned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">population_binned</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4602,20 +4438,19 @@ or <a class="reference external" href="https://pandas.pydata.org/pandas-docs/sta
 3    (1105663.6, 1654374.4]
 4    (1105663.6, 1654374.4]
 Name: 2019 Population, dtype: category
-Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663.6] &lt; (1105663.6, 1654374.4] &lt; (1654374.4, 2203085.2] &lt; (2203085.2, 2751796.0]]
+Categories (5, interval[float64, right]): [(5498.446, 556952.8] &lt; (556952.8, 1105663.6] &lt; (1105663.6, 1654374.4] &lt; (1654374.4, 2203085.2] &lt; (2203085.2, 2751796.0]]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">population_binned</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population_binned</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4632,23 +4467,22 @@ Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663
 65      (5498.446, 556952.8]
 66      (5498.446, 556952.8]
 Name: 2019 Population, Length: 67, dtype: category
-Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663.6] &lt; (1105663.6, 1654374.4] &lt; (1654374.4, 2203085.2] &lt; (2203085.2, 2751796.0]]
+Categories (5, interval[float64, right]): [(5498.446, 556952.8] &lt; (556952.8, 1105663.6] &lt; (1105663.6, 1654374.4] &lt; (1654374.4, 2203085.2] &lt; (2203085.2, 2751796.0]]
 </pre></div></div>
 </div>
 <p>Those bins divide the range of population values evenly into 5 bins, but they do appear a bit random. We can set more reasonable value by explicitly giving bin boundaries that are round numbers of our choosing:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">5_000</span><span class="p">,</span> <span class="mi">500_000</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">,</span> <span class="mi">1_500_000</span><span class="p">,</span> <span class="mi">2_000_000</span><span class="p">,</span> <span class="mi">3_000_000</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">5_000</span><span class="p">,</span> <span class="mi">500_000</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">,</span> <span class="mi">1_500_000</span><span class="p">,</span> <span class="mi">2_000_000</span><span class="p">,</span> <span class="mi">3_000_000</span><span class="p">]</span>
 <span class="n">population_binned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">)</span>
 <span class="n">population_binned</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4659,21 +4493,20 @@ Categories (5, interval[float64]): [(5498.446, 556952.8] &lt; (556952.8, 1105663
 3    (1000000, 1500000]
 4    (1000000, 1500000]
 Name: 2019 Population, dtype: category
-Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (1000000, 1500000] &lt; (1500000, 2000000] &lt; (2000000, 3000000]]
+Categories (5, interval[int64, right]): [(5000, 500000] &lt; (500000, 1000000] &lt; (1000000, 1500000] &lt; (1500000, 2000000] &lt; (2000000, 3000000]]
 </pre></div></div>
 </div>
 <p>We can then pass this categorical data directly to the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> method, instead of naming existing columns in the DataFrame to use as the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> keys.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">population_binned</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">population_binned</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4770,16 +4603,15 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
 <p>When aggregation function are applied, the result is generally one row per group, instead of one row per row.</p>
 <p>Multiple aggregation functions can be applied simultaneously using the <code class="docutils literal notranslate"><span class="pre">agg</span></code> method, like this:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">population_binned</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">population_binned</span><span class="p">)[[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4825,31 +4657,31 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
       <th>(5000, 500000]</th>
       <td>1.287320e+05</td>
       <td>130660.887798</td>
-      <td>55.0</td>
+      <td>55</td>
     </tr>
     <tr>
       <th>(500000, 1000000]</th>
       <td>7.125393e+05</td>
       <td>182201.018266</td>
-      <td>7.0</td>
+      <td>7</td>
     </tr>
     <tr>
       <th>(1000000, 1500000]</th>
       <td>1.409564e+06</td>
       <td>61093.609816</td>
-      <td>3.0</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>(1500000, 2000000]</th>
       <td>1.935878e+06</td>
       <td>NaN</td>
-      <td>1.0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>(2000000, 3000000]</th>
       <td>2.751796e+06</td>
       <td>NaN</td>
-      <td>1.0</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
@@ -4862,17 +4694,16 @@ Categories (5, interval[int64]): [(5000, 500000] &lt; (500000, 1000000] &lt; (10
 indexed the same as the original, which makes it easy to use <code class="docutils literal notranslate"><span class="pre">transform</span></code> to create new derived columns based on group-wise aggregations or transforms.</p>
 <p>For example, to add a new column that contains the FDOT District total population for each county, we can give the <code class="docutils literal notranslate"><span class="pre">sum</span></code> function to <code class="docutils literal notranslate"><span class="pre">transform</span></code>, and write the result as a new column in the original DataFrame:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pop_sum</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_sum</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 <span class="n">pop_sum</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -4886,16 +4717,15 @@ Name: 2019 Population, dtype: float64
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[72]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -4983,25 +4813,23 @@ Name: 2019 Population, dtype: float64
 </div>
 <p>The second and third counties in the <code class="docutils literal notranslate"><span class="pre">fl_2</span></code> DataFrame are both in District 4, so both rows of this output give the total population in District 4. Generating the output like this makes it super easy to attach the result as a new column in the DataFrame:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;District Population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;District Population&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -5095,17 +4923,16 @@ Name: 2019 Population, dtype: float64
 </div>
 <p>In addition to expanding aggregate measures to match with the rows of the original DataFrame, the <code class="docutils literal notranslate"><span class="pre">transform</span></code> function can also generate unique row-wise values, which can be computed relative to the group instead of relative to the entire DataFrame. For example, to compute the fraction of the population of each district living in each county:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;Fraction of Pop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fl_2</span><span class="p">[</span><span class="s1">&#39;Fraction of Pop&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fl_2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;District&#39;</span><span class="p">)[</span><span class="s1">&#39;2019 Population&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
 <span class="n">fl_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[75]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -5214,16 +5041,10 @@ Name: 2019 Population, dtype: float64
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="pivot-tables.html" class="btn btn-neutral float-right" title="Crosstab and Pivot Tables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="_index.html" class="btn btn-neutral float-left" title="Tabular Data Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="pivot-tables.html" class="btn btn-neutral float-right" title="Crosstab and Pivot Tables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="_index.html" class="btn btn-neutral float-left" title="Tabular Data Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -5232,10 +5053,16 @@ Name: 2019 Population, dtype: float64
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -5243,7 +5070,6 @@ Name: 2019 Population, dtype: float64
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

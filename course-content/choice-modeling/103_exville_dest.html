@@ -1,42 +1,48 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Exampville Destination Choice &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Exercises" href="../exercises/_index.html" />
@@ -81,6 +87,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -123,6 +130,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -157,11 +165,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="_index.html">Discrete Choice Modeling</a> &raquo;</li>
         
@@ -170,7 +180,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/course-content/choice-modeling/103_exville_dest.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -189,21 +199,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -250,20 +274,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -291,7 +328,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -356,7 +393,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -366,7 +404,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -435,8 +473,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">larch</span><span class="o">,</span> <span class="nn">numpy</span><span class="o">,</span> <span class="nn">pandas</span><span class="o">,</span> <span class="nn">os</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">larch</span><span class="o">,</span> <span class="nn">numpy</span><span class="o">,</span> <span class="nn">pandas</span><span class="o">,</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">larch</span> <span class="kn">import</span> <span class="n">P</span><span class="p">,</span> <span class="n">X</span>
 </pre></div>
 </div>
@@ -448,8 +485,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">larch.exampville</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">larch.exampville</span>
 
 <span class="n">hh</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">hh</span> <span class="p">)</span>
 <span class="n">pp</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span> <span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">person</span> <span class="p">)</span>
@@ -463,8 +499,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">emp</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">employment</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;TAZ&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emp</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">larch</span><span class="o">.</span><span class="n">exampville</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">employment</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;TAZ&#39;</span><span class="p">)</span>
 <span class="n">emp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -491,8 +526,7 @@ memory usage: 1.2 KB
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">logsums</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;/tmp/logsums.pkl.gz&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logsums</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;/tmp/logsums.pkl.gz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -501,8 +535,7 @@ memory usage: 1.2 KB
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">co</span> <span class="o">=</span> <span class="n">tour</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;HHID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;HHID&#39;</span><span class="p">,</span> <span class="s1">&#39;PERSONID&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">co</span> <span class="o">=</span> <span class="n">tour</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;HHID&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pp</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;HHID&#39;</span><span class="p">,</span> <span class="s1">&#39;PERSONID&#39;</span><span class="p">))</span>
 <span class="n">co</span><span class="p">[</span><span class="s2">&quot;HOMETAZi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">co</span><span class="p">[</span><span class="s2">&quot;HOMETAZ&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">co</span><span class="p">[</span><span class="s2">&quot;DTAZi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">co</span><span class="p">[</span><span class="s2">&quot;DTAZ&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="n">co</span> <span class="o">=</span> <span class="n">co</span><span class="p">[</span><span class="n">co</span><span class="o">.</span><span class="n">TOURPURP</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
@@ -518,8 +551,7 @@ rows, to overcome a technical limitation of the PyTables library (which underpin
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="n">skims</span><span class="o">.</span><span class="n">AUTO_DIST</span><span class="p">[:][</span><span class="n">co</span><span class="p">[</span><span class="s2">&quot;HOMETAZi&quot;</span><span class="p">],</span> <span class="p">:],</span>
     <span class="n">index</span><span class="o">=</span><span class="n">co</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
     <span class="n">columns</span><span class="o">=</span><span class="n">skims</span><span class="o">.</span><span class="n">TAZ_ID</span><span class="p">,</span>
@@ -528,16 +560,15 @@ rows, to overcome a technical limitation of the PyTables library (which underpin
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">distance</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">distance</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -559,11 +590,10 @@ Length: 302560, dtype: float64
 </div>
 <p>The distance and logsum arrays are both currently formatted as single variables stored in two-dimensional format (cases by alternatives) but to concatenate them together, we can use the <code class="docutils literal notranslate"><span class="pre">unstack</span></code> command to convert each into a one-dimensional array. We’ll also use the <code class="docutils literal notranslate"><span class="pre">rename</span></code> command to ensure that each one-dimensional array is named appropriately, so that when they are concatenate the result will include the names of the variables.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
     <span class="n">distance</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;distance&quot;</span><span class="p">),</span>
     <span class="n">logsums</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;logsum&quot;</span><span class="p">),</span>
 <span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -572,16 +602,15 @@ Length: 302560, dtype: float64
 </div>
 <p>Now we have our two variables in the correct format:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -619,27 +648,27 @@ Length: 302560, dtype: float64
       <th rowspan="5" valign="top">0</th>
       <th>1</th>
       <td>8.286090</td>
-      <td>-2.935611</td>
+      <td>-2.935609</td>
     </tr>
     <tr>
       <th>2</th>
       <td>8.256698</td>
-      <td>-2.660436</td>
+      <td>-2.660434</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2.928829</td>
-      <td>-1.745654</td>
+      <td>-1.745653</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5.502758</td>
-      <td>-2.229281</td>
+      <td>-2.229279</td>
     </tr>
     <tr>
       <th>5</th>
       <td>5.882862</td>
-      <td>-2.403117</td>
+      <td>-2.403116</td>
     </tr>
   </tbody>
 </table>
@@ -647,11 +676,10 @@ Length: 302560, dtype: float64
 </div>
 <p>We’ll also need to join employment data to the <code class="docutils literal notranslate"><span class="pre">ca</span></code> DataFrame. This data has unique values only by alternative and not by caseid, so there are only 40 unique rows.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">emp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emp</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -674,25 +702,23 @@ memory usage: 1.2 KB
 </div>
 <p>But to make this work with the computational arrays required for Larch, we’ll need to join this to the other idca data, like this:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">emp</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">emp</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">skims</span><span class="o">.</span><span class="n">TAZ_AREA_TYPE</span><span class="p">[:]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">skims</span><span class="o">.</span><span class="n">TAZ_AREA_TYPE</span><span class="p">[:]</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -707,11 +733,10 @@ array([b&#39;SUB&#39;, b&#39;SUB&#39;, b&#39;URB&#39;, b&#39;URB&#39;, b&#39;SUB
 </div>
 <p>We can also extract an ‘Area Type’ variable from the skims, and attach that as well:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">area_type</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area_type</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
     <span class="n">skims</span><span class="o">.</span><span class="n">TAZ_AREA_TYPE</span><span class="p">[:],</span>
     <span class="n">index</span><span class="o">=</span><span class="n">skims</span><span class="o">.</span><span class="n">TAZ_ID</span><span class="p">[:],</span>
     <span class="n">name</span> <span class="o">=</span><span class="s1">&#39;TAZ_AREA_TYPE&#39;</span><span class="p">,</span>
@@ -721,7 +746,7 @@ array([b&#39;SUB&#39;, b&#39;SUB&#39;, b&#39;URB&#39;, b&#39;URB&#39;, b&#39;SUB
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -771,25 +796,23 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">area_type</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca</span> <span class="o">=</span> <span class="n">ca</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">area_type</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;TAZ_ID&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ca</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -835,7 +858,7 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
       <th rowspan="5" valign="top">0</th>
       <th>1</th>
       <td>8.286090</td>
-      <td>-2.935611</td>
+      <td>-2.935609</td>
       <td>118</td>
       <td>340</td>
       <td>458</td>
@@ -844,7 +867,7 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
     <tr>
       <th>2</th>
       <td>8.256698</td>
-      <td>-2.660436</td>
+      <td>-2.660434</td>
       <td>91</td>
       <td>0</td>
       <td>91</td>
@@ -853,7 +876,7 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
     <tr>
       <th>3</th>
       <td>2.928829</td>
-      <td>-1.745654</td>
+      <td>-1.745653</td>
       <td>197</td>
       <td>2</td>
       <td>199</td>
@@ -862,7 +885,7 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
     <tr>
       <th>4</th>
       <td>5.502758</td>
-      <td>-2.229281</td>
+      <td>-2.229279</td>
       <td>277</td>
       <td>8</td>
       <td>285</td>
@@ -871,7 +894,7 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
     <tr>
       <th>5</th>
       <td>5.882862</td>
-      <td>-2.403117</td>
+      <td>-2.403116</td>
       <td>44</td>
       <td>13</td>
       <td>57</td>
@@ -883,15 +906,14 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
 </div>
 <p>Then we bundle the raw data into the <code class="docutils literal notranslate"><span class="pre">larch.DataFrames</span></code> structure, as we did for estimation, and attach this structure to the model as its <code class="docutils literal notranslate"><span class="pre">dataservice</span></code>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DataFrames</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">DataFrames</span><span class="p">(</span>
     <span class="n">co</span><span class="o">=</span><span class="n">co</span><span class="p">,</span>
     <span class="n">ca</span><span class="o">=</span><span class="n">ca</span><span class="p">,</span>
     <span class="n">alt_codes</span><span class="o">=</span><span class="n">skims</span><span class="o">.</span><span class="n">TAZ_ID</span><span class="p">,</span>
-    <span class="n">alt_names</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;TAZ</span><span class="si">{i}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">skims</span><span class="o">.</span><span class="n">TAZ_ID</span><span class="p">],</span>
+    <span class="n">alt_names</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;TAZ</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">skims</span><span class="o">.</span><span class="n">TAZ_ID</span><span class="p">],</span>
     <span class="n">ch_name</span><span class="o">=</span><span class="s1">&#39;DTAZ&#39;</span><span class="p">,</span>
     <span class="n">av</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
@@ -899,11 +921,10 @@ Categories (3, object): [b&#39;CBD&#39;, b&#39;SUB&#39;, b&#39;URB&#39;]
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -966,11 +987,10 @@ larch.DataFrames:  (not computation-ready)
 <div class="section" id="Model-Definition">
 <h2>Model Definition<a class="headerlink" href="#Model-Definition" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">dfs</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">dataservice</span><span class="o">=</span><span class="n">dfs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -981,11 +1001,10 @@ a zone). The mathematical form of the utility function for the zone is</p>
 <p>The quantitative component of this utility function is written for Larch in a linear-in-parameters format similarly to that for the typical utility function, but assigned to the <code class="docutils literal notranslate"><span class="pre">quantity_ca</span></code> attribute instead of <code class="docutils literal notranslate"><span class="pre">utility_ca</span></code>. Also, the exponentiation of the <span class="math notranslate nohighlight">\(\gamma\)</span> parameters is implied by using <code class="docutils literal notranslate"><span class="pre">quantity_ca</span></code>. Note that the quantitative term is in theory always applied only to the alternatives themselves and not alone to attributes of the decision maker, so the <code class="docutils literal notranslate"><span class="pre">quantity_co</span></code>
 attribute is not implemented and cannot be used.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">quantity_ca</span> <span class="o">=</span> <span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">quantity_ca</span> <span class="o">=</span> <span class="p">(</span>
         <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">EmpRetail_HighInc</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;RETAIL_EMP * (INCOME&gt;50000)&#39;</span><span class="p">)</span>
         <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">EmpNonRetail_HighInc</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;NONRETAIL_EMP&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;INCOME&gt;50000&quot;</span><span class="p">)</span>
         <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">EmpRetail_LowInc</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s1">&#39;RETAIL_EMP&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="p">(</span><span class="s2">&quot;INCOME&lt;=50000&quot;</span><span class="p">)</span>
@@ -996,21 +1015,19 @@ attribute is not implemented and cannot be used.</p>
 </div>
 <p>The parameter <span class="math notranslate nohighlight">\(\theta\)</span> is a coefficient on the entire log-of-quantity term, and can be defined by assigning a parameter name to the <code class="docutils literal notranslate"><span class="pre">quantity_scale</span></code> attribute.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">#m.quantity_scale = P.Theta</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#m.quantity_scale = P.Theta</span>
 </pre></div>
 </div>
 </div>
 <p>The qualitative component of utility can be given in the same manner as any other discrete choice model in Larch.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">utility_ca</span> <span class="o">=</span> <span class="p">(</span>
     <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">logsum</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">logsum</span>
     <span class="o">+</span> <span class="n">P</span><span class="o">.</span><span class="n">distance</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">distance</span>
 <span class="p">)</span>
@@ -1019,11 +1036,10 @@ attribute is not implemented and cannot be used.</p>
 </div>
 <p>For this structure, we know the model will be overspecified if the parameter in the quantitative portion of utility are all estimated, in a manner similar to the overspecification if alternative specific constants are all estimated. To prevent this problem, we can lock parameters to particular values as needed using the <code class="docutils literal notranslate"><span class="pre">lock_values</span></code> method.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">lock_values</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">lock_values</span><span class="p">(</span>
     <span class="n">EmpRetail_HighInc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">EmpRetail_LowInc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1032,11 +1048,10 @@ attribute is not implemented and cannot be used.</p>
 </div>
 <p>Then let’s prepare this data for estimation. Even though the data is already in memory, the <code class="docutils literal notranslate"><span class="pre">load_data</span></code> method is used to pre-process the data, extracting the required values, pre-computing the values of fixed expressions, and assembling the results into contiguous arrays suitable for computing the log likelihood values efficiently.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1053,11 +1068,10 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="section" id="Model-Estimation">
 <h2>Model Estimation<a class="headerlink" href="#Model-Estimation" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">maximize_loglike</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">maximize_loglike</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1065,13 +1079,13 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
-<h3>Iteration 013 [Optimization terminated successfully] </h3></div>
+<h3>Iteration 009 [Optimization terminated successfully] </h3></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
-<p>Best LL = -25157.726761576076</p></div>
+<p>Best LL = -25287.5271358175</p></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
@@ -1108,32 +1122,32 @@ req_data does not request avail_ca or avail_co but it is set and being provided
   <tbody>
     <tr>
       <th>EmpNonRetail_HighInc</th>
-      <td>1.363793</td>
+      <td>0.854336</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-inf</td>
       <td>inf</td>
       <td>0</td>
       <td></td>
-      <td>1.363793</td>
+      <td>0.854336</td>
     </tr>
     <tr>
       <th>EmpNonRetail_LowInc</th>
-      <td>-0.881379</td>
+      <td>-0.756049</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-inf</td>
       <td>inf</td>
       <td>0</td>
       <td></td>
-      <td>-0.881379</td>
+      <td>-0.756049</td>
     </tr>
     <tr>
       <th>EmpRetail_HighInc</th>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1</td>
       <td></td>
@@ -1144,44 +1158,33 @@ req_data does not request avail_ca or avail_co but it is set and being provided
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>1</td>
       <td></td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>Theta</th>
-      <td>0.749374</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.001</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td></td>
-      <td>0.749374</td>
-    </tr>
-    <tr>
       <th>distance</th>
-      <td>-0.041820</td>
+      <td>-0.059396</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-inf</td>
       <td>inf</td>
       <td>0</td>
       <td></td>
-      <td>-0.041820</td>
+      <td>-0.059396</td>
     </tr>
     <tr>
       <th>logsum</th>
-      <td>1.020821</td>
+      <td>1.081704</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>-inf</td>
       <td>inf</td>
       <td>0</td>
       <td></td>
-      <td>1.020821</td>
+      <td>1.081704</td>
     </tr>
   </tbody>
 </table>
@@ -1192,13 +1195,13 @@ req_data does not request avail_ca or avail_co but it is set and being provided
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/jeffnewman/OneDrive - Cambridge Systematics/Git/larch/larch/model/optimization.py:306: UserWarning: slsqp may not play nicely with unbounded parameters
+/Users/jeffnewman/opt/anaconda3/envs/tt/lib/python3.9/site-packages/larch/model/optimization.py:306: UserWarning: slsqp may not play nicely with unbounded parameters
 if you get poor results, consider setting global bounds with model.set_cap()
   warnings.warn( # infinite bounds # )
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1212,11 +1215,11 @@ if you get poor results, consider setting global bounds with model.set_cap()
   <tbody>
     <tr>
       <th>EmpNonRetail_HighInc</th>
-      <td>1.363793</td>
+      <td>0.854336</td>
     </tr>
     <tr>
       <th>EmpNonRetail_LowInc</th>
-      <td>-0.881379</td>
+      <td>-0.756049</td>
     </tr>
     <tr>
       <th>EmpRetail_HighInc</th>
@@ -1227,19 +1230,15 @@ if you get poor results, consider setting global bounds with model.set_cap()
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>Theta</th>
-      <td>0.749374</td>
-    </tr>
-    <tr>
       <th>distance</th>
-      <td>-0.041820</td>
+      <td>-0.059396</td>
     </tr>
     <tr>
       <th>logsum</th>
-      <td>1.020821</td>
+      <td>1.081704</td>
     </tr>
   </tbody>
-</table></td></tr><tr><td>loglike</td><td style="text-align:left;">-25157.726761576076</td></tr><tr><td>d_loglike</td><td style="text-align:left;"><table border="1" class="dataframe">
+</table></td></tr><tr><td>loglike</td><td style="text-align:left;">-25287.5271358175</td></tr><tr><td>d_loglike</td><td style="text-align:left;"><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -1249,11 +1248,11 @@ if you get poor results, consider setting global bounds with model.set_cap()
   <tbody>
     <tr>
       <th>EmpNonRetail_HighInc</th>
-      <td>0.003254</td>
+      <td>0.003384</td>
     </tr>
     <tr>
       <th>EmpNonRetail_LowInc</th>
-      <td>0.003049</td>
+      <td>0.006065</td>
     </tr>
     <tr>
       <th>EmpRetail_HighInc</th>
@@ -1264,167 +1263,143 @@ if you get poor results, consider setting global bounds with model.set_cap()
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>Theta</th>
-      <td>0.006297</td>
-    </tr>
-    <tr>
       <th>distance</th>
-      <td>-0.014778</td>
+      <td>0.003929</td>
     </tr>
     <tr>
       <th>logsum</th>
-      <td>-0.000878</td>
+      <td>-0.002454</td>
     </tr>
   </tbody>
-</table></td></tr><tr><td>nit</td><td style="text-align:left;">13</td></tr><tr><td>nfev</td><td style="text-align:left;">32</td></tr><tr><td>njev</td><td style="text-align:left;">13</td></tr><tr><td>status</td><td style="text-align:left;">0</td></tr><tr><td>message</td><td style="text-align:left;">'Optimization terminated successfully'</td></tr><tr><td>success</td><td style="text-align:left;">True</td></tr><tr><td>elapsed_time</td><td style="text-align:left;">0:00:03.603049</td></tr><tr><td>method</td><td style="text-align:left;">'slsqp'</td></tr><tr><td>n_cases</td><td style="text-align:left;">7564</td></tr><tr><td>iteration_number</td><td style="text-align:left;">13</td></tr><tr><td>logloss</td><td style="text-align:left;">3.325981856369127</td></tr></table></div></div>
+</table></td></tr><tr><td>nit</td><td style="text-align:left;">9</td></tr><tr><td>nfev</td><td style="text-align:left;">24</td></tr><tr><td>njev</td><td style="text-align:left;">9</td></tr><tr><td>status</td><td style="text-align:left;">0</td></tr><tr><td>message</td><td style="text-align:left;">'Optimization terminated successfully'</td></tr><tr><td>success</td><td style="text-align:left;">True</td></tr><tr><td>elapsed_time</td><td style="text-align:left;">0:00:02.543280</td></tr><tr><td>method</td><td style="text-align:left;">'slsqp'</td></tr><tr><td>n_cases</td><td style="text-align:left;">7564</td></tr><tr><td>iteration_number</td><td style="text-align:left;">9</td></tr><tr><td>logloss</td><td style="text-align:left;">3.343142138526904</td></tr></table></div></div>
 </div>
 <p>After we find the best fitting parameters, we can compute some variance-covariance statistics, incuding standard errors of the estimates and t statistics, using <code class="docutils literal notranslate"><span class="pre">calculate_parameter_covariance</span></code>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">calculate_parameter_covariance</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">calculate_parameter_covariance</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <p>Then we can review the results in a variety of report tables.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
 <style  type="text/css" >
-    #T_e7c30_ th {
+    #T_593a7_ th {
           vertical-align: top;
           text-align: left;
-    }    #T_e7c30_ td {
+    }    #T_593a7_ td {
           vertical-align: top;
           text-align: left;
-    }#T_e7c30_row0_col0,#T_e7c30_row0_col1,#T_e7c30_row0_col2,#T_e7c30_row0_col3,#T_e7c30_row0_col4,#T_e7c30_row1_col0,#T_e7c30_row1_col1,#T_e7c30_row1_col2,#T_e7c30_row1_col3,#T_e7c30_row1_col4,#T_e7c30_row2_col0,#T_e7c30_row2_col1,#T_e7c30_row2_col2,#T_e7c30_row2_col3,#T_e7c30_row2_col4,#T_e7c30_row3_col0,#T_e7c30_row3_col1,#T_e7c30_row3_col2,#T_e7c30_row3_col3,#T_e7c30_row3_col4,#T_e7c30_row4_col0,#T_e7c30_row4_col1,#T_e7c30_row4_col2,#T_e7c30_row4_col3,#T_e7c30_row4_col4,#T_e7c30_row5_col0,#T_e7c30_row5_col1,#T_e7c30_row5_col2,#T_e7c30_row5_col3,#T_e7c30_row5_col4,#T_e7c30_row6_col0,#T_e7c30_row6_col1,#T_e7c30_row6_col2,#T_e7c30_row6_col3,#T_e7c30_row6_col4{
+    }#T_593a7_row0_col0,#T_593a7_row0_col1,#T_593a7_row0_col2,#T_593a7_row0_col3,#T_593a7_row0_col4,#T_593a7_row1_col0,#T_593a7_row1_col1,#T_593a7_row1_col2,#T_593a7_row1_col3,#T_593a7_row1_col4,#T_593a7_row2_col0,#T_593a7_row2_col1,#T_593a7_row2_col2,#T_593a7_row2_col3,#T_593a7_row2_col4,#T_593a7_row3_col0,#T_593a7_row3_col1,#T_593a7_row3_col2,#T_593a7_row3_col3,#T_593a7_row3_col4,#T_593a7_row4_col0,#T_593a7_row4_col1,#T_593a7_row4_col2,#T_593a7_row4_col3,#T_593a7_row4_col4,#T_593a7_row5_col0,#T_593a7_row5_col1,#T_593a7_row5_col2,#T_593a7_row5_col3,#T_593a7_row5_col4{
             font-family: monospace;
-        }</style><table id="T_e7c30_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >Value</th>        <th class="col_heading level0 col1" >Std Err</th>        <th class="col_heading level0 col2" >t Stat</th>        <th class="col_heading level0 col3" >Signif</th>        <th class="col_heading level0 col4" >Null Value</th>        <th class="col_heading level0 col5" >Constrained</th>    </tr></thead><tbody>
+        }</style><table id="T_593a7_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >Value</th>        <th class="col_heading level0 col1" >Std Err</th>        <th class="col_heading level0 col2" >t Stat</th>        <th class="col_heading level0 col3" >Signif</th>        <th class="col_heading level0 col4" >Null Value</th>    </tr></thead><tbody>
                 <tr>
-                        <th id="T_e7c30_level0_row0" class="row_heading level0 row0" >EmpNonRetail_HighInc</th>
-                        <td id="T_e7c30_row0_col0" class="data row0 col0" > 1.36</td>
-                        <td id="T_e7c30_row0_col1" class="data row0 col1" > 0.256</td>
-                        <td id="T_e7c30_row0_col2" class="data row0 col2" > 5.32</td>
-                        <td id="T_e7c30_row0_col3" class="data row0 col3" >***</td>
-                        <td id="T_e7c30_row0_col4" class="data row0 col4" > 0.00</td>
-                        <td id="T_e7c30_row0_col5" class="data row0 col5" ></td>
+                        <th id="T_593a7_level0_row0" class="row_heading level0 row0" >EmpNonRetail_HighInc</th>
+                        <td id="T_593a7_row0_col0" class="data row0 col0" > 0.854</td>
+                        <td id="T_593a7_row0_col1" class="data row0 col1" > 0.137</td>
+                        <td id="T_593a7_row0_col2" class="data row0 col2" > 6.22</td>
+                        <td id="T_593a7_row0_col3" class="data row0 col3" >***</td>
+                        <td id="T_593a7_row0_col4" class="data row0 col4" > 0.00</td>
             </tr>
             <tr>
-                        <th id="T_e7c30_level0_row1" class="row_heading level0 row1" >EmpNonRetail_LowInc</th>
-                        <td id="T_e7c30_row1_col0" class="data row1 col0" >-0.881</td>
-                        <td id="T_e7c30_row1_col1" class="data row1 col1" > 0.0791</td>
-                        <td id="T_e7c30_row1_col2" class="data row1 col2" >-11.14</td>
-                        <td id="T_e7c30_row1_col3" class="data row1 col3" >***</td>
-                        <td id="T_e7c30_row1_col4" class="data row1 col4" > 0.00</td>
-                        <td id="T_e7c30_row1_col5" class="data row1 col5" ></td>
+                        <th id="T_593a7_level0_row1" class="row_heading level0 row1" >EmpNonRetail_LowInc</th>
+                        <td id="T_593a7_row1_col0" class="data row1 col0" >-0.756</td>
+                        <td id="T_593a7_row1_col1" class="data row1 col1" > 0.0615</td>
+                        <td id="T_593a7_row1_col2" class="data row1 col2" >-12.30</td>
+                        <td id="T_593a7_row1_col3" class="data row1 col3" >***</td>
+                        <td id="T_593a7_row1_col4" class="data row1 col4" > 0.00</td>
             </tr>
             <tr>
-                        <th id="T_e7c30_level0_row2" class="row_heading level0 row2" >EmpRetail_HighInc</th>
-                        <td id="T_e7c30_row2_col0" class="data row2 col0" > 0.00</td>
-                        <td id="T_e7c30_row2_col1" class="data row2 col1" > NA</td>
-                        <td id="T_e7c30_row2_col2" class="data row2 col2" > NA</td>
-                        <td id="T_e7c30_row2_col3" class="data row2 col3" ></td>
-                        <td id="T_e7c30_row2_col4" class="data row2 col4" > 0.00</td>
-                        <td id="T_e7c30_row2_col5" class="data row2 col5" >fixed value</td>
+                        <th id="T_593a7_level0_row2" class="row_heading level0 row2" >EmpRetail_HighInc</th>
+                        <td id="T_593a7_row2_col0" class="data row2 col0" > 0.00</td>
+                        <td id="T_593a7_row2_col1" class="data row2 col1" > 0.00</td>
+                        <td id="T_593a7_row2_col2" class="data row2 col2" > NA</td>
+                        <td id="T_593a7_row2_col3" class="data row2 col3" ></td>
+                        <td id="T_593a7_row2_col4" class="data row2 col4" > 0.00</td>
             </tr>
             <tr>
-                        <th id="T_e7c30_level0_row3" class="row_heading level0 row3" >EmpRetail_LowInc</th>
-                        <td id="T_e7c30_row3_col0" class="data row3 col0" > 0.00</td>
-                        <td id="T_e7c30_row3_col1" class="data row3 col1" > NA</td>
-                        <td id="T_e7c30_row3_col2" class="data row3 col2" > NA</td>
-                        <td id="T_e7c30_row3_col3" class="data row3 col3" ></td>
-                        <td id="T_e7c30_row3_col4" class="data row3 col4" > 0.00</td>
-                        <td id="T_e7c30_row3_col5" class="data row3 col5" >fixed value</td>
+                        <th id="T_593a7_level0_row3" class="row_heading level0 row3" >EmpRetail_LowInc</th>
+                        <td id="T_593a7_row3_col0" class="data row3 col0" > 0.00</td>
+                        <td id="T_593a7_row3_col1" class="data row3 col1" > 0.00</td>
+                        <td id="T_593a7_row3_col2" class="data row3 col2" > NA</td>
+                        <td id="T_593a7_row3_col3" class="data row3 col3" ></td>
+                        <td id="T_593a7_row3_col4" class="data row3 col4" > 0.00</td>
             </tr>
             <tr>
-                        <th id="T_e7c30_level0_row4" class="row_heading level0 row4" >Theta</th>
-                        <td id="T_e7c30_row4_col0" class="data row4 col0" > 0.749</td>
-                        <td id="T_e7c30_row4_col1" class="data row4 col1" > 0.0152</td>
-                        <td id="T_e7c30_row4_col2" class="data row4 col2" >-16.45</td>
-                        <td id="T_e7c30_row4_col3" class="data row4 col3" >***</td>
-                        <td id="T_e7c30_row4_col4" class="data row4 col4" > 1.00</td>
-                        <td id="T_e7c30_row4_col5" class="data row4 col5" ></td>
+                        <th id="T_593a7_level0_row4" class="row_heading level0 row4" >distance</th>
+                        <td id="T_593a7_row4_col0" class="data row4 col0" >-0.0594</td>
+                        <td id="T_593a7_row4_col1" class="data row4 col1" > 0.0107</td>
+                        <td id="T_593a7_row4_col2" class="data row4 col2" >-5.57</td>
+                        <td id="T_593a7_row4_col3" class="data row4 col3" >***</td>
+                        <td id="T_593a7_row4_col4" class="data row4 col4" > 0.00</td>
             </tr>
             <tr>
-                        <th id="T_e7c30_level0_row5" class="row_heading level0 row5" >distance</th>
-                        <td id="T_e7c30_row5_col0" class="data row5 col0" >-0.0418</td>
-                        <td id="T_e7c30_row5_col1" class="data row5 col1" > 0.0107</td>
-                        <td id="T_e7c30_row5_col2" class="data row5 col2" >-3.90</td>
-                        <td id="T_e7c30_row5_col3" class="data row5 col3" >***</td>
-                        <td id="T_e7c30_row5_col4" class="data row5 col4" > 0.00</td>
-                        <td id="T_e7c30_row5_col5" class="data row5 col5" ></td>
-            </tr>
-            <tr>
-                        <th id="T_e7c30_level0_row6" class="row_heading level0 row6" >logsum</th>
-                        <td id="T_e7c30_row6_col0" class="data row6 col0" > 1.02</td>
-                        <td id="T_e7c30_row6_col1" class="data row6 col1" > 0.0317</td>
-                        <td id="T_e7c30_row6_col2" class="data row6 col2" > 32.16</td>
-                        <td id="T_e7c30_row6_col3" class="data row6 col3" >***</td>
-                        <td id="T_e7c30_row6_col4" class="data row6 col4" > 0.00</td>
-                        <td id="T_e7c30_row6_col5" class="data row6 col5" ></td>
+                        <th id="T_593a7_level0_row5" class="row_heading level0 row5" >logsum</th>
+                        <td id="T_593a7_row5_col0" class="data row5 col0" > 1.08</td>
+                        <td id="T_593a7_row5_col1" class="data row5 col1" > 0.0316</td>
+                        <td id="T_593a7_row5_col2" class="data row5 col2" > 34.22</td>
+                        <td id="T_593a7_row5_col3" class="data row5 col3" >***</td>
+                        <td id="T_593a7_row5_col4" class="data row5 col4" > 0.00</td>
             </tr>
     </tbody></table></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">estimation_statistics</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">estimation_statistics</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
-<div><table><thead><tr><th>Statistic</th><th>Aggregate</th><th>Per Case</th></tr><tr><td>Number of Cases</td><td colspan="2">7564</td></tr><tr><td>Log Likelihood at Convergence</td><td>-25157.73</td><td>-3.33</td></tr><tr><td>Log Likelihood at Null Parameters</td><td>-28238.34</td><td>-3.73</td></tr><tr><td>Rho Squared w.r.t. Null Parameters</td><td colspan="2">0.109</td></tr></thead><tbody></tbody></table></div></div>
+<div><table><thead><tr><th>Statistic</th><th>Aggregate</th><th>Per Case</th></tr><tr><td>Number of Cases</td><td colspan="2">7564</td></tr><tr><td>Log Likelihood at Convergence</td><td>-25287.53</td><td>-3.34</td></tr><tr><td>Log Likelihood at Null Parameters</td><td>-28238.34</td><td>-3.73</td></tr><tr><td>Rho Squared w.r.t. Null Parameters</td><td colspan="2">0.104</td></tr></thead><tbody></tbody></table></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">utility_functions</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">utility_functions</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
-<div><table class="floatinghead" style="margin-top:1px;"><tr><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.logsum</span> * <span class="LinearFunc_Data">X.logsum</span><br> + <span class="LinearFunc_Param">P.distance</span> * <span class="LinearFunc_Data">X.distance</span><br> + <span class="Larch_Parameter">P.Theta</span> * log(<br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_HighInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP * (INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_HighInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_LowInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP*(INCOME&lt;=50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_LowInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&lt;=50000)')</span><br>)</td></tr></table></div></div>
+<div><table class="floatinghead" style="margin-top:1px;"><tr><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.logsum</span> * <span class="LinearFunc_Data">X.logsum</span><br> + <span class="LinearFunc_Param">P.distance</span> * <span class="LinearFunc_Data">X.distance</span><br> + log(<br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_HighInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP * (INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_HighInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_LowInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP*(INCOME&lt;=50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_LowInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&lt;=50000)')</span><br>)</td></tr></table></div></div>
 </div>
 </div>
 <div class="section" id="Model-Visualization">
 <h2>Model Visualization<a class="headerlink" href="#Model-Visualization" title="Permalink to this headline">¶</a></h2>
 <p>For destination choice and similar type models, it might be beneficial to review the observed and modeled choices, and the relative distribution of these choices across different factors. For example, we would probably want to see the distribution of travel distance. The <code class="docutils literal notranslate"><span class="pre">Model</span></code> object includes a built-in method to create this kind of visualization.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1453,11 +1428,10 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 <li><p><span class="math notranslate nohighlight">\(PO_T\)</span> is the proportion of observed distribution in interval <span class="math notranslate nohighlight">\(T\)</span></p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">data_ca</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">dataframes</span><span class="o">.</span><span class="n">data_ca</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span>
 
 <span class="n">y1</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
     <span class="n">x</span><span class="p">,</span>
@@ -1476,40 +1450,38 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">coincidence_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coincidence_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">coincidence_ratio</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.9571462824426119
+0.9498246358767998
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Other-Distributions">
 <h3>Other Distributions<a class="headerlink" href="#Other-Distributions" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
     <span class="n">m</span><span class="o">.</span><span class="n">dataservice</span><span class="o">.</span><span class="n">data_ca</span><span class="o">.</span><span class="n">TAZ_AREA_TYPE</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1526,16 +1498,15 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">distribution_on_idca_variable</span></code> has a variety of options, for example to control the number and range of the histogram bins:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span><span class="s1">&#39;distance&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1552,11 +1523,10 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 <p>Alternatively, the histogram style can be swapped out for a smoothed <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_density_estimation">kernel density function</a>, by setting the <code class="docutils literal notranslate"><span class="pre">style</span></code> argument to <code class="docutils literal notranslate"><span class="pre">'kde'</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
     <span class="s1">&#39;distance&#39;</span><span class="p">,</span>
     <span class="n">style</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">,</span>
     <span class="nb">range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">),</span>
@@ -1565,7 +1535,7 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1582,11 +1552,10 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 <p>Subsets of the observations can be pulled out, to observe the distribution conditional on other <em>idco</em> factors, like income.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
     <span class="s1">&#39;distance&#39;</span><span class="p">,</span>
     <span class="n">subselector</span><span class="o">=</span><span class="s1">&#39;INCOME&lt;10000&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1594,7 +1563,7 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1611,11 +1580,10 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 <p>It is also possible to customize some cosmetic parts of the generated figure, for example attaching a title or giving a more detailed and well formatted label for the x-axis.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">distribution_on_idca_variable</span><span class="p">(</span>
     <span class="s1">&#39;distance&#39;</span><span class="p">,</span>
     <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Distance (miles)&quot;</span><span class="p">,</span>
     <span class="n">bins</span><span class="o">=</span><span class="mi">26</span><span class="p">,</span>
@@ -1627,7 +1595,7 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1644,11 +1612,10 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 <p>Alternatively, a <code class="docutils literal notranslate"><span class="pre">matplotlib.Axes</span></code> instance can be passed to the <code class="docutils literal notranslate"><span class="pre">distribution_on_idca_variable</span></code> function as the <code class="docutils literal notranslate"><span class="pre">ax</span></code> argument, and the figure will be drawn there. This allows full customizability of the rest of the figure using the usual matplotlib features.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 
 <span class="n">income_categories</span> <span class="o">=</span> <span class="p">{</span>
@@ -1681,149 +1648,129 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 <h2>Save and Report Model<a class="headerlink" href="#Save-and-Report-Model" title="Permalink to this headline">¶</a></h2>
 <p>If we are satisified with this model, or if we just want to record it as part of our workflow while exploring different model structures, we can write the model out to a report. To do so, we can instantiatie a <code class="docutils literal notranslate"><span class="pre">larch.Reporter</span></code> object.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">report</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Reporter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span> <span class="o">=</span> <span class="n">larch</span><span class="o">.</span><span class="n">Reporter</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>Then, we can push section headings and report pieces into the report using the “&lt;&lt;” operator.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;# Parameter Summary&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;# Parameter Summary&#39;</span><span class="p">)</span>
 <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">parameter_summary</span><span class="p">())</span>
 <span class="n">report</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
 <h1><a name="rx1" reftxt="Parameter Summary" class="toc" toclevel="1"></a>Parameter Summary</h1><div><style type="text/css">
-    #T_3575d_ th {
+    #T_8961c_ th {
           vertical-align: top;
           text-align: left;
-    }    #T_3575d_ td {
+    }    #T_8961c_ td {
           vertical-align: top;
           text-align: left;
-    }#T_3575d_row0_col0,#T_3575d_row0_col1,#T_3575d_row0_col2,#T_3575d_row0_col3,#T_3575d_row0_col4,#T_3575d_row1_col0,#T_3575d_row1_col1,#T_3575d_row1_col2,#T_3575d_row1_col3,#T_3575d_row1_col4,#T_3575d_row2_col0,#T_3575d_row2_col1,#T_3575d_row2_col2,#T_3575d_row2_col3,#T_3575d_row2_col4,#T_3575d_row3_col0,#T_3575d_row3_col1,#T_3575d_row3_col2,#T_3575d_row3_col3,#T_3575d_row3_col4,#T_3575d_row4_col0,#T_3575d_row4_col1,#T_3575d_row4_col2,#T_3575d_row4_col3,#T_3575d_row4_col4,#T_3575d_row5_col0,#T_3575d_row5_col1,#T_3575d_row5_col2,#T_3575d_row5_col3,#T_3575d_row5_col4,#T_3575d_row6_col0,#T_3575d_row6_col1,#T_3575d_row6_col2,#T_3575d_row6_col3,#T_3575d_row6_col4{
+    }#T_8961c_row0_col0,#T_8961c_row0_col1,#T_8961c_row0_col2,#T_8961c_row0_col3,#T_8961c_row0_col4,#T_8961c_row1_col0,#T_8961c_row1_col1,#T_8961c_row1_col2,#T_8961c_row1_col3,#T_8961c_row1_col4,#T_8961c_row2_col0,#T_8961c_row2_col1,#T_8961c_row2_col2,#T_8961c_row2_col3,#T_8961c_row2_col4,#T_8961c_row3_col0,#T_8961c_row3_col1,#T_8961c_row3_col2,#T_8961c_row3_col3,#T_8961c_row3_col4,#T_8961c_row4_col0,#T_8961c_row4_col1,#T_8961c_row4_col2,#T_8961c_row4_col3,#T_8961c_row4_col4,#T_8961c_row5_col0,#T_8961c_row5_col1,#T_8961c_row5_col2,#T_8961c_row5_col3,#T_8961c_row5_col4{
             font-family: monospace;
-        }</style><table id="T_3575d_"><thead>    <tr>        <th class="blank level0"></th>        <th class="col_heading level0 col0">Value</th>        <th class="col_heading level0 col1">Std Err</th>        <th class="col_heading level0 col2">t Stat</th>        <th class="col_heading level0 col3">Signif</th>        <th class="col_heading level0 col4">Null Value</th>        <th class="col_heading level0 col5">Constrained</th>    </tr></thead><tbody>
+        }</style><table id="T_8961c_"><thead>    <tr>        <th class="blank level0"></th>        <th class="col_heading level0 col0">Value</th>        <th class="col_heading level0 col1">Std Err</th>        <th class="col_heading level0 col2">t Stat</th>        <th class="col_heading level0 col3">Signif</th>        <th class="col_heading level0 col4">Null Value</th>    </tr></thead><tbody>
                 <tr>
-                        <th id="T_3575d_level0_row0" class="row_heading level0 row0">EmpNonRetail_HighInc</th>
-                        <td id="T_3575d_row0_col0" class="data row0 col0"> 1.36</td>
-                        <td id="T_3575d_row0_col1" class="data row0 col1"> 0.256</td>
-                        <td id="T_3575d_row0_col2" class="data row0 col2"> 5.32</td>
-                        <td id="T_3575d_row0_col3" class="data row0 col3">***</td>
-                        <td id="T_3575d_row0_col4" class="data row0 col4"> 0.00</td>
-                        <td id="T_3575d_row0_col5" class="data row0 col5"></td>
+                        <th id="T_8961c_level0_row0" class="row_heading level0 row0">EmpNonRetail_HighInc</th>
+                        <td id="T_8961c_row0_col0" class="data row0 col0"> 0.854</td>
+                        <td id="T_8961c_row0_col1" class="data row0 col1"> 0.137</td>
+                        <td id="T_8961c_row0_col2" class="data row0 col2"> 6.22</td>
+                        <td id="T_8961c_row0_col3" class="data row0 col3">***</td>
+                        <td id="T_8961c_row0_col4" class="data row0 col4"> 0.00</td>
             </tr>
             <tr>
-                        <th id="T_3575d_level0_row1" class="row_heading level0 row1">EmpNonRetail_LowInc</th>
-                        <td id="T_3575d_row1_col0" class="data row1 col0">-0.881</td>
-                        <td id="T_3575d_row1_col1" class="data row1 col1"> 0.0791</td>
-                        <td id="T_3575d_row1_col2" class="data row1 col2">-11.14</td>
-                        <td id="T_3575d_row1_col3" class="data row1 col3">***</td>
-                        <td id="T_3575d_row1_col4" class="data row1 col4"> 0.00</td>
-                        <td id="T_3575d_row1_col5" class="data row1 col5"></td>
+                        <th id="T_8961c_level0_row1" class="row_heading level0 row1">EmpNonRetail_LowInc</th>
+                        <td id="T_8961c_row1_col0" class="data row1 col0">-0.756</td>
+                        <td id="T_8961c_row1_col1" class="data row1 col1"> 0.0615</td>
+                        <td id="T_8961c_row1_col2" class="data row1 col2">-12.30</td>
+                        <td id="T_8961c_row1_col3" class="data row1 col3">***</td>
+                        <td id="T_8961c_row1_col4" class="data row1 col4"> 0.00</td>
             </tr>
             <tr>
-                        <th id="T_3575d_level0_row2" class="row_heading level0 row2">EmpRetail_HighInc</th>
-                        <td id="T_3575d_row2_col0" class="data row2 col0"> 0.00</td>
-                        <td id="T_3575d_row2_col1" class="data row2 col1"> NA</td>
-                        <td id="T_3575d_row2_col2" class="data row2 col2"> NA</td>
-                        <td id="T_3575d_row2_col3" class="data row2 col3"></td>
-                        <td id="T_3575d_row2_col4" class="data row2 col4"> 0.00</td>
-                        <td id="T_3575d_row2_col5" class="data row2 col5">fixed value</td>
+                        <th id="T_8961c_level0_row2" class="row_heading level0 row2">EmpRetail_HighInc</th>
+                        <td id="T_8961c_row2_col0" class="data row2 col0"> 0.00</td>
+                        <td id="T_8961c_row2_col1" class="data row2 col1"> 0.00</td>
+                        <td id="T_8961c_row2_col2" class="data row2 col2"> NA</td>
+                        <td id="T_8961c_row2_col3" class="data row2 col3"></td>
+                        <td id="T_8961c_row2_col4" class="data row2 col4"> 0.00</td>
             </tr>
             <tr>
-                        <th id="T_3575d_level0_row3" class="row_heading level0 row3">EmpRetail_LowInc</th>
-                        <td id="T_3575d_row3_col0" class="data row3 col0"> 0.00</td>
-                        <td id="T_3575d_row3_col1" class="data row3 col1"> NA</td>
-                        <td id="T_3575d_row3_col2" class="data row3 col2"> NA</td>
-                        <td id="T_3575d_row3_col3" class="data row3 col3"></td>
-                        <td id="T_3575d_row3_col4" class="data row3 col4"> 0.00</td>
-                        <td id="T_3575d_row3_col5" class="data row3 col5">fixed value</td>
+                        <th id="T_8961c_level0_row3" class="row_heading level0 row3">EmpRetail_LowInc</th>
+                        <td id="T_8961c_row3_col0" class="data row3 col0"> 0.00</td>
+                        <td id="T_8961c_row3_col1" class="data row3 col1"> 0.00</td>
+                        <td id="T_8961c_row3_col2" class="data row3 col2"> NA</td>
+                        <td id="T_8961c_row3_col3" class="data row3 col3"></td>
+                        <td id="T_8961c_row3_col4" class="data row3 col4"> 0.00</td>
             </tr>
             <tr>
-                        <th id="T_3575d_level0_row4" class="row_heading level0 row4">Theta</th>
-                        <td id="T_3575d_row4_col0" class="data row4 col0"> 0.749</td>
-                        <td id="T_3575d_row4_col1" class="data row4 col1"> 0.0152</td>
-                        <td id="T_3575d_row4_col2" class="data row4 col2">-16.45</td>
-                        <td id="T_3575d_row4_col3" class="data row4 col3">***</td>
-                        <td id="T_3575d_row4_col4" class="data row4 col4"> 1.00</td>
-                        <td id="T_3575d_row4_col5" class="data row4 col5"></td>
+                        <th id="T_8961c_level0_row4" class="row_heading level0 row4">distance</th>
+                        <td id="T_8961c_row4_col0" class="data row4 col0">-0.0594</td>
+                        <td id="T_8961c_row4_col1" class="data row4 col1"> 0.0107</td>
+                        <td id="T_8961c_row4_col2" class="data row4 col2">-5.57</td>
+                        <td id="T_8961c_row4_col3" class="data row4 col3">***</td>
+                        <td id="T_8961c_row4_col4" class="data row4 col4"> 0.00</td>
             </tr>
             <tr>
-                        <th id="T_3575d_level0_row5" class="row_heading level0 row5">distance</th>
-                        <td id="T_3575d_row5_col0" class="data row5 col0">-0.0418</td>
-                        <td id="T_3575d_row5_col1" class="data row5 col1"> 0.0107</td>
-                        <td id="T_3575d_row5_col2" class="data row5 col2">-3.90</td>
-                        <td id="T_3575d_row5_col3" class="data row5 col3">***</td>
-                        <td id="T_3575d_row5_col4" class="data row5 col4"> 0.00</td>
-                        <td id="T_3575d_row5_col5" class="data row5 col5"></td>
-            </tr>
-            <tr>
-                        <th id="T_3575d_level0_row6" class="row_heading level0 row6">logsum</th>
-                        <td id="T_3575d_row6_col0" class="data row6 col0"> 1.02</td>
-                        <td id="T_3575d_row6_col1" class="data row6 col1"> 0.0317</td>
-                        <td id="T_3575d_row6_col2" class="data row6 col2"> 32.16</td>
-                        <td id="T_3575d_row6_col3" class="data row6 col3">***</td>
-                        <td id="T_3575d_row6_col4" class="data row6 col4"> 0.00</td>
-                        <td id="T_3575d_row6_col5" class="data row6 col5"></td>
+                        <th id="T_8961c_level0_row5" class="row_heading level0 row5">logsum</th>
+                        <td id="T_8961c_row5_col0" class="data row5 col0"> 1.08</td>
+                        <td id="T_8961c_row5_col1" class="data row5 col1"> 0.0316</td>
+                        <td id="T_8961c_row5_col2" class="data row5 col2"> 34.22</td>
+                        <td id="T_8961c_row5_col3" class="data row5 col3">***</td>
+                        <td id="T_8961c_row5_col4" class="data row5 col4"> 0.00</td>
             </tr>
     </tbody></table></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Estimation Statistics&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Estimation Statistics&quot;</span><span class="p">)</span>
 <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">estimation_statistics</span><span class="p">())</span>
 <span class="n">report</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
-<h1><a name="rx2" reftxt="Estimation Statistics" class="toc" toclevel="1"></a>Estimation Statistics</h1><div><table><thead><tr><th>Statistic</th><th>Aggregate</th><th>Per Case</th></tr><tr><td>Number of Cases</td><td colspan="2">7564</td></tr><tr><td>Log Likelihood at Convergence</td><td>-25157.73</td><td>-3.33</td></tr><tr><td>Log Likelihood at Null Parameters</td><td>-28238.34</td><td>-3.73</td></tr><tr><td>Rho Squared w.r.t. Null Parameters</td><td colspan="2">0.109</td></tr></thead><tbody></tbody></table></div></div>
+<h1><a name="rx2" reftxt="Estimation Statistics" class="toc" toclevel="1"></a>Estimation Statistics</h1><div><table><thead><tr><th>Statistic</th><th>Aggregate</th><th>Per Case</th></tr><tr><td>Number of Cases</td><td colspan="2">7564</td></tr><tr><td>Log Likelihood at Convergence</td><td>-25287.53</td><td>-3.34</td></tr><tr><td>Log Likelihood at Null Parameters</td><td>-28238.34</td><td>-3.73</td></tr><tr><td>Rho Squared w.r.t. Null Parameters</td><td colspan="2">0.104</td></tr></thead><tbody></tbody></table></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Utility Functions&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;# Utility Functions&quot;</span><span class="p">)</span>
 <span class="n">report</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">utility_functions</span><span class="p">())</span>
 <span class="n">report</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
-<h1><a name="rx3" reftxt="Utility Functions" class="toc" toclevel="1"></a>Utility Functions</h1><div><table class="floatinghead" style="margin-top:1px;"><tr><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.logsum</span> * <span class="LinearFunc_Data">X.logsum</span><br> + <span class="LinearFunc_Param">P.distance</span> * <span class="LinearFunc_Data">X.distance</span><br> + <span class="Larch_Parameter">P.Theta</span> * log(<br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_HighInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP * (INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_HighInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_LowInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP*(INCOME&lt;=50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_LowInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&lt;=50000)')</span><br>)</td></tr></table></div></div>
+<h1><a name="rx3" reftxt="Utility Functions" class="toc" toclevel="1"></a>Utility Functions</h1><div><table class="floatinghead" style="margin-top:1px;"><tr><td style="text-align:left;"><div></div> + <span class="LinearFunc_Param">P.logsum</span> * <span class="LinearFunc_Data">X.logsum</span><br> + <span class="LinearFunc_Param">P.distance</span> * <span class="LinearFunc_Data">X.distance</span><br> + log(<br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_HighInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP * (INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_HighInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&gt;50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpRetail_LowInc</span>) * <span class="LinearFunc_Data">X('RETAIL_EMP*(INCOME&lt;=50000)')</span><br>   + <span></span>exp(<span class="LinearFunc_Param">P.EmpNonRetail_LowInc</span>) * <span class="LinearFunc_Data">X('NONRETAIL_EMP*(INCOME&lt;=50000)')</span><br>)</td></tr></table></div></div>
 </div>
 <p>Once we have assembled the report, we can save the file to disk as an HTML report containing the content previously assembled. Attaching the model itself to the report as metadata can be done within the <code class="docutils literal notranslate"><span class="pre">save</span></code> method, which will allow us to directly reload the same model again later.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">report</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">report</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
     <span class="s1">&#39;/tmp/exampville_destination_choice.html&#39;</span><span class="p">,</span>
     <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">metadata</span><span class="o">=</span><span class="n">m</span><span class="p">,</span>
@@ -1832,7 +1779,7 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1848,16 +1795,10 @@ coincidence ratio measures the percent of area that “coincides” for the two 
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../exercises/_index.html" class="btn btn-neutral float-right" title="Exercises" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="102_exville_mc_logsums.html" class="btn btn-neutral float-left" title="Exampville Mode Choice Logsums" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../exercises/_index.html" class="btn btn-neutral float-right" title="Exercises" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="102_exville_mc_logsums.html" class="btn btn-neutral float-left" title="Exampville Mode Choice Logsums" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -1866,10 +1807,16 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -1877,7 +1824,6 @@ coincidence ratio measures the percent of area that “coincides” for the two 
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

@@ -1,42 +1,48 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Accessing OpenStreetMap Data &mdash; Python for Transportation 1.1.0, April 2020 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Creating Static Maps" href="static-maps.html" />
@@ -81,6 +87,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -115,6 +122,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -149,11 +157,13 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="_index.html">Geographic Analysis</a> &raquo;</li>
         
@@ -162,7 +172,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/course-content/geographic-analysis/accessing-openstreetmap.ipynb.txt" rel="nofollow"> View page source</a>
           
         
@@ -181,21 +191,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -242,20 +266,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 5ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -283,7 +320,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -348,7 +385,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -358,7 +396,7 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
@@ -418,25 +456,32 @@ div.rendered_html tbody tr:hover {
     text-align: unset;
 }
 </style>
+<div class="section" id="Accessing-OpenStreetMap-Data">
+<h1>Accessing OpenStreetMap Data<a class="headerlink" href="#Accessing-OpenStreetMap-Data" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/jpn--/python-for-transportation-modeling/blob/master/course-content/geographic-analysis/accessing-openstreetmap.ipynb"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python -m pip install <span class="s2">&quot;git+https://github.com/jpn--/python-for-transportation-modeling.git#egg=transportation-tutorials&amp;subdirectory=example-package&quot;</span>
+</pre></div>
+</div>
+</div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">transportation_tutorials</span> <span class="k">as</span> <span class="nn">tt</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="Accessing-OpenStreetMap-Data">
-<h1>Accessing OpenStreetMap Data<a class="headerlink" href="#Accessing-OpenStreetMap-Data" title="Permalink to this headline">¶</a></h1>
 <p>There are a variety of publicly available geographic data sources which can be tapped to support various transportation service analysis.</p>
 <p>One popular resource is <a class="reference external" href="https://www.openstreetmap.org">OpenStreetMap</a>, which is a public, community supported geographic data service, which provides data on transportation infrastructure and a variety of other geographic data. Much of this data can be accessed easily from Python using the open source OSMnx package, which loads data into GeoPandas and/or NetworkX formats.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">osmnx</span> <span class="k">as</span> <span class="nn">ox</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -450,17 +495,25 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">city</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">geocode_to_gdf</span><span class="p">(</span><span class="s1">&#39;Jupiter, Florida, USA&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">geocode_to_gdf</span><span class="p">(</span><span class="s1">&#39;Jupiter, Florida, USA&#39;</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/jeffnewman/opt/anaconda3/envs/spring22/lib/python3.9/site-packages/osmnx/geocoder.py:110: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  gdf = gdf.append(_geocode_query_to_gdf(q, wr, by_osmid))
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_6_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_6_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_7_1.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_7_1.png" />
 </div>
 </div>
 <p>That’s roughly the shape of the town. We can compare against the town’s own boundary file, which they conveniently publish online as well as a zipped shapefile.</p>
@@ -468,8 +521,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">official_shp</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">download_zipfile</span><span class="p">(</span><span class="s2">&quot;http://www.jupiter.fl.us/DocumentCenter/View/10297&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">official_shp</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">download_zipfile</span><span class="p">(</span><span class="s2">&quot;http://www.jupiter.fl.us/DocumentCenter/View/10297&quot;</span><span class="p">)</span>
 <span class="n">city_official</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">official_shp</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city_official</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -479,7 +531,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_8_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_8_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_9_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_9_0.png" />
 </div>
 </div>
 <p>Well that’s pretty close, although they are a bit different. The data on open street map is commmunity maintained and the quality of the data is… uneven. But it’s free and portable, so may be useful for certain contexts.</p>
@@ -488,8 +540,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">city_official</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">city_official</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -498,7 +549,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_10_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_10_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_11_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_11_0.png" />
 </div>
 </div>
 <p>Fortunately, it’s easy to check which coordinate reference system (<em>crs</em>) is used for each GeoDataFrame, by accessing the <a class="reference external" href="http://geopandas.org/projections.html#coordinate-reference-systems">crs</a> attribute.</p>
@@ -506,8 +557,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">city</span><span class="o">.</span><span class="n">crs</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 </div>
 </div>
@@ -523,9 +573,9 @@ Axis Info [ellipsoidal]:
 - Lat[north]: Geodetic latitude (degree)
 - Lon[east]: Geodetic longitude (degree)
 Area of Use:
-- name: World
+- name: World.
 - bounds: (-180.0, -90.0, 180.0, 90.0)
-Datum: World Geodetic System 1984
+Datum: World Geodetic System 1984 ensemble
 - Ellipsoid: WGS 84
 - Prime Meridian: Greenwich
 </pre></div></div>
@@ -534,8 +584,7 @@ Datum: World Geodetic System 1984
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">city_official</span><span class="o">.</span><span class="n">crs</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city_official</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 </div>
 </div>
@@ -545,7 +594,7 @@ Datum: World Geodetic System 1984
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;Projected CRS: PROJCS[&#34;NAD83(HARN) / Florida East (ftUS)&#34;,GEOGCS[ ...&gt;
+&lt;Derived Projected CRS: PROJCS[&#34;NAD83(HARN) / Florida East (ftUS)&#34;,GEOGCS[ ...&gt;
 Name: NAD83(HARN) / Florida East (ftUS)
 Axis Info [cartesian]:
 - [east]: Easting (US survey foot)
@@ -565,8 +614,7 @@ Datum: NAD83 (High Accuracy Reference Network)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">city</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">2881</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">city_official</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -575,8 +623,7 @@ Datum: NAD83 (High Accuracy Reference Network)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">city</span><span class="o">.</span><span class="n">crs</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 </div>
 </div>
@@ -586,16 +633,15 @@ Datum: NAD83 (High Accuracy Reference Network)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;Projected CRS: EPSG:2881&gt;
+&lt;Derived Projected CRS: PROJCS[&#34;NAD83(HARN) / Florida East (ftUS)&#34;,GEOGCS[ ...&gt;
 Name: NAD83(HARN) / Florida East (ftUS)
 Axis Info [cartesian]:
-- X[east]: Easting (US survey foot)
-- Y[north]: Northing (US survey foot)
+- [east]: Easting (US survey foot)
+- [north]: Northing (US survey foot)
 Area of Use:
-- name: USA - Florida - SPCS - E
-- bounds: (-82.33, 24.41, -79.97, 30.83)
+- undefined
 Coordinate Operation:
-- name: SPCS83 Florida East zone (US Survey feet)
+- name: unnamed
 - method: Transverse Mercator
 Datum: NAD83 (High Accuracy Reference Network)
 - Ellipsoid: GRS 1980
@@ -606,8 +652,7 @@ Datum: NAD83 (High Accuracy Reference Network)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">city_official</span><span class="o">.</span><span class="n">crs</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">city_official</span><span class="o">.</span><span class="n">crs</span>
 </pre></div>
 </div>
 </div>
@@ -617,7 +662,7 @@ Datum: NAD83 (High Accuracy Reference Network)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;Projected CRS: PROJCS[&#34;NAD83(HARN) / Florida East (ftUS)&#34;,GEOGCS[ ...&gt;
+&lt;Derived Projected CRS: PROJCS[&#34;NAD83(HARN) / Florida East (ftUS)&#34;,GEOGCS[ ...&gt;
 Name: NAD83(HARN) / Florida East (ftUS)
 Axis Info [cartesian]:
 - [east]: Easting (US survey foot)
@@ -637,8 +682,7 @@ Datum: NAD83 (High Accuracy Reference Network)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">transparent</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transparent</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city_official</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">)</span>
 </pre></div>
@@ -648,61 +692,56 @@ Datum: NAD83 (High Accuracy Reference Network)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_20_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_20_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_21_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_21_0.png" />
 </div>
 </div>
-<p>Adding a basemap using the tool provided with the tutorials package can help give some context to the differences.</p>
+<p>Adding a basemap using the <code class="docutils literal notranslate"><span class="pre">contextily</span></code> library can help give some context to the differences.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">city_official</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">contextily</span> <span class="k">as</span> <span class="nn">ctx</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">city_official</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">mapping</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">zoom</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">epsg</span><span class="o">=</span><span class="mi">2881</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;off&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">city</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/jeffnewman/opt/anaconda3/envs/tt/lib/python3.9/site-packages/pyproj/crs/crs.py:53: FutureWarning: &#39;+init=&lt;authority&gt;:&lt;code&gt;&#39; syntax is deprecated. &#39;&lt;authority&gt;:&lt;code&gt;&#39; is the preferred initialization method. When making the change, be mindful of axis order changes: https://pyproj4.github.io/pyproj/stable/gotchas.html#axis-order-changes-in-proj-6
-  return _prepare_from_string(&#34; &#34;.join(pjargs))
-/Users/jeffnewman/opt/anaconda3/envs/tt/lib/python3.9/site-packages/transportation_tutorials/mapping/__init__.py:101: FutureWarning: The &#34;url&#34; option is deprecated. Please use the &#34;source&#34; argument instead.
-  basemap, extent_ = ctx.bounds2img(xmin_, ymin_, xmax_, ymax_, zoom=zoom, url=url)
-/Users/jeffnewman/opt/anaconda3/envs/tt/lib/python3.9/site-packages/contextily/tile.py:265: FutureWarning: The url format using &#39;tileX&#39;, &#39;tileY&#39;, &#39;tileZ&#39; as placeholders is deprecated. Please use &#39;{x}&#39;, &#39;{y}&#39;, &#39;{z}&#39; instead.
-  warnings.warn(
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_22_1.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_22_1.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_23_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_23_0.png" />
 </div>
 </div>
 </div>
 <div class="section" id="Street-Networks">
 <h2>Street Networks<a class="headerlink" href="#Street-Networks" title="Permalink to this headline">¶</a></h2>
 <p>The OSMnx package can also download a street network. We can do so again with a one line command, to get all the streets in Jupiter.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">jupiter_streets</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_place</span><span class="p">(</span><span class="s1">&#39;Jupiter, Florida, USA&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jupiter_streets</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_place</span><span class="p">(</span><span class="s1">&#39;Jupiter, Florida, USA&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/Users/jeffnewman/opt/anaconda3/envs/spring22/lib/python3.9/site-packages/osmnx/geocoder.py:110: FutureWarning: The frame.append method is deprecated and will be removed from pandas in a future version. Use pandas.concat instead.
+  gdf = gdf.append(_geocode_query_to_gdf(q, wr, by_osmid))
+</pre></div></div>
 </div>
 <p>Using the <a class="reference external" href="https://osmnx.readthedocs.io/en/stable/osmnx.html#osmnx.plot.plot_graph">plot_graph</a> function from the OSMnx package, we can easily visualize the network we have downloaded.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">jupiter_streets</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">jupiter_streets</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -711,7 +750,7 @@ Datum: NAD83 (High Accuracy Reference Network)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_27_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_27_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_28_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_28_0.png" />
 </div>
 </div>
 <p>You may notice that we have only received street segments fully contained with the reported municipal boundaries of the town. Some important connectivity is lost, for example in the eastern section of town, which appears here as a peninsula, but in reality is not; Donald Ross Road, which marks the southern edge of town, actually continues east all the way to intersect with Ocean Drive. To capture this connectivity, we can instead define a study area that extends beyond the actual town
@@ -720,8 +759,7 @@ boundaries. Here, we’ll add a buffer around the town of a few miles, to get a 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">study_area</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">20000</span><span class="p">)</span><span class="o">.</span><span class="n">envelope</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">study_area</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">20000</span><span class="p">)</span><span class="o">.</span><span class="n">envelope</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -731,8 +769,7 @@ boundaries. Here, we’ll add a buffer around the town of a few miles, to get a 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">west</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">north</span> <span class="o">=</span> <span class="n">study_area</span><span class="o">.</span><span class="n">total_bounds</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">west</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">north</span> <span class="o">=</span> <span class="n">study_area</span><span class="o">.</span><span class="n">total_bounds</span>
 <span class="n">streets</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_bbox</span><span class="p">(</span><span class="n">north</span><span class="p">,</span> <span class="n">south</span><span class="p">,</span> <span class="n">east</span><span class="p">,</span> <span class="n">west</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -741,8 +778,7 @@ boundaries. Here, we’ll add a buffer around the town of a few miles, to get a 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">city</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">transparent</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -751,7 +787,7 @@ boundaries. Here, we’ll add a buffer around the town of a few miles, to get a 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_32_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_32_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_33_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_33_0.png" />
 </div>
 </div>
 <div class="line-block">
@@ -762,8 +798,7 @@ boundaries. Here, we’ll add a buffer around the town of a few miles, to get a 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">type</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -781,8 +816,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -792,7 +826,7 @@ networkx.classes.multidigraph.MultiDiGraph
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(111027, 224740)
+(115376, 232607)
 </pre></div></div>
 </div>
 <div class="section" id="Highway-Types">
@@ -802,8 +836,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">5379723376</span><span class="p">,</span> <span class="mi">5379723385</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="mi">5379723376</span><span class="p">,</span> <span class="mi">5379723385</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -828,8 +861,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">highway_types</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">highway_types</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
     <span class="n">highway_types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;highway&#39;</span><span class="p">]))</span>
 <span class="n">unique_highway_types</span><span class="p">,</span> <span class="n">count_highway_types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">highway_types</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -847,21 +879,21 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 {&#39;cycleway&#39;: 760,
- &#39;footway&#39;: 18600,
- &#39;motorway&#39;: 513,
- &#39;motorway_link&#39;: 691,
- &#39;path&#39;: 29774,
- &#39;primary&#39;: 1285,
- &#39;primary_link&#39;: 196,
- &#39;residential&#39;: 78168,
- &#39;secondary&#39;: 751,
+ &#39;footway&#39;: 19672,
+ &#39;motorway&#39;: 519,
+ &#39;motorway_link&#39;: 801,
+ &#39;path&#39;: 31664,
+ &#39;primary&#39;: 1302,
+ &#39;primary_link&#39;: 218,
+ &#39;residential&#39;: 78979,
+ &#39;secondary&#39;: 756,
  &#39;secondary_link&#39;: 44,
- &#39;service&#39;: 78576,
+ &#39;service&#39;: 82454,
  &#39;steps&#39;: 32,
- &#39;tertiary&#39;: 7744,
- &#39;tertiary_link&#39;: 134,
- &#39;track&#39;: 6114,
- &#39;unclassified&#39;: 1358}
+ &#39;tertiary&#39;: 7851,
+ &#39;tertiary_link&#39;: 141,
+ &#39;track&#39;: 6100,
+ &#39;unclassified&#39;: 1314}
 </pre></div></div>
 </div>
 <p>It’s also possible to condense all that stuff into one line of python code:</p>
@@ -869,8 +901,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;highway&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;highway&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -881,29 +912,28 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 {&#39;cycleway&#39;: 760,
- &#39;footway&#39;: 18600,
- &#39;motorway&#39;: 513,
- &#39;motorway_link&#39;: 691,
- &#39;path&#39;: 29774,
- &#39;primary&#39;: 1285,
- &#39;primary_link&#39;: 196,
- &#39;residential&#39;: 78168,
- &#39;secondary&#39;: 751,
+ &#39;footway&#39;: 19672,
+ &#39;motorway&#39;: 519,
+ &#39;motorway_link&#39;: 801,
+ &#39;path&#39;: 31664,
+ &#39;primary&#39;: 1302,
+ &#39;primary_link&#39;: 218,
+ &#39;residential&#39;: 78979,
+ &#39;secondary&#39;: 756,
  &#39;secondary_link&#39;: 44,
- &#39;service&#39;: 78576,
+ &#39;service&#39;: 82454,
  &#39;steps&#39;: 32,
- &#39;tertiary&#39;: 7744,
- &#39;tertiary_link&#39;: 134,
- &#39;track&#39;: 6114,
- &#39;unclassified&#39;: 1358}
+ &#39;tertiary&#39;: 7851,
+ &#39;tertiary_link&#39;: 141,
+ &#39;track&#39;: 6100,
+ &#39;unclassified&#39;: 1314}
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># In April 2020, the data looked like this...</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In April 2020, the data looked like this...</span>
 <span class="c1"># {&#39;cycleway&#39;: 454,</span>
 <span class="c1">#  &#39;footway&#39;: 8780,</span>
 <span class="c1">#  &#39;motorway&#39;: 511,</span>
@@ -929,8 +959,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">major_types</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">major_types</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;motorway&#39;</span><span class="p">,</span> <span class="s1">&#39;motorway_link&#39;</span><span class="p">,</span>
     <span class="s1">&#39;primary&#39;</span><span class="p">,</span> <span class="s1">&#39;primary_link&#39;</span><span class="p">,</span>
     <span class="s1">&#39;secondary&#39;</span><span class="p">,</span> <span class="s1">&#39;secondary_link&#39;</span><span class="p">,</span>
@@ -947,8 +976,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -958,7 +986,7 @@ networkx.classes.multidigraph.MultiDiGraph
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(111027, 11358)
+(115376, 11632)
 </pre></div></div>
 </div>
 <p>We’ve removed a large number of links, although so far all the nodes remain.</p>
@@ -966,8 +994,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -975,7 +1002,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_49_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_49_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_50_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_50_0.png" />
 </div>
 </div>
 <p>There are a lot of leftover unconnected nodes – when we dropped the footpaths and minor streets, we didn’t drop footpath nodes. Let’s do that now.</p>
@@ -983,8 +1010,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">streets</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">streets</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span>
     <span class="nb">list</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">isolates</span><span class="p">(</span><span class="n">streets</span><span class="p">))</span> <span class="c1"># list-ify to gather nodes first then remove them</span>
 <span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
@@ -995,7 +1021,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_51_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_51_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_52_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_52_0.png" />
 </div>
 </div>
 <p>Better! How much network now?</p>
@@ -1003,8 +1029,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1014,7 +1039,7 @@ networkx.classes.multidigraph.MultiDiGraph
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(8068, 11358)
+(8292, 11632)
 </pre></div></div>
 </div>
 </div>
@@ -1025,8 +1050,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">jupiter_center</span> <span class="o">=</span> <span class="mi">382641489</span> <span class="c1"># Node at Northbound Old Dixie at Westbound Indiantown</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jupiter_center</span> <span class="o">=</span> <span class="mi">382641489</span> <span class="c1"># Node at Northbound Old Dixie at Westbound Indiantown</span>
 
 <span class="c1"># Nodes that can be reached from jupiter_center</span>
 <span class="n">connected_nodes_out</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">streets</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">jupiter_center</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;length&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -1047,8 +1071,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">nc</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;w&#39;</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">connected_nodes</span> <span class="k">else</span> <span class="s1">&#39;r&#39;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nc</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;w&#39;</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">connected_nodes</span> <span class="k">else</span> <span class="s1">&#39;r&#39;</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">streets</span><span class="o">.</span><span class="n">nodes</span><span class="p">()]</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">nc</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1057,7 +1080,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_57_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_57_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_58_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_58_0.png" />
 </div>
 </div>
 <p>Looks like the unconnected nodes are mostly divided highways that enter or leave the study area. This makes sense, and in a complete demand model these would get external stations at the ends. But let’s just drop them for this example.</p>
@@ -1065,8 +1088,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">streets</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span><span class="n">unconnected_nodes</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">streets</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span><span class="n">unconnected_nodes</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1074,8 +1096,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">len</span><span class="p">(</span><span class="n">connected_nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">connected_nodes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1085,15 +1106,14 @@ networkx.classes.multidigraph.MultiDiGraph
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(7266, 7266)
+(7396, 7396)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">plot_graph</span><span class="p">(</span><span class="n">streets</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1101,7 +1121,7 @@ networkx.classes.multidigraph.MultiDiGraph
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_61_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_61_0.png" />
+<img alt="../../_images/course-content_geographic-analysis_accessing-openstreetmap_62_0.png" src="../../_images/course-content_geographic-analysis_accessing-openstreetmap_62_0.png" />
 </div>
 </div>
 </div>
@@ -1114,16 +1134,10 @@ networkx.classes.multidigraph.MultiDiGraph
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="static-maps.html" class="btn btn-neutral float-right" title="Creating Static Maps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="working-with-geodata.html" class="btn btn-neutral float-left" title="Manipulating Geographic Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="static-maps.html" class="btn btn-neutral float-right" title="Creating Static Maps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="working-with-geodata.html" class="btn btn-neutral float-left" title="Manipulating Geographic Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
@@ -1132,10 +1146,16 @@ networkx.classes.multidigraph.MultiDiGraph
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -1143,7 +1163,6 @@ networkx.classes.multidigraph.MultiDiGraph
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
